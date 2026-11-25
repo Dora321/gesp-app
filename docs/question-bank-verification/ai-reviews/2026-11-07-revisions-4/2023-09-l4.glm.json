@@ -1,0 +1,85 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    3
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:05:00.000Z",
+  "completedAt": "2026-11-25T05:36:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "172ff499f5513ec78634c16db0ddf833e48197fdaec6d912a29790be3c45b403",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为『CCF 编程能力等级认证 GESP』『C++ 四级』『2023 年 9 月』，第 1 页单选题答案表第 3 题为 C，与 2023-09-l4（2023 年 9 月 GESP C++ 四级）第 3 题对应。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 3 题题干原文为『对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。』，其中 n 为斜体变量、两侧留有空格；页末选项 A『O(n)』被页边界裁切。候选 question 末尾仍残留跨页裁切孤字『 A』且『包含n』缺空格；changes.question 按原卷逐字恢复（去残字、补空格），修正后与第 1 页原图逐字一致，核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页页末仅见被裁切的选项 A『O(n)』，第 2 页页图自上而下为 B.O(n log n)、C.O(n²)、D.以上都不正确；候选 options 内容与顺序完全一致，answer 的 0 起始索引映射不受跨页排版影响。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表『B A C D D B A B B C C A A D C』第 3 格为 C，即 0 起始索引 2，候选 answer=2 一致。独立推导：按固定轮数执行的冒泡排序总比较次数恒为 (n-1)+(n-2)+…+1=n(n-1)/2=Θ(n²)，与输入无关；交换次数等于逆序对数，均匀随机排列每对逆序概率 1/2、共 n(n-1)/2 对，期望交换 n(n-1)/4，仍为 Θ(n²)。故平均时间复杂度为 O(n²)，对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析（上一轮修订稿）逐条独立核算成立：比较次数 n(n-1)/2 与输入无关；最坏（逆序）交换 n(n-1)/2；随机排列期望交换为逆序对期望 n(n-1)/4 而非 n(n-1)/2；『最好情况 O(n)』已注明依赖『本轮无交换则提前结束』优化，与基本版冒泡（如本卷第 15 题代码）不矛盾；A、B、D 选项分析与知识延伸（比较/非比较排序复杂度归类）均无事实错误，未虚构运行结果。修复后的完整解析核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，该维度不适用。"
+          }
+        },
+        "changes": {
+          "question": "对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核对 statement 判 needs_fix 并给出清理后的题干，经对照第 1 页页图独立复核属实：候选 question 末尾确有跨页裁切残字『 A』且『包含n』缺空格，其修复文本与原卷逐字一致，采纳并保留完整字段值写入 changes；options、answer、explanation 三个维度初核判 verified，经独立推导（比较次数恒为 n(n-1)/2、期望交换 n(n-1)/4，均为 Θ(n²)，答案 C）与逐条核算确认无误，接受。应用 changes.question 后题面即为原卷原貌，故 verdict=revise。"
+      }
+    ],
+    "summary": "仅 1 道候选（Q3）。初核提出的题干残字『 A』与缺空格问题经第 1 页页图独立复核属实，changes.question 按原卷恢复；选项、答案、解析（含上一轮修正的期望交换次数与提前退出前提）均独立核算通过。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        3
+      ],
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "startedAt": "2026-11-25T05:05:00.000Z",
+      "completedAt": "2026-11-25T05:36:00.000Z"
+    }
+  ]
+}

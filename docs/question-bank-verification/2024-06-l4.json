@@ -653,40 +653,42 @@
       "id": 17,
       "resolved": true,
       "dimensions": [
-        "answer"
-      ],
-      "blockedDimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页第 2 题代码第 7 行为 ra=&a;；网站 question 字段却写成 ra=a;，独立 code 字段已是 ra=&a;，需修正 question 字段以匹配原卷。",
-          "review": "修复后核验通过：PDF 第 8 页第 2 题代码第 7 行为 ra=&a;（原图清晰可见），网站 question 字段原为 ra=a;，与原卷及网站自身 code 字段均不符；changes 已给出与原卷一致的完整题干，应用后与 PDF 一致。"
+          "initial": "PDF 第8页判断题第2题题干「以下代码不能够正确执行。」与其后代码共 9 行：1 #include<iostream>、2 using namespace std;、3 int main()、4 {、5 int a=20;、6 int& ra;、7 ra=&a;、8 cout<<ra<<endl;、9 }。候选 question 内嵌代码与之一一对应，第 7 行已为 ra=&a;（上一轮误写的 ra=a; 已修正），与候选 code 字段一致。独立 code 字段由站内叠加层给出，按该层既有写法省略首行 #include<iostream>（同层多数条目同样处理），仅少了头文件、不改变「引用未初始化」与「int* 赋给 int」两条语句语义；题面（question）本身完整，故 statement 判 verified，并在此记录该辅助字段的排版差异。",
+          "review": "第 8 页判断题第 2 题题干『以下代码不能够正确执行。』与其后代码共 9 行：#include<iostream>、using namespace std;、int main()、{、int a=20;、int& ra;、ra=&a;、cout<<ra<<endl;、}。候选 question 内嵌代码与之逐行一致，第 7 行已为 ra=&a;（第 4 轮修复真实落入 paper.json），与候选 code 字段一致。"
         },
         "answer": {
-          "initial": "PDF 第 8 页判断题答案表第 2 项为√，即正确，0 起始索引为 0；网站 answer=0 一致。",
-          "review": "PDF 第 8 页判断题答案表第 2 格为 √（正确），0 起始索引为 0；网站 answer=0 一致，无需修改。"
+          "initial": "PDF 第8页判断题答案表「× √ √ √ × √ √ √ √ √」第2格为 √（正确），候选 answer=0 一致。独立验证（本地 g++ 实编译）：第6行 int& ra; 报「declaration of reference variable 'ra' requires an initializer」（GCC 对应报 'ra' declared as reference but not initialized），引用未初始化即编译失败；把第6行改为 int& ra = a; 后，第7行 ra = &a; 仍报「incompatible pointer to integer conversion assigning to 'int' from 'int *'」。两处错误相互独立，代码确不能够正确执行，应判「正确」。",
+          "review": "第 8 页判断题答案表『× √ √ √ × √ √ √ √ √』第 2 格为 √，映射 正确=0，候选 answer=0 一致。独立验证（本地实编译）：第 6 行 int& ra; 报『declaration of reference variable 'ra' requires an initializer』，引用未初始化即编译失败；把第 6 行改为 int& ra = a; 后，第 7 行 ra = &a; 仍报『incompatible pointer to integer conversion assigning to 'int' from 'int *'』。两处错误相互独立，代码确不能够正确执行，应判『正确』。"
         },
         "explanation": {
-          "initial": "现有解析按 ra=a; 解释，未针对 PDF 中的 ra=&a;；且 ra=&a; 还存在把 int* 赋给 int& 的类型错误，需改写解析。",
-          "review": "修复后核验通过：原解析按 ra=a; 展开，与原卷代码 ra=&a; 不符；changes 已重写解析，独立推导确认两点依据成立——int& ra; 未初始化即编译失败、ra=&a; 中 int* 无法赋给 int&，结论“正确”与官方 √ 一致。"
+          "initial": "候选解析逐条复核成立：(1) 第6行引用未初始化直接编译失败；(2) 第7行 &a 为 int*，既不能绑定到 int& 也不能赋给 ra 引用的 int 对象，即使补上初始化仍无法编译——两点均经本地 g++ 实编译复现；(3) 正确写法 int& ra = a; 的示例成立；(4) 引用必须定义即绑定、终身不能改绑、指针可为 nullptr 的对比正确；(5) ra = ... 表示给被引用对象赋值而非改绑的说明正确。未出现虚构运行结果，结论「正确」与官方 √ 一致。",
+          "review": "候选解析逐条复核成立：(1) 第 6 行引用未初始化直接编译失败；(2) 第 7 行 &a 为 int*，既不能绑定到 int& 也不能赋给 ra 引用的 int 对象，即使补上初始化仍无法编译——两点均经本地实编译复现；(3) 正确写法 int& ra = a; 的示例成立；(4) 引用必须定义即绑定、终身不能改绑、指针可空、ra=... 是给被引用对象赋值而非改绑的对比说明正确。未虚构运行结果，结论『正确』与官方 √ 一致，无需修改。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-5/2024-06-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-5/2024-06-l4.glm.json"
       ]
     },
     {
@@ -1056,22 +1058,27 @@
       "unresolved": []
     }
   ],
-  "unresolved": [
-    {
-      "id": 17,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2024-06-l4.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-06-l4.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-5/2024-06-l4.integration.json",
+  "programmingLimitCheck": {
+    "reviewedAt": "2026-11-25",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "method": "比对 SHA 校验通过的原卷 PDF 文本层与站点加载数据，原卷两道编程题的内存限制一致。",
+    "questions": [
+      {
+        "id": 26,
+        "sourcePage": 9,
+        "memoryLimit": "512 MB",
+        "previousMemoryLimit": "128 MB"
+      },
+      {
+        "id": 27,
+        "sourcePage": 11,
+        "memoryLimit": "512 MB",
+        "previousMemoryLimit": "128 MB"
+      }
+    ]
+  }
 }

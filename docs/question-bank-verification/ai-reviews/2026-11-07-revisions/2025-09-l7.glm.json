@@ -1,0 +1,375 @@
+{
+  "paperId": "2025-09-l7",
+  "phase": "glm",
+  "questionIds": [
+    4,
+    6,
+    8,
+    13,
+    21,
+    24,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T06:06:00.000Z",
+  "completedAt": "2026-11-25T08:06:34.000Z",
+  "finishReason": "stop",
+  "inputSha256": "7ef4efab711af4fb476eceb709d8925148617b93751a22ebdabaa7c6b9a7a3a3",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703973098618912.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++7级.pdf",
+    "mirrorSha": "3b54ec0ed94378d186c603b352363d7ee3d5c423",
+    "mirrorBytes": 893134,
+    "shaVerified": true,
+    "sha256": "f7897b83cddc2a1a85d388580a311ee36455043c6c701a7ceaf6253197be28c1"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头为「CCF 编程能力等级认证 GESP C++ 七级 2025 年 09 月」，共 8 页，含单选题 15 题、判断题 10 题、编程题 2 题（连通图、金币收集），与 2025-09-l7 一致。"
+    },
+    "questions": [
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页第4题题干「已知数组 a 的定义 int a[10] = {-1};，下列说法不正确的是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页 A-D 与候选逐字一致：A 至少占用 10 个 int（一般 40 字节）、B 所有元素均被初始化为 -1、C a[-1]=0 不产生编译错误但结果难料、D a[13]=0 同理；候选已清除原误粘的代码行号残片。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第 4 题为 B，0 起始索引 1。独立判定：int a[10]={-1} 仅显式初始化 a[0]=-1，其余 9 个元素按规则补 0，「所有元素均为 -1」错误；a[-1]、a[13] 越界不报编译错误但属未定义行为，A/C/D 正确，answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按部分初始化补 0 规则判定 B 错误并逐项分析 A/C/D，与独立判断一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "选项修复与第1页逐字一致（清除误粘代码行号残片）；独立判定 int a[10]={-1} 仅将 a[0] 初始化为 −1、其余 9 个元素按规则补 0，「所有元素均为 -1」错误，a[-1]、a[13] 越界不报编译错误但属未定义行为，与答案表第 4 题 B（0 起始索引 1）及候选解析一致。候选正确，changes 为空，批准套用。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第6题题干「下列关于二叉树的说法，错误的是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页 A-D 与候选逐字一致：A BST 中序遍历顺序与元素排序顺序相同、B AVL 树是一种二叉排序树、C「n 个元素的二叉排序树，其高一定为 ⌊log₂n⌋」（已补回 n 与公式）、D 任意森林都可映射为一颗二叉树（保留原文「一颗」用字）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第 6 题为 C，0 起始索引 2。独立判定：BST 形态取决于插入顺序，升序插入退化为链、高为 n，并非「一定」为 ⌊log₂n⌋，C 错误；A/B/D 均正确，answer=2 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按插入顺序说明高度不固定（均匀时近似对数、有序插入退化成链），并逐项解释中序有序、AVL 属 BST、左孩子右兄弟法森林转二叉树，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "选项修复与第2页逐字一致；独立判定 BST 最坏（链状）高度可达 n−1，C 的「高度一定为 ⌊log₂n⌋」错误，与答案表第 6 题 C（索引 2）一致；A（中序即排序序）、B（AVL 属 BST）、D（森林↔二叉树）均正确。候选正确，changes 为空，批准套用。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第8题题干「对一个包含V个顶点、E条边的图，执行广度优先搜索，其最优时间复杂度是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页选项 A O(V+E)、B O(V)、C O(E)、D O(V²)，与候选逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第 8 题为 A，0 起始索引 0。独立判定：邻接表 BFS 每个顶点入队出队一次 O(V)、每条边在起点出队时查看常数次 O(E)，最优 O(V+E)；邻接矩阵需扫整行为 O(V²)，answer=0 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 O(V)+O(E)=O(V+E) 推导并提示邻接矩阵为 O(V²)，与独立分析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题干与选项修复与第2页逐字一致；独立判定邻接表 BFS 每顶点出入队一次 O(V)、每条边在起点出队时查看常数次 O(E)，最优 O(V+E)，邻接矩阵扫整行 O(V²)，与答案表第 8 题 A（索引 0）及候选解析一致。候选正确，changes 为空，批准套用。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页第13题题干「下面 init_sieve 函数的时间复杂度为（ ）」及代码块与候选一致：int sieve[MAX_N]; 第一重 i=1..n 令 sieve[i]=i，第二重 i=2..n、内层 j=i; j<=n; j+=i 做 sieve[j]--。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页选项 A O(n)、B O(n log log n)、C O(n log n)、D O(n²)，与候选逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第 13 题为 C，0 起始索引 2。独立推导：内层对每个 i 执行 n/i 次，总次数 Σ_{i=2..n} n/i = n(Hₙ−1) = O(n log n)；每个 i（含合数）都进入内层，故不是只对素数操作的埃氏筛 O(n log log n)，answer=2 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按调和级数求和得 O(n log n)，并说明 A 漏项、B 混淆埃氏筛（内层仅对素数）、D 误把步长当 1，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题干、代码块与选项修复与第3页逐字一致；独立推导内层对每个 i 执行 n/i 次，总次数 Σn/i=O(n log n)（每个 i 含合数都进入内层，非只对素数操作的埃氏筛 O(n log log n)），与答案表第 13 题 C（索引 2）及候选解析一致。候选正确，changes 为空，批准套用。"
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页判断第6题「一棵有N个节点的完全二叉树，则树的深度为⌊log₂(N)⌋+1。（）」与候选 statement 一致（候选以 LaTeX 形式写作 ⌊log₂ N⌋+1）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有「正确/错误」两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第4页判断题答案表第 6 题为「√」，映射 0。独立推导：完全二叉树深度 h 满足 2^{h−1}≤N≤2^h−1，即 h=⌊log₂N⌋+1（N=1 得 1、N=8 得 4 验算成立），命题正确，answer=0 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出 2^{h−1}≤N≤2^h−1 的推导及 N=1、N=8 验算，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题干与第4页判断第6题一致（LaTeX 化不改义），答案表「√」映射 0；独立推导完全二叉树 2^{h−1}≤N≤2^h−1 得 h=⌊log₂N⌋+1（N=1 得 1、N=8 得 4 验算成立），与候选解析一致。候选正确，changes 为空，批准套用。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页判断第9题「泛洪算法的递归实现容易造成溢出，因此大的二维地图算法中，一般使用广度优先搜索实现。」与候选一致；候选已清除原误粘的 count_triple 代码片段。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有「正确/错误」两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第4页判断题答案表第 9 题为「√」，映射 0。独立判定：递归泛洪深度等于连通区域规模，大地图易栈溢出，实践中常用队列 BFS（或显式栈），命题正确，answer=0 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明递归深度风险及改用 BFS/显式栈的理由，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题干修复与第4页判断第9题逐字一致，答案表「√」映射 0；泛洪递归实现易栈溢出、大二维地图宜用 BFS 的表述正确。候选正确，changes 为空，批准套用。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页 3.1.1 题目描述（无向图连通定义、可能含重边与自环、最少加边使任意两结点连通）、3.1.2 输入格式、3.1.3 输出格式与候选 question 一致；3.1.4 两组样例（4 4/1 2/2 3/3 1/1 4→0；6 4/1 2/2 3/3 1/6 5→2）与候选 samples 一致；第6页 3.1.5 数据范围（40%：1≤n≤100、1≤m≤100；全部：1≤n≤10^5、1≤m≤10^5）与候选补入文本逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：c 个连通块至少需 c−1 条边（每次加边至多减少一个连通块），以一块为中心向其余各接一条边即可达到；自环不改变连通性，重边只重复合并同一对点。样例1 全图连通得 0；样例2 连通块 {1,2,3}、{4}、{5,6} 共 3 个得 2，与候选解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 为带路径压缩与按大小合并的 DSU，统计根个数后输出 components−1，与第6页官方参考程序（getf 路径压缩、统计 getf(i)==i 计数后输出 ans−1）一致。本人独立用 g++ -std=c++17 -O2 编译并运行：两组原样例输出 0、2；边界 1 1/1 1→0、3 1/1 2→1、3 3 含自环重边→1、3 2 双自环全孤立→2，全部正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单点自环",
+            "input": "1 1\n1 1\n",
+            "output": "0",
+            "reason": "n=1 仅一个自环，自环不改变连通性，只有一个连通块，需加 0 条边。"
+          },
+          {
+            "name": "一条边连接两点",
+            "input": "3 1\n1 2\n",
+            "output": "1",
+            "reason": "连通块为 {1,2} 与 {3}，共 2 块，需 1 条边。"
+          },
+          {
+            "name": "自环与重边",
+            "input": "3 3\n1 1\n2 2\n1 2\n",
+            "output": "1",
+            "reason": "自环与重边均为无效合并，1、2 合并后与 3 共 2 个连通块，需 1 条边。"
+          },
+          {
+            "name": "双自环全孤立",
+            "input": "3 2\n1 1\n2 2\n",
+            "output": "2",
+            "reason": "三个互不连通的结点（自环无效），共 3 个连通块，需 2 条边。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题面、样例（0、2）与第5-6页官方文本一致，数据范围一致；独立按「连通块数 −1」复核（自环不改连通性、重边只重复合并）与解析一致；参考程序 DSU 与官方参考程序一致并实际编译运行，2 组原样例加 4 条边界（n=1 自环、3 点单边、含双自环加边、双自环全孤立）全部通过。候选正确，changes 为空，批准套用。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页 3.2.1 题目描述（每时刻只能不动或右移一格、须在时刻 t_i 恰位于 x_i）、3.2.2 输入格式（每行 x_i,t_i）、3.2.3 输出格式与候选 question 一致；第7页 3.2.4 两组样例（3/1 6/3 7/2 4→2；4/1 1/2 2/1 3/2 4→3）与候选 samples 一致；3.2.5 数据范围（40%：1≤n≤8；另 30%：1≤n≤100、1≤x_i≤100、1≤t_i≤100；全部：1≤n≤10^5、1≤x_i≤10^9、1≤t_i≤10^9）与候选补入文本逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：先收 i 后收 j 需 x_i≤x_j 且 t_j−t_i≥x_j−x_i，即 t−x 非降（时间非降与坐标可达由 x、t−x 同时非降保证）；过滤 t<x 的永不可达金币后按 x（同 x 按 t）排序，对 t_i−x_i 求最长不下降子序列即为答案。样例1 可收 (2,4)、(3,7) 得 2；样例2 可收 (1,1)、(2,2)、(2,4) 得 3，与候选解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 过滤 t<x 后按 (x,t) 排序，对 v=t−x 用 upper_bound 维护最长不下降子序列，与第7-8页官方参考程序（cmp 按 x、t 排序，t[i]-=x[i] 后跳过 v<0，二分找首个大于 v 的位置）算法一致。本人独立用 g++ -std=c++17 -O2 编译并运行：两组原样例输出 2、3；边界 1/1 1→1、1/5 3→0、3/(1 1)(1 2)(2 2)→2、2/(10^9 10^9)×2→2、2/(1 10^9)(10^9 2)→1；另以子集枚举暴力对拍 400 组随机数据全部一致，n≤10^5 时 O(n log n)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小坐标时刻",
+            "input": "1\n1 1\n",
+            "output": "1",
+            "reason": "t=x=1，从 (0,0) 每时刻右移一格恰好在 t=1 到达 x=1，可收集。"
+          },
+          {
+            "name": "时刻早于坐标",
+            "input": "1\n5 3\n",
+            "output": "0",
+            "reason": "t=3 时刻最多右移 3 格，到不了 x=5，一枚也收不到。"
+          },
+          {
+            "name": "同一坐标连续时刻",
+            "input": "3\n1 1\n1 2\n2 2\n",
+            "output": "2",
+            "reason": "t=1 收 (1,1)，t=2 停在 x=1 收 (1,2)；(2,2) 与 (1,2) 同时刻不同地不可兼得，最多 2 枚。"
+          },
+          {
+            "name": "十亿级重复金币",
+            "input": "2\n1000000000 1000000000\n1000000000 1000000000\n",
+            "output": "2",
+            "reason": "x、t 取上限 10^9，两枚金币位置时刻完全相同可同刻收集，检验数值上界与同 (x,t) 计数。"
+          },
+          {
+            "name": "时刻倒序不可兼收",
+            "input": "2\n1 1000000000\n1000000000 2\n",
+            "output": "1",
+            "reason": "两枚金币时刻先后与坐标大小矛盾（t 大者 x 小），任一顺序都无法先后到达，只能收 1 枚。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题面与样例（2、3）与第6-7页官方文本一致，数据范围（1≤x,t≤10⁹）一致；独立按「过滤 t<x 后按 (x,t) 排序、对 t−x 求最长不下降子序列」复核与解析一致；参考程序与官方算法一致并实际编译运行，2 组原样例加 5 条边界（n=1 可达/不可达、同刻多金币、10⁹ 量级）全部通过，另有子集枚举暴力对拍 400 组随机数据一致。候选正确，changes 为空，批准套用。"
+      }
+    ],
+    "summary": "修订稿八题逐题独立复核（对照原卷 8 页图与缓存候选，输入 SHA256 与 DeepSeek 初核一致）：Q4/Q6 选项补全、Q8/Q13 题面与解析修复、Q21/Q24 判断题、Q26/Q27 编程题题面样例均与官方页图逐字一致，答案经独立推导全部吻合答案表，编程题参考程序实际编译并通过全部原样例与边界用例（Q27 另经暴力对拍 400 组），八题全部批准候选（changes={}），无遗留问题。"
+  }
+}

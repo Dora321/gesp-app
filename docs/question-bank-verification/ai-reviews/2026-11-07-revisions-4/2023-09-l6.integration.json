@@ -1,0 +1,39 @@
+{
+  "paperId": "2023-09-l6",
+  "integratedAt": "2026-11-25T06:29:44.892Z",
+  "accepted": [
+    {
+      "id": 15,
+      "fields": []
+    },
+    {
+      "id": 24,
+      "fields": []
+    }
+  ],
+  "deferred": [
+    {
+      "id": 8,
+      "reasons": [
+        "修改 code 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "code": "#include <iostream>\nusing namespace std;\n\nclass MoreData {\n    int * __data;\n    int head, tail, capacity;\npublic:\n    MoreData(int cap) {\n        capacity = cap;\n        __data = new int[capacity];\n        head = tail = 0;\n    }\n    MoreData & push(int val) {\n        __data[tail++] = val;\n        return *this;\n    }\n    int pop() {\n        return __data[head++];\n    }\n    int size() {\n        return tail - head;\n    }\n};\nint main() {\n    auto myData = MoreData(100);\n    myData.push(1);\n    myData.push(2);\n    myData.push(3);\n    myData.push(11).push(12).push(13);\n    cout << myData.pop() << endl;\n    return 0;\n}"
+      }
+    },
+    {
+      "id": 9,
+      "reasons": [
+        "修改 explanation 已获一致批准，尚未应用",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：B**\n\n**解析：**\n按官方哈夫曼树（左 0 右 1）：根 1.00 → 右 0.60 → 左 0.30 → 左 0.15 → 右 0.09 → 右叶 D(0.05)。\n\nD 的编码：从根出发每一步取分支值：1.00→0.60（右，1）→ 0.30（左，0）→ 0.15（左，0）→ 0.09（右，1）→ D（右，1），得 **10011**。\n\n验证自洽性：B 的路径 1.00→0.60（右，1）→ B（右，1）= **11**，与题干「B 的编码为 11」一致 ✓；按同一约定逐叶读码：A = 0、B = 11、C = 101、G = 10000、F = 10001、E = 10010、D = 10011。任一编码都不是其他编码的前缀，且码长与频率成反比（A 0.40 最短、D 0.05 最长），符合哈夫曼编码性质。答案 B。\n\n**易错点：** 哈夫曼树的左右分支约定决定编码值；本题给了「B = 11」这个锚点反推出「左 0 右 1」的约定，再沿树读 D 的路径。读码时不要漏掉根到 0.60 的第一个 1，也不要把 C 误读成 10。\n\n**考点：** 哈夫曼编码、哈夫曼树"
+      }
+    }
+  ],
+  "codeChecks": []
+}

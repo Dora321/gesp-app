@@ -1,0 +1,120 @@
+{
+  "executedAt": "2026-11-25T07:44:19.141Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "4 3\n1 2\n2 3\n4 2",
+          "output": "1 3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1 3\n",
+          "passed": true
+        },
+        {
+          "input": "7 5\n1 2\n2 3\n4 2\n5 6\n6 7",
+          "output": "2 5",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2 5\n",
+          "passed": true
+        },
+        {
+          "name": "单边分量",
+          "input": "2 1\n1 2\n",
+          "output": "1 1",
+          "reason": "一个连通块二染色两侧各 1 人，B 校至少、至多均为 1。",
+          "kind": "boundary",
+          "actual": "1 1\n",
+          "passed": true
+        },
+        {
+          "name": "星形与路径混合",
+          "input": "4 3\n1 2\n1 3\n1 4\n",
+          "output": "1 3",
+          "reason": "星形块两侧人数 1 和 3，B 校最少取 1、最多取 3。",
+          "kind": "boundary",
+          "actual": "1 3\n",
+          "passed": true
+        },
+        {
+          "name": "两分量取和",
+          "input": "6 4\n1 2\n2 3\n4 5\n5 6\n",
+          "output": "2 4",
+          "reason": "两个路径块各贡献 min=1,max=2，合计至少 2、至多 4。",
+          "kind": "boundary",
+          "actual": "2 4\n",
+          "passed": true
+        },
+        {
+          "name": "无交流孤立点",
+          "input": "3 0\n",
+          "output": "0 3",
+          "reason": "m=0 时每人自成一块，单侧可全放 A 校，B 校最少 0、最多 3。",
+          "kind": "boundary",
+          "actual": "0 3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ccb1c6f974682960fbc6fadf2a67717b5cd61bb61c23b1f5d2c3b1da5a5759e7"
+    },
+    {
+      "id": 27,
+      "passed": false,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5 6\n1 2 3 4 4 5\n1 2 3 3 4 5\n1 2 2 3 4 5\n1 6 6 7 7 8\n6 6 7 7 8 8",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "同形单方块不同色",
+          "input": "1 5\n1 2 3 3 1\n",
+          "output": "1",
+          "reason": "五个孤立单格（颜色各异）平移后重合，只算 1 种。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": false
+        },
+        {
+          "name": "横条异色同形",
+          "input": "2 3\n1 1 1\n2 2 2\n",
+          "output": "1",
+          "reason": "上下两个 1×3 条颜色不同但平移可重合，同属 1 种。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "同色断开分属两块",
+          "input": "1 4\n1 1 2 1\n",
+          "output": "2",
+          "reason": "同色不四连通不算同一方块：1×2 条与单格共 2 种。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "S 形与单格",
+          "input": "2 3\n1 1 3\n3 1 1\n",
+          "output": "2",
+          "reason": "四个 1 构成 S 形方块，两个 3 为孤立单格且对角不连通，共 2 种。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "06bb9a8cae0a7b02ceca3e955b6753215e3cac8f359942364a7b9a8887d75064"
+    }
+  ]
+}

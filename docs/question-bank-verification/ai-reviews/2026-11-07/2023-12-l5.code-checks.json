@@ -1,0 +1,155 @@
+{
+  "executedAt": "2026-11-25T08:25:48.765Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "2 4 \n1 \n4 \n5 \n9",
+          "output": "4 \nlucky \n8 \nlucky",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\nlucky\n8\nlucky\n",
+          "passed": true
+        },
+        {
+          "input": "16 11 \n1 \n2 \n4 \n8 \n16 \n32 \n64 \n128 \n256 \n512\n1024",
+          "output": "16 \n16 \n16 \n16 \nlucky \nlucky \nlucky \nlucky \nlucky \nlucky \nlucky",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "16\n16\n16\n16\nlucky\nlucky\nlucky\nlucky\nlucky\nlucky\nlucky\n",
+          "passed": true
+        },
+        {
+          "name": "a 下界 a=1",
+          "input": "1 1\n1\n",
+          "output": "lucky\n",
+          "reason": "独立推演：a=1 时 1=1²≥a 为超级幸运数，且任何正整数都是其倍数，全部为幸运数。",
+          "kind": "boundary",
+          "actual": "lucky\n",
+          "passed": true
+        },
+        {
+          "name": "幸运化最近边界 a=4,x=3",
+          "input": "4 1\n3\n",
+          "output": "4\n",
+          "reason": "独立推演：3 非幸运数，≥3 的最近幸运数为 4=2²，两次 +1 幸运化为 4。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "超级幸运数的倍数 a=4,x=12",
+          "input": "4 1\n12\n",
+          "output": "lucky\n",
+          "reason": "独立推演：12=4×3 是超级幸运数 4 的倍数，直接输出 lucky。",
+          "kind": "boundary",
+          "actual": "lucky\n",
+          "passed": true
+        },
+        {
+          "name": "a 上界 a=1000001",
+          "input": "1000001 2\n1000001\n1002001\n",
+          "output": "1002001\nlucky\n",
+          "reason": "独立推演：a=1,000,001 时最小超级幸运数为 1001²=1,002,001；x=1,000,001 非幸运数，幸运化结果为 1,002,001；x=1,002,001 本身输出 lucky。验证上界与 next_lucky 恒有解。",
+          "kind": "boundary",
+          "actual": "1002001\nlucky\n",
+          "passed": true
+        },
+        {
+          "name": "原样例 1",
+          "input": "2 4\n1\n4\n5\n9\n",
+          "output": "4\nlucky\n8\nlucky\n",
+          "reason": "独立推演：1 幸运化为 4；4 为幸运数；5 幸运化为 8（4 的倍数）；9 为超级幸运数。",
+          "kind": "boundary",
+          "actual": "4\nlucky\n8\nlucky\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "07980365b3af48fe07881fff7886c3213993ed22980d092db76b1abe52d78fe4"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "3\n1 2 3",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "5\n5 6 2 10 13",
+          "output": "8",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "8\n",
+          "passed": true
+        },
+        {
+          "name": "原样例 1",
+          "input": "3\n1 2 3\n",
+          "output": "2\n",
+          "reason": "独立推演：2&3=2 为最大两两契合度。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "原样例 2",
+          "input": "5\n5 6 2 10 13\n",
+          "output": "8\n",
+          "reason": "独立推演：10&13=8 为最大两两契合度。",
+          "kind": "boundary",
+          "actual": "8\n",
+          "passed": true
+        },
+        {
+          "name": "全 0",
+          "input": "3\n0 0 0\n",
+          "output": "0\n",
+          "reason": "独立推演：0 与任何数按位与均为 0，最高答案为 0，验证 a_i 下界 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "相同上界值",
+          "input": "2\n2147483647 2147483647\n",
+          "output": "2147483647\n",
+          "reason": "独立推演：两数同为 2^31−1，按位与仍为 2^31−1，验证 a_i 上界与相同值配对。",
+          "kind": "boundary",
+          "actual": "2147483647\n",
+          "passed": true
+        },
+        {
+          "name": "高位取舍辨析",
+          "input": "4\n8 9 12 15\n",
+          "output": "12\n",
+          "reason": "独立推演：逐对验算最大为 15&12=12（1000/1001/1100/1111 中 1100&1111=1100），验证贪心从高位逐位筛选的正确性。",
+          "kind": "boundary",
+          "actual": "12\n",
+          "passed": true
+        },
+        {
+          "name": "含 0 与 1 位上界",
+          "input": "3\n0 2147483647 1073741824\n",
+          "output": "1073741824\n",
+          "reason": "独立推演：0 按位与恒为 0；2^31−1 与 2^30 按位与为 2^30=1073741824，验证第 30 位为可固定最高位。",
+          "kind": "boundary",
+          "actual": "1073741824\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "8afe5a734b70fd899658f06cd52097b228993102ba0ab24032c641472f349cd3"
+    }
+  ]
+}

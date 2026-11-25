@@ -1,0 +1,85 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    17
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:05:00.000Z",
+  "completedAt": "2026-11-25T05:36:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "a678b1da0bf07259f428c22af6231ca6defd77712aa0bd1eff6a2d5019e7363c",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071528722464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 8 页页图为 2024 年 6 月 C++ 四级卷判断题部分，答案表『× √ √ √ × √ √ √ √ √』第 2 格为 √，判断题第 2 题题面『以下代码不能够正确执行。』及 9 行引用代码与 2024-06-l4 的 Q17 对应。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 2 题代码共 9 行：1 #include<iostream>、2 using namespace std;、3 int main()、4 {、5 int a=20;、6 int& ra;、7 ra=&a;、8 cout<<ra<<endl;、9 }。候选 question 内嵌代码第 7 行仍为 ra=a;，漏掉取地址符 &，与原卷不符，且与其自身 code 字段（已是含 & 的正确版本）互相矛盾；changes.question 将第 7 行恢复为 ra=&a; 后，题面内嵌代码与第 8 页原图及 code 字段逐行一致，核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题以 ×/√ 作答，不设 A–D 选项；站内二元选项『正确/错误』按 正确=0、错误=1 映射，与原卷呈现方式等价，该维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断题答案表第 2 格为 √，映射 正确=0，候选 answer=0 一致。独立推导：第 6 行 int& ra; 声明引用却未初始化，C++ 规定引用定义时必须绑定已存在对象，该行直接编译失败（本地实测编译器报 reference 变量要求初始化的错误）；即使第 6 行合法，第 7 行 ra=&a; 中 &a 类型为 int*，赋给引用 ra 所指的 int 对象属指针到整数的非法转换（本地实测编译器同样报错）。故『不能够正确执行』成立，应判『正确』。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 ra=a; 版本撰写，与原卷 ra=&a; 不符；初核重写后的解析覆盖两处独立错误：第 6 行引用未初始化直接编译失败，第 7 行 int* 与 int/int& 类型不匹配（即使补上初始化 ra=&a; 仍无法编译），并保留引用必须定义即绑定、不能改绑、指针可空等易错提醒与知识延伸。修复后的完整解析经独立编译验证与语义推导核验通过，未虚构运行结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无官方参考程序，该维度不适用；站内独立 code 字段（requiresCode=true）对照第 8 页原图已是含 #include 的 9 行正确版本。"
+          }
+        },
+        "changes": {
+          "question": "以下代码不能够正确执行。\n```cpp\n#include<iostream>\nusing namespace std;\nint main()\n{\n    int a=20;\n    int& ra;\n    ra=&a;\n    cout<<ra<<endl;\n}\n```",
+          "explanation": "**答案：正确**\n\n**判定依据：**\n这段代码无法通过编译，因此“不能够正确执行”。\n\n**第 6 行 `int& ra;`：** C++ 规定引用在定义时必须初始化，因为它必须绑定到一个已存在的对象，不存在“空引用”。这一行会直接编译失败（g++ 报错 `'ra' declared as reference but not initialized`）。\n\n**第 7 行 `ra = &a;`：** `&a` 的类型是 `int*`，而 `ra` 是 `int&`。既不能把 `int*` 绑定到 `int&`，也不能把 `int*` 赋给 `ra` 所引用的 `int` 对象。即使把第 6 行改成 `int& ra = a;`，这一行依然无法编译。\n\n```cpp\nint& ra;        // 编译错误：引用未初始化\nra = &a;        // 即使前面补上初始化，右侧 int* 与 int 仍类型不匹配\n```\n\n正确写法是在定义时直接绑定：\n```cpp\nint& ra = a;    // 正确：ra 成为 a 的别名\n```\n\n**易错提醒：**\n- 引用与指针的关键差异：指针可以先声明后赋值、可以为 `nullptr`；引用必须定义即绑定，且终身不能改绑。\n- `ra = ...` 在引用已绑定的情况下表示“把值赋给 `ra` 所引用的对象”，而不是“让 ra 指向别处”，因此右侧必须是 `int` 类型的值；写成 `&a`（`int*`）类型不匹配。\n\n**知识延伸：**\n正因为引用必须初始化且不能改绑，编译器可以对引用做更好的优化，也避免了空指针解引用这类错误。这也是 C++ 推荐用引用替代指针做函数参数的原因之一。\n\n**考点：** 引用必须初始化的规则"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核对 statement/explanation 判 needs_fix 经第 8 页页图独立复核属实：原卷第 7 行为 ra=&a;，候选题面内嵌代码漏掉 &，且解析按 ra=a; 展开与原卷脱节；其修复将题面恢复为原卷 9 行代码并重写解析，两处错误（引用未初始化、int* 赋给 int）均经本地编译与语义推导确认，采纳并保留完整字段值写入 changes。answer=0（√）经答案表与独立推导确认。answer 维度初核判 verified 接受。应用 changes 后题面与解析均为最终版，故 verdict=revise。"
+      }
+    ],
+    "summary": "仅 1 道候选（Q17）。题面内嵌代码第 7 行缺 & 与原卷（第 8 页）及自身 code 字段矛盾，解析亦按错误代码展开；初核修复经独立编译验证与语义推导确认，changes.question/explanation 保留为最终值，答案 √（索引0）与官方答案表一致。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        17
+      ],
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "startedAt": "2026-11-25T05:05:00.000Z",
+      "completedAt": "2026-11-25T05:36:00.000Z"
+    }
+  ]
+}

@@ -1,0 +1,263 @@
+{
+  "paperId": "2024-06-l8",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27,
+    5,
+    10,
+    12
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:58:16.377288Z",
+  "completedAt": "2026-11-25T08:58:16.377288Z",
+  "finishReason": "stop",
+  "inputSha256": "9b6ee4c1f35bb417842de48c9ef7d069369ef4907a0903655e694d153a71770b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++8级.pdf",
+    "mirrorSha": "54ccd4ebb2a727660430cc61848022d91d4b3c9b",
+    "mirrorBytes": 1254841,
+    "shaVerified": true,
+    "sha256": "c15fdb7f8a0736207ce8ecc6fdbdd0e20857f0d7f550960022a6c11254c25b5b"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-06-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP、C++ 八级、2024 年 06 月”，与 paperId 2024-06-l8 一致；共 10 页，含单选 15 题、判断 10 题、编程 2 题。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题面、输入/输出、样例与数据规模与候选 description/inputDescription/outputDescription 语义一致：0 白、1 黑；n≤10^5；30% 链且 n≤10^5、另 30% n≤10^3；保证存在异色点。候选把“非负整数 a_i”概括为“整数 c_i”，语义不变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：删去同色边后森林中每条路径都是美丽路径，问题化为各连通块按节点数计的直径；候选解析的 best[u][0/1] 树形 DP 与“先更新答案、后合并”顺序正确，样例 3 复算吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译运行候选参考程序：官方样例输出 3；边界 2 节点异色→1、两端同色链 0 1 1 1 1 0→4、星形 1 0 0 0→1、星形 1 0 0 1 0→2 均通过。程序为 O(n) 树形 DP，与 PDF 第 6 页参考程序语义等价（far 改名 best、memset 改为逐点初始化）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "两点异色",
+            "input": "2\n0 1\n1 2\n",
+            "output": "1",
+            "reason": "两节点异色，唯一路径长 1。"
+          },
+          {
+            "name": "同色端点直径需排除",
+            "input": "6\n0 1 1 1 1 0\n1 2\n2 3\n3 4\n4 5\n5 6\n",
+            "output": "4",
+            "reason": "整棵树直径 1—6 两端同为 0，不能用；最长异色路径为 1—5 或 2—6，长度均为 4。"
+          },
+          {
+            "name": "星形",
+            "input": "5\n1 0 0 1 0\n1 2\n1 3\n1 4\n1 5\n",
+            "output": "2",
+            "reason": "异色叶子对距离为 2；根到异色叶子仅 1。"
+          }
+        ],
+        "unresolved": [
+          "原卷 3.1 节内存限制为 512.0 MB，候选 memoryLimit 字段为 128 MB；该元数据字段不在本轮五维可改范围，记录待处理。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7—8 页题面、输入/输出、样例与数据范围表与候选 description/inputDescription/outputDescription 语义一致：从第 s 块挡板左端点出发；到端点外侧竖直到下方最高可接住该 x 的挡板；水平与下落均按长度计时；n≤1000、l_i,r_i,h_i≤10^5。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：把 (挡板, 进入横坐标) 作为状态，进入后最优策略必经左/右端点之一再下落，边权为水平距离+高度差，Dijkstra 求最短路；候选解析的 3+99994+1+3=100001 走查正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序是独立的 (挡板, 落点) 状态 Dijkstra，并非 PDF 参考程序的逐行复制。本机 g++ -std=c++17 -O2 编译运行：官方样例输出 100001；边界 s=t→0、不可达→-1、多次下落 1 10 100 / 8 12 50 / 10 20 10→101 均通过；另与 300 组 n≤6、坐标≤10 的逐格 Dijkstra 对拍零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "起终点相同",
+            "input": "1\n1 1\n2 5 10\n",
+            "output": "0",
+            "reason": "已在目标挡板上，耗时 0。"
+          },
+          {
+            "name": "不可达",
+            "input": "2\n1 2\n1 2 10\n5 6 5\n",
+            "output": "-1",
+            "reason": "第一块挡板两端点 x=1、2 下落均接不到 [5,6] 的第二块挡板。"
+          },
+          {
+            "name": "多次下落与内部落点",
+            "input": "3\n1 3\n1 10 100\n8 12 50\n10 20 10\n",
+            "output": "101",
+            "reason": "1 号板左端 x=1 无板可接；右端 x=10：水平 9、下落 50 到 2 号板 x=10；2 号板左端 x=8 无可接板，右端 x=12：水平 2、下落 40 到 3 号板，合计 9+50+2+40=101。"
+          }
+        ],
+        "unresolved": [
+          "原卷 3.2 节内存限制为 512.0 MB，候选 memoryLimit 字段为 128 MB；该元数据字段不在本轮五维可改范围，记录待处理。"
+        ]
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干为“一对夫妻生男生女的概率相同。已知这对夫妻有两个孩子，其中一个是女孩，另一个是男孩的概率是多少？”，与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为 2/3、1/4、1/2、1/3，与候选 options 的顺序和内容一致。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF 第 1 页答案表第 5 格印为 C（0 起始索引 2），但按第 2 页印刷选项 C=1/2，与“至少一个是女孩”口径下的正解 2/3（A）冲突。候选沿用上一轮批准的修复，answer=0（A=2/3），并在解析中按条件概率推导；该冲突属既有原卷争议，本轮保留，不据此再改答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析把样本空间缩为（男,女）、（女,男）、（女,女）三种，目标事件两种，得 2/3，推导在“至少一个是女孩”口径下正确；与原卷印刷键值 C 的冲突见 answer 与 unresolved。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 1 页答案表第 5 题为 C，而第 2 页选项 C=1/2、A=2/3；按“至少一个是女孩”正解为 2/3（A），按“指定的一个孩子是女孩”则为 1/2（C）。候选采用上一轮批准的口径 answer=0（A），保留原卷键值与正解冲突，待人工定案。"
+        ]
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 10 题题干为“小于或等于给定正整数 n 的数中，与 n 互质的数的个数，我们称为欧拉函数，记作 φ(n)。下面说法错误的是（ ）。”，与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为“n 是质数则 φ(n)=n−1”“两个质数一定是互质数”“两个相邻的数一定是互质数”“相邻的两个质数不一定是互质数”，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 10 格为 D（0 起始索引 3），与候选 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：A 正确；B 在“两个不同质数”口径下正确；C 由 gcd(n,n+1)=1 正确；D 断言相邻质数不一定互质，错误。候选逐项分析与官方答案 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "选项 B“两个质数一定是互质数”若允许两个质数相同（如 3 与 3）则 B 亦不成立；原卷按“两个不同质数”的通常口径取 D，候选解析在 B 项也写明“不同的质数”，该表述歧义保留，不据改动答案。"
+        ]
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 12 题题干含 (x+y)^n 展开式、n=10、求 xy^9 项系数，与候选 question 逐字对应；展开式排版为 LaTeX 等价转换。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A–D 依次为 5、9、10、8，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 12 格为 C（0 起始索引 2），与候选 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：(x+y)^10 中 xy^9 项为 C(10,9)x y^9=10xy^9，系数 10；候选解析正确，选项分析中 A 的值已写作 5（与选项一致）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "Q26、Q27 的题面、样例、数据范围与参考程序经原卷页图和独立运行核对；Q10、Q12 通过。Q5 的原卷答案表 C 与印刷选项/正解 2/3 冲突，按既有争议保留并标记 unresolved，未再改动。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        26,
+        27,
+        5,
+        10,
+        12
+      ],
+      "startedAt": "2026-11-25T08:58:16.377288Z",
+      "completedAt": "2026-11-25T08:58:16.377288Z"
+    }
+  ]
+}

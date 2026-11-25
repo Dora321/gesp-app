@@ -12,27 +12,7 @@ street
 blossoms
 1 1 2 3 5 8 13 21`, output: `8` }
       ],
-      question: `
-# [GESP202509 六级] 划分字符串
-
-## 题目描述
-
-小 A 有一个由 $n$ 个小写字母组成的字符串 $s$。他希望将 $s$ 划分为若干个子串，使得子串中每个字母至多出现一次。例如，对于字符串 \`street\` 来说，\`str + e + e + t\` 是满足条件的划分；而 \`s + tree + t\` 不是，因为子串 \`tree\` 中 \`e\` 出现了两次。
-
-额外地，小 A 还给出了价值 $a_1,a_2,\\ldots,a_n$，表示划分后长度为 $i$ 的子串价值为 $a_i$。小 A 希望最大化划分后得到的子串价值之和。你能帮他求出划分后子串价值之和的最大值吗？
-
-## 输入格式
-
-第一行，一个正整数 $n$，表示字符串的长度。
-
-第二行，一个包含 $n$ 个小写字母的字符串 $s$。
-
-第三行，$n$ 个正整数 $a_1,a_2,\\ldots,a_n$，表示不同长度的子串价值。
-
-## 输出格式
-
-一行，一个整数，表示划分后子串价值之和的最大值。
-`,
+      question: "\n# [GESP202509 六级] 划分字符串\n\n## 题目描述\n\n小 A 有一个由 $n$ 个小写字母组成的字符串 $s$。他希望将 $s$ 划分为若干个子串，使得子串中每个字母至多出现一次。例如，对于字符串 `street` 来说，`str + e + e + t` 是满足条件的划分；而 `s + tree + t` 不是，因为子串 `tree` 中 `e` 出现了两次。\n\n额外地，小 A 还给出了价值 $a_1,a_2,\\ldots,a_n$，表示划分后长度为 $i$ 的子串价值为 $a_i$。小 A 希望最大化划分后得到的子串价值之和。你能帮他求出划分后子串价值之和的最大值吗？\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示字符串的长度。\n\n第二行，一个包含 $n$ 个小写字母的字符串 $s$。\n\n第三行，$n$ 个正整数 $a_1,a_2,\\ldots,a_n$，表示不同长度的子串价值。\n\n## 输出格式\n\n一行，一个整数，表示划分后子串价值之和的最大值。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le n \\le 10^3$。\n\n对于所有测试点，保证 $1 \\le n \\le 10^5$，$1 \\le a_i \\le 10^9$。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -108,10 +88,14 @@ blossoms
 4. **下标对齐**：字符串读取通常是 0-indexed，而转移长度与 \`dp\` 数组通常设计为 1-indexed，遍历时需注意 \`s[j-1]\` 与 \`a[i-j+1]\` 的对应关系。`,
       tags: ["编程题", "动态规划", "字符串"],
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    string s;\n    cin >> s;\n    vector<long long> a(n+1), dp(n+1, LLONG_MIN / 4);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    dp[0] = 0;\n\n    for (int i = 1; i <= n; ++i) {\n        array<int, 256> vis{};\n        for (int j = i; j >= 1; --j) {\n            unsigned char ch = (unsigned char)s[j-1];\n            if (vis[ch]) break;\n            vis[ch] = 1;\n            dp[i] = max(dp[i], dp[j-1]+a[i-j+1]);\n        }\n    }\n\n    cout << dp[n] << '\\n';\n    return 0;\n}",
       answer: '',
+      sourcePage: 8,
+      reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核 / Codex 集成复查",
+      reviewedAt: "2026-11-25",
+      reviewedFields: ["question","memoryLimit","sourcePage","reviewedBy","reviewedAt"],
     },
     {
       id: 27,
@@ -129,25 +113,7 @@ blossoms
 6 5 1
 5 1 1`, output: `9` }
       ],
-      question: `
-# [GESP202509 六级] 货物运输
-
-## 题目描述
-
-A 国有 $n$ 座城市，依次以 $1,2,\\ldots,n$ 编号，其中 $1$ 号城市为首都。这 $n$ 座城市由 $n-1$ 条双向道路连接，第 $i$ 条道路（$1 \\le i < n$）连接编号为 $u_i,v_i$ 的两座城市，道路长度为 $l_i$。任意两座城市间均可通过双向道路到达。
-
-现在 A 国需要从首都向各个城市运送货物。具体来说，满载货物的车队会从首都开出，经过一座城市时将对应的货物送出，因此车队需要经过所有城市。A 国希望你设计一条路线，在从首都出发经过所有城市的前提下，最小化经过的道路长度总和。注意一座城市可以经过多次，车队最后可以不返回首都。
-
-## 输入格式
-
-第一行，一个正整数 $n$，表示 A 国的城市数量。
-
-接下来 $n-1$ 行，每行三个正整数 $u_i,v_i,l_i$，表示一条双向道路连接编号为 $u_i,v_i$ 的两座城市，道路长度为 $l_i$。
-
-## 输出格式
-
-一行，一个整数，表示你设计的路线所经过的道路长度总和。
-`,
+      question: "\n# [GESP202509 六级] 货物运输\n\n## 题目描述\n\nA 国有 $n$ 座城市，依次以 $1,2,\\ldots,n$ 编号，其中 $1$ 号城市为首都。这 $n$ 座城市由 $n-1$ 条双向道路连接，第 $i$ 条道路（$1 \\le i < n$）连接编号为 $u_i,v_i$ 的两座城市，道路长度为 $l_i$。任意两座城市间均可通过双向道路到达。\n\n现在 A 国需要从首都向各个城市运送货物。具体来说，满载货物的车队会从首都开出，经过一座城市时将对应的货物送出，因此车队需要经过所有城市。A 国希望你设计一条路线，在从首都出发经过所有城市的前提下，最小化经过的道路长度总和。注意一座城市可以经过多次，车队最后可以不返回首都。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示 A 国的城市数量。\n\n接下来 $n-1$ 行，每行三个正整数 $u_i,v_i,l_i$，表示一条双向道路连接编号为 $u_i,v_i$ 的两座城市，道路长度为 $l_i$。\n\n## 输出格式\n\n一行，一个整数，表示你设计的路线所经过的道路长度总和。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $1 \\le n \\le 8$。\n\n对于另外 30% 的测试点，保证仅与一条双向道路连接的城市恰有两座。\n\n对于所有测试点，保证 $1 \\le n \\le 10^5$，$1 \\le u_i, v_i \\le n$，$1 \\le l_i \\le 10^9$。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -222,10 +188,14 @@ A 国有 $n$ 座城市，依次以 $1,2,\\ldots,n$ 编号，其中 $1$ 号城市
 - **终点距离必须以 1 为起点**：题目规定车队必须从首都 1 出发，因此寻找的是「以 1 为起点的最长链」，而不是整棵树的直径（任意两点间最长链）。只需从节点 1 做一次遍历即可求得。`,
       tags: ["编程题", "树", "DFS"],
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<pair<int, long long>>> g(n+1);\n    long long sum = 0;\n    for (int i = 0; i < n-1; ++i) {\n        int u, v;\n        long long w;\n        cin >> u >> v >> w;\n        g[u].push_back({v, w});\n        g[v].push_back({u, w});\n        sum += w;\n    }\n\n    long long mx = 0;\n    function<void(int,int,long long)> dfs = [&](int u, int p, long long dist) {\n        mx = max(mx, dist);\n        for (auto [v, w] : g[u]) {\n            if (v == p) continue;\n            dfs(v, u, dist+w);\n        }\n    };\n    dfs(1, 0, 0);\n    cout << 2 * sum-mx << '\\n';\n    return 0;\n}",
       answer: '',
+      sourcePage: 9,
+      reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核 / Codex 集成复查",
+      reviewedAt: "2026-11-25",
+      reviewedFields: ["question","memoryLimit","sourcePage","reviewedBy","reviewedAt"],
     }
 ];
 
@@ -285,6 +255,10 @@ export const paperData = {
 
 **考点：** 面向对象、继承`,
             tags: ['面向对象'],
+      "code": "class Vehicle {\nprivate:\n    string brand;\n\npublic:\n    Vehicle(string b) : brand(b) {}\n\n    void setBrand(const string& b) { brand = b; }\n    string getBrand() const { return brand; }\n\n    void move() const {\n        cout << brand << \" is moving...\" << endl;\n    }\n};\n\nclass Car : public Vehicle {\nprivate:\n    int seatCount;\n\npublic:\n    Car(string b, int seats) : Vehicle(b), seatCount(seats) {}\n\n    void showInfo() const {\n        cout << \"This car is a \" << getBrand()\n             << \" with \" << seatCount << \" seats.\" << endl;\n    }\n};",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["code","reviewedBy","reviewedAt"],
         },
         {
             id: 3,
@@ -387,36 +361,12 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `
-**答案：B**
-
-**解析：**
-\`createTree()\` 构造的树形：
-\`\`\`text
-        1
-       / \
-      2   3
-     / \
-    4   5
-\`\`\`
-
-- 第 1 层：1
-- 第 2 层：2、3（满）
-- 第 3 层：4、5，占最左两个位置 ✓
-
-逐层从左到右连续填充，符合**完全二叉树**定义；但第 3 层未满（还差两个位置），所以**不是**满二叉树。
-
-逐项分析：
-- **A 满二叉树**：错误，满二叉树要求每层节点数达最大值（第 3 层应有 4 个节点）。
-- **B 完全二叉树**：正确。
-- **C 二叉排序树**：错误，BST 要求左<根<右，这里节点值 1/2/3/4/5 的位置是硬编码的，不满足大小关系（如 1 的左子树里有 2、4、5 都大于 1）。
-- **D 其他都不对**：错误。
-
-**易错点：** 满二叉树一定是完全二叉树，反之不成立；判断时先看最后一层是否「从左到右连续」再比较层数是否填满。
-
-**考点：** 完全二叉树与满二叉树的判定
-        `,
+            explanation: "**答案：B**\n\n**解析：**\n`createTree()` 构造的树形：\n```text\n        1\n       / \\\n      2   3\n     / \\\n    4   5\n```\n\n- 第 1 层：1\n- 第 2 层：2、3（满）\n- 第 3 层：4、5，占最左两个位置 ✓\n\n逐层从左到右连续填充，符合**完全二叉树**定义；但第 3 层未满（还差两个位置），所以**不是**满二叉树。\n\n逐项分析：\n- **A 满二叉树**：错误，满二叉树要求每层节点数达最大值（第 3 层应有 4 个节点）。\n- **B 完全二叉树**：正确。\n- **C 二叉排序树**：错误，BST 要求左<根<右，这里节点值 1/2/3/4/5 的位置是硬编码的，不满足大小关系（如 1 的左子树里有 2、4、5 都大于 1）。\n- **D 其他都不对**：错误。\n\n**易错点：** 满二叉树一定是完全二叉树，反之不成立；判断时先看最后一层是否「从左到右连续」再比较层数是否填满。\n\n**考点：** 完全二叉树与满二叉树的判定",
             tags: ['树与二叉树'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
@@ -582,43 +532,16 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: `令 是树的节点数目，下列代码实现了树的广度优先遍历，其时间复杂度是（ ）。
-
-\`\`\`cpp
-void bfs(TreeNode* root) {
-    if (!root) return;
-    queue<TreeNode*> q;
-    q.push(root);
-    while (!q.empty()) {
-        TreeNode* node = q.front();
-        q.pop();
-        cout << node->val << " ";
-        if (node->left) q.push(node->left);
-        if (node->right) q.push(node->right);
-    }
-}
-\`\`\`
-`,
-            options: [
-                "O(n)",
-                "O(n log n)",
-                "O(n²)",
-                "O(log n)",
-],
+            question: "令 n 是树的节点数目，下列代码实现了树的广度优先遍历，其时间复杂度是（ ）。\n\n```cpp\nvoid bfs(TreeNode* root) {\n    if (!root) return;\n    queue<TreeNode*> q;\n    q.push(root);\n    while (!q.empty()) {\n        TreeNode* node = q.front();\n        q.pop();\n        cout << node->val << \" \";\n        if (node->left) q.push(node->left);\n        if (node->right) q.push(node->right);\n    }\n}\n```",
+            options: ["O(n)","O(log n)","O(n²)","O(2^n)"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（O(n)）**
-
-**为什么：** 每个节点**恰好入队一次、出队一次**——初始时根入队，之后每个节点只有在父节点出队、被访问时才会把孩子压入队列。循环体内的 \`front\`/\`pop\`/\`cout\`/\`push\` 都是 O(1) 操作，总代价就是 n 次出队 × O(1) = **O(n)**（n 为节点数）。
-
-**逐项分析：**
-- **A O(n)**：正确，与节点总数线性相关。
-- **B O(n log n)**：没有排序或多路划分的因素，用不上。
-- **C O(n²)**：队列操作是 O(1)，不存在每步扫描全体的动作。
-- **D O(log n)**：O(log n) 只够访问一条根到叶路径，遍历必须访问所有 n 个节点。
-
-**考点：** 广度优先遍历、时间复杂度`,
+            explanation: "**答案：A（O(n)）**\n\n**为什么：** 每个节点**恰好入队一次、出队一次**——初始时根入队，之后每个节点只有在父节点出队、被访问时才会把孩子压入队列。循环体内的 `front`/`pop`/`cout`/`push` 都是 O(1) 操作，总代价就是 n 次出队 × O(1) = **O(n)**（n 为节点数）。\n\n**逐项分析：**\n- **A O(n)**：正确，与节点总数线性相关。\n- **B O(log n)**：只够访问一条根到叶路径，遍历必须访问所有 n 个节点。\n- **C O(n²)**：队列操作是 O(1)，不存在每步扫描全体的动作。\n- **D O(2^n)**：远高于实际代价，BFS 不会重复展开指数级状态。\n\n**考点：** 广度优先遍历、时间复杂度",
             tags: ['广度优先搜索', '复杂度分析'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 13,
@@ -673,11 +596,16 @@ void bfs(TreeNode* root) {
 
 **考点：** 二叉排序树、删除操作`,
             tags: ['树与二叉树'],
+      "code": "struct TreeNode {\n    int val;\n    TreeNode* left;\n    TreeNode* right;\n    TreeNode(int x): val(x), left(nullptr), right(nullptr) {}\n};\n\nTreeNode* deleteNode(TreeNode* root, int key) {\n    if (!root) return nullptr;\n    if (key < root->val) {\n        root->left = deleteNode(root->left, key);\n    }\n    else if (key > root->val) {\n        root->right = deleteNode(root->right, key);\n    }\n    else {\n        if (!root->left) return root->right;\n        if (!root->right) return root->left;\n        TreeNode* temp = ____________;   // 在此处填写代码\n        root->val = temp->val;\n        root->right = deleteNode(root->right, temp->val);\n    }\n    return root;\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["code","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 15,
             type: "single",
-            question: `给定 个物品和一个最大承重为 的背包，每个物品有一个重量 和价值 ，每个物品只能选择放或 不放。目标是选择若干个物品放入背包，使得总价值最大，且总重量不超过 ，则横线上应填写（ ）。`,
+            question: "给定 n 个物品和一个最大承重为 W 的背包，每个物品有一个重量 wt[i] 和价值 val[i]，每个物品只能选择放或不放。目标是选择若干个物品放入背包，使得总价值最大，且总重量不超过 W，则横线上应填写（ ）。",
             options: [
                 "dp[w] = max(dp[w], dp[w]+val[i]);",
                 "dp[w] = dp[w-wt[i]]+val[i];",
@@ -705,6 +633,11 @@ void bfs(TreeNode* root) {
 
 **考点：** 动态规划、0/1 背包`,
             tags: ['动态规划'],
+      "code": "int knapsack(int W, vector<int>& wt, vector<int>& val, int n) {\n    vector<int> dp(W+1, 0);\n    for (int i = 0; i < n; ++i) {\n        for (int w = W; w >= wt[i]; --w) {\n            _______________________    // 在此处填写代码\n\n        }\n    }\n    return dp[W];\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","code","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 16,
@@ -776,29 +709,13 @@ delete p;   // 若 ~Base() 不是虚函数，这里只会调用 ~Base()
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
-
-**判定依据：**
-
-完全二叉树的高度由结点数决定。设高度为 $h$（根为第 1 层），结点数 $n$ 满足：
-
-$2^{h-1} \\le n \\le 2^{h}-1$
-
-反解得 $h=\\lfloor \\log_2 n \\rfloor + 1$。代入 n=100：
-
-- tags:^6=64 \\le 100 < 128=2^7$
-- $h = \\lfloor \\log_2 100 \\rfloor + 1 = 6+1 = 7$
-
-高度是 7，不是 8。（若把根的高度记作 0，$h=\\lfloor \\log_2 n \\rfloor = 6$，同样不是 8。）
-
-**易错提醒：** 常见错误是"2^7=128 > 100，所以高度 8"——这把"第 h 层最多几个"与"总共能装多少"搞混了。100 个结点填满 6 层（63 个）还剩 37 个，正好落在第 7 层。
-
-**考点：** 完全二叉树的结点数与高度的关系。`,
+            explanation: "**答案：错误**\n\n**判定依据：**\n\n完全二叉树的高度由结点数决定。设高度为 h（根为第 1 层），结点数 n 满足：\n\n$2^{h-1} \\le n \\le 2^{h}-1$\n\n反解得 $h=\\lfloor \\log_2 n \\rfloor + 1$。代入 n=100：\n\n- $2^6=64 \\le 100 < 128=2^7$\n- $h = \\lfloor \\log_2 100 \\rfloor + 1 = 6+1 = 7$\n\n高度是 7，不是 8。（若把根的高度记作 0，$h=\\lfloor \\log_2 n \\rfloor = 6$，同样不是 8。）\n\n**易错提醒：** 常见错误是\"2^7=128 > 100，所以高度 8\"——这把\"第 h 层最多几个\"与\"总共能装多少\"搞混了。100 个结点填满 6 层（63 个）还剩 37 个，正好落在第 7 层。\n\n**考点：** 完全二叉树的结点数与高度的关系。",
             sourceVerified: true,
             sourcePage: 6,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             tags: ['树与二叉树'],
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 19,
@@ -1039,9 +956,11 @@ else {                     // 选了第 i 个 → 跳过相邻的 i-1
 **考点：** 动态规划、状态转移、最优解方案重建。`,
             sourceVerified: true,
             sourcePage: 7,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             tags: ['动态规划'],
+      "code": "// bananas: 香蕉的甜度\nvoid findSelectedBananas(vector<int>& bananas, vector<int>& dp) {\n    vector<int> selected;\n    int i = bananas.size() - 1;\n\n    while (i >= 0) {\n        if (i == 0) {\n            selected.push_back(0);\n            break;\n        }\n\n        if (dp[i] == dp[i-1]) {\n            i--;\n        } else {\n            selected.push_back(i);\n            i -= 2;\n        }\n    }\n\n    reverse(selected.begin(), selected.end());\n    cout << \"小猴子吃了第: \";\n    for (int idx : selected)\n        cout << idx+1 << \" \";\n    cout << \"个香蕉\" << endl;\n}\n\nint main() {\n    vector<int> bananas = {1, 2, 3, 1}; // 每个香蕉的甜\n\n    vector<int> dp(bananas.size());\n    dp[0] = bananas[0];\n    dp[1] = max(bananas[0], bananas[1]);\n    for (int i = 2; i < bananas.size(); i++) {\n        dp[i] = max(bananas[i] + dp[i-2], dp[i-1]);\n    }\n    findSelectedBananas(bananas, dp);\n\n    return 0;\n}",
+      "reviewedFields": ["code","reviewedBy","reviewedAt"],
         },
         ...programmingQuestions
     ]

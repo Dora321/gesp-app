@@ -93,18 +93,11 @@ int main() {
       ],
       answer: 0,
       score: 2,
-      explanation: `**答案：A**
-
-**核心解析：**
-<cmath> 中的函数参数和返回值均为浮点类型（double）。\`sqrt(49)\` 返回 double 型的 7.0，当然可以直接参与浮点运算。
-
-**选项分析：**
-- **B**：\`log2(32)\` 返回 **double**（5.0），不是 int。
-- **C**：\`pow(2, 5)\` 返回 **double**（32.0），不是 int。
-- **D**：sin 的参数是**弧度**不是角度，sin(90) 求的是 90 弧度（约 5147°）的正弦值；90° 应写作 sin(M_PI / 2)。
-
-**考点：** cmath 数学库`,
+      explanation: "**答案：A**\n\n`<cmath>` 中 `sqrt` 的返回类型是 `double`，`sqrt(49)` 得到 7.0，可直接参与浮点运算，A 正确。\n\n- B：`log2(32)` 返回 `double`（5.0），不是 `int`。\n- C：`pow(2, 5)` 返回 `double`（32.0），不是 `int`。\n- D：`sin` 的参数单位是弧度，`sin(90)` 表示 90 弧度（约 5156.6°），不是 90°。\n\n**考点：** `<cmath>` 数学库函数的返回类型与弧度制。",
       tags: ['函数', 'cmath'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
     },
     {
       id: 3,
@@ -462,33 +455,41 @@ a[mid] < x 说明 mid 及其左侧都不可能是答案（升序数组中它们�
       type: 'judge',
       question: `使用 cmath 或 math.h 中的三角函数时，角度参数默认采用角度制。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
 **解析：**
 cmath 中的 sin、cos、tan 等三角函数参数一律是**弧度**制。sin(90) 计算的是 90 弧度的正弦，而不是 90°。要把角度转为弧度，需乘 π/180，例如 sin(30°) 应写作 \`sin(30 * M_PI / 180)\`。`,
       tags: ['cmath', '函数'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 17,
       type: 'judge',
       question: `使用 cmath 或 math.h 中的 pow(2, 10) 计算 2¹⁰ 时，由于参数均为整型 int，返回值类型也为整型 int。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
 **解析：**
 cmath 中的 pow 原型是 \`double pow(double base, double exp)\`。传入 int 参数时会发生**隐式类型转换**提升为 double，函数返回值仍是 **double**（1024.0），不是 int。若把返回值赋给 int 变量才会再转换，直接用 \`pow(2, 10) % 某数\` 这类整型运算甚至会编译报错或产生精度问题。`,
       tags: ['cmath', '函数', '类型转换'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 18,
       type: 'judge',
       question: `0/1 背包使用一维数组优化时，容量从小到大枚举也能保证每件物品最多被选一次。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -497,26 +498,34 @@ cmath 中的 pow 原型是 \`double pow(double base, double exp)\`。传入 int 
 
 0/1 背包必须**从大到小**枚举容量，保证 dp[c - w[i]] 还是上一轮（未选第 i 件）的旧值。`,
       tags: ['动态规划', '背包'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 19,
       type: 'judge',
       question: `哈希表采用开放定址法时，即使哈希函数设计合理，也仍然可能发生冲突。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 冲突的根源是**鸽巢原理**：关键字的可能取值范围远大于哈希表长度，不同关键字经任何哈希函数映射后都可能落在同一位置。好的哈希函数只能让散列更均匀、降低冲突概率，无法杜绝冲突——例如表长 11、h(x) = x % 11 时，22 和 33 都映射到 0。因此开放定址法（以及一切哈希方案）都必须设计冲突处理策略。`,
       tags: ['哈希表'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 20,
       type: 'judge',
       question: `同一个图从同一个起点进行深度优先搜索，访问序列一定与邻接点的枚举顺序无关。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -525,26 +534,34 @@ DFS 的访问序列直接取决于**邻接点的遍历顺序**。同一个图、
 
 只有把"按某种固定顺序枚举邻接点"作为约定时，序列才唯一。因此"一定无关"是错误的（BFS 同理）。`,
       tags: ['DFS', '图'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 21,
       type: 'judge',
       question: `泛洪算法可以用递归 DFS 实现，但地图很大时可能由于递归层数过深导致调用栈溢出等运行时错误。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 泛洪（Flood Fill）既可以用递归 DFS，也可以用 BFS（队列）或显式栈的迭代 DFS 实现。递归版本每次扩展消耗一层栈帧，当连通区域非常大（如 1000×1000 的蛇形连通块，递归深度可达 10⁶）时，会超出默认栈空间（通常几 MB），触发**栈溢出**（段错误/RE）。大地图上应改用 BFS 或显式栈。`,
       tags: ['泛洪', 'DFS'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 22,
       type: 'judge',
       question: `哈夫曼树中不存在度为 1 的结点。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
@@ -553,13 +570,17 @@ DFS 的访问序列直接取决于**邻接点的遍历顺序**。同一个图、
 
 推论：n 个叶子的哈夫曼树总结点数为 2n − 1（n 个叶 + n−1 个内部结点）。`,
       tags: ['哈夫曼树', '二叉树'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 23,
       type: 'judge',
       question: `冒泡排序的常见实现是稳定排序，选择排序也是。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -568,26 +589,34 @@ DFS 的访问序列直接取决于**邻接点的遍历顺序**。同一个图、
 
 后半句错误：选择排序每轮在未排序区间选最小值，与当前位置**远距离交换**，会跨越相等元素，打乱其相对次序。例如 [2₁, 2₂, 1]：第一轮把 1 与 2₁ 交换得 [1, 2₂, 2₁]，两个 2 的相对顺序变了——**不稳定**。`,
       tags: ['排序算法', '稳定性'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 24,
       type: 'judge',
       question: `在无权图中从起点执行 BFS 时，某个顶点第一次被访问到的层数等于起点到该顶点经过的最少边数。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 这正是 BFS 求无权图最短路的原理：BFS 按"距起点的边数"分层扩展——第 0 层是起点，第 k 层的结点恰是经过 k 条边可达的所有结点。顶点第一次被访问（入队）时所在层，就是起点到它的**最少边数**。因此无权图中 BFS 首次到达即为最短路径。`,
       tags: ['BFS', '图'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 25,
       type: 'judge',
       question: `在二维动态规划中，状态 dp[i][j] 的计算常常依赖其他状态，这些状态的计算必须在完成 dp[i][j] 的计算前完成。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
@@ -596,6 +625,10 @@ DP 的正确性依赖**无后效性**与计算顺序：dp[i][j] 的转移所引�
 
 这也是循环顺序的设计依据：网格 DP 按行、按列递增；区间 DP 按区间长度递增；背包按容量方向选择。若依赖关系成环（有后效性），则不能直接用这种递推。`,
       tags: ['动态规划'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 26,
@@ -603,20 +636,8 @@ DP 的正确性依赖**无后效性**与计算顺序：dp[i][j] 的转移所引�
       title: '染色',
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
-      description: `小杨同学有一张包含 n 个结点的无向图 G，G 中的结点依次以 1, 2, …, n 编号。
-
-小杨同学发现 G 中每个结点的度数都是 2。显然 G 中恰好有 n 条边。
-
-小杨同学想为 G 中的结点染色，使得任意一条边两端的结点都有不同的颜色。
-
-小杨同学想知道最少需要多少种颜色才能在满足条件的前提下为 G 染色。
-
-## 数据范围
-
-对于 40% 的测试点，保证 $\\sum n \\leq 500$，$\\sum n$ 指每个输入中多组数据的 $n$ 的总和。
-
-对于所有测试点，保证 $1 \\leq t \\leq 10$，$3 \\leq n \\leq 10^5$，$\\sum n \\leq 10^5$。保证 G 中没有重边与自环。`,
+      memoryLimit: '512 MB',
+      description: "小杨同学有一张包含 n 个结点的无向图 G，G 中的结点依次以 1, 2, …, n 编号。\n\n小杨同学发现 G 中每个结点的度数都是 2。显然 G 中恰好有 n 条边。\n\n小杨同学想为 G 中的结点染色，使得任意一条边两端的结点都有不同的颜色。\n\n小杨同学想知道最少需要多少种颜色才能在满足条件的前提下为 G 染色。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $\\sum n \\leq 500$，$\\sum n$ 指每个输入中多组数据的 $n$ 的总和。\n\n对于所有测试点，保证 $1 \\leq t \\leq 100$，$3 \\leq n \\leq 10^5$，$\\sum n \\leq 10^5$。保证 G 中没有重边与自环。",
       inputDescription: `本题包含多组数据。
 
 第一行，一个正整数 t，表示数据组数。
@@ -722,6 +743,10 @@ DP 的正确性依赖**无后效性**与计算顺序：dp[i][j] 的转移所引�
       template: '#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint n;\nint a[100010], b[100010], cnt[100010];\n\nvoid solve() {\n    cin >> n;\n    for (int i = 1; i <= n; i++)\n        a[i] = b[i] = cnt[i] = 0;\n    // 在此编写代码\n}\n\nint main() {\n    int t;\n    cin >> t;\n    while (t--)\n        solve();\n    return 0;\n}',
       referenceCode: '#include <iostream>\n#include <algorithm>\nusing namespace std;\nint n;\nint a[100010], b[100010], cnt[100010];\nvoid solve() {\n    cin >> n;\n    for (int i = 1; i <= n; i++)\n        a[i] = b[i] = cnt[i] = 0;\n    for (int i = 1; i <= n; i++) {\n        int u, v;\n        cin >> u >> v;\n        b[u] = a[u];\n        a[u] = v;\n        b[v] = a[v];\n        a[v] = u;\n    }\n    bool flag = false;\n    for (int i = 1; i <= n; i++) {\n        if (cnt[i])\n            continue;\n        int u = i, last = a[u];\n        int v = a[u] + b[u] - last;\n        while (!cnt[v]) {\n            cnt[v] = cnt[u] + 1;\n            last = u;\n            u = v;\n            v = a[u] + b[u] - last;\n        }\n        if (cnt[i] % 2 != 0)\n            flag = true;\n    }\n    if (flag)\n        cout << 3 << endl;\n    else\n        cout << 2 << endl;\n}\nint main() {\n    int t;\n    cin >> t;\n    while (t--)\n        solve();\n    return 0;\n}',
       tags: ['图论', 'DFS', '染色'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["description","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -729,7 +754,7 @@ DP 的正确性依赖**无后效性**与计算顺序：dp[i][j] 的转移所引�
       title: '消消乐',
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       description: `给定一个由 n 个整数构成的数组 a = [a₁, …, aₙ]。每次你可以对数组 a 进行以下操作，直到数组 a 变为空：
 
 指定 a 中的一个元素，获得该元素两侧相邻元素之和的分数，并将该元素从 a 中删去。

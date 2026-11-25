@@ -1,0 +1,172 @@
+{
+  "paperId": "2024-06-l6",
+  "integratedAt": "2026-11-25T08:27:13.235Z",
+  "accepted": [
+    {
+      "id": 3,
+      "fields": [
+        "code"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "options"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\n3 1 2\n13\ndabcabcabcabz",
+          "output": "9",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "合并计分优于拆分",
+          "input": "2\n1 100\n6\nabcabc\n",
+          "output": "100",
+          "reason": "两个 abc 合并计 a2=100 优于拆成 a1+a1=2；与暴力一致，实测通过，覆盖「合并 vs 拆分」的另一方向（样例为拆分占优）。",
+          "kind": "boundary",
+          "actual": "100\n",
+          "passed": true
+        },
+        {
+          "name": "无匹配输出 0",
+          "input": "1\n7\n5\nxyztu\n",
+          "output": "0",
+          "reason": "串中无任何 abc，答案 0；实测通过，覆盖全不匹配的下界。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "n=1 的连续长块逐段计分",
+          "input": "1\n2\n9\nabcabcabc\n",
+          "output": "6",
+          "reason": "k 被 n=1 封顶，只能逐个 abc 计 a1=2，得 6；实测通过，覆盖 k≤min(cnt[i],n) 的上限分支。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "大 a2 与 n 上限共同作用",
+          "input": "2\n1 50\n9\nabcabcabc\n",
+          "output": "51",
+          "reason": "最优为 a2+a1=50+1=51（而非 3·a1=3 或不可达的 a3）；与暴力一致，实测通过。",
+          "kind": "boundary",
+          "actual": "51\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "279d36915a67ad48399db316e4a4a732670bb788df50da623cb5a1f2e359a876"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "6\n3 1 1 3 4\n100101\n3\n1\n3\n2",
+          "output": "010000",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "010000\n",
+          "passed": true
+        },
+        {
+          "name": "同节点偶数次操作自抵消",
+          "input": "3\n1 1\n111\n4\n1\n1\n2\n2\n",
+          "output": "111",
+          "reason": "节点 1、2 各被操作 2 次，奇偶性均为 0，颜色不变；实测通过，覆盖异或抵消性质（此前初核未测此形态）。",
+          "kind": "boundary",
+          "actual": "111\n",
+          "passed": true
+        },
+        {
+          "name": "根子树整体反转",
+          "input": "3\n1 1\n000\n1\n1\n",
+          "output": "111",
+          "reason": "操作根节点 1 时整棵树（全部 3 节点）都在其子树内，全部翻转；实测通过，覆盖「操作作用于含根自身的整棵子树」语义。",
+          "kind": "boundary",
+          "actual": "111\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "55c8a082dcfa26d6065c4027547411d249ce925a648f681328dc459658167327",
+      "stressTests": [
+        {
+          "name": "n=q=10⁵ 链形树压力",
+          "nodes": 100000,
+          "operations": 100000,
+          "inputSha256": "60357193313facbb6f35cfd26d09bcc8e6114d74e0b8114f45faf7d91a6c220d",
+          "outputSha256": "3a633fb6e9d6869b7a71e0e2d1b04a398fb28f826c12a4eba8056c48a0ab02bb",
+          "passed": true,
+          "method": "父节点为 i−1，颜色串为重复的 01，按 1 到 n 依序操作。独立按每个节点祖先的操作次数取奇偶，生成期望输出逐位比较。"
+        }
+      ],
+      "nonExecutableReviewTests": [
+        {
+          "name": "n=q=10⁵ 链形树压力",
+          "reason": "原报告用省略号描述大规模输入，并以文字描述输出，不能直接传给程序。已另行生成实际输入并执行。"
+        }
+      ]
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 27,
+      "reasons": [
+        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "followUp": "两模型一致批准题面修订。原样例、两条有效边界样例及单独生成的 10 万节点链形树最大规模测试均通过。"
+}

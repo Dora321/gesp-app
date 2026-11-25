@@ -1,0 +1,203 @@
+{
+  "paperId": "2025-09-l6",
+  "integratedAt": "2026-11-25T08:47:09.886Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "code"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "code"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "question",
+        "code"
+      ]
+    },
+    {
+      "id": 18,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 25,
+      "fields": [
+        "code"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "6\nstreet\n2 1 7 4 3 3",
+          "output": "13",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "13\n",
+          "passed": true
+        },
+        {
+          "input": "8\nblossoms\n1 1 2 3 5 8 13 21",
+          "output": "8",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "8\n",
+          "passed": true
+        },
+        {
+          "name": "两字符权衡",
+          "input": "2\nab\n5 9\n",
+          "output": "10",
+          "reason": "a|b=5+5=10 优于整段 ab=9；与暴力一致，实测通过，覆盖「拆分优于合并」的方向。",
+          "kind": "boundary",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "整体无重复取长段",
+          "input": "3\nxyz\n1 1 100\n",
+          "output": "100",
+          "reason": "整段无重复字符，直接取 a₃=100；与暴力一致，实测通过，覆盖「合并优于拆分」的方向与段长上限内的一次转移。",
+          "kind": "boundary",
+          "actual": "100\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "243dc8cddfa7b898bb5c6203a444348cb7a111b0b7a4d114ad5cd829261246b2",
+      "stressTests": [
+        {
+          "name": "循环字母与全 10⁹ 权值",
+          "size": 100000,
+          "inputSha256": "bd8527b4def0688c6edd931bc828ca7551fb330beadd5b039e92301c40256ce2",
+          "outputSha256": "ab51863d68f5677f45c8af4efccbde9328cb6a5d1993cb964b52ef558b55bcbd",
+          "passed": true,
+          "reason": "每段得分相同，逐字符拆分达到最多 n 段。"
+        }
+      ],
+      "nonExecutableReviewTests": [
+        {
+          "name": "n=10⁵ 溢出规模压力",
+          "reason": "模型报告用文字描述大规模输入。已重新生成真实用例并运行参考程序。"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "4\n1 2 6\n1 3 1\n3 4 5",
+          "output": "18",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "18\n",
+          "passed": true
+        },
+        {
+          "input": "7\n1 2 1\n2 3 1\n3 4 1\n7 6 1\n6 5 1\n5 1 1",
+          "output": "9",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "两叶形态（子任务 2 形态）",
+          "input": "3\n1 2 4\n1 3 9\n",
+          "output": "17",
+          "reason": "sum=13、最远叶距 9，2×13−9=17（路线 1→2→1→3，长边不回头）；与独立 BFS 推算一致，实测通过，覆盖「仅两座度为 1 城市」的子任务形态。",
+          "kind": "boundary",
+          "actual": "17\n",
+          "passed": true
+        },
+        {
+          "name": "链形取最远端为终点",
+          "input": "5\n1 2 3\n2 3 1\n3 4 2\n4 5 5\n",
+          "output": "11",
+          "reason": "sum=11、最远距离 11（终点城市 5），2×11−11=11，即沿链走一遍不回头的最优；与暴力一致，实测通过。",
+          "kind": "boundary",
+          "actual": "11\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "8e5ac05c25c5da2c987b40ea742399f23486c6af857af79ac9008b6da602d0f0",
+      "stressTests": [
+        {
+          "name": "长度 10⁹ 的单链",
+          "size": 100000,
+          "inputSha256": "9ca909dd9732751ea8ef419b1fdcff85c97aaf3e81330c3924377b87c1ccf1f5",
+          "outputSha256": "e0be52be8fab19925a9c0cfd72760fbdc94134755b2d633db7f6b5ae7f6dd0d7",
+          "passed": true,
+          "reason": "从链首单向走到末端即可访问所有城市，每条边恰经过一次。"
+        }
+      ],
+      "nonExecutableReviewTests": [
+        {
+          "name": "n=10⁵ 链形 × 10⁹ 溢出压力",
+          "reason": "模型报告用文字描述大规模输入。已重新生成真实用例并运行参考程序。"
+        }
+      ]
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 26,
+      "reasons": [
+        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 27,
+      "reasons": [
+        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "followUp": "两处无法执行的压力描述分别替换为实际生成的 10 万规模用例，模型报告保留原始描述，集成记录保留实际输入、输出摘要。两道题的内存限制均按原卷校正。"
+}

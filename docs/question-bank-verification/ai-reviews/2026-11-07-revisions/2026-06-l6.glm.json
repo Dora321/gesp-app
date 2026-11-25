@@ -1,0 +1,488 @@
+{
+  "paperId": "2026-06-l6",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T12:04:00.000Z",
+  "completedAt": "2026-11-25T12:28:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "13566db5381d12fb54ca9ad2e48697d70c9efb7280051b6c0b01310c588f69d9",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295364292640.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++6级.pdf",
+    "mirrorSha": "a238fdd9c8f763863bdd56dfc598d98bd420b682",
+    "mirrorBytes": 988448,
+    "shaVerified": true,
+    "sha256": "ff93a4ef403172e05049be0a60d8c2b4724cff81e29a43aef52010120fe8bc33"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2026-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 6 页判断题答案表（题号 1—10：×××√××√×√√）与第 6—8 页判断题 1—10、第 8—12 页编程题（3.1 条形蛋糕、3.2 满二叉树）与 paperId 2026-06-l6（2026 年 6 月 C++ 六级）一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 1 题为 ×；第 6 页原图判断第 1 题题干与候选一致。独立判断：构造函数不能声明为虚函数（虚表指针在构造期间才建立），命题错误，× 正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以「正确/错误」作答，无 A–D 选项列表（站点以 options 承载正确/错误两项）。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 answer 类型修复：候选解析判定（×）与第 6 页判断答案表一致、经我独立核验无误，仅 answer 字段需由布尔值改为整型 1 以过站点门禁；语义零变化，应随本轮修订一并套用。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 2 题为 ×；第 6 页原图判断第 2 题与候选一致。独立判断：非虚析构时经基类指针 delete 为未定义行为、通常只调 Base 析构，缺少 virtual 前提命题错误，× 正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以「正确/错误」作答，无 A–D 选项列表（站点以 options 承载正确/错误两项）。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 answer 类型修复：候选解析判定（×）与第 6 页判断答案表一致、经我独立核验无误，仅 answer 字段需由布尔值改为整型 1 以过站点门禁；语义零变化，应随本轮修订一并套用。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 3 题为 ×；第 7 页原图判断第 3 题与候选一致。独立判断：stack::pop() 返回 void 只删不取，取顶须先 top()，命题错误，× 正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以「正确/错误」作答，无 A–D 选项列表（站点以 options 承载正确/错误两项）。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 answer 类型修复：候选解析判定（×）与第 6 页判断答案表一致、经我独立核验无误，仅 answer 字段需由布尔值改为整型 1 以过站点门禁；语义零变化，应随本轮修订一并套用。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 4 题为 √；第 7 页原图判断第 4 题代码（push 1/2/3、pop、cout front）与候选一致。独立走查：FIFO 弹出 1 后队头为 2，输出 2，命题正确，√ 正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以「正确/错误」作答，无 A–D 选项列表（站点以 options 承载正确/错误两项）。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第 6 页判断答案表对应题为 √，语义即候选 explanation 的判定结论（候选解析「答案：√/正确」与答案表一致）；但候选 paper.json 的 answer 为布尔值 true，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 0，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论「√」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 0
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 answer 类型修复：候选解析判定（√）与第 6 页判断答案表一致、经我独立核验无误，仅 answer 字段需由布尔值改为整型 0 以过站点门禁；语义零变化，应随本轮修订一并套用。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 5 题为 ×；第 7 页原图判断第 5 题及 insertNode 代码与候选一致。独立判断：x<val 却递归右子树、x≥val 却递归左子树，分支写反（如插入 10、5 得右孩子 5<10 违反性质），命题错误，× 正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以「正确/错误」作答，无 A–D 选项列表（站点以 options 承载正确/错误两项）。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 answer 类型修复：候选解析判定（×）与第 6 页判断答案表一致、经我独立核验无误，仅 answer 字段需由布尔值改为整型 1 以过站点门禁；语义零变化，应随本轮修订一并套用。"
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 6 题为 ×；第 8 页原图判断第 6 题与候选一致。独立判断：等权合并次序与左右子树互换均可改变形态，最优 WPL 唯一但编码集不唯一，命题错误，× 正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以「正确/错误」作答，无 A–D 选项列表（站点以 options 承载正确/错误两项）。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 answer 类型修复：候选解析判定（×）与第 6 页判断答案表一致、经我独立核验无误，仅 answer 字段需由布尔值改为整型 1 以过站点门禁；语义零变化，应随本轮修订一并套用。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 7 题为 √；第 8 页原图判断第 7 题与候选一致。独立验证：0 起始层序存储下孩子下标 2i+1/2i+2（根 0 的孩子 1、2，结点 1 的孩子 3、4），命题正确，√ 正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以「正确/错误」作答，无 A–D 选项列表（站点以 options 承载正确/错误两项）。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第 6 页判断答案表对应题为 √，语义即候选 explanation 的判定结论（候选解析「答案：√/正确」与答案表一致）；但候选 paper.json 的 answer 为布尔值 true，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 0，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论「√」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 0
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 answer 类型修复：候选解析判定（√）与第 6 页判断答案表一致、经我独立核验无误，仅 answer 字段需由布尔值改为整型 0 以过站点门禁；语义零变化，应随本轮修订一并套用。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 8 题为 ×；第 8 页原图判断第 8 题及 printByLevel 代码（for 内联 q.size()）与候选一致。独立判断：循环条件 i<q.size() 每轮重求值，本层未固定导致换行错乱（根+左孩子即出错），命题错误，× 正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以「正确/错误」作答，无 A–D 选项列表（站点以 options 承载正确/错误两项）。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 answer 类型修复：候选解析判定（×）与第 6 页判断答案表一致、经我独立核验无误，仅 answer 字段需由布尔值改为整型 1 以过站点门禁；语义零变化，应随本轮修订一并套用。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 9 题为 √；第 8 页原图判断第 9 题与候选一致。独立判断：栈后进先出，先压右再压左使左孩子先出栈，得根-左-右先序，命题正确，√ 正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以「正确/错误」作答，无 A–D 选项列表（站点以 options 承载正确/错误两项）。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第 6 页判断答案表对应题为 √，语义即候选 explanation 的判定结论（候选解析「答案：√/正确」与答案表一致）；但候选 paper.json 的 answer 为布尔值 true，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 0，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论「√」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 0
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 answer 类型修复：候选解析判定（√）与第 6 页判断答案表一致、经我独立核验无误，仅 answer 字段需由布尔值改为整型 0 以过站点门禁；语义零变化，应随本轮修订一并套用。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 10 题为 √；第 8 页原图判断第 10 题与候选一致。独立判断：最优子结构与重叠子问题为 DP 两大标志特征，命题正确，√ 正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以「正确/错误」作答，无 A–D 选项列表（站点以 options 承载正确/错误两项）。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第 6 页判断答案表对应题为 √，语义即候选 explanation 的判定结论（候选解析「答案：√/正确」与答案表一致）；但候选 paper.json 的 answer 为布尔值 true，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 0，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论「√」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 0
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 answer 类型修复：候选解析判定（√）与第 6 页判断答案表一致、经我独立核验无误，仅 answer 字段需由布尔值改为整型 0 以过站点门禁；语义零变化，应随本轮修订一并套用。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第 10—11 页原图 3.2.1 题目描述/3.2.2 输入格式（非负整数 lᵢ,rᵢ）/3.2.3 输出格式/3.2.4 样例（样例 1「4 / 2 3 / 4 0 / 0 0 / 0 0」→2、样例 2「3 / 2 3 / 0 0 / 0 0」→3）/3.2.5 数据范围（40% 1≤n≤500；所有 1≤n≤10⁵）与候选 description/inputDescription/outputDescription/samples 逐项一致；但题干「三棵满二叉树」示例的第三棵（7 结点满树）底层原卷画有 4 个 ()，候选 ASCII 示例只画了 3 个 ()，示例图自身不构成满二叉树，属转录缺陷。本轮初核已提案补足第 4 个 ()，我已将提案与第 10 页原卷逐行对照（除该行补足外与候选逐字一致），确认采纳。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的树形 DP（h[u]=max(h[l],h[r])+1，chk[u]=chk[l]∧chk[r]∧h[l]=h[r]，空结点高度 0 且视为满）经独立论证正确：满二叉树左右子树均为满且等高，反之满树左右子树必满且等高。样例走查（样例 1 结点 2 单侧孩子非满、答案 2；样例 2 整树满、答案 3）与官方样例输出一致；O(n) 复杂度与递归深度提醒属实。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译并实测候选参考程序：官方样例 1→2、样例 2→3，均与第 11 页原图一致。另以 600 棵随机二叉树（n≤9）与「逐子树满树判定（所有内部结点两儿子 + 叶深一致）」的独立暴力对拍，零差异；定向核验：32767 结点满树→32767、n=10⁵ 左链→1（单侧孩子非满），递归深度无栈溢出。与第 12 页原卷参考程序逐行同构（chk 全局初始化 {1} 使空结点 chk=1），语义等价。"
+          }
+        },
+        "changes": {
+          "description": "给定一棵包含 n 个结点的有根二叉树，结点依次以 1, 2, …, n 编号，根结点编号为 1。\n\n对于结点 i，其左儿子的编号记为 l_i，右儿子编号记为 r_i。特别地，如果左儿子不存在则 l_i = 0，如果右儿子不存在则 r_i = 0。\n\n树中每个结点都对应一棵以其为根的子树。请你求出给定有根树的所有 n 棵子树中，有多少棵子树是满二叉树。\n\n满二叉树是指所有叶子深度均相同，且除叶子外均有两个儿子的二叉树，例如以下三棵二叉树均是满二叉树：\n\n```text\n()      ()        ()\n       / \\       / \\\n      () ()     () ()\n               / \\ / \\\n              () () () ()\n```\n\n例如，\n\n```text\n   ()\n  /  \\\n ()    ()\n```\n\n在上面这棵有 3 个节点的二叉树中，有 3 个子树是满二叉树（包括整个树本身，及所有的单个叶子节点）；\n\n又例如，\n\n```text\n    (1)\n   /  \\\n (2)   (3)\n      /  \\\n    (4)   (5)\n```\n\n在上面这棵有 5 个节点的二叉树中，有 4 个子树是满二叉树（包括节点 3 的子树，以及所有单个叶子节点）。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\leq n \\leq 500$。\n\n对于所有测试点，保证 $1 \\leq n \\leq 10^5$。"
+        },
+        "tests": [
+          {
+            "name": "32767 结点满树全计",
+            "input": "n=32767 的满二叉树（层序 2i/2i+1 编号）",
+            "output": "32767",
+            "reason": "满树的所有子树均为满二叉树，答案为 n；实测通过，覆盖深层满树的全正例。"
+          },
+          {
+            "name": "10⁵ 左链压力",
+            "input": "n=100000 的左链（结点 i 左儿子 i+1）",
+            "output": "1",
+            "reason": "链上除叶子外每个结点只有左儿子（单侧孩子非满），仅叶子子树计数；实测通过，覆盖递归深度与全负例。"
+          },
+          {
+            "name": "单叶与单侧孩子混合",
+            "input": "5\n2 3\n4 0\n0 0\n5 0\n0 0\n",
+            "output": "2",
+            "reason": "结点 5 为叶（满），结点 3 的子树 {3,5} 单左儿子非满，结点 2 的子树含非满子树，结点 1 同理；与独立判定一致，实测通过。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受本轮初核的 description 修复：候选 ASCII 示例第三棵满树的底层只画 3 个 ()，与原卷 4 叶画法不符且自身不构成满二叉树；初核提案补足第 4 叶，我已逐行对照确认除该行外与候选一致、与第 10 页原卷一致，应随本轮修订一并套用。题面其余部分、输入/输出格式、样例、数据范围均与原卷一致；解析与参考代码经实测/对拍无误。"
+      }
+    ],
+    "summary": "11 题中 10 道判断题（Q16—Q25）的判定结论与解析均与第 6—8 页原卷答案表及题面一致，唯一缺陷是 answer 字段为布尔值而非站点门禁要求的整型 0/1（语义零变化），初核的类型修复经我逐题核对答案表后采纳；Q27 的 statement 存在第三棵示例满树底层 3 叶（原卷 4 叶）的转录缺陷，初核补足提案经我逐行对照采纳；其解析与参考程序经实测（官方样例+600 组随机对拍+满树/长链压力）无误。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        27
+      ],
+      "startedAt": "2026-11-25T12:04:00.000Z",
+      "completedAt": "2026-11-25T12:28:00.000Z"
+    }
+  ]
+}

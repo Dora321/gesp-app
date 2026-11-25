@@ -172,7 +172,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: `小杨和 3 位朋友约好一起去看电影 “ 哪吒 2” 。打开购票软件，他们发现，已经没有同一排连续的四个座位了 （图中每个方框代表一个座位，红色方框代表已经售出）。朋友们商量了一下，决定分为两组，每组两人在同一排 的相邻两个座位，且两组之间至少有一对座位是前后相邻的。请问共有多少种购票方案？（ ）。`,
+            question: "小杨和 3 位朋友约好一起去看电影“哪吒 2”。打开购票软件，他们发现，已经没有同一排连续的四个座位了。朋友们商量了一下，决定分为两组，每组两人在同一排的相邻两个座位，且两组之间至少有一对座位是前后相邻的。请问共有多少种购票方案？\n\n（图示：影厅共 3 排 6 列；已售红色座位为第 1 排第 3、4 列，第 2 排第 4 列，第 3 排第 4、5、6 列，其余为空座。）",
             options: [
                 "495",
                 "96",
@@ -212,6 +212,9 @@ export const paperData = {
             tags: [
                 "排列组合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","reviewedBy","reviewedAt"],
         },
         {
             id: 3,
@@ -244,12 +247,7 @@ export const paperData = {
             id: 4,
             type: "single",
             question: `下列关于树和图的说法，错误的是（ ）。`,
-            options: [
-                "树是一种有向无环图，有向无环图都是一棵树。",
-                "如果把树看做有向图，每个节点指向其子节点，则该图是弱连通图。",
-                "个顶点且连通的无向图，其最小生成树一定包含 个条边。",
-                "个顶点、 条边的有向图，一定不是强连通的。",
-            ],
+            options: ["树是一种有向无环图，有向无环图都是一棵树。","如果把树看做有向图，每个节点指向其子节点，则该图是弱连通图。","N个顶点且连通的无向图，其最小生成树一定包含N-1个条边。","N+1个顶点、N条边的有向图，一定不是强连通的。"],
             answer: 0,
             score: 2,
             explanation: `**答案：不正确的是 A（有向无环图不一定都是树）**
@@ -280,6 +278,10 @@ export const paperData = {
             tags: [
                 "最小生成树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 5,
@@ -320,7 +322,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: `已定义double类型的变量r和theta，分别表示图中圆半径和圆心角。下列表达式中可以求出弦长s的 是（ ）。`,
+            question: "已定义 double 类型的变量 r 和 theta，分别表示图中圆半径和圆心角。下列表达式中可以求出弦长 s 的是（ ）。\n\n（图示：圆半径为 r，圆心角为 θ，s 为该圆心角所对的弦。）",
             options: [
                 "r * cos(theta)",
                 "r * cos(theta / 2) * 2",
@@ -339,31 +341,26 @@ export const paperData = {
             tags: [
                 "面向对象",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
             type: "single",
-            question: `个节点的平衡二叉树的高为（ ）。`,
-            options: [
-                "O(n)",
-                "O(n²)",
-                "O(√n)",
-                "O(log n)",
-],
+            question: "N 个节点的平衡二叉树的高为（ ）。",
+            options: ["⌊log₂ N⌋","⌈log₂ N⌉","⌊log₂ N⌋+1","无法确定。"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-**解析：**
-平衡二叉树（如 AVL 树）通过旋转保持左右子树高度差不超过 1，因此其高度与节点数 n 成对数关系，即高度为 O(log n)。选项 D 正确。
-
-- **A O(n)**：错误。只有退化为链表的普通二叉搜索树才会达到 O(n) 高度。
-- **B O(n²)**：错误。树的高度不可能随 n 二次增长。
-- **C O(√n)**：错误。平衡树高度约为 ⌊log₂ n⌋ 量级，而非 √n。
-- **D O(log n)**：正确。平衡二叉树的高度为 O(log n)。`,
+            explanation: "**答案：D**\n\n**解析：**\n“平衡二叉树”只要求每个结点左右子树高度差受限（如 AVL），并没有唯一确定树形。N 个结点的平衡树高度会随具体形态在 Θ(log N) 范围内变化；若再区分“高度是否计根层”“是否要求完全平衡”，结果又会落在 ⌊log₂N⌋、⌈log₂N⌉ 或 ⌊log₂N⌋+1 等不同值。因此仅凭 N 无法确定唯一高度，选 D。\n\n**考点：** 平衡二叉树高度的定义与不确定性。",
             tags: [
                 "树与二叉树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 8,
@@ -399,31 +396,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: `下面程序横线处应填入的是（ ）。
-
-\`\`\`cpp
-#include <string>
-
-int count_miracle(int N) {
-    int cnt = 0;
-    for (int n = 1; n * n < N; n++) {
-        int n2 = n * n;
-        std::string s = std::to_string(n2);
-        for (int i = 1; i < s.length(); i++) {
-            if (s[i] != '0') {
-                std::string sl = s.substr(0, i);
-                std::string sr = s.substr(i);
-                int nl = std::stoi(sl);
-                int nr = std::stoi(sr);
-                if (_______) // 在此处填入选项
-                    cnt++;
-            }
-        }
-    }
-    return cnt;
-}
-\`\`\`
-`,
+            question: "2025 是个神奇的数字，因为它是由两个数 20 和 25 拼接而成，而且 2025 = (20 + 25)²。小杨决定写个程序找找小于 N 的正整数中共有多少这样神奇的数字。下面程序横线处应填入的是（ ）。\n\n```cpp\n#include <string>\nint count_miracle(int N) {\n    int cnt = 0;\n    for (int n = 1; n * n < N; n++) {\n        int n2 = n * n;\n        std::string s = std::to_string(n2);\n        for (int i = 1; i < s.length(); i++) {\n            if (s[i] != '0') {\n                std::string sl = s.substr(0, i);\n                std::string sr = s.substr(i);\n                int nl = std::stoi(sl);\n                int nr = std::stoi(sr);\n                if (________) // 在此处填入选项\n                    cnt++;\n            }\n        }\n    }\n    return cnt;\n}\n```",
             options: [
                 "nl + nr == n",
                 "nl + nr == n2",
@@ -444,35 +417,15 @@ int count_miracle(int N) {
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 10,
             type: "single",
-            question: `下面程序的时间复杂度为（ ）。
-
-\`\`\`cpp
-#include <string>
-
-int count_miracle(int N) {
-    int cnt = 0;
-    for (int n = 1; n * n < N; n++) {
-        int n2 = n * n;
-        std::string s = std::to_string(n2);
-        for (int i = 1; i < s.length(); i++) {
-            if (s[i] != '0') {
-                std::string sl = s.substr(0, i);
-                std::string sr = s.substr(i);
-                int nl = std::stoi(sl);
-                int nr = std::stoi(sr);
-                if (_______) // 在此处填入选项
-                    cnt++;
-            }
-        }
-    }
-    return cnt;
-}
-\`\`\`
-`,
+            question: "2025 是个神奇的数字，因为它是由两个数 20 和 25 拼接而成，而且 2025 = (20 + 25)²。小杨决定写个程序找找小于 N 的正整数中共有多少这样神奇的数字。该函数的时间复杂度为（ ）。\n\n```cpp\n#include <string>\nint count_miracle(int N) {\n    int cnt = 0;\n    for (int n = 1; n * n < N; n++) {\n        int n2 = n * n;\n        std::string s = std::to_string(n2);\n        for (int i = 1; i < s.length(); i++) {\n            if (s[i] != '0') {\n                std::string sl = s.substr(0, i);\n                std::string sr = s.substr(i);\n                int nl = std::stoi(sl);\n                int nr = std::stoi(sr);\n                if (________) // 在此处填入选项\n                    cnt++;\n            }\n        }\n    }\n    return cnt;\n}\n```",
             options: [
                 "O(N log N)",
                 "O(N^(1/2))",
@@ -493,86 +446,63 @@ int count_miracle(int N) {
             tags: [
                 "复杂度分析",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 11,
             type: "single",
-            question: `下面的欧氏筛法程序中，两个横线处应填入的分别是（ ）。`,
-            options: [
-                "i <= n; j += i",
-                "i * i <= n; j++",
-                "i * i <= n; j += i",
-                "i <= n; j++",
-],
+            question: "下面的欧氏筛法程序中，两个横线处应填入的分别是（ ）。\n\n```cpp\nint primes[MAXP], num = 0;\nbool isPrime[MAXN + 1] = {false};\nvoid sieve() {\n    for (int n = 2; n <= MAXN; n++) {\n        if (!isPrime[n])\n            primes[num++] = n;\n        for (int i = 0; i < num && ________; i++) { // 在此处填入选项\n            isPrime[n * primes[i]] = true;\n            if (________) // 在此处填入选项\n                break;\n        }\n    }\n}\n```",
+            options: ["n * primes[i] < MAXN\nn % primes[i] == 0","n * primes[i] < MAXN\nprimes[i] > n","n * primes[i] <= MAXN\nn % primes[i] == 0","n * primes[i] <= MAXN\nprimes[i] > n"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-在筛法中，外层循环用于枚举因数/素数，只需进行到 √n 即可（即条件 \`i * i <= n\`）；内层循环以步长 i 标记该因数的倍数（即 \`j += i\`）。因此两处横线应分别填入 \`i * i <= n\` 与 \`j += i\`，对应选项 C。
-
-- **A i <= n; j += i**：错误。外层循环到 n 会做大量冗余判断，不是该筛法的标准写法。
-- **B i * i <= n; j++**：错误。\`j++\` 只是逐个枚举，无法“跳步”标记倍数。
-- **C i * i <= n; j += i**：正确。外层到 √n、内层以 i 为步长标记倍数，是筛法的标准填空。
-- **D i <= n; j++**：错误。既未限制到 √n，也未以步长跳步标记。`,
+            explanation: "**答案：C**\n\n**解析：**\n这是欧拉筛：外层枚举 n，内层用已求出的素数 primes[i] 标记 n*primes[i]。第一个空要保证乘积不越界，且 MAXN 是数组最大下标，应填 `n * primes[i] <= MAXN`；第二个空当 `n % primes[i] == 0` 时 break，保证每个合数只被最小质因子标记一次。故 C。A/B 用 `< MAXN` 会漏掉边界；B/D 的 `primes[i] > n` 不能保证线性。\n\n**考点：** 欧拉筛（线性筛）。",
             tags: [
                 "数论",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 12,
             type: "single",
-            question: `下面欧拉筛程序中，两个横线处应填入的分别是（ ）。`,
-            options: [
-                "n * primes[i] < MAXN ； n % primes[i] == 0",
-                "n * primes[i] < MAXN ； primes[i] > n",
-                "n * primes[i] <= MAXN ； n % primes[i] == 0",
-                "n * primes[i] <= MAXN ； primes[i] > n",
-],
+            question: "下面 Floyd 算法中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n#define N 21\n#define INF 99999999\nint map[N][N];\nint main() {\n    int n, m, t1, t2, t3;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (i == j)\n                map[i][j] = 0;\n            else\n                map[i][j] = INF;\n        }\n    }\n    for (int i = 1; i <= m; i++) {\n        cin >> t1 >> t2 >> t3;\n        map[t1][t2] = t3;\n    }\n    for (int k = 1; k <= n; k++)\n        for (int i = 1; i <= n; i++)\n            for (int j = 1; j <= n; j++)\n                if (map[i][j] > map[i][k] + map[k][j])\n                    ________; // 在此处填入选项\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            cout.width(4);\n            cout << map[i][j];\n        }\n        cout << endl;\n    }\n}\n```",
+            options: ["map[i][j] = map[i][k] + map[k][j]","map[i][k] = map[i][j] - map[k][j]","map[i][j] = map[i][k] - map[k][j]","map[k][j] = map[i][j] - map[i][k]"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-**解析：**
-这是欧拉筛（线性筛）：对每个数 n，用已求出的素数 \`primes[i]\` 去标记合数。第一个横线需保证乘积不越界，用严格小于 \`n * primes[i] < MAXN\`（避免整数溢出）；第二个横线在 \`n % primes[i] == 0\` 时 \`break\`，以保证每个合数只被其最小质因子标记一次。故选择 A。
-
-- **A n * primes[i] < MAXN ； n % primes[i] == 0**：正确。边界用严格小于防溢出，且遇最小质因子即退出，保证线性。
-- **B n * primes[i] < MAXN ； primes[i] > n**：错误。\`primes[i] > n\` 不能保证只被最小质因子标记，破坏线性筛正确性。
-- **C n * primes[i] <= MAXN ； n % primes[i] == 0**：错误。\`<=\` 可能在乘积恰等于 MAXN 时越界访问，应使用严格小于。
-- **D n * primes[i] <= MAXN ； primes[i] > n**：错误。两处都不符合线性筛的逻辑。`,
+            explanation: "**答案：A**\n\n**解析：**\nFloyd 的三重循环以 k 为中转点，当 `map[i][j] > map[i][k] + map[k][j]` 时用更短的 `map[i][k]+map[k][j]` 更新 `map[i][j]`。因此横线应填 `map[i][j] = map[i][k] + map[k][j]`，即 A。B、C、D 或是减法、或更新了错误的下标，均不成立。\n\n**考点：** Floyd–Warshall 松弛。",
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 13,
             type: "single",
-            question: `下面 Floyd 算法程序的时间复杂度为（ ）。`,
-            options: [
-                "O(n)",
-                "O(n log n)",
-                "O(n³)",
-                "O(n²)",
-],
+            question: "下面 Floyd 算法程序的时间复杂度为（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n#define N 21\n#define INF 99999999\nint map[N][N];\nint main() {\n    int n, m, t1, t2, t3;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (i == j)\n                map[i][j] = 0;\n            else\n                map[i][j] = INF;\n        }\n    }\n    for (int i = 1; i <= m; i++) {\n        cin >> t1 >> t2 >> t3;\n        map[t1][t2] = t3;\n    }\n    for (int k = 1; k <= n; k++)\n        for (int i = 1; i <= n; i++)\n            for (int j = 1; j <= n; j++)\n                if (map[i][j] > map[i][k] + map[k][j])\n                    ________; // 在此处填入选项\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            cout.width(4);\n            cout << map[i][j];\n        }\n        cout << endl;\n    }\n}\n```",
+            options: ["O(N)","O(N²)","O(N³)","O(N² log N)"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-Floyd–Warshall 算法对每对“中间点 k、起点 i、终点 j”进行三重循环松弛，三层循环各约 n 次，因此时间复杂度为 O(n³)。选项 C 正确。
-
-- **A O(n)**：错误。忽略了三重循环。
-- **B O(n log n)**：错误。Floyd 不使用分治或堆结构，不会出现该量级。
-- **C O(n³)**：正确。三层嵌套循环各遍历 n 个顶点，整体 O(n³)。
-- **D O(n²)**：错误。仅有两重循环时才是 O(n²)，Floyd 实际有三重。`,
+            explanation: "**答案：C**\n\n**解析：**\nFloyd–Warshall 算法对每个中转点 k、起点 i、终点 j 做三重循环松弛，三层循环各约 N 次，因此时间复杂度为 O(N³)。\n\n- A O(N)：错误，忽略了三重循环；\n- B O(N²)：错误，只算了两层；\n- C O(N³)：正确；\n- D O(N² log N)：错误，Floyd 没有对数因子。\n\n**考点：** Floyd 算法复杂度。",
             tags: [
                 "复杂度分析",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 14,
             type: "single",
-            question: `下列程序实现了输出杨辉三角形，代码中横线部分应该填入的是（ ）。`,
+            question: "下列程序实现了输出杨辉三角形，代码中横线部分应该填入的是（ ）。",
             options: [
                 "if (i == j) map[i][j] = 0; else map[i][j] = INF; } } for (int i = 1; i <= m; i++) { cin >> t1 >> t2 >> t3; map[t1][t2] = t3; } for (int k = 1; k <= n; k++) for (int i = 1; i <= n; i++) for (int j = 1; j <= n; j++) if (map[i][j] > map[i][k]+map[k][j]) ________; // 在此处填入选项 for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { cout.width(4); cout << map[i][j]; } cout << endl; } } 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 #include <iostream> using namespace std; #define N 35 int a[N]; int main() { int n; cin >> n; for (int i = 0; i < n; i++) { a[i] = 1; for (int j = i-1; j > 0; j--) ________; // 在此处填入选项 for (int j = 0; j <= i; j++) cout << a[j] << \" \"; cout << endl; } return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 a[j] += a[j+1]1 题号 1 2 3 4 5 6 7 8 9 10 答案",
                 "选项B",
@@ -605,6 +535,10 @@ Floyd–Warshall 算法对每对“中间点 k、起点 i、终点 j”进行三
             tags: [
                 "STL容器",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","reviewedBy","reviewedAt","code"],
+      "code": "#include <iostream>\nusing namespace std;\n#define N 35\nint a[N];\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 0; i < n; i++) {\n        a[i] = 1;\n        for (int j = i - 1; j > 0; j--)\n            ________; // 在此处填入选项\n        for (int j = 0; j <= i; j++)\n            cout << a[j] << \" \";\n        cout << endl;\n    }\n    return 0;\n}",
         },
         {
             id: 15,
@@ -810,20 +744,21 @@ int main() {
         {
             id: 23,
             type: "judge",
-            question: `定义int类型的变量a和b，求二次函数 取最小值时 x 的值，可以通过表达式-a / 2.0求 得。`,
+            question: "定义 int 类型的变量 a 和 b，求二次函数 $y=x^2+ax+b$ 取最小值时 $x$ 的值，可以通过表达式 -a / 2.0 求得。",
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 1,
+            answer: 0,
             score: 2,
-            explanation: `**答案：错误**
-
-**解析：**
-对二次函数 f(x) = ax² + bx + c（a>0），取最小值时的横坐标为顶点 x = −b/(2a)。题中给出的表达式 \`-a / 2.0\` 并不等于标准的 −b/(2a)（仅在特殊系数命名下才可能偶然成立），不能普遍求得最小值点，故命题错误。`,
+            explanation: "**答案：正确**\n\n**解析：**\n对 y=x²+ax+b 配方得 y=(x+a/2)²+b−a²/4，故当 x=−a/2 时取最小值。表达式 `-a / 2.0` 中 2.0 为 double，a 先转换为 double 再做除法，得到 −a/2 的浮点值，正确。\n\n**考点：** 二次函数最值与浮点除法。",
             tags: [
                 "面向对象",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["answer","question","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 24,
@@ -846,29 +781,26 @@ int main() {
         },
         {
             id: 25,
-            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第7,8页文本及渲染图核对。`,
+            verificationNote: "核对原卷第 7 页答案表和第 8 页题面。四个职务互异，四人选出后仍有 4! 种分工，排列数为 863040。",
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 7,
             sourcePages: [7, 8],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-25",
+            reviewedBy: "AI-Codex",
             sourceVerified: true,
-            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
-            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
             question: `从32名学生中选出4人分别担任班长、副班长、学习委员和组织委员，共有 C(32,4) 种不同的选法。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `原卷答案表为错误。四个职务不同，先选出4人后还要分配4个职务，方案数为C(32,4)×4!=32×31×30×29。组合数C(32,4)只计算选人，没有计算不同职务的分配。
-
-题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
+            explanation: "**答案：错误**\n\n班长、副班长、学习委员和组织委员是四个不同职务。依次选人有 $32\\times31\\times30\\times29=863040$ 种方案。$\\binom{32}{4}$ 只计算选出的四个人。每组人选还有 $4!$ 种任职安排。",
             tags: [
                 "排列组合",
             ],
+      "reviewedFields": ["answer","explanation","reviewedBy","reviewedAt","verificationNote"],
         }
     ]
 };

@@ -1,0 +1,324 @@
+{
+  "paperId": "2025-06-l8",
+  "integratedAt": "2026-11-25T12:12:33.048Z",
+  "accepted": [
+    {
+      "id": 4,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 5,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "options",
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 13,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 17,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 19,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 20,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 21,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "referenceCode",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "referenceCode",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "5 4\n1 1 2 2\n3 3\n1 -1 -1\n2 5\n1 -1 1 -1 1\n5 8\n1 1 1 -1 -1 -1 -1 -1\n5 3\n-1 -1 1",
+          "output": "4\n1\n4\n2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n1\n4\n2\n",
+          "passed": true
+        },
+        {
+          "input": "8 3\n5 4 2 1 3 6 6\n8 1\n8\n8 2\n8 -8\n8 3\n8 -8 8",
+          "output": "1\n7\n1",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "1\n7\n1\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例 1（多组查询）",
+          "input": "5 4\n1 1 2 2\n3 3\n1 -1 -1\n2 5\n1 -1 1 -1 1\n5 8\n1 1 1 -1 -1 -1 -1 -1\n5 3\n-1 -1 1\n",
+          "output": "4\n1\n4\n2",
+          "reason": "树为 1-2、1-3、2-4、2-5；四组查询分别 3→1→2→4、2→1→2→1→2→1、5→2→1→1→2→4、5→5→5→2，与输出一致。",
+          "kind": "boundary",
+          "actual": "4\n1\n4\n2\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例 2（环回与停留）",
+          "input": "8 3\n5 4 2 1 3 6 6\n8 1\n8\n8 2\n8 -8\n8 3\n8 -8 8\n",
+          "output": "1\n7\n1",
+          "reason": "树为 1-5、5-2、2-4、4-3、3-6、6-7、6-8；8 向上 8 步停在根 1，向下 8 步沿最小儿子链停在叶 7，再向上 8 步回根 1，验证到端点后停留。",
+          "kind": "boundary",
+          "actual": "1\n7\n1\n",
+          "passed": true
+        },
+        {
+          "name": "单结点 n=1，±1 均停留",
+          "input": "1 2\n\n1 2\n1 -1\n1 1\n-1\n",
+          "output": "1\n1",
+          "reason": "n=1 时第二行父结点序列为空；向上无父、向下无子，两次查询都停在 1，同时验证读入 0 个父结点不越界。",
+          "kind": "boundary",
+          "actual": "1\n1\n",
+          "passed": true
+        },
+        {
+          "name": "5 结点链上 |a|=n 的端点停留",
+          "input": "5 2\n1 2 3 4\n5 2\n5 5\n1 2\n-5 -5\n",
+          "output": "1\n5",
+          "reason": "链 1-2-3-4-5；从 5 向上 5 步（树高仅 4）到根后停留得 1，从 1 向下 5 步到叶后停留得 5，在官方数据范围 |a|≤n 内验证端点停留。",
+          "kind": "boundary",
+          "actual": "1\n5\n",
+          "passed": true
+        },
+        {
+          "name": "分叉取编号最小儿子",
+          "input": "4 2\n1 2 2\n1 2\n-1 -1\n4 4\n-1 1 -1 -1\n",
+          "output": "3\n3",
+          "reason": "结点 2 的儿子为 {3,4}，最小编号 3；从 1 连续向下两次到 3，可区分“取最小”与“取末位/最大”；从 4 出发 -1（叶停留）、+1 回 2、-1 到 3、-1 停留，仍为 3。",
+          "kind": "boundary",
+          "actual": "3\n3\n",
+          "passed": true
+        },
+        {
+          "name": "多级最小儿子链上下穿插",
+          "input": "6 2\n1 1 2 2 4\n3 6\n-1 1 -1 -1 -1 -1\n6 4\n1 1 1 -1\n",
+          "output": "6\n2",
+          "reason": "minChild：1→2、2→4、4→6，叶为 3、5、6；从 3 出发 -1 停留、+1 回 1、再连续向下 3 步沿 2→4→6 后停留得 6；从 6 连续向上 3 步回根 1 再向下 1 步得 2。",
+          "kind": "boundary",
+          "actual": "6\n2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "8c621aeb2c056d194a6fe258db2d9d17e09ce6fbf1d63f8b78f4dd2ebd889cc3"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "4\n1 2\n2 3\n3 4",
+          "output": "6",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "input": "8\n1 2\n1 3\n1 4\n2 5\n2 6\n3 7\n3 8",
+          "output": "112",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "112\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例 1（4 结点链）",
+          "input": "4\n1 2\n2 3\n3 4\n",
+          "output": "6",
+          "reason": "链上以两端为根各 1 种、中间两点各 2 种，1+2+2+1=6。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例 2（8 结点树）",
+          "input": "8\n1 2\n1 3\n1 4\n2 5\n2 6\n3 7\n3 8\n",
+          "output": "112",
+          "reason": "1、2、3 的度为 3，5 个叶度为 1；以 1/2/3 为根各 3!×(2!)²=24，以叶为根各 1!×(2!)³=8，3×24+5×8=112。",
+          "kind": "boundary",
+          "actual": "112\n",
+          "passed": true
+        },
+        {
+          "name": "单结点树 n=1",
+          "input": "1\n",
+          "output": "1",
+          "reason": "DFS 序唯一为 [1]；官方参考程序此时会访问 fac[deg[1]-1]=fac[-1]（越界 UB），候选 n==1 早退输出 1，修正真实缺陷。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两结点单边",
+          "input": "2\n1 2\n",
+          "output": "2",
+          "reason": "以 1 为根 [1,2]、以 2 为根 [2,1]，共 2 种；公式 1!·(0!)=1 与 0!·(1!)=1 之和。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "4 结点星形（重复度计数）",
+          "input": "4\n1 2\n1 3\n1 4\n",
+          "output": "12",
+          "reason": "中心为根 3!=6，每个叶为根 1!×2!=2，3×2=6，合计 12。",
+          "kind": "boundary",
+          "actual": "12\n",
+          "passed": true
+        },
+        {
+          "name": "5 结点链（闭式 2(n-1)）",
+          "input": "5\n1 2\n2 3\n3 4\n4 5\n",
+          "output": "8",
+          "reason": "链上所有 (deg-1)! 皆为 1，答案 = 度数和 = 2(n-1) = 8，验证解析末尾的化简式。",
+          "kind": "boundary",
+          "actual": "8\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "bc0e2e8c700cec7afefecd237f1d4ab6c23b827dd79e05ebec327aa1523cc99d"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 6
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 9
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 9,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：A**\n\n**解析：**\n`count_digit(i, d)` 把 i 转成字符串后逐字符扫描，耗时 O(位数) = O(log₁₀ i)；`sum_digit` 对 i = 1…n 各调用一次，总时间为 Σ_{i=1}^{n} O(log i) = O(n log n)。\n\n- **A O(n log n)**：正确。外层 n 次、内层平均 O(log i)，累计 O(n log n)。\n- **B O(n)**：错误。忽略了对每个数做字符串扫描的 O(log n) 代价。\n- **C O(log n)**：错误。单次数位统计是 O(log n)，但外层循环 n 次，整体不是 O(log n)。\n- **D O(n²)**：错误。没有平方级嵌套，不是 O(n²)。"
+      }
+    },
+    {
+      "id": 12,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：D**\n\n**解析：**\n该 partition 以 a[l] 为枢轴，循环结束后 j 指向最后一个不大于枢轴的元素位置，应将枢轴归位到 j 处并以其为分界返回。因此第一空执行 `swap(a[l], a[j])`，第二空返回 `j`。\n\n- **A swap(a[l], a[i]); return i;**：错误。i 已越过分界点，用 i 交换并作为返回位置会把枢轴放到错误一侧。\n- **B swap(a[l], a[j]); return i;**：错误。交换对象虽是 a[j]，但返回 i 会把非枢轴位置当作分界；枢轴实际在 j，i 通常为 j+1，左递归区间仍包含枢轴甚至与原区间相同，会重复划分乃至无限递归。\n- **C swap(a[l], a[i]); return j;**：错误。交换对象应为 a[j] 而非 a[i]，否则枢轴没有归位到分界点。\n- **D swap(a[l], a[j]); return j;**：正确。将枢轴 a[l] 与 a[j] 交换使枢轴就位，并返回枢轴下标 j。"
+      }
+    },
+    {
+      "id": 13,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：D**\n\n**解析：**\nLIS 的 DP 解法是 `dp[i]` 表示以第 i 个元素结尾的最长上升子序列长度，初始为 1；对 `j < i` 且 `nums[j] < nums[i]` 时，用 `dp[j]+1` 更新 `dp[i]`。因此状态转移应为 `dp[i] = max(dp[i], dp[j] + 1)`。\n\n- **A dp[j] = max(dp[j] + 1, dp[i]);**：错误。更新对象写成了 `dp[j]`，应为 `dp[i]`；候选值也写反了，不应用 `dp[i]` 去刷新 `dp[j]`。\n- **B dp[j] = max(dp[j], dp[i] + 1);**：错误。更新对象应为 `dp[i]`，候选值应来自 `dp[j] + 1`；写成 `dp[j] = max(dp[j], dp[i] + 1)` 无法把第 j 个元素接到第 i 个元素之前。\n- **C dp[i] = max(dp[i] + 1, dp[j]);**：错误。候选值写成了 `dp[i] + 1`（自增）与 `dp[j]`，没有使用 `dp[j] + 1`，会丢失“接在 j 之后”的转移。\n- **D dp[i] = max(dp[i], dp[j] + 1);**：正确。以 `dp[j] + 1` 刷新 `dp[i]` 的最大值。"
+      }
+    }
+  ]
+}

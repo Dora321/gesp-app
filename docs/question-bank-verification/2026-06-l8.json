@@ -1,123 +1,1125 @@
 {
   "paperId": "2026-06-l8",
-  "reviewedAt": "2026-10-31",
+  "reviewedAt": "2026-11-07",
+  "dimensionScopedUnresolved": true,
   "reviewedBy": {
     "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2026-06-l8"
+    "executor": "DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核",
+    "coordinator": "Grok CLI（调度）+ 本机机械队列（资料、自动校验与发布）"
   },
-  "session": 14,
-  "answerTable": {
-    "content": {
-      "single": "BBCACDAADACBBBCD",
-      "judge": "√√××√×√√×√"
-    }
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295410429984.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++8级.pdf",
+    "mirrorSha": "482ae7e0ade568f5c71076b7c719a291c72cb05c",
+    "mirrorBytes": 811835,
+    "shaVerified": true,
+    "sha256": "d642332b541c33127398749e4e1256e2c3061767e911543f7c142a5be5ee92d7",
+    "pages": 8
   },
-  "verification": {
-    "method": "收录时同步核验：官方答案表200dpi渲染逐格读取；单选15题+判断10题程序化正则提取比对；判断题逐题代码级逻辑复核；编程题样例程序化验证（跑参考算法）；pypdf文本层粘连数字（样例输出+行号）全部渲染核对纠正",
-    "answerKeySource": "官方PDF答案表程序化提取（非手工转录）",
-    "singleChoice": "15/15官方答案表比对一致",
-    "judge": "10/10官方答案表比对一致 + 逐题代码级逻辑复核通过",
-    "programming": "线网建设（MST样例3.41=1+1+√2，Impossible情形，n≤500）、堆石子（C(n-1,m-1)样例3 5→6程序化验证）"
+  "reviewFiles": {
+    "initial": "ai-reviews/2026-11-07/2026-06-l8.deepseek.json",
+    "review": "ai-reviews/2026-11-07/2026-06-l8.glm.json",
+    "previous": "ai-reviews/2026-11-07/2026-06-l8.previous-evidence.json"
   },
-  "note": "判断J3/J4官方题干公式本身即错误形式（C(n+k,k)、C(n-1,k)+C(n-2,k)），答案×，转录保留官方原式",
-  "resolved": true,
+  "inputSha256": "c0cff8343944cff566eec8bdaa4692181bc358bf2d0779e8eb74700f13b65ad6",
   "questions": [
+    {
+      "id": 1,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        1
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页第 1 题“从 7 本不同的算法书和 5 本不同的数学书中选出 4 本，要求两类书都至少选 1 本”与站点 question 一致（站点已把被吞掉的 7、5、4、1 补全）。",
+          "review": "第 1 页页图第 1 题「从 7 本不同的算法书和 5 本不同的数学书中选出 4 本，要求两类书都至少选 1 本」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页 A 420、B 455、C 465、D 495，与站点 options 一致。",
+          "review": "第 1 页 A 420、B 455、C 465、D 495，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 1 题为 B，索引 1，站点 answer=1；独立核算：C(12,4)−C(7,4)−C(5,4)=495−35−5=455。",
+          "review": "第 1 页答案表第 1 题为 B，索引 1，站点 answer=1。独立核算：C(12,4)−C(7,4)−C(5,4)=495−35−5=455。"
+        },
+        "explanation": {
+          "initial": "解析用总数减两类“全同类”的补集法得 455，与选项 B 一致（420/465/495 均为漏减或错减的干扰值）。",
+          "review": "解析按补集法扣除全算法书与全数学书，结论成立。"
+        }
+      },
+      "unresolved": []
+    },
     {
       "id": 2,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q2 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页第 2 题“6 个人排成一排照相，其中甲、乙两人不能相邻”与站点 question 一致。",
+          "review": "第 1 页页图第 2 题「6 个人排成一排照相，其中甲、乙两人不能相邻」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页 A 240、B 480、C 600、D 720，与站点 options 一致。",
+          "review": "第 1 页 A 240、B 480、C 600、D 720，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 2 题为 B，索引 1，站点 answer=1；独立核算：6!−5!×2=720−240=480。",
+          "review": "第 1 页答案表第 2 题为 B，索引 1，站点 answer=1。独立核算：全排列 720 减去相邻捆绑 2×5!=240，得 480。"
+        },
+        "explanation": {
+          "initial": "解析用“总数 720 减去甲乙相邻的 5!×2=240”得 480，思路与结论一致。",
+          "review": "解析按插空法或补集法计算，结论成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        1
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页第 3 题“展开式 (x² − 1/x)^6 中，常数项的系数为”与站点 question（LaTeX 形式 $(x^2 - \\frac{1}{x})^6$）语义一致。",
+          "review": "第 1 页页图第 3 题「展开式 (x² − 1/x)^6 中，常数项的系数为」与站点 question 一致（LaTeX 记号为站点排版形式）。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页 A 6、B 12、C 15、D 20，与站点 options 一致。",
+          "review": "第 1 页 A 6、B 12、C 15、D 20，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 3 题为 C，索引 2，站点 answer=2；独立推导：通项指数为 12−3k，k=4 时取常数，系数 C(6,4)(−1)^4=15。",
+          "review": "第 1 页答案表第 3 题为 C，索引 2，站点 answer=2。独立推导：通项 C(6,k)·x^{2(6−k)}·(−1/x)^k，指数 12−3k=0 得 k=4，系数 C(6,4)·(−1)^4=15。"
+        },
+        "explanation": {
+          "initial": "解析按通项求出 k=4、系数 C(6,4)=15，与选项 C 一致。",
+          "review": "解析按通项定 k，结论成立。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 4,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q4 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页第 4 题的组合数预处理代码（c[i][0]=c[i][i]=1；内层 j=1..i−1 处横线）与站点代码块逐行一致。",
+          "review": "第 1 页页图第 4 题组合数预处理代码（c[i][0]=c[i][i]=1、内层 j<i、横线）与站点 question 内的代码块逐行一致。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页 A c[i-1][j-1]+c[i-1][j]、B c[i][j-1]+c[i-1][j-1]、C c[i-1][j]+c[i][j+1]、D c[i][j-1]*c[i-1][j]，与站点 options 一致。",
+          "review": "第 1 页 A c[i-1][j-1] + c[i-1][j]、B/C/D 均为错误递推式，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 4 题为 A，索引 0，站点 answer=0；独立判断：帕斯卡恒等式 C(i,j)=C(i−1,j−1)+C(i−1,j)。",
+          "review": "第 1 页答案表第 4 题为 A，索引 0，站点 answer=0。独立判断：杨辉三角递推 C(i,j)=C(i−1,j−1)+C(i−1,j)。"
+        },
+        "explanation": {
+          "initial": "解析给出帕斯卡恒等式并说明两项都来自第 i−1 行，结论 A 正确。",
+          "review": "解析说明递推含义，结论成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 5,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        1,
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2 页第 5 题的 qpow 代码（a=3, b=20, mod=17）与站点代码块逐行一致。",
+          "review": "第 2 页页图第 5 题 qpow 程序（ans = 1 % mod 起、按位累乘、输出 qpow(3, 20, 17)）与站点 question 内的代码块逐行一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页 A 1、B 4、C 13、D 16，与站点 options 一致。",
+          "review": "第 2 页 A 1、B 4、C 13、D 16，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 5 题为 C，索引 2，站点 answer=2；独立计算：3⁴≡13、3⁸≡16≡−1、3¹⁶≡1，故 3²⁰≡13。",
+          "review": "第 1 页答案表第 5 题为 C，索引 2，站点 answer=2。独立核算：3^4=81≡13、3^8≡16、3^16≡1（mod 17），3^20=3^16·3^4≡13。"
+        },
+        "explanation": {
+          "initial": "解析用费马小定理与 3⁴≡13、3⁸≡−1、3¹⁶≡1 逐步算出 13，并说明 16 是 3⁸ 的值、1 是错算，推导正确。",
+          "review": "解析给出快速幂取模过程，结论成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2 页第 6 题“归并排序每次把长度为 n 的序列分成两个规模约为 n/2 的子序列，递归排序后再用线性时间合并。该算法的时间复杂度通常为”与站点 question 一致。",
+          "review": "第 2 页页图第 6 题「归并排序每次把长度为 n 的序列分成两个规模约为 n/2 的子序列，递归排序后再用线性时间合并」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页 A O(n)、B O(n²)、C O(log n)、D O(n log n)，与站点 options 一致。",
+          "review": "第 2 页 A O(n)、B O(n²)、C O(log n)、D O(n log n)，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 6 题为 D，索引 3，站点 answer=3；独立推导：T(n)=2T(n/2)+O(n) 由主定理得 O(n log n)。",
+          "review": "第 1 页答案表第 6 题为 D，索引 3，站点 answer=3。独立推导：T(n)=2T(n/2)+O(n)。"
+        },
+        "explanation": {
+          "initial": "解析按分治递推 T(n)=2T(n/2)+O(n) 得 O(n log n)，与选项 D 一致。",
+          "review": "解析按主定理求和，结论成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2 页第 7 题“在平面直角坐标系中，三角形三个顶点为 A(1,1)、B(5,2)、C(3,6)，该三角形面积为”与站点 question 一致。",
+          "review": "第 2 页页图第 7 题「三角形三个顶点为 A(1,1)、B(5,2)、C(3,6)，该三角形面积为」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页 A 9、B 10、C 12、D 18，与站点 options 一致。",
+          "review": "第 2 页 A 9、B 10、C 12、D 18，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 7 题为 A，索引 0，站点 answer=0；独立用鞋带公式：|1(2−6)+5(6−1)+3(1−2)|/2 = 18/2 = 9。",
+          "review": "第 1 页答案表第 7 题为 A，索引 0，站点 answer=0。独立核算：|AB×AC|/2=|4·5−1·2|/2=9。"
+        },
+        "explanation": {
+          "initial": "解析用行列式/鞋带公式算出面积 9，与选项 A 一致。",
+          "review": "解析按鞋带公式计算，结论成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2 页第 8 题“某程序需要判断点 P(x,y) 是否在以原点为圆心、半径为 5 的圆内或圆上。下列判断条件正确的是”与站点 question 一致。",
+          "review": "第 2 页页图第 8 题「某程序需要判断点 P(x,y) 是否在以原点为圆心、半径为 5 的圆内或圆上」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页 A x*x+y*y<=25、B abs(x)+abs(y)<=5、C x*x-y*y<=25、D x+y<=5，与站点 options 一致。",
+          "review": "第 2 页 A x*x + y*y <= 25、B abs(x)+abs(y) <= 5、C x*x - y*y <= 25、D x + y <= 5，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 8 题为 A，索引 0，站点 answer=0；独立判断：到原点距离 ≤5 等价于 x²+y²≤25。",
+          "review": "第 1 页答案表第 8 题为 A，索引 0，站点 answer=0。独立判断：圆内或圆上即欧氏距离 ≤5。"
+        },
+        "explanation": {
+          "initial": "解析指出 x²+y²≤r² 与距离 ≤r 等价，并说明 B 是曼哈顿距离、C/D 不是圆域条件，结论 A 正确。",
+          "review": "解析指出 B 为菱形、C 为双曲区域、D 为半平面，结论 A 成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 9,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2 页第 9 题的 7 条边 (1,2,4)、(1,3,2)、(2,3,1)、(2,4,5)、(3,4,8)、(3,5,10)、(4,5,2) 与站点 question 完全一致。",
+          "review": "第 2 页页图第 9 题「某无向带权图有边 (1,2,4)、(1,3,2)、(2,3,1)、(2,4,5)、(3,4,8)、(3,5,10)、(4,5,2)，该图最小生成树的总权值为」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页 A 7、B 8、C 9、D 10，与站点 options 一致。",
+          "review": "第 2 页 A 7、B 8、C 9、D 10，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 9 题为 D，索引 3，站点 answer=3；独立 Kruskal：选 (2,3)=1、(1,3)=2、(4,5)=2、(2,4)=5，总权 10。",
+          "review": "第 1 页答案表第 9 题为 D，索引 3，站点 answer=3。独立核算：按权升序取 (2,3,1)、(1,3,2)、(4,5,2)、(2,4,5)，权和 10。"
+        },
+        "explanation": {
+          "initial": "解析按权值升序选边（跳过成环的 (1,2)），得 1+2+2+5=10，与选项 D 一致。",
+          "review": "解析按 Kruskal 顺序选边并说明成环跳过，结论成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 10,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页第 10 题“有向非负权图边为 1→2(3)、2→4(4)、1→3(10)、3→4(1)、2→3(2)。使用 Dijkstra 算法从 1 号顶点出发到 4 号顶点的最短距离为”与站点 question 一致。",
+          "review": "第 3 页页图第 10 题「有向非负权图边为 1→2(3)、2→4(4)、1→3(10)、3→4(1)、2→3(2)。使用 Dijkstra 算法从 1 号顶点出发到 4 号顶点的最短距离为」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 3 页 A 6、B 7、C 8、D 11，与站点 options 一致。",
+          "review": "第 3 页 A 6、B 7、C 8、D 11，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 10 题为 A，索引 0，站点 answer=0；独立推导：1→2→3→4 = 3+2+1 = 6，优于 1→2→4 = 7 与 1→3→4 = 11。",
+          "review": "第 1 页答案表第 10 题为 A，索引 0，站点 answer=0。独立核算：1→2=3、2→3=2、3→4=1，合计 6；1→2→4=7 次之。"
+        },
+        "explanation": {
+          "initial": "解析逐步松弛得 dist[3]=5、dist[4]=6，并指出 B 只考虑了 1→2→4，结论正确。",
+          "review": "解析按 Dijkstra 顺序松弛，结论成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 11,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页第 11 题的代码（外层 i=1..n，内层 j=1 且 j*j<=n，累加 s）与站点代码块逐行一致——内层上界是 n 而不是 i，这一点与站点保持一致。",
+          "review": "第 3 页页图第 11 题代码（外层 i≤n、内层 j*j<=n）与站点 question 内的代码块逐行一致。"
+        },
+        "options": {
+          "initial": "PDF 第 3 页 A O(n)、B O(n log n)、C O(n√n)、D O(n²)，与站点 options 一致。",
+          "review": "第 3 页 A O(n)、B O(n log n)、C O(n√n)、D O(n²)，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 11 题为 C，索引 2，站点 answer=2；独立推导：内层固定执行约 √n 次，外层 n 次，合计 O(n√n)。",
+          "review": "第 1 页答案表第 11 题为 C，索引 2，站点 answer=2。独立推导：内层执行 ⌊√n⌋ 次，总量 n√n。"
+        },
+        "explanation": {
+          "initial": "解析指出内层 j 上界为 √n、外层 n 次，乘起来是 O(n√n)，并说明 B 误把 √n 当成 log n，结论正确。",
+          "review": "解析按双层循环计数，结论成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 12,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页第 12 题“某优化问题的答案是 [1,M] 内的整数，存在单调判定函数 check(x)，且每次判定的时间复杂度为 O(n)。使用二分答案求最小可行值，整体时间复杂度通常为”与站点 question 一致。",
+          "review": "第 3 页页图第 12 题「某优化问题的答案是 [1, M] 内的整数，存在单调判定函数 check(x)，且每次判定的时间复杂度为 O(n)。使用二分答案求最小可行值」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 3 页 A O(nM)、B O(n log M)、C O(M log n)、D O(n+M)，与站点 options 一致。",
+          "review": "第 3 页 A O(nM)、B O(n log M)、C O(M log n)、D O(n + M)，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 12 题为 B，索引 1，站点 answer=1；独立推导：二分 O(log M) 次 × 每次 O(n) = O(n log M)。",
+          "review": "第 1 页答案表第 12 题为 B，索引 1，站点 answer=1。独立推导：二分 O(log M) 轮，每轮判定 O(n)。"
+        },
+        "explanation": {
+          "initial": "解析用“log M 次判定 × 每次 O(n)”得出 O(n log M)，并指出 A 是线性扫描、C 把角色弄反，结论正确。",
+          "review": "解析按二分轮数×单次代价计算，结论成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 13,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页第 13 题的线性筛代码（while 枚举 primes，标记 is_composite[i*p] 后 if (i%p==0) break）与站点代码块一致，问题为 break 的目的。",
+          "review": "第 3 页页图第 13 题代码（primes.push_back、i * p > n 截断、i % p == 0 时 break 并注释“这条语句的目的是？”）与站点 question 内的代码块逐行一致。"
+        },
+        "options": {
+          "initial": "PDF 第 3 页 A 保证递归深度、B 保证每个合数只被最小质因子筛一次、C 保证素数被标记为合数、D 提高到 O(n log n)，与站点 options 一致。",
+          "review": "第 3 页 A 递归深度、B 每个合数只被最小质因子筛去一次、C 每个素数都被标记为合数、D 提高到 O(n log n)，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 13 题为 B，索引 1，站点 answer=1；独立判断：i%p==0 时 break 正是欧拉筛“每个合数只被最小质因子筛一次”的关键。",
+          "review": "第 1 页答案表第 13 题为 B，索引 1，站点 answer=1。独立论证：i % p == 0 时继续用更大质因子 q 筛 i·q 会造成重复（q·k 亦可由更小质因子筛出），break 保证唯一性。"
+        },
+        "explanation": {
+          "initial": "解析以 i=k·p 为例说明继续用更大质数会重复标记，故 break 保证线性复杂度，并逐项否定 A/C/D，结论正确。",
+          "review": "解析说明线性复杂度的来源，结论 B 成立。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 14,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        3,
+        4
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q14 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页末第 14 题“在 C++ 中，关于类的继承和构造、析构顺序，下列说法正确的是”与站点 question 一致。",
+          "review": "第 4 页页图第 14 题「在 C++ 中，关于类的继承和构造、析构顺序，下列说法正确的是」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页 A 派生类可直接访问基类 private、B 私有继承后 protected 变 public、C 先基类构造再派生类构造、D 先基类析构再派生类析构，与站点 options 一致。",
+          "review": "第 4 页 A 派生类可访问 private、B protected 私有继承后变 public、C 创建派生类对象先调用基类构造、D 销毁时先调用基类析构，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 14 题为 C，索引 2，站点 answer=2；独立判断：构造顺序基类→派生类（C 正确），析构顺序相反，A/B 亦错。",
+          "review": "第 1 页答案表第 14 题为 C，索引 2，站点 answer=2。独立判断：构造基类→派生类，析构相反；A/B/D 均错。"
+        },
+        "explanation": {
+          "initial": "解析指出构造先基后派生、析构严格逆序，且 private 不可直接访问、私有继承只会收紧权限，结论与 C 一致。",
+          "review": "解析逐项辨析，结论 C 成立。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 15,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        4
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q15 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页第 15 题“将 4 个元素按 1,2,3,4 的顺序入栈，在该过程中可随时插入出栈操作。下列序列中不可能作为出栈序列的是”与站点 question 一致。",
+          "review": "第 4 页页图第 15 题「将 4 个元素按 1, 2, 3, 4 的顺序入栈，在该过程中可随时插入出栈操作。下列序列中不可能作为出栈序列的是」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页 A 1,2,3,4、B 2,1,4,3、C 3,2,1,4、D 3,1,2,4，与站点 options 一致。",
+          "review": "第 4 页 A 1,2,3,4、B 2,1,4,3、C 3,2,1,4、D 3,1,2,4，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "第 1 页答案表第 15 题为 D，索引 3，站点 answer=3；独立判断：弹出 3 后栈顶为 2，不可能先弹出 1，故 3,1,2,4 非法。",
+          "review": "第 1 页答案表第 15 题为 D，索引 3，站点 answer=3。独立模拟：欲先出 3 需 1、2、3 依次入栈后弹出 3，此时栈顶为 2，无法先出 1，D 不可能。"
+        },
+        "explanation": {
+          "initial": "解析用栈的 LIFO 特性说明弹出 3 后必须先弹 2 才能弹 1，据此判定 D 非法，其余三项均可构造，结论正确。",
+          "review": "解析按栈顶约束论证，结论 D 成立。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 16,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q16 explanation 升级；答案未改"
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页判断题第 1 题“若一项任务可从两种互斥的方案中选择一种完成，其中，方案 A 有 m 种做法，方案 B 有 n 种做法，则总做法数为 m + n。”与候选 question 一致。",
+          "review": "第 4 页判断题第 1 题「若一项任务可从两种互斥的方案中选择一种完成，其中，方案 A 有 m 种做法，方案 B 有 n 种做法，则总做法数为 m + n。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 4 页判断题答案表第 1 题为 √，映射 0，候选 answer=0；独立判断：两类方案互斥且都能独立完成任务，符合加法原理，总数为 m+n。",
+          "review": "第 4 页判断题答案表第 1 题为 √，映射 0，候选 answer=0。独立判断：两类方案互斥且各自独立完成任务，符合加法原理，总数 m+n。"
+        },
+        "explanation": {
+          "initial": "候选解析说明加法原理的“分类互斥”前提，并区分乘法原理，结论与 √ 一致。",
+          "review": "候选解析说明加法原理的“分类互斥”前提并区分乘法原理，结论与 √ 一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ]
+    },
+    {
+      "id": 17,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页判断题第 2 题“将 n 个不同元素围成一圈，若只把旋转视为同一种排法、翻转仍视为不同排法，则方案数为 (n − 1)!。”与候选 question 一致。",
+          "review": "第 4 页判断题第 2 题「将 n 个不同元素围成一圈，若只把旋转视为同一种排法、翻转仍视为不同排法，则方案数为 (n − 1)!。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 4 页判断题答案表第 2 题为 √，映射 0，候选 answer=0；独立判断：n 个元素的圆排列数为 n!/n=(n−1)!，翻转另算时不除 2。",
+          "review": "第 4 页判断题答案表第 2 题为 √，映射 0，候选 answer=0。独立判断：每个圆排列对应 n 个线排列，圆排列数 n!/n=(n−1)!；翻转视为不同时不除 2。"
+        },
+        "explanation": {
+          "initial": "候选解析按“每个圆排列对应 n 个线排列”得 n!/n=(n−1)!，并说明翻转视为相同时才再除以 2，结论与 √ 一致。",
+          "review": "候选解析给出 n!/n=(n−1)! 与手镯问题的对照说明，结论与 √ 一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ]
+    },
+    {
+      "id": 18,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页判断题第 3 题“从 n 个不同元素中可重复地选取 k 个且不考虑顺序，方案数为 C(n + k, k)。”与候选 question 一致。",
+          "review": "第 4 页判断题第 3 题「从 n 个不同元素中可重复地选取 k 个且不考虑顺序，方案数为 C(n + k, k)。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 4 页判断题答案表第 3 题为 ×，映射 1，候选 answer=1；独立验证：可重复组合的正确公式为 C(n+k−1,k)；取 n=2、k=1，实际只有 2 种，而 C(3,1)=3，故题面公式错误。",
+          "review": "第 4 页判断题答案表第 3 题为 ×，映射 1，候选 answer=1。独立验证：正确公式为 C(n+k−1,k)；n=2、k=1 时实际 2 种而 C(3,1)=3，题面公式错误。"
+        },
+        "explanation": {
+          "initial": "候选解析指出正确公式是 C(n+k−1,k)（隔板法），并用 n=2、k=1 的小例子验证 C(n+k,k) 不成立，结论与 × 一致。",
+          "review": "候选解析给出隔板法与同一反例，结论与 × 一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ]
+    },
+    {
+      "id": 19,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页判断题第 4 题“杨辉三角中的组合数满足 C(n, k) = C(n − 1, k) + C(n − 2, k)。”与候选 question 一致。",
+          "review": "第 4 页判断题第 4 题「杨辉三角中的组合数满足 C(n, k) = C(n − 1, k) + C(n − 2, k)。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 4 页判断题答案表第 4 题为 ×，映射 1，候选 answer=1；独立验证：帕斯卡恒等式为 C(n,k)=C(n−1,k−1)+C(n−1,k)，取 C(4,2)=6，而 C(3,2)+C(2,2)=3+1=4，题面公式错误。",
+          "review": "第 4 页判断题答案表第 4 题为 ×，映射 1，候选 answer=1。独立验证：C(4,2)=6，而 C(3,2)+C(2,2)=3+1=4，题面公式错误；正确形式为 C(n,k)=C(n−1,k−1)+C(n−1,k)。"
+        },
+        "explanation": {
+          "initial": "候选解析写出正确形式 C(n,k)=C(n−1,k−1)+C(n−1,k)，并用 C(4,2) 与 C(3,2)+C(2,2) 的反例说明，结论与 × 一致。",
+          "review": "候选解析写出正确恒等式并给出两组数值验证，结论与 × 一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ]
+    },
+    {
+      "id": 20,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页判断题第 5 题“快速幂通过二进制拆分指数，可以在 O(log b) 时间内计算 a^b mod m。”与候选 question 一致。",
+          "review": "第 4 页判断题第 5 题「快速幂通过二进制拆分指数，可以在 O(log b) 时间内计算 a^b mod m。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 4 页判断题答案表第 5 题为 √，映射 0，候选 answer=0；独立判断：二进制拆分后循环次数为 b 的位数，即 O(log b)。",
+          "review": "第 4 页判断题答案表第 5 题为 √，映射 0，候选 answer=0。独立判断：底数逐轮平方、按 b 的二进制位决定是否乘入，循环次数为 b 的位数 O(log b)。"
+        },
+        "explanation": {
+          "initial": "候选解析说明底数逐轮平方、按 b 的二进制位决定是否乘入答案，循环次数为 O(log b)，结论与 √ 一致。",
+          "review": "候选解析说明平方与按位乘入的机制，结论与 √ 一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ]
+    },
+    {
+      "id": 21,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页判断题第 6 题“只要图中不存在负权环，Dijkstra 算法就一定能正确处理带负权边的图。”与候选 question 一致。",
+          "review": "第 4 页判断题第 6 题「只要图中不存在负权环，Dijkstra 算法就一定能正确处理带负权边的图。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 4 页判断题答案表第 6 题为 ×，映射 1，候选 answer=1；独立反例：s→u 权 2、s→v 权 3、v→u 权 −2，图无环更无负环；Dijkstra 先确定 dis[u]=2，实际 s→v→u 为 1，已被确定的点无法再改进。",
+          "review": "第 4 页判断题答案表第 6 题为 ×，映射 1，候选 answer=1。独立验证候选反例：图中 s→u(2)、s→v(3)、v→u(−2) 无任何有向环，Dijkstra 按序确定 dis[u]=2 后不再改进，而最短路为 1，标准 Dijkstra 失效。"
+        },
+        "explanation": {
+          "initial": "候选解析给出上述反例（图无环更无负环，但含负边 v→u=−2；Dijkstra 先确定 dis[u]=2，实际 s→v→u 为 1，已确定的点无法再改进），说明标准 Dijkstra 依赖非负边权，结论与 × 一致。",
+          "review": "候选解析给出该反例并说明“无负权环”不足以支撑带负边场景，结论与 × 一致；末尾对旧例子的更正说明属修订记录性文字，不影响论证正确性。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ]
+    },
+    {
+      "id": 22,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页判断题第 7 题“若一张连通无向图所有边权两两不同，则它的最小生成树一定唯一。”与候选 question 一致。",
+          "review": "第 4 页判断题第 7 题「若一张连通无向图所有边权两两不同，则它的最小生成树一定唯一。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 4 页判断题答案表第 7 题为 √，映射 0，候选 answer=0；独立判断：若两棵不同 MST 存在，取对称差中权重最小的边做交换会得到更小生成树，矛盾；边权互异时 MST 唯一。",
+          "review": "第 4 页判断题答案表第 7 题为 √，映射 0，候选 answer=0。独立判断：若存在两棵不同 MST，取对称差中权最小的边交换可得更小生成树，矛盾；边权互异时 MST 唯一。"
+        },
+        "explanation": {
+          "initial": "候选解析用反证/交换论证说明边权两两不同时 MST 唯一，并指出边权可重复时才可能不唯一，结论与 √ 一致。",
+          "review": "候选解析用反证/交换论证说明唯一性并注明边权可重复时才可能不唯一，结论与 √ 一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ]
+    },
+    {
+      "id": 23,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页判断题第 8 题“判断点 (x, y) 是否在以原点为圆心、半径为 r 的圆内或圆上时，可以比较 x² + y² 与 r²，不必先开平方。”与候选 question 一致。",
+          "review": "第 4 页判断题第 8 题「判断点 (x, y) 是否在以原点为圆心、半径为 r 的圆内或圆上时，可以比较 x² + y² 与 r²，不必先开平方。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 4 页判断题答案表第 8 题为 √，映射 0，候选 answer=0；独立判断：√(x²+y²)≤r 与 x²+y²≤r² 在两边非负时等价，且比较平方可避免开方误差。",
+          "review": "第 4 页判断题答案表第 8 题为 √，映射 0，候选 answer=0。独立判断：√(x²+y²)≤r 与 x²+y²≤r² 在两边非负时等价，比较平方还可避免开方浮点误差。"
+        },
+        "explanation": {
+          "initial": "候选解析说明“圆内或圆上”即 √(x²+y²)≤r，两边非负时平方等价，并指出可避免浮点误差，结论与 √ 一致。",
+          "review": "候选解析说明单调等价变换与精度优点，结论与 √ 一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ]
+    },
+    {
+      "id": 24,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页判断题第 9 题“若能写出判定函数 check(x)，表示‘答案为 x 时是否可行’，即使 check(x) 不满足单调性，也一定可以使用二分答案求最优解。”与候选 question 一致（候选用双引号“答案为 x 时是否可行”复现）。",
+          "review": "第 4 页判断题第 9 题「若能写出判定函数 check(x)，表示“答案为 x 时是否可行”，即使 check(x) 不满足单调性，也一定可以使用二分答案求最优解。」与候选 question（以双引号复现）一致。"
+        },
+        "answer": {
+          "initial": "第 4 页判断题答案表第 9 题为 ×，映射 1，候选 answer=1；独立判断：二分答案要求判定函数关于 x 单调，否则收缩时可能丢弃最优解所在区间。",
+          "review": "第 4 页判断题答案表第 9 题为 ×，映射 1，候选 answer=1。独立判断：二分收缩的前提是可行性关于 x 单调，非单调时收缩会丢弃最优解所在区间。"
+        },
+        "explanation": {
+          "initial": "候选解析指出二分答案的前提是 check(x) 单调、非单调时需枚举/DP 等其他方法，结论与 × 一致。",
+          "review": "候选解析指出单调性前提与非单调时的替代方法，结论与 × 一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ]
+    },
+    {
+      "id": 25,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页判断题第 10 题“归并排序是一种稳定排序算法，常见实现的时间复杂度为 O(n log n)。”与候选 question 一致。",
+          "review": "第 4 页判断题第 10 题「归并排序是一种稳定排序算法，常见实现的时间复杂度为 O(n log n)。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 4 页判断题答案表第 10 题为 √，映射 0，候选 answer=0；独立判断：归并时相等元素优先取左半可保持稳定性，递推 T(n)=2T(n/2)+O(n) 得 O(n log n)。",
+          "review": "第 4 页判断题答案表第 10 题为 √，映射 0，候选 answer=0。独立判断：合并时相等取左半保稳定，T(n)=2T(n/2)+O(n)=O(n log n) 且各情况同阶。"
+        },
+        "explanation": {
+          "initial": "候选解析说明合并用 <= 优先取左半保证稳定、递推得 O(n log n)，并指出最好/最坏/平均均为该量级，结论与 √ 一致。",
+          "review": "候选解析说明稳定性实现与递推复杂度，结论与 √ 一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ]
     },
     {
       "id": 26,
       "resolved": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [],
+      "sourcePages": [
+        5,
+        6
       ],
       "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页 3.1.1 题目描述（n 座基站坐标、距离 ≤ l 可建线、求使全部连通的线路总长最小、无解输出 Impossible、保留两位小数）与站点 description 逐句一致；样例 1（4 2 → 3.41）与样例 2（4 1 → Impossible）、数据范围 40% n≤100 / 全部 n≤500、l≤100、坐标 ∈[−100,100] 与站点 samples、description 的数据范围一致。",
+          "review": "第 5 页 3.1.1—3.1.3 题目描述（距离不超过整数 l 可建线、求连通全部基站的最小线路总长、Impossible、保留两位小数）与站点 description/inputDescription/outputDescription 一致；两组样例与站点 samples 逐字一致；数据范围经独立转录核对。"
+        },
+        "explanation": {
+          "initial": "站点解析把问题化为“距离 ≤ l 的点对建边、求 MST、不连通输出 Impossible”，并用样例 1 走查（1-3=1.0、1-4=1.0、2-3=1.414，合计 3.41）验证，与官方思路一致。",
+          "review": "站点解析把问题化为“距离 ≤ l 的点对建边、求 MST、不连通输出 Impossible”，样例 1 走查（1-3=1.0、1-4=1.0、2-3=1.414，合计 3.41）与输出一致；本轮独立核算吻合。"
+        },
+        "referenceCode": {
+          "initial": "站点代码按 n≤500 枚举点对建边、索引数组间接排序、Kruskal（并查集 getf 以 0 为根标记）统计 t==n−1，算法正确；本地运行两组样例得 3.41 与 Impossible，另用随机小数据与独立 Kruskal 对拍 200 组无差异；边界用例见 tests。",
+          "review": "站点代码按 n≤500 枚举点对、整数平方比较建边、Kruskal 并查集选边、t==n−1 判连通；本机 g++ -std=c++17 -O2 实测：两组样例输出 3.41 与 Impossible，三条边界用例（n=1 → 0.00、距离恰等于 l=5 → 5.00、全部超距 → Impossible）全部通过。"
+        }
+      },
+      "unresolved": [],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 4
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [],
+      "sourcePages": [
+        6,
+        7,
+        8
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 7 页 3.2.1 原文：m 堆石子、a₁=n、aᵢ<aᵢ₋₁、aᵢ≥1、m≥2、n≥1，求方案数对 10⁹+7 取模；候选 description 逐句一致，并补入第 7 页数据范围表（1,2 档 2≤m≤100、1≤n≤100、0≤n−m≤5；3—5 档 2≤m≤100、1≤n≤10⁸；6—10 档 2≤m≤10⁵、1≤n≤10⁸），与页图一致。第 6 页题头标注 1.0 s（内存差异另记）。",
+          "review": "第 7 页 3.2.1 原文：m 堆石子、a₁=n、此后每堆严格小于前一堆、每堆至少 1 个、方案数对 1e9+7 取模、不存在输出 0；候选 description 逐句一致，且已补入第 7 页 3.2.8 数据范围表（数据点 1,2：2≤m≤100、1≤n≤100、0≤n−m≤5；3,4,5：2≤m≤100、1≤n≤1e8；6,7,8,9,10：2≤m≤1e5、1≤n≤1e8），与页图逐字一致。第 6 页题头 1.0 s、内存 512.0 MB（内存差异另记）。"
+        },
+        "explanation": {
+          "initial": "候选解析把方案对应为从 {1,…,n−1} 中选 m−1 个互不相同的数（选定后严格递减顺序唯一），得 C(n−1,m−1)，n<m 时为 0；并说明 n≤10⁸ 不能预处理阶乘、用逐项乘 + 费马小定理逆元，n−1<MOD 满足条件。样例 m=3,n=5 → C(4,2)=6 复算一致。",
+          "review": "候选解析把方案对应为从 {1,…,n−1} 中选 m−1 个互不相同的数（选定后严格递减顺序唯一），得 C(n−1, m−1)，n<m 时为 0；样例 m=3,n=5 → C(4,2)=6 复算一致；n≤1e8 不能预处理阶乘、逐项乘配合费马小定理逆元（1e9+7 为素数且 n−1<MOD），复杂度 O(m log MOD)，与数据范围匹配。"
+        },
+        "referenceCode": {
+          "initial": "本机 clang++ -std=c++17 -O2 编译运行候选程序：样例 3 5→6；边界 m=2,n=1→0、m=2,n=10⁸→99999999、m=10⁵,n=99999→0、m=10⁵,n=10⁸→835940359；其中 835940359 与 Python math.comb(99999999,99999) mod 10⁹+7 独立结果一致；m=2..11、n=1..29 的全部小样例与 math.comb 对拍零差异。",
+          "review": "候选参考程序与第 8 页官方程序逐字相同：本机 clang++ -std=c++17 -O2 编译运行，官方样例 3 5→6；自拟边界 m=n=3→1、m=2,n=3→2、m=4,n=7→20、m=2,n=1→0、m=5,n=3→0、m=2,n=1e8→99999999、m=1e5,n=99999→0、m=1e5,n=1e8→835940359（与 math.comb 独立一致）全部通过；另对 m=2..8 × n=1..25 全量与 math.comb 及直接枚举双对拍零差异；m=1e5,n=1e8 压力运行 0.016 s（压力与耗时仅记于此）。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "description",
+        "explanation",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 6
+        }
+      ]
     }
-  ]
+  ],
+  "unresolved": [],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l8.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l8.integration.json"
 }

@@ -1,0 +1,218 @@
+{
+  "paperId": "2023-12-l6",
+  "integratedAt": "2026-11-25T06:29:46.509Z",
+  "accepted": [
+    {
+      "id": 1,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 2,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 3,
+      "fields": [
+        "question",
+        "code"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "code"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": []
+    },
+    {
+      "id": 9,
+      "fields": [
+        "code"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "code"
+      ]
+    },
+    {
+      "id": 20,
+      "fields": [
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": 21,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 22,
+      "fields": [
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 7,
+      "reasons": [
+        "修改 explanation 已获一致批准，尚未应用",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：B**\n\n**解析：**\n对 hello world（11 个字符）做哈夫曼编码。字符频率：l=3、o=2，h、e、空格、w、r、d 各 1（共 8 种字符）。\n\n哈夫曼合并过程（每步取权值最小的两棵子树合并，等号右侧为新产生的权和）：\n1+1=2，1+1=2，1+1=2，2+2=4，2+2=4，3+4=7，4+7=11。\n\nWPL（总编码位数）= 各内部节点权值之和 = 2+2+2+4+4+7+11 = **32**。\n\n按该树核对码长：l(3) 与 o(2) 各得 2 位，两个频率为 1 的字符得 3 位，其余四个频率为 1 的字符得 4 位；逐字符累计 3×2 + 2×2 + 1×3×2 + 1×4×4 = 6+4+6+16 = 32 bit，与合并法一致，且少于定长编码的 8×11=88 bit。\n\n- **A 4**：8 种字符的定长编码至少需要 3 位，11 个字符至少 33 bit，4 bit 连定长下界都达不到，不可能。\n- **B 32：** 正确。\n- **C 64：** 无对应的最优构造或定长方案，不选。\n- **D 88：** 这是定长 ASCII（8 bit×11）的位数，哈夫曼编码的意义正是压到 32。\n\n**易错点：** 别忘了**空格**也是字符（频率 1）；WPL 等于每次合并时「两个最小权之和」的累加，比逐字符算深度更快。\n\n**考点：** 哈夫曼编码、WPL"
+      }
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "6 2 \n2 3\n1 0 30 100 30 30",
+          "output": "131",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "131\n",
+          "passed": true
+        },
+        {
+          "input": "6 2\n2 3\n1 0 30 100 30 -1",
+          "output": "101",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "101\n",
+          "passed": true
+        },
+        {
+          "name": "N=1 最小规模",
+          "input": "1 1\n1\n5",
+          "output": "5",
+          "reason": "第0关离开必得 b0=5，任一通道都满足 0+a_i≥1 即通关；站点程序 dp[1]=5+0=5，官方程序 ans=f[0]+b[0]=5，两实现一致。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "直通跳过负分关",
+          "input": "2 2\n1 2\n10 -100",
+          "output": "10",
+          "reason": "从第0关选 a=2 直接通关得 10；若选 a=1 进入第1关，再通关共得 10−100=−90；站点程序 max(dp[2]=−100, 0)=0 得 10，官方程序 ans=max(10,−90)=10，一致。",
+          "kind": "boundary",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "全负分强制逐关前进",
+          "input": "3 1\n1\n-5 -10 -20",
+          "output": "-35",
+          "reason": "a=1 只能依次离开0、1、2关后通关，总分 −5−10−20=−35；验证负分不会被 0 截断（bestNext 必须取到负的 dp 值）。",
+          "kind": "boundary",
+          "actual": "-35\n",
+          "passed": true
+        },
+        {
+          "name": "中段跳过负分关",
+          "input": "5 2\n1 3\n1 -100 1 1 1",
+          "output": "3",
+          "reason": "最优路径 0→3→4→通关，得 b0+b3+b4=1+1+1=3，跳过 b1=−100；独立推演 dp[5]=1、dp[4]=2、dp[3]=3、dp[2]=−97、dp[1]=3；官方正向程序 f[4]=2，ans=max(f[3]+b[3]=2, f[4]+b[4]=3)=3，一致。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "bbb79ff52ad41534b6bc2718acd8a247e0e0be05846f5118e1e7491df06def5d"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "5\n0 0 2 2\n3\n2 3 4\n3 2 3 4\n2 1 4",
+          "output": "2\n2\n0",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n2\n0\n",
+          "passed": true
+        },
+        {
+          "input": "7\n0 1 0 2 1 2\n5\n2 4 6\n2 4 5\n3 4 5 6\n4 2 4 5 6\n2 3 4",
+          "output": "2\n1\n1\n1\n0",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2\n1\n1\n1\n0\n",
+          "passed": true
+        },
+        {
+          "name": "最小N=3仅根可主持",
+          "input": "3\n0 0\n1\n2 1 2",
+          "output": "0",
+          "reason": "1与2互不为祖先，公共祖先仅 {0}；官方程序 check(2) 漏1、check(1) 漏2、check(0) 通过并输出0，站点程序 lca(1,2)=0 同得0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "编号最大祖先高于LCA",
+          "input": "6\n0 5 0 2 0\n1\n2 4 2",
+          "output": "5",
+          "reason": "父链 f2=5、f4=2、f5=0，树为 0→{1,3,5}、5→2→4；4与2的公共祖先为 {2,5,0}，编号最大为5；若直接输出 LCA=2 会错。站点程序 bestOnPath[2]=max(bestOnPath[5]=5,2)=5，官方程序在 mnd=2 时从 i=5 起 check 通过输出5，一致。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "多参与者合并",
+          "input": "6\n0 5 2 2 0\n1\n3 4 3 2",
+          "output": "5",
+          "reason": "树为 0→{1,5}、5→2→{3,4}；参与者 {4,3,2} 的公共祖先为 {2,5,0}，编号最大为5；多节点 LCA 合并后 cur=2，bestOnPath[2]=max(0,5,2)=5。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "主持人可为参与者本人",
+          "input": "4\n0 0 2\n1\n2 2 3",
+          "output": "2",
+          "reason": "f3=2，2 可管理自己与3，公共祖先 {0,2} 中编号最大为2；官方程序 dep[2]=1≤mnd=1 且 check(2) 命中输出2，站点程序 lca(2,3)=2 同得2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0bff7dbf51322f38800c4c5f122959772d357d0db0b6ea2102354ec197426e52"
+    }
+  ]
+}

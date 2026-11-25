@@ -1,0 +1,148 @@
+{
+  "executedAt": "2026-11-25T08:25:50.092Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "6\n140 140 150\n140 149 140\n148 141 140\n141 148 140\n145 145 139\n0 0 0",
+          "output": "1\n3\n4\n4\n2\n6",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n3\n4\n4\n2\n6\n",
+          "passed": true
+        },
+        {
+          "name": "原样例",
+          "input": "6\n140 140 150\n140 149 140\n148 141 140\n141 148 140\n145 145 139\n0 0 0\n",
+          "output": "1\n3\n4\n4\n2\n6\n",
+          "reason": "独立推演：总分 430 居首；语数总分 290 者第 2；语数总分 289 组内按最高分 149→第 3、两个 148 并列第 4；全 0 者第 6。",
+          "kind": "boundary",
+          "actual": "1\n3\n4\n4\n2\n6\n",
+          "passed": true
+        },
+        {
+          "name": "三人全部并列",
+          "input": "3\n0 0 0\n0 0 0\n0 0 0\n",
+          "output": "1\n1\n1\n",
+          "reason": "独立推演：三元组全等，三人并列第 1。",
+          "kind": "boundary",
+          "actual": "1\n1\n1\n",
+          "passed": true
+        },
+        {
+          "name": "总分相同按语数总分分高低",
+          "input": "2\n100 80 20\n90 110 0\n",
+          "output": "2\n1\n",
+          "reason": "独立推演：总分同为 200，语数总分 180<200，后者在前。",
+          "kind": "boundary",
+          "actual": "2\n1\n",
+          "passed": true
+        },
+        {
+          "name": "语数总分相同按最高分分高低",
+          "input": "2\n100 80 0\n90 90 0\n",
+          "output": "1\n2\n",
+          "reason": "独立推演：语数总分同为 180，最高分 100>90，前者在前。",
+          "kind": "boundary",
+          "actual": "1\n2\n",
+          "passed": true
+        },
+        {
+          "name": "并列后名次留空",
+          "input": "3\n5 5 5\n5 5 5\n1 1 1\n",
+          "output": "1\n1\n3\n",
+          "reason": "独立推演：两人并列第 1，第 3 人自动为第 3 名，验证并列占位规则。",
+          "kind": "boundary",
+          "actual": "1\n1\n3\n",
+          "passed": true
+        },
+        {
+          "name": "尾段并列",
+          "input": "4\n150 150 150\n150 150 149\n0 0 0\n0 0 0\n",
+          "output": "1\n2\n3\n3\n",
+          "reason": "独立推演：前两名按语数总分区分，后两名并列第 3，验证非首段并列。",
+          "kind": "boundary",
+          "actual": "1\n2\n3\n3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "992ddfa5a2bbdec7e06d553bf527f1a25348d077c022dd66c5d58f68453b52c4"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "10 3",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "原样例",
+          "input": "10 3\n",
+          "output": "7\n",
+          "reason": "独立推演：≤10 的 3-smooth 数为 {1,2,3,4,6,8,9} 共 7 个，与官方样例解释一致。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "最小输入 n=1",
+          "input": "1 1\n",
+          "output": "1\n",
+          "reason": "独立推演：1 无质因子（largest=0≤B），计入，答案 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "B=2 的 2-smooth 计数",
+          "input": "10 2\n",
+          "output": "4\n",
+          "reason": "独立推演：最大质因子≤2 的数为 {1,2,4,8} 共 4 个。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "B=1 仅 1 本身",
+          "input": "10 1\n",
+          "output": "1\n",
+          "reason": "独立推演：任何素数最大质因子≥2>1，只有 1 计入，验证 B 下界。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "上界 n=B=10^6",
+          "input": "1000000 1000000\n",
+          "output": "1000000\n",
+          "reason": "独立推演：B 达上界时所有 ≤n 的正整数均为 B-smooth，答案等于 n，验证规模上界与 1.0 s 时限。",
+          "kind": "boundary",
+          "actual": "1000000\n",
+          "passed": true
+        },
+        {
+          "name": "B≥n 全部计入",
+          "input": "100 100\n",
+          "output": "100\n",
+          "reason": "独立推演：B 不小于 n 时全部正整数合格，验证筛法统计无遗漏。",
+          "kind": "boundary",
+          "actual": "100\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0cd4796010510ccf47b2507cafbba10eaa6e3180db9ba1f0a05cc63f14fbb380"
+    }
+  ]
+}

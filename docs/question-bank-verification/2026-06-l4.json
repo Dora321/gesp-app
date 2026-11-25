@@ -1031,5 +1031,24 @@
   ],
   "unresolved": [],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l4.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l4.code-checks.json",
+  "programmingLimitCheck": {
+    "reviewedAt": "2026-11-25",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "method": "比对 SHA 校验通过的原卷 PDF 文本层与站点加载数据，原卷两道编程题的内存限制一致。",
+    "questions": [
+      {
+        "id": 26,
+        "sourcePage": 7,
+        "memoryLimit": "512 MB",
+        "previousMemoryLimit": "128 MB"
+      },
+      {
+        "id": 27,
+        "sourcePage": 8,
+        "memoryLimit": "512 MB",
+        "previousMemoryLimit": "128 MB"
+      }
+    ]
+  }
 }

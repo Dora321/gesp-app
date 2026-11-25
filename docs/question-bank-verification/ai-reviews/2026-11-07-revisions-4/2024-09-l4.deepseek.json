@@ -1,0 +1,71 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:30:00.000Z",
+  "completedAt": "2026-11-25T05:35:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "3ba01e6b2a9e3418278e3078a13c09fd51ba4443ed1cd864ed81695b3c2cc3d1",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/cms/api/news/downloadFile?id=1634204225896480",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF GESP C++ 四级、2024 年 9 月；第1页答案表第11题为 C，与 2024-09-l4 第11题对应。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第11题题干「下面代码实现了冒泡排序函数，则横线上应填写（ ）。」与候选一致。候选 question 内嵌代码对照第3页第1–11行与第4页第12–21行逐行核对：第1行注释「交换数组arr的第i个元素和第j个元素」、第4行 bool flag = false;、第11行填空行带「在此处填入代码」注释、第14行 swap(arr, i, j);、第18–19行 if (!flag) break; 均如实保留。独立 code 字段为全站通用的辅助副本，本卷同题缺首行注释且两处缩进被压缩，属纯排版漂移（同卷其余代码题同样存在），不改变任何语句语义，故 statement 判 verified，在此记录差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图选项依次为 A. for (int j = 0; j < arr.size() - 1; j++)、B. for (int j = arr.size() - 1; j > 0; j--)、C. for (int j = 0; j < i; j++)、D. for (int j = i-1; j <=0; j--)，与候选 options 的文字和顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表 A B A B D A B D A B C A A A C 第11格为 C（0 起始索引 2），候选 answer=2 一致。独立推导：外层 i 自 arr.size()-1 递减，第 i 轮待排序区间为 [0,i]，内层须覆盖全部相邻对 (j,j+1) 且 j+1≤i，即 j<i，对应 C；B 首轮即访问 arr[arr.size()] 越界，D 在 i>1 时条件 j<=0 不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐条复核成立：(1) C 的边界推导正确；(2) B 首轮 j=arr.size()-1 即访问 arr[arr.size()] 越界；(3) D 在 i>1 时初值 j=i-1>0 使 j<=0 不成立、循环体空转、flag 保持 false 触发 if(!flag) break（n>2 时到不了 i=1），n=2 时 i=1、j=0 执行一次后 j 变负仍满足 j<=0，带负下标死循环；(4) 原码 swap(arr, i, j) 的两处反例复算一致：[4,3,2,1] 配 A 得 [1,4,2,3]（i=3 轮末 [1,4,2,3]，i=2 轮末 [1,2,4,3]，i=1 轮末又回到 [1,4,2,3]），[3,2,1,5,4] 配 C 得 [1,2,4,3,5]；(5) 原函数 int bubble_sort 无 return 的源卷瑕疵已如实标注，未虚构实测结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序；题面代码已在 statement 维度按 PDF 第3–4页页图逐行核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第14行为 swap(arr, i, j);，与冒泡排序相邻交换 swap(arr, j, j+1) 语义不符；按原码执行时 A、C 均不能保证排序（独立追踪：[4,3,2,1] 配 A 得 [1,4,2,3]，[3,2,1,5,4] 配 C 得 [1,2,4,3,5]）。本题实际按预期语义考查内层边界，官方答案 C（索引2）不受影响，该瑕疵保留记录。",
+          "原函数声明为 int bubble_sort 但函数体无任何 return，属源卷代码瑕疵（非 void 函数到达末尾为未定义行为），不影响本题答案映射。"
+        ]
+      }
+    ],
+    "summary": "仅 1 道候选（Q11）。候选题干、选项、答案、解析均已与第1/3/4页原图及独立推演一致，本轮无需再改（changes 为空）；独立 code 字段缺首行注释、缩进被压缩属全站辅助字段的排版漂移，未作实质修改。原卷 swap(arr,i,j) 笔误与 bubble_sort 无返回值记入 unresolved。"
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "paperId": "2025-03-l8",
+  "integratedAt": "2026-11-25T12:39:31.023Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 4,
+      "fields": [
+        "options"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 13,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "question",
+        "code"
+      ]
+    },
+    {
+      "id": 23,
+      "fields": [
+        "answer",
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "description",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "description",
+        "inputDescription",
+        "outputDescription",
+        "timeLimit",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "5 5 3 3\n1 2 3\n2 3 2\n3 4 1\n4 5 3\n1 4 2\n5\n1\n4",
+          "output": "4\n3\n1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n3\n1\n",
+          "passed": true
+        },
+        {
+          "name": "起点即询问点",
+          "input": "2 1 1 1\n1 2 1000000\n1\n",
+          "output": "0",
+          "reason": "学校就是 1 号结点，最短时间为 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "平行边取短",
+          "input": "3 3 2 3\n1 2 5\n1 2 1\n2 3 7\n1\n2\n3\n",
+          "output": "1\n0\n7",
+          "reason": "1 到 2 取权 1 的平行边；2 到自身为 0；2 到 3 为 7。",
+          "kind": "boundary",
+          "actual": "1\n0\n7\n",
+          "passed": true
+        },
+        {
+          "name": "单结点",
+          "input": "1 0 1 2\n1\n1\n",
+          "output": "0\n0",
+          "reason": "n=1 下界，家即学校，时间为 0。",
+          "kind": "boundary",
+          "actual": "0\n0\n",
+          "passed": true
+        },
+        {
+          "name": "三条重边取最短并查询源点",
+          "input": "2 3 1 2\n1 2 9\n1 2 3\n1 2 7\n2\n1\n",
+          "output": "3\n0",
+          "kind": "boundary",
+          "actual": "3\n0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "abd0e2a9e86277a0a926476b1c638e4232bd7139342c5fcb4254bb6007e37108",
+      "correctedInputs": [
+        {
+          "original": "2 3 1 2\n1 2 9\n1 2 3\n1 2 7\n2\n2\n1\n",
+          "replacement": "2 3 1 2\n1 2 9\n1 2 3\n1 2 7\n2\n1\n",
+          "reason": "原记录在 q=2 后附了三条查询，含一条重复。"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 7,
+      "tests": [
+        {
+          "input": "6 2\n1 3\n1 5\n3 6\n3 2\n5 4\n5 4\n5 3\n2 6",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "无好点对",
+          "input": "4 0\n1 2\n2 3\n3 4\n1 4\n",
+          "output": "4",
+          "reason": "坏点对路径 1-2-3-4 上 4 个结点均可删除（无好点对约束）。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "好点对覆盖坏路径",
+          "input": "3 1\n1 2\n2 3\n1 3\n1 3\n",
+          "output": "0",
+          "reason": "好点对与坏点对同为 1-3，任何切断坏路径的结点都会破坏好点对。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "仅端点可删",
+          "input": "3 1\n1 2\n2 3\n1 2\n1 3\n",
+          "output": "1",
+          "reason": "坏路径 1-2-3；好点对 1-2 覆盖 1、2，只剩结点 3 可删。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "a=0 端点可删",
+          "input": "2 0\n1 2\n1 2\n",
+          "output": "2",
+          "reason": "无好点对；删除坏点对任一端点均视为不连通，两端点均可删。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "好点对端点不可删",
+          "input": "2 1\n1 2\n1 2\n1 2\n",
+          "output": "0",
+          "reason": "删除好点对端点视为好点对不连通，两结点均不可删。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "好路径经过点不可删",
+          "input": "3 1\n1 2\n2 3\n1 3\n1 3\n2 3\n",
+          "output": "0",
+          "reason": "结点 2 在好路径 1-3 上，端点 1、3 又是好点对端点，均不可删。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "坏路径中点可删（含端点语义）",
+          "input": "3 0\n1 2\n2 3\n1 3\n",
+          "output": "3",
+          "reason": "a=0 时坏路径上全部结点（含两端点，端点被删视为不连通）均可删，与官方程序语义一致输出 3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ebd2d64bdd57f7dfb8cb2bad3fbbc6d32dd6afa9f770283a514fca9408594c22",
+      "stressTests": [
+        {
+          "name": "百万节点链，无好点对",
+          "inputBytes": 13777802,
+          "inputSha256": "2d6007705abf8895c841cb9669f908cc80e9cd1478d6be5eacbe9904eabd3993",
+          "output": "1000000",
+          "outputSha256": "085c348f64a3b543e973a33749e90ba20847b99016a87e5228847597d61ce582",
+          "elapsedMs": 2261,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 8
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 10
+    },
+    {
+      "id": 27,
+      "field": "timeLimit",
+      "value": "4.0 s",
+      "sourcePage": 10
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 26,
+      "reasons": [
+        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 27,
+      "reasons": [
+        "修改 inputDescription 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "inputDescription": "第一行包含两个正整数 n、a。之后 n−1 行，每行包含两个正整数 x_i、y_i，表示一条连接节点 x_i 和 y_i 的边。之后 a 行，每行包含两个正整数 u_i、v_i，表示一个好点对。最后一行包含两个正整数 b_u、b_v，表示坏点对。"
+      }
+    },
+    {
+      "id": 9,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "2025 是个神奇的数字，因为它是由两个数 20 和 25 拼接而成，而且 2025 = (20 + 25)²。小杨决定写个程序找找小于 N 的正整数中共有多少这样神奇的数字。下面程序横线处应填入的是（ ）。\n\n```cpp\n#include <string>\nint count_miracle(int N) {\n    int cnt = 0;\n    for (int n = 1; n * n < N; n++) {\n        int n2 = n * n;\n        std::string s = std::to_string(n2);\n        for (int i = 1; i < s.length(); i++) {\n            if (s[i] != '0') {\n                std::string sl = s.substr(0, i);\n                std::string sr = s.substr(i);\n                int nl = std::stoi(sl);\n                int nr = std::stoi(sr);\n                if (________) // 在此处填入选项\n                    cnt++;\n            }\n        }\n    }\n    return cnt;\n}\n```"
+      }
+    },
+    {
+      "id": 10,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "2025 是个神奇的数字，因为它是由两个数 20 和 25 拼接而成，而且 2025 = (20 + 25)²。小杨决定写个程序找找小于 N 的正整数中共有多少这样神奇的数字。该函数的时间复杂度为（ ）。\n\n```cpp\n#include <string>\nint count_miracle(int N) {\n    int cnt = 0;\n    for (int n = 1; n * n < N; n++) {\n        int n2 = n * n;\n        std::string s = std::to_string(n2);\n        for (int i = 1; i < s.length(); i++) {\n            if (s[i] != '0') {\n                std::string sl = s.substr(0, i);\n                std::string sr = s.substr(i);\n                int nl = std::stoi(sl);\n                int nr = std::stoi(sr);\n                if (________) // 在此处填入选项\n                    cnt++;\n            }\n        }\n    }\n    return cnt;\n}\n```"
+      }
+    }
+  ]
+}

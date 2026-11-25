@@ -34,7 +34,7 @@ const programmingQuestions = [
 `,
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       explanation: `**解析：**
 
 本题是一道关于网格图枚举与二维前缀和的经典问题。我们需要在给定的黑白网格中，找到一个面积最大且黑白格子数量相等的子矩形。
@@ -157,7 +157,7 @@ const programmingQuestions = [
 `,
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       explanation: `**解析：**
 
 本题要求从 \`n\` 个宝箱中选出一部分，在满足所选宝箱中“最大价值与最小价值之差不超过 \`k\`”（即 \`x - y <= k\`）的前提下，使得选出宝箱的总价值之和最大。
@@ -1073,51 +1073,17 @@ int* p = &a;     // 取地址：p 保存 a 的地址
         {
             id: 17,
             type: "judge",
-            question: `以下代码不能够正确执行。
-\`\`\`cpp
-#include<iostream>
-using namespace std;
-int main()
-{
-    int a=20;
-    int& ra;
-    ra=a;
-    cout<<ra<<endl;
-}
-\`\`\``,
+            question: "以下代码不能够正确执行。\n```cpp\n#include<iostream>\nusing namespace std;\nint main()\n{\n    int a=20;\n    int& ra;\n    ra=&a;\n    cout<<ra<<endl;\n}\n```",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
-
-**判定依据：**
-C++ 规定**引用在定义时必须初始化**，因为它必须绑定到一个已存在的对象，不存在"空引用"。
-
-\`\`\`cpp
-int& ra;      // 编译错误：'ra' declared as reference but not initialized
-ra = a;       // 即使后面补上赋值，也过不了编译
-\`\`\`
-
-\`int& ra;\` 这一行就会导致编译失败，后面的 \`ra = a;\` 只是"把一个值赋给一个已经存在的引用"，并不能让引用绑定到 \`a\`——绑定只在初始化时发生。
-
-正确写法是定义时直接绑定：
-\`\`\`cpp
-int& ra = a;   // 正确：ra 成为 a 的别名
-\`\`\`
-
-**易错提醒：**
-- 引用与指针的关键差异：指针可以先声明后赋值、可以为 \`nullptr\`；引用必须定义即绑定，且终身不能改绑。
-- \`ra = a;\` 在引用已绑定的情况下表示"把 \`a\` 的值赋给 \`ra\` 所引用的对象"，而不是"让 ra 指向 a"。
-
-**知识延伸：**
-正因为引用必须初始化且不能改绑，编译器可以对引用做更好的优化，也避免了空指针解引用这类错误。这也是 C++ 推荐用引用替代指针做函数参数的原因之一。
-
-**考点：** 引用必须初始化的规则`,
+            explanation: "**答案：正确**\n\n**判定依据：**\n这段代码无法通过编译，因此“不能够正确执行”。\n\n**第 6 行 `int& ra;`：** C++ 规定引用在定义时必须初始化，因为它必须绑定到一个已存在的对象，不存在“空引用”。这一行会直接编译失败（g++ 报错 `'ra' declared as reference but not initialized`）。\n\n**第 7 行 `ra = &a;`：** `&a` 的类型是 `int*`，而 `ra` 是 `int&`。既不能把 `int*` 绑定到 `int&`，也不能把 `int*` 赋给 `ra` 所引用的 `int` 对象。即使把第 6 行改成 `int& ra = a;`，这一行依然无法编译。\n\n```cpp\nint& ra;        // 编译错误：引用未初始化\nra = &a;        // 即使前面补上初始化，右侧 int* 与 int 仍类型不匹配\n```\n\n正确写法是在定义时直接绑定：\n```cpp\nint& ra = a;    // 正确：ra 成为 a 的别名\n```\n\n**易错提醒：**\n- 引用与指针的关键差异：指针可以先声明后赋值、可以为 `nullptr`；引用必须定义即绑定，且终身不能改绑。\n- `ra = ...` 在引用已绑定的情况下表示“把值赋给 `ra` 所引用的对象”，而不是“让 ra 指向别处”，因此右侧必须是 `int` 类型的值；写成 `&a`（`int*`）类型不匹配。\n\n**知识延伸：**\n正因为引用必须初始化且不能改绑，编译器可以对引用做更好的优化，也避免了空指针解引用这类错误。这也是 C++ 推荐用引用替代指针做函数参数的原因之一。\n\n**考点：** 引用必须初始化的规则",
             sourceVerified: true,
             sourcePage: 8,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级", "参数传递", "变量初始化"]
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "判断题", "GESP4级", "参数传递", "变量初始化"],
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt"]
         },
         {
             id: 18,

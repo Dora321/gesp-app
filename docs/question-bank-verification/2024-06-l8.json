@@ -1,258 +1,1148 @@
 {
   "paperId": "2024-06-l8",
-  "reviewedAt": "2026-10-31",
+  "reviewedAt": "2026-11-07",
+  "dimensionScopedUnresolved": true,
   "reviewedBy": {
     "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2024-06-l8"
+    "executor": "DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核",
+    "coordinator": "本机任务调度、自动校验与集成"
   },
   "source": {
+    "officialUrl": null,
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++8级.pdf",
     "mirrorSha": "54ccd4ebb2a727660430cc61848022d91d4b3c9b",
+    "mirrorBytes": 1254841,
     "shaVerified": true,
-    "fetchedAt": "2026-10-24",
-    "pages": {
-      "Q13": "p.3",
-      "Q14": "p.3"
-    }
+    "sha256": "c15fdb7f8a0736207ce8ecc6fdbdd0e20857f0d7f550960022a6c11254c25b5b",
+    "pages": 10
   },
+  "reviewFiles": {
+    "initial": "ai-reviews/2026-11-07/2024-06-l8.deepseek.json",
+    "review": "ai-reviews/2026-11-07/2024-06-l8.glm.json",
+    "previous": "ai-reviews/2026-11-07/2024-06-l8.previous-evidence.json"
+  },
+  "inputSha256": "5a82f233c0356d479123e6ea6885aac8386ddd6478b69235edc369d5fe95385d",
   "questions": [
     {
       "id": 1,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q1 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第1页第1题题干与站内 question 语义一致：GESP 活动期间，举办方从获胜者 ABCDE 五个人中选出三个人排成一队升国旗，其中 A 不能排在队首，请问 有多少种排法？",
+          "review": "复核独立对照页图，认同初核证据：PDF 第1页第1题题干与站内 question 语义一致：GESP 活动期间，举办方从获胜者 ABCDE 五个人中选出三个人排成一队升国旗，其中 A 不能排在队首，请问 有多少种排法？"
+        },
+        "options": {
+          "initial": "PDF 第1页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第1页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第1题为 B；按 0 起始索引映射为 1，站内 answer=1，一致。",
+          "review": "第 1 页单选题答案表第 1 格为「B」，0 起始索引为 1；站内 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：先选 3 人再排且 A 不在队首：P(5,3)−P(4,2)=60−12=48；结论与 B 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：先选 3 人再排且 A 不在队首：P(5,3)−P(4,2)=60−12=48；结论与 B 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        1
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第1页第2题题干与站内 question 语义一致：7 进制数 235 转换成 3 进制数是（ ）。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第1页第2题题干与站内 question 语义一致：7 进制数 235 转换成 3 进制数是（ ）。"
+        },
+        "options": {
+          "initial": "PDF 第1页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第1页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第2题为 A；按 0 起始索引映射为 0，站内 answer=0，一致。",
+          "review": "第 1 页单选题答案表第 2 格为「A」，0 起始索引为 0；站内 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：235_7=2×49+3×7+5=124，124=11121_3；结论与 A 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：235_7=2×49+3×7+5=124，124=11121_3；结论与 A 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        1
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第1页第3题题干与站内 question 语义一致：0,1,2,3,4,5 这些数字组成一个三位数，请问没有重复数字的情况下，有多少种组法（ ）。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第1页第3题题干与站内 question 语义一致：0,1,2,3,4,5 这些数字组成一个三位数，请问没有重复数字的情况下，有多少种组法（ ）。"
+        },
+        "options": {
+          "initial": "PDF 第1页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第1页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第3题为 D；按 0 起始索引映射为 3，站内 answer=3，一致。",
+          "review": "第 1 页单选题答案表第 3 格为「D」，0 起始索引为 3；站内 answer=3 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：首位 1..5 共 5 种，次位剩 5 种（可含 0），末位 4 种，5×5×4=100；结论与 D 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：首位 1..5 共 5 种，次位剩 5 种（可含 0），末位 4 种，5×5×4=100；结论与 D 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 4,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q4 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第1页第4题题干与站内 question 语义一致：有 V 个顶点、 E 条边的图的深度优先搜索遍历时间复杂度为（ ）。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第1页第4题题干与站内 question 语义一致：有 V 个顶点、 E 条边的图的深度优先搜索遍历时间复杂度为（ ）。"
+        },
+        "options": {
+          "initial": "PDF 第1页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第1页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第4题为 C；按 0 起始索引映射为 2，站内 answer=2，一致。",
+          "review": "第 1 页单选题答案表第 4 格为「C」，0 起始索引为 2；站内 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：邻接表 DFS 访问所有顶点和边，O(V+E)；结论与 C 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：邻接表 DFS 访问所有顶点和边，O(V+E)；结论与 C 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 5,
       "resolved": true,
       "dimensions": [
+        "statement"
+      ],
+      "blockedDimensions": [
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "sourcePages": [
+        1,
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q5 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第1页第5题题干与站内 question 语义一致：一对夫妻生男生女的概率相同。已知这对夫妻有两个孩子，其中一个是女孩，另一个是男孩的概率是多少？",
+          "review": "复核独立对照页图，认同初核证据：PDF 第1页第5题题干与站内 question 语义一致：一对夫妻生男生女的概率相同。已知这对夫妻有两个孩子，其中一个是女孩，另一个是男孩的概率是多少？"
+        },
+        "options": {
+          "initial": "PDF 第 2 页第 5 题 A 为 2/3、B 为 1/4、C 为 1/2、D 为 1/3；站内顺序为 1/4、1/2、2/3、1/3。已按原卷恢复，answer 由 2 改为 0（A）。",
+          "review": "初核 needs_fix 的选项修复（随 changes 提交）已对照原卷页图逐项核实：PDF 第 2 页第 5 题 A 为 2/3、B 为 1/4、C 为 1/2、D 为 1/3；站内顺序为 1/4、1/2、2/3、1/3。已按原卷恢复，answer 由 2 改为 0（A）。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 5 题为 A（索引 0）；站内 answer=2 是旧选项顺序下的 2/3，恢复选项后应改为 0。",
+          "review": "第 1 页单选题答案表第 5 格为「C」，0 起始索引为 2；初核 needs_fix 的答案修复（随 changes 提交）已对照页图核实：PDF 第 1 页答案表第 5 题为 A（索引 0）；站内 answer=2 是旧选项顺序下的 2/3，恢复选项后应改为 0。"
+        },
+        "explanation": {
+          "initial": "原解析结论 2/3 正确，但按旧选项写作“C”；恢复原卷顺序后 2/3 为 A，解析中的选项字母已同步改写。",
+          "review": "初核 needs_fix 的解析修复（随 changes 提交）已对照原卷页图核实：原解析结论 2/3 正确，但按旧选项写作“C”；恢复原卷顺序后 2/3 为 A，解析中的选项字母已同步改写。"
+        }
+      },
+      "unresolved": [
+        "修改 options 已获一致批准，尚未应用",
+        "修改 answer 已获一致批准，尚未应用",
+        "修改 explanation 已获一致批准，尚未应用",
+        "options 尚无一致、完整的原卷核验结论",
+        "answer 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "原卷选项 C 为 1/2，答案表印 C。按原题「至少一个是女孩」的语境，两个都是女孩的概率为 1/3、另一个是男孩的概率为 2/3。站点保留原有顺序和 2/3 选项，官方答案冲突列为待裁定。"
+      ],
+      "sourceNotes": [
+        "原卷第 1 页答案表第 5 题印为 C，第 2 页印刷选项 C=1/2、A=2/3；按题干『其中一个是女孩』正解为 2/3（A），官方键 C 与正解冲突。修订候选沿用上一轮批准的修改（恢复原卷选项顺序并将 answer 改 0），本轮不予采用，保留站内原版状态（旧顺序 1/4、1/2、2/3、1/3，answer=2=2/3）与全部争议证据，待人工裁定。",
+        "上一轮复核认为键字母 C 系按题库旧选项顺序（旧 C=2/3）所写、据此改 answer 为 0『与官方键值一致』；该推断无原卷外证据支持，本轮按『官方 C 与数学 A 冲突』的真实维度记 unresolved，与 2023-12-l8 第 19/24 题的受保护处理一致。",
+        "原卷选项 C 为 1/2，答案表印 C。按原题「至少一个是女孩」的语境，两个都是女孩的概率为 1/3、另一个是男孩的概率为 2/3。站点保留原有顺序和 2/3 选项，官方答案冲突列为待裁定。"
+      ]
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第2页第6题题干与站内 question 语义一致：从 1 到 2024 这 2024 个数中，共有（ ）个包含数字 6 的数。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第2页第6题题干与站内 question 语义一致：从 1 到 2024 这 2024 个数中，共有（ ）个包含数字 6 的数。"
+        },
+        "options": {
+          "initial": "PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第6题为 A；按 0 起始索引映射为 0，站内 answer=0，一致。",
+          "review": "第 1 页单选题答案表第 6 格为「A」，0 起始索引为 0；站内 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：1..2024 中含数字 6 的数共 544 个；结论与 A 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：1..2024 中含数字 6 的数共 544 个；结论与 A 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第2页第7题题干与站内 question 语义一致：二进制数100.001转换成十进制数是（ ）。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第2页第7题题干与站内 question 语义一致：二进制数100.001转换成十进制数是（ ）。"
+        },
+        "options": {
+          "initial": "PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第7题为 B；按 0 起始索引映射为 1，站内 answer=1，一致。",
+          "review": "第 1 页单选题答案表第 7 格为「B」，0 起始索引为 1；站内 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：100.001₂=4+1/8=4.125；结论与 B 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：100.001₂=4+1/8=4.125；结论与 B 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第2页第8题题干与站内 question 语义一致：以下函数声明，哪个是符合 C++ 语法的？（ ）。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第2页第8题题干与站内 question 语义一致：以下函数声明，哪个是符合 C++ 语法的？（ ）。"
+        },
+        "options": {
+          "initial": "PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第8题为 B；按 0 起始索引映射为 1，站内 answer=1，一致。",
+          "review": "第 1 页单选题答案表第 8 格为「B」，0 起始索引为 1；站内 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：char a[][20] 给出第二维，合法；A/C 缺第二维，D 语法不合法；结论与 B 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：char a[][20] 给出第二维，合法；A/C 缺第二维，D 语法不合法；结论与 B 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 9,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q9 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第2页第9题题干与站内 question 语义一致：下面有关 C++ 重载的说法，错误的是（ ）。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第2页第9题题干与站内 question 语义一致：下面有关 C++ 重载的说法，错误的是（ ）。"
+        },
+        "options": {
+          "initial": "PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第9题为 D；按 0 起始索引映射为 3，站内 answer=3，一致。",
+          "review": "第 1 页单选题答案表第 9 格为「D」，0 起始索引为 3；站内 answer=3 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：并非所有 C++ 运算符都能重载（如 ::、.、?: 等），D 错误；结论与 D 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：并非所有 C++ 运算符都能重载（如 ::、.、?: 等），D 错误；结论与 D 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 10,
-      "resolved": true,
+      "resolved": false,
       "dimensions": [
+        "statement",
+        "options",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [
+        "answer"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q10 explanation 升级；答案未改"
+      "official": 3,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2 页第 10 题题干为“小于或等于给定正整数 n 的数中，与 n 互质的数的个数，我们称为欧拉函数，记作 φ(n)。下面说法错误的是（ ）。”，与候选 question 一致。",
+          "review": "PDF 第 2 页第 10 题题干『小于或等于给定正整数 n 的数中，与 n 互质的数的个数，我们称为欧拉函数，记作 φ(n)。下面说法错误的是（ ）。』与候选一致（φ(n) 为斜体印刷，候选 LaTeX 转写等价）。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页 A–D 依次为“n 是质数则 φ(n)=n−1”“两个质数一定是互质数”“两个相邻的数一定是互质数”“相邻的两个质数不一定是互质数”，与候选 options 一致。",
+          "review": "PDF 第 2 页 A–D 依次为『如果 n 是质数，那么 φ(n)=n−1。』『两个质数一定是互质数。』『两个相邻的数一定是互质数。』『相邻的两个质数不一定是互质数。』，与候选一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 10 格为 D（0 起始索引 3），与候选 answer=3 一致。",
+          "review": "第 1 页单选答案表第 10 格为 D（0 起始索引 3），候选 answer=3 一致；独立推导：A 正确（质数 p 与 1..p−1 均互质，φ(p)=p−1）；B 在『两个不同质数』口径下正确；C 由 gcd(n,n+1)=1 正确；D 断言相邻两质数不一定互质，为假命题，选 D。"
+        },
+        "explanation": {
+          "initial": "独立推导：A 正确；B 在“两个不同质数”口径下正确；C 由 gcd(n,n+1)=1 正确；D 断言相邻质数不一定互质，错误。候选逐项分析与官方答案 D 一致。",
+          "review": "候选解析逐项分析与独立推导一致；B 项已写明『设 p 和 q 是两个不同的质数』的口径限定，D 项按『相邻质数必互质』论证其说法错误，反向设问的审题提醒无误。"
+        }
+      },
+      "unresolved": [
+        "原卷答案 D。B 项「两个质数」采用互不相同的通常考试语境时成立；允许重复取值时，3 与 3 的最大公因数是 3，B 也成为错误项。"
+      ],
+      "appliedFields": [
+        "question",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l8.glm.json"
+      ],
+      "sourceNotes": [
+        "原卷答案 D。B 项「两个质数」采用互不相同的通常考试语境时成立；允许重复取值时，3 与 3 的最大公因数是 3，B 也成为错误项。"
+      ]
+    },
+    {
+      "id": 11,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第3页第11题题干与站内 question 语义一致：已知一棵二叉树有 10 个节点，则其中至多有（ ）个节点有 2 个子节点。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第3页第11题题干与站内 question 语义一致：已知一棵二叉树有 10 个节点，则其中至多有（ ）个节点有 2 个子节点。"
+        },
+        "options": {
+          "initial": "PDF 第3页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第3页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第11题为 A；按 0 起始索引映射为 0，站内 answer=0，一致。",
+          "review": "第 1 页单选题答案表第 11 格为「A」，0 起始索引为 0；站内 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：n2=n0−1 且 n0+n1+n2=10，n2 最大为 4（n0=5,n1=1）；结论与 A 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：n2=n0−1 且 n0+n1+n2=10，n2 最大为 4（n0=5,n1=1）；结论与 A 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 12,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        3
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q12 explanation 升级；答案未改"
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页第 12 题题干含 (x+y)^n 展开式、n=10、求 xy^9 项系数，与候选 question 逐字对应；展开式排版为 LaTeX 等价转换。",
+          "review": "PDF 第 3 页第 12 题题干含二项展开式 (x+y)^n = x^n + n x^{n−1}y + n(n−1)/2·x^{n−2}y² + … + y^n 与『当 n=10 时，二项式展开式中 xy^9 项的系数是（ ）』；候选 LaTeX 转写与页图逐字对应。"
+        },
+        "options": {
+          "initial": "PDF 第 3 页 A–D 依次为 5、9、10、8，与候选 options 一致。",
+          "review": "PDF 第 3 页 A–D 依次为 5、9、10、8，与候选一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 12 格为 C（0 起始索引 2），与候选 answer=2 一致。",
+          "review": "第 1 页单选答案表第 12 格为 C（0 起始索引 2），候选 answer=2 一致；独立推导：xy^9 项为 C(10,9)·x·y^9，系数 C(10,9)=C(10,1)=10。"
+        },
+        "explanation": {
+          "initial": "独立推导：(x+y)^10 中 xy^9 项为 C(10,9)x y^9=10xy^9，系数 10；候选解析正确，选项分析中 A 的值已写作 5（与选项一致）。",
+          "review": "候选解析按通项 C(10,k)x^{10−k}y^k 取 k=9 得 10，逐项排除 5/9/8，独立复算无误。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l8.glm.json"
+      ]
     },
     {
       "id": 13,
+      "resolved": true,
       "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "method": [
-        "原卷对照（页面渲染人工查看）",
-        "独立推导"
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        3
       ],
-      "findings": "题面缺失埃氏筛代码；题库选项（O(1)/O(log n)/O(n)/O(n²)）与原卷不符。原卷选项为 A.O(N) B.O(N×log N) C.O(N×log log N) D.O(N²)。",
-      "fix": "按原卷 p.3 转写代码回填；选项按原卷恢复；移除标记；解析重写为质数倒数和（Mertens 定理）推导。answer 索引 2 无需改动（原卷 C=O(N×log log N)）。",
-      "evidence": "独立推导：总标记次数 N·Σ(1/p) ≈ N·ln ln N，埃氏筛 O(N log log N)，与原卷答案 C 一致。",
-      "resolved": true
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第3页第13题题干与站内 question 语义一致：下面程序的时间复杂度为（ ）。 ```cpp bool notPrime[N] = {false}; void sieve() { for (i…",
+          "review": "复核独立对照页图，认同初核证据：PDF 第3页第13题题干与站内 question 语义一致：下面程序的时间复杂度为（ ）。 ```cpp bool notPrime[N] = {false}; void sieve() { for (i…"
+        },
+        "options": {
+          "initial": "PDF 第3页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第3页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第13题为 C；按 0 起始索引映射为 2，站内 answer=2，一致。",
+          "review": "第 1 页单选题答案表第 13 格为「C」，0 起始索引为 2；站内 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：埃拉托斯特尼筛的复杂度为 O(N log log N)；结论与 C 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：埃拉托斯特尼筛的复杂度为 O(N log log N)；结论与 C 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 14,
+      "resolved": true,
       "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "method": [
-        "原卷对照（页面渲染人工查看）",
-        "独立推导"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
       ],
-      "findings": "题面缺失 gcd 递归代码；题库选项（O(n)/O(n²)/O(n log n)/O(V+E)）与原卷不符。原卷选项为 A.O(√n) B.O(log(n)) C.O(n) D.O(1)。",
-      "fix": "按原卷 p.3 转写代码回填；选项按原卷恢复；移除标记；解析重写为欧几里得递归深度推导。answer 索引 1 无需改动（原卷 B=O(log(n))）。",
-      "evidence": "独立推导：每轮参数 (n mod m, m)，连续两轮至少减半，递归深度 O(log min(m,n))（Lamé 定理，最坏为相邻斐波那契数），与原卷答案 B 一致。",
-      "resolved": true
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页第14题题干与站内 question 语义一致：下面程序的最差时间复杂度为（ ）。 ```cpp int gcd(int m, int n) { if (m == 0) return n; r…",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页第14题题干与站内 question 语义一致：下面程序的最差时间复杂度为（ ）。 ```cpp int gcd(int m, int n) { if (m == 0) return n; r…"
+        },
+        "options": {
+          "initial": "PDF 第4页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第14题为 B；按 0 起始索引映射为 1，站内 answer=1，一致。",
+          "review": "第 1 页单选题答案表第 14 格为「B」，0 起始索引为 1；站内 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：欧几里得算法每两轮参数减半，最差 O(log n)；结论与 B 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：欧几里得算法每两轮参数减半，最差 O(log n)；结论与 B 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 15,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        3,
+        4
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q15 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第3页第15题题干与站内 question 语义一致：下面程序的输出为（ ）。 ```cpp #include <iostream> using namespace std; int main() …",
+          "review": "复核独立对照页图，认同初核证据：PDF 第3页第15题题干与站内 question 语义一致：下面程序的输出为（ ）。 ```cpp #include <iostream> using namespace std; int main() …"
+        },
+        "options": {
+          "initial": "PDF 第3页 A–D 四项与站内 options 的顺序和含义一致。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第3页 A–D 四项与站内 options 的顺序和含义一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选题答案表第15题为 D；按 0 起始索引映射为 3，站内 answer=3，一致。",
+          "review": "第 1 页单选题答案表第 15 格为「D」，0 起始索引为 3；站内 answer=3 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：容斥：C(18,3)−3C(7,3)=816−105=711；结论与 D 一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：容斥：C(18,3)−3C(7,3)=816−105=711；结论与 D 一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 16,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页判断题第1题原文与站内 question 语义一致：ABCDE 五个小朋友，排成一队跑步，其中 AB 两人必须排在一起，一共有 48 种排法。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页判断题第1题原文与站内 question 语义一致：ABCDE 五个小朋友，排成一队跑步，其中 AB 两人必须排在一起，一共有 48 种排法。"
+        },
+        "answer": {
+          "initial": "PDF 第4页判断题答案表第1格为“√”；映射为 officialAnswer=0，站内 answer=0，一致。",
+          "review": "第 4 页判断题答案表第 1 格为「√」，0 起始索引为 0；站内 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：AB 捆绑为 4 个整体，4!×2=48，命题正确；与官方“√”一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：AB 捆绑为 4 个整体，4!×2=48，命题正确；与官方“√”一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 17,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页判断题第2题原文与站内 question 语义一致：已知double类型的变量a和b，则执行语句a = a+b; b = a-b; a = a-b;后，变量a和b的 值会互换。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页判断题第2题原文与站内 question 语义一致：已知double类型的变量a和b，则执行语句a = a+b; b = a-b; a = a-b;后，变量a和b的 值会互换。"
+        },
+        "answer": {
+          "initial": "PDF 第4页判断题答案表第2格为“×”；映射为 officialAnswer=1，站内 answer=1，一致。",
+          "review": "第 4 页判断题答案表第 2 格为「×」，0 起始索引为 1；站内 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：double 加减交换会丢精度/溢出，不能保证精确互换；与官方“×”一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：double 加减交换会丢精度/溢出，不能保证精确互换；与官方“×”一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 18,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q18 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页判断题第3题原文与站内 question 语义一致：一个袋子中有 3 个完全相同的红色小球、 2 个完全相同的蓝色小球。每次从中取出 1 个，再放回袋子，这样进 行 3 次后，可能的颜色顺序有 8…",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页判断题第3题原文与站内 question 语义一致：一个袋子中有 3 个完全相同的红色小球、 2 个完全相同的蓝色小球。每次从中取出 1 个，再放回袋子，这样进 行 3 次后，可能的颜色顺序有 8…"
+        },
+        "answer": {
+          "initial": "PDF 第4页判断题答案表第3格为“√”；映射为 officialAnswer=0，站内 answer=0，一致。",
+          "review": "第 4 页判断题答案表第 3 格为「√」，0 起始索引为 0；站内 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：有放回抽取每次 2 种颜色，2³=8 种；与官方“√”一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：有放回抽取每次 2 种颜色，2³=8 种；与官方“√”一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 19,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页判断题第4题原文与站内 question 语义一致：已知int类型的变量a和b中分别存储着一个直角三角形的两条直角边的长度，则斜边的长度可以通过表 达式sqrt(a * a+b * b)求得。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页判断题第4题原文与站内 question 语义一致：已知int类型的变量a和b中分别存储着一个直角三角形的两条直角边的长度，则斜边的长度可以通过表 达式sqrt(a * a+b * b)求得。"
+        },
+        "answer": {
+          "initial": "PDF 第4页判断题答案表第4格为“√”；映射为 officialAnswer=0，站内 answer=0，一致。",
+          "review": "第 4 页判断题答案表第 4 格为「√」，0 起始索引为 0；站内 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：勾股定理 c=sqrt(a²+b²)，几何关系正确（int 溢出属数值边界问题）；与官方“√”一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：勾股定理 c=sqrt(a²+b²)，几何关系正确（int 溢出属数值边界问题）；与官方“√”一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 20,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页判断题第5题原文与站内 question 语义一致：在一个包含v个顶点、e条边的带权连通简单有向图上使用Dijkstra算法求最短路径，时间复杂度为 O(v²)，可进一步优化至 O(e+v log…",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页判断题第5题原文与站内 question 语义一致：在一个包含v个顶点、e条边的带权连通简单有向图上使用Dijkstra算法求最短路径，时间复杂度为 O(v²)，可进一步优化至 O(e+v log…"
+        },
+        "answer": {
+          "initial": "PDF 第4页判断题答案表第5格为“√”；映射为 officialAnswer=0，站内 answer=0，一致。",
+          "review": "第 4 页判断题答案表第 5 格为「√」，0 起始索引为 0；站内 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：Fibonacci 堆实现 Dijkstra 的复杂度为 O(e+v log v)，命题正确；与官方“√”一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：Fibonacci 堆实现 Dijkstra 的复杂度为 O(e+v log v)，命题正确；与官方“√”一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 21,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页判断题第6题原文与站内 question 语义一致：在 N 个元素的二叉排序树中查找一个元素，最差情况的时间复杂度是 $O(\\log N)$。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页判断题第6题原文与站内 question 语义一致：在 N 个元素的二叉排序树中查找一个元素，最差情况的时间复杂度是 $O(\\log N)$。"
+        },
+        "answer": {
+          "initial": "PDF 第4页判断题答案表第6格为“×”；映射为 officialAnswer=1，站内 answer=1，一致。",
+          "review": "第 4 页判断题答案表第 6 格为「×」，0 起始索引为 1；站内 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：普通 BST 最差退化为链，查找 O(N)；与官方“×”一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：普通 BST 最差退化为链，查找 O(N)；与官方“×”一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 22,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页判断题第7题原文与站内 question 语义一致：C++ 语言中，可以为同一个类定义多个析构函数。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页判断题第7题原文与站内 question 语义一致：C++ 语言中，可以为同一个类定义多个析构函数。"
+        },
+        "answer": {
+          "initial": "PDF 第4页判断题答案表第7格为“×”；映射为 officialAnswer=1，站内 answer=1，一致。",
+          "review": "第 4 页判断题答案表第 7 格为「×」，0 起始索引为 1；站内 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：析构函数不能重载，一个类只能有一个析构函数；与官方“×”一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：析构函数不能重载，一个类只能有一个析构函数；与官方“×”一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 23,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页判断题第8题原文与站内 question 语义一致：使用单链表和使用双向链表，查找元素的时间复杂度相同。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页判断题第8题原文与站内 question 语义一致：使用单链表和使用双向链表，查找元素的时间复杂度相同。"
+        },
+        "answer": {
+          "initial": "PDF 第4页判断题答案表第8格为“√”；映射为 officialAnswer=0，站内 answer=0，一致。",
+          "review": "第 4 页判断题答案表第 8 格为「√」，0 起始索引为 0；站内 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：单链表与双向链表按值查找都需逐结点遍历，均 O(n)；与官方“√”一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：单链表与双向链表按值查找都需逐结点遍历，均 O(n)；与官方“√”一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 24,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页判断题第9题原文与站内 question 语义一致：为解决哈希函数冲突，可以使用不同的哈希函数为每个表项各建立一个子哈希表，用来管理该表项的所有冲 突元素。这些子哈希表一定不会发生冲突。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页判断题第9题原文与站内 question 语义一致：为解决哈希函数冲突，可以使用不同的哈希函数为每个表项各建立一个子哈希表，用来管理该表项的所有冲 突元素。这些子哈希表一定不会发生冲突。"
+        },
+        "answer": {
+          "initial": "PDF 第4页判断题答案表第9格为“×”；映射为 officialAnswer=1，站内 answer=1，一致。",
+          "review": "第 4 页判断题答案表第 9 格为「×」，0 起始索引为 1；站内 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：子哈希表仍可能冲突，“一定不会冲突”错误；与官方“×”一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：子哈希表仍可能冲突，“一定不会冲突”错误；与官方“×”一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 25,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q25 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页判断题第10题原文与站内 question 语义一致：要判断无向图的连通性，在深度优先搜索和广度优先搜索中选择，深度优先的平均时间复杂度更低。",
+          "review": "复核独立对照页图，认同初核证据：PDF 第4页判断题第10题原文与站内 question 语义一致：要判断无向图的连通性，在深度优先搜索和广度优先搜索中选择，深度优先的平均时间复杂度更低。"
+        },
+        "answer": {
+          "initial": "PDF 第4页判断题答案表第10格为“×”；映射为 officialAnswer=1，站内 answer=1，一致。",
+          "review": "第 4 页判断题答案表第 10 格为「×」，0 起始索引为 1；站内 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：DFS/BFS 判连通均为 O(V+E)，DFS 平均并不更低；与官方“×”一致，解析未发现事实错误。",
+          "review": "复核独立对照页图，认同初核证据：独立推导：DFS/BFS 判连通均为 O(V+E)，DFS 平均并不更低；与官方“×”一致，解析未发现事实错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 26,
       "resolved": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [],
+      "sourcePages": [
+        5,
+        6
       ],
       "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页题面、输入/输出、样例与数据规模与候选 description/inputDescription/outputDescription 语义一致：0 白、1 黑；n≤10^5；30% 链且 n≤10^5、另 30% n≤10^3；保证存在异色点。候选把“非负整数 a_i”概括为“整数 c_i”，语义不变。",
+          "review": "PDF 第 5 页题面、输入/输出格式、样例（5 / 0 1 0 1 0 / 1 2 / 1 3 / 3 4 / 3 5 → 3，样例解释为节点 2 和 5）与数据范围表（子任务1 30% 且树为一条链、子任务2 30%、子任务3 40%，全部 1≤n≤10^5、0≤a_i≤1、保证存在异色点）与候选 description/inputDescription/outputDescription 语义一致；候选为上一轮批准的规范转写（0 白、1 黑与原卷一致）。"
+        },
+        "explanation": {
+          "initial": "独立推导：删去同色边后森林中每条路径都是美丽路径，问题化为各连通块按节点数计的直径；候选解析的 best[u][0/1] 树形 DP 与“先更新答案、后合并”顺序正确，样例 3 复算吻合。",
+          "review": "候选解析的树形 DP（best[u][c] 为 u 子树内颜色 c 的最大深度，跨分支先更新答案后合并，末尾按 col[u]^1 补一次跨色配对）独立推导成立；样例走查的 dep/best 数值与最终 ans=3（节点 2 与 5，路径 2-1-3-5）复算吻合。"
+        },
+        "referenceCode": {
+          "initial": "本机 g++ -std=c++17 -O2 编译运行候选参考程序：官方样例输出 3；边界 2 节点异色→1、两端同色链 0 1 1 1 1 0→4、星形 1 0 0 0→1、星形 1 0 0 1 0→2 均通过。程序为 O(n) 树形 DP，与 PDF 第 6 页参考程序语义等价（far 改名 best、memset 改为逐点初始化）。",
+          "review": "候选参考程序与 PDF 第 6 页参考程序（3.1.7 节）语义等价：far 改名 best、memset(far,-1) 改为进入 dfs 时逐点初始化（对已访问结点集合效果相同），更新式 far[x][j]−dep[x]+far[i][j^1]−dep[x] 与 best[u][c]+best[v][c^1]−2·dep[u] 恒等，末尾 ans=max(ans,far[x][col[x]^1]−dep[x]) 一致，建图与 dfs(1,0) 一致。本轮以 clang++ -std=c++17 -O2 真实编译运行：官方样例输出 3；边界两点异色→1、同色端点直径需排除（6 点链 0 1 1 1 1 0）→4、星形→2 全部通过；另以 150 组 2≤n≤9 随机树与全点对 BFS 暴力对拍零差异。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "description",
+        "explanation",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l8.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 5
+        }
+      ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [],
+      "sourcePages": [
+        7,
+        8,
+        9
       ],
       "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 7—8 页题面、输入/输出、样例与数据范围表与候选 description/inputDescription/outputDescription 语义一致：从第 s 块挡板左端点出发；到端点外侧竖直到下方最高可接住该 x 的挡板；水平与下落均按长度计时；n≤1000、l_i,r_i,h_i≤10^5。",
+          "review": "PDF 第 7 页题面、输入/输出格式、样例（3 / 3 1 / 5 6 3 / 3 5 6 / 1 4 100000 → 100001）、样例解释（3+99994+1+3=100001）与数据范围表（20% l_i=1、40% l_i=i 且 r_i=i+1、40% 无附加条件、全部 1≤n≤1000、1≤l_i≤r_i≤10^5、1≤h_i≤10^5）与候选 description/inputDescription/outputDescription 一致；候选『落到下方第一个能接住该 x 坐标的挡板上』为上一轮按样例解释语义对原卷『落到下方第一个挡板上』的规范转写，『从第 s 个挡板的左端点出发』『可能无法到达』均已如实转录。"
+        },
+        "explanation": {
+          "initial": "独立推导：把 (挡板, 进入横坐标) 作为状态，进入后最优策略必经左/右端点之一再下落，边权为水平距离+高度差，Dijkstra 求最短路；候选解析的 3+99994+1+3=100001 走查正确。",
+          "review": "候选解析以（挡板, 进入横坐标）为状态、向左右端点行走后下落、Dijkstra 求最短路，3+99994+1+3=100001 的走查与原卷样例解释一致；『进入挡板后最优策略必经左/右端点之一再下落』的论证独立复核成立。"
+        },
+        "referenceCode": {
+          "initial": "候选参考程序是独立的 (挡板, 落点) 状态 Dijkstra，并非 PDF 参考程序的逐行复制。本机 g++ -std=c++17 -O2 编译运行：官方样例输出 100001；边界 s=t→0、不可达→-1、多次下落 1 10 100 / 8 12 50 / 10 20 10→101 均通过；另与 300 组 n≤6、坐标≤10 的逐格 Dijkstra 对拍零差异。",
+          "review": "候选参考程序为本轮候选自带的（挡板, 落点）状态 Dijkstra 独立实现，非 PDF 第 8—9 页参考程序（3.2.7 节）的逐行复制；原卷程序同样是以挡板端点与（x, 落点高度）虚拟节点构图后对 s 的左端点跑 Dijkstra、再对 t 的关联节点取最小，两者状态与转移语义一致（落点 x 只会是各挡板端点）。本轮以 clang++ -std=c++17 -O2 真实编译运行：官方样例输出 100001；边界 s=t→0、不可达→−1、多次下落与内部落点（3 块挡板 1 10 100 / 8 12 50 / 10 20 10）→101 全部通过；另以 150 组 1≤n≤6、坐标≤18 的随机合法数据（排除同高共享端点形态）与独立状态空间搜索对拍零差异。落点判定口径：候选 fallTo 要求接住挡板严格更低（H<h，符合题面『下方第一个能接住』）；忠实转录原卷程序的版本（第 67/89 行均为 l[j]≤x≤r[j] 且 h[j]≤h[i]）允许同高挡板落地。以同高共享端点数据（挡板 1 [1,2] h=10、挡板 2 [2,3] h=10，s=1,t=2）实测：候选输出 −1，原卷程序输出 1（同高落地、0 高度差）。该形态是否属于『挡板彼此不重叠』所允许的数据，原卷未界定；两版在官方数据上的表现无法由本镜像证据进一步验证，按留证记录，不改候选。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "description",
+        "inputDescription",
+        "outputDescription",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l8.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 6
+        }
+      ],
+      "sourceNotes": [
+        "原卷题面要求挡板互不重叠，落到「下方」第一个挡板。按严格低于实现；原卷参考程序对同高且共享端点的挡板还会允许零高度跳转，此类输入的端点口径没有明示，两种行为留证。"
+      ]
     }
   ],
-  "unresolved": [],
-  "judgeAnswerAudit": {
-    "executedAt": "2026-10-25",
-    "executor": "WorkBuddy",
-    "method": "下载官方 PDF（mirrorUrl）后用 pypdfium2 提取文本层定位判断题答案表页，按「题号/答案」表头文本坐标裁剪该页并 4 倍渲染读图（√/× 为矢量图形，文本层只有表头）。题面顺序经 PDF 判断题 10 段题面与题库 dice 相似度校验，对角线最优（offdiag=0）后才按 qid=15+i 套用。洛谷答案仅作疑点雷达，不作为答案来源。",
-    "officialSequence": "判断题第1-10题 = √ × √ √ √ × × √ × ×（对应题库 Q16-Q25）",
-    "items": [
-      {
-        "qid": 17,
-        "bankAnswerBefore": "√",
-        "luoguAnswer": "×（B）",
-        "officialAnswer": "×",
-        "derivation": "double 执行 a+b/a-b 会引入舍入误差甚至溢出，不能保证精确互换",
-        "changed": true,
-        "verdict": "题库错（洛谷与官方一致），已改"
+  "unresolved": [
+    {
+      "id": 5,
+      "dimensions": [
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 options 已获一致批准，尚未应用",
+        "修改 answer 已获一致批准，尚未应用",
+        "修改 explanation 已获一致批准，尚未应用",
+        "options 尚无一致、完整的原卷核验结论",
+        "answer 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "原卷选项 C 为 1/2，答案表印 C。按原题「至少一个是女孩」的语境，两个都是女孩的概率为 1/3、另一个是男孩的概率为 2/3。站点保留原有顺序和 2/3 选项，官方答案冲突列为待裁定。"
+      ]
+    },
+    {
+      "id": 10,
+      "dimensions": [
+        "answer"
+      ],
+      "reasons": [
+        "原卷答案 D。B 项「两个质数」采用互不相同的通常考试语境时成立；允许重复取值时，3 与 3 的最大公因数是 3，B 也成为错误项。"
+      ]
+    }
+  ],
+  "pendingChanges": [
+    {
+      "id": 5,
+      "changes": {
+        "options": [
+          "2/3",
+          "1/4",
+          "1/2",
+          "1/3"
+        ],
+        "answer": 0,
+        "explanation": "**答案：A（2/3）**\n\n**解析：**\n两个孩子的性别组合共 4 种等可能：(男,男)、(男,女)、(女,男)、(女,女)。已知至少一个是女孩，排除 (男,男)，剩 3 种；其中一男一女有 (男,女)、(女,男) 2 种，条件概率为 2/3，对应 A。\n\n- B 1/4 是无条件时某一特定组合的概率；\n- C 1/2 是已指定某个孩子为女孩时的概率；\n- D 1/3 是“另一个也是女孩”的概率。\n\n**考点：** 条件概率。"
       },
-      {
-        "qid": 21,
-        "bankAnswerBefore": "√",
-        "luoguAnswer": "—",
-        "officialAnswer": "×",
-        "derivation": "BST 退化成链时查找为 O(N)，O(logN) 只是平均复杂度",
-        "changed": true,
-        "verdict": "题库错，官方表为准，已改"
-      }
-    ]
-  }
+      "status": "approved-not-applied"
+    }
+  ],
+  "programmingChecks": "ai-reviews/2026-11-07/2024-06-l8.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-06-l8.integration.json"
 }

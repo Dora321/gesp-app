@@ -4,6 +4,8 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { paperIds } from '../../src/data/gesp/_generated.js';
 import { getPaper } from '../../src/data/gesp/index.js';
+import { getQuestionContent } from '../../src/utils/questionHelpers.js';
+import { isScoringExcluded } from '../../src/utils/sourceIntegrity.js';
 import { paperData as rawL6September2024 } from '../../src/data/gesp/level6/2024-09-l6.js';
 import { paperData as rawL8December2024 } from '../../src/data/gesp/level8/2024-12-l8.js';
 import { paperData as rawL8March2026 } from '../../src/data/gesp/level8/2026-03-l8.js';
@@ -61,11 +63,44 @@ test('verified corrections restore the official code and options for damaged que
   const l8q12 = l8.questions.find(question => question.id === 12);
   const l8q14 = l8.questions.find(question => question.id === 14);
   assert.match(l8q7.question, /\$\(x\+y\)\^6\$/);
-  assert.match(l8q12.code, /Edge\* e = graph\[minv\]/);
+  assert.match(l8q12.code, /Edge\s*\* e = graph\[minv\]/);
   assert.match(l8q12.options[1], /min \+ e->len/);
   assert.match(l8q14.code, /void quick_sort\(int a\[\], int n\)/);
   assert.equal(l8q14.options[0], 'l < r; a + pivot + 1, n - pivot - 1');
   assert.deepEqual(l8q14.tags, ['排序算法']);
+  for (const question of [l8q12, l8q14]) {
+    assert.equal(getQuestionContent(question).match(/```/g)?.length, 2, `Q${question.id} 应只显示一份代码`);
+  }
+});
+
+test('December 2023 L6 keeps code on the original question without duplication', async () => {
+  const { questions } = await getPaper('2023-12-l6');
+  const question = id => questions.find(item => item.id === id);
+  assert.match(getQuestionContent(question(5)), /void Order\(/);
+  assert.match(getQuestionContent(question(6)), /bool ListInit\(/);
+  assert.equal(getQuestionContent(question(6)), question(6).question);
+  assert.equal(getQuestionContent(question(7)), question(7).question);
+  assert.equal(question(7).requiresCode, false);
+  assert.equal(question(7).sourcePage, 3);
+  assert.match(getQuestionContent(question(9)), /int Depth\(BiTree T\)/);
+  assert.equal(getQuestionContent(question(10)), question(10).question);
+  assert.equal(question(10).sourcePage, 5);
+});
+
+test('corrected site answer records follow the original key and participate in scoring', async () => {
+  const cases = [
+    ['2025-06-l7', 18, 1],
+    ['2023-12-l8', 19, 1],
+    ['2024-03-l8', 19, 1],
+    ['2025-03-l8', 25, 1],
+    ['2025-06-l8', 25, 0],
+  ];
+  for (const [paperId, id, expected] of cases) {
+    const paper = await getPaper(paperId);
+    const question = paper.questions.find(item => item.id === id);
+    assert.equal(question?.answer, expected, `${paperId}:Q${id}`);
+    assert.equal(isScoringExcluded(question), false, `${paperId}:Q${id}`);
+  }
 });
 
 test('L8 topic tags keep knowledge domains distinct (no generic catch-all)', () => {
@@ -131,7 +166,7 @@ const restoredOfficialQuestionCases = [
   ['2025-09-l5', 2, 2, 1],
   ['2024-06-l5', 8, 3, 4],
   ['2024-03-l6', 14, 2, 5],
-  ['2024-06-l6', 14, 0, 7],
+  ['2024-06-l6', 14, 0, 7, '2026-11-07'],
   ['2024-09-l6', 15, 2, 7],
   ['2024-12-l6', 13, 2, 5],
   // 2026-03-l6 整卷重建（2026-10-24），Q14 打家劫舍 DP 按官方原卷 p.6 重录
@@ -143,8 +178,10 @@ const restoredOfficialQuestionCases = [
   ['2025-06-l7', 12, 3, 3],
   ['2025-06-l7', 13, 2, 4],
   ['2025-06-l7', 14, 0, 4],
-  ['2025-06-l7', 15, 1, 4],
+  ['2025-06-l7', 15, 1, 4, '2026-11-25'],
   ['2025-09-l7', 14, 2, 3],
+  ['2025-12-l7', 14, 1, 4, '2026-11-25'],
+  ['2025-12-l7', 15, 2, 4, '2026-11-25'],
   ['2026-03-l7', 1, 3, 1],
   ['2026-03-l7', 13, 3, 4],
   ['2024-06-l8', 4, 2, 1],

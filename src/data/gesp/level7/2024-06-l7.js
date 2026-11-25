@@ -12,36 +12,20 @@ const programmingQuestions = [
 3 4
 3 5`, output: `2` }
       ],
-      question: `
-# [GESP202406 七级] 黑白翻转
-
-## 题目描述
-
-小杨有一棵包含 $n$ 个节点的树，这棵树上的任意一个节点要么是白色，要么是黑色。小杨认为一棵树是美丽树当且仅当在删除所有白色节点之后，剩余节点仍然组成一棵树。
-
-小杨每次操作可以选择一个白色节点将它的颜色变为黑色，他想知道自己最少要执行多少次操作可以使得这棵树变为美丽树。
-
-## 输入格式
-
-第一行包含一个正整数 $n$，代表树的节点数。
-
-第二行包含 $n$ 个非负整数 $a_1,a_2,\\ldots,a_n$，其中如果 $a_i=0$，则节点 $i$ 的颜色为白色，否则为黑色。
-
-之后 $n-1$ 行，每行包含两个正整数 $x_i,y_i$，代表存在一条连接节点 $x_i$ 和 $y_i$ 的边。
-
-## 输出格式
-
-输出一个整数，代表最少执行的操作次数。
-`,
+      question: "\n# [GESP202406 七级] 黑白翻转\n\n## 题目描述\n\n小杨有一棵包含 $n$ 个节点的树，这棵树上的任意一个节点要么是白色，要么是黑色。小杨认为一棵树是美丽树当且仅当在删除所有白色节点之后，剩余节点仍然组成一棵树。\n\n小杨每次操作可以选择一个白色节点将它的颜色变为黑色，他想知道自己最少要执行多少次操作可以使得这棵树变为美丽树。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，代表树的节点数。\n\n第二行包含 $n$ 个非负整数 $a_1,a_2,\\ldots,a_n$，其中如果 $a_i=0$，则节点 $i$ 的颜色为白色，否则为黑色。\n\n之后 $n-1$ 行，每行包含两个正整数 $x_i,y_i$，代表存在一条连接节点 $x_i$ 和 $y_i$ 的边。\n\n## 输出格式\n\n输出一个整数，代表最少执行的操作次数。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $n \\le 10^5$ 且树是一条链；对于另外 30% 的测试点，保证 $n \\le 10^5$ 且只有两个节点为黑色；对于 100% 的测试点，保证 $1 \\le n \\le 10^5$、$0 \\le a_i \\le 1$。\n",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       explanation: "最终保留下来的黑点必须覆盖原有所有黑点，并且形成一棵连通子树，所以需要把原黑点最小连通子树上的白点全部染黑。答案就是这棵 Steiner 子树中的白点数。",
       tags: ["编程题", "树", "DFS"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n, ans = 0;\nvector<vector<int>> g;\nvector<int> col;\n\nint dfs(int u, int fa) {\n    int has = col[u];\n    for (int v : g[u]) if (v != fa) has += dfs(v, u);\n    if (has > 0 && has < accumulate(col.begin()+1, col.end(), 0) && col[u] == 0) ans++;\n    return has;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    g.assign(n+1, {});\n    col.assign(n+1, 0);\n    int tot = 0, root = 1;\n    for (int i = 1; i <= n; ++i) { cin >> col[i]; if (col[i]) tot++, root = i; }\n    for (int i = 0; i < n-1; ++i) {\n        int u, v; cin >> u >> v;\n        g[u].push_back(v); g[v].push_back(u);\n    }\n    if (tot <= 1) { cout << 0 << '\\n'; return 0; }\n    function<int(int,int)> solve = [&](int u, int fa) {\n        int cnt = col[u];\n        for (int v : g[u]) if (v != fa) cnt += solve(v, u);\n        if (cnt > 0 && cnt < tot && col[u] == 0) ans++;\n        return cnt;\n    };\n    solve(root, 0);\n    cout << ans << '\\n';\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> col(n + 1);\n    int tot = 0, root = 1;\n    for (int i = 1; i <= n; ++i) {\n        cin >> col[i];\n        if (col[i]) { ++tot; root = i; }\n    }\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    if (tot <= 1) { cout << 0 << '\\n'; return 0; }\n\n    // 显式栈建树，避免 n=1e5 链状数据递归爆栈\n    vector<int> parent(n + 1, 0), order;\n    order.reserve(n);\n    vector<int> st{root};\n    parent[root] = -1;\n    while (!st.empty()) {\n        int u = st.back();\n        st.pop_back();\n        order.push_back(u);\n        for (int v : g[u]) if (v != parent[u]) {\n            parent[v] = u;\n            st.push_back(v);\n        }\n    }\n\n    vector<int> cnt(n + 1, 0);\n    int ans = 0;\n    for (int idx = (int)order.size() - 1; idx >= 0; --idx) {\n        int u = order[idx];\n        cnt[u] += col[u];\n        for (int v : g[u]) if (parent[v] == u) cnt[u] += cnt[v];\n        if (cnt[u] > 0 && cnt[u] < tot && col[u] == 0) ++ans;\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
       score: 25,
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["question","referenceCode","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
     {
       id: 27,
@@ -50,36 +34,20 @@ const programmingQuestions = [
         { input: `5
 3 2 4 3 2`, output: `2` }
       ],
-      question: `
-# [GESP202406 七级] 区间乘积
-
-## 题目描述
-
-小杨有一个包含 $n$ 个正整数的序列 $A=[a_1,a_2,\\ldots,a_n]$。
-
-小杨想知道有多少对 $\\langle l,r\\rangle(1\\leq l\\leq r\\leq n)$ 满足 $a_l\\times a_{l+1}\\times\\ldots\\times a_r$ 为完全平方数。
-
-一个正整数 $x$ 为完全平方数当且仅当存在一个正整数 $y$ 使得 $x=y\\times y$。
-
-## 输入格式
-
-第一行包含一个正整数 $n$，代表正整数个数。
-
-第二行包含 $n$ 个正整数 $a_i$，代表序列 $A$。
-
-## 输出格式
-
-输出一个整数，代表满足要求的 $\\langle l,r\\rangle$ 数量。
-`,
+      question: "\n# [GESP202406 七级] 区间乘积\n\n## 题目描述\n\n小杨有一个包含 $n$ 个正整数的序列 $A=[a_1,a_2,\\ldots,a_n]$。\n\n小杨想知道有多少对 $\\langle l,r\\rangle(1\\leq l\\leq r\\leq n)$ 满足 $a_l\\times a_{l+1}\\times\\ldots\\times a_r$ 为完全平方数。\n\n一个正整数 $x$ 为完全平方数当且仅当存在一个正整数 $y$ 使得 $x=y\\times y$。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，代表正整数个数。\n\n第二行包含 $n$ 个正整数 $a_i$，代表序列 $A$。\n\n## 输出格式\n\n输出一个整数，代表满足要求的 $\\langle l,r\\rangle$ 数量。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $n \\le 10^5$、$1 \\le a_i \\le 2$；对于另外 40% 的测试点，保证 $n \\le 100$、$1 \\le a_i \\le 30$；对于 100% 的测试点，保证 $1 \\le n \\le 10^5$、$1 \\le a_i \\le 30$。\n",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       explanation: "把每个数分解质因数，只保留指数奇偶性，得到一个平方因子自由核的 bitmask。区间乘积是完全平方数，当且仅当前缀异或状态相同。统计相同前缀状态对数即可。",
       tags: ["编程题", "前缀异或", "质因数分解", "哈希"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint calc(int x) {\n    int res = 0;\n    for (int i = 2; i * i <= x; ++i) if (x % i == 0) {\n        int c = 0;\n        while (x % i == 0) x /= i, c ^= 1;\n        if (c) res ^= (1 << (i-1));\n    }\n    if (x > 1) res ^= (1 << (x-1));\n    return res;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    map<int, long long> mp;\n    long long ans = 0;\n    int pre = 0;\n    mp[0] = 1;\n    for (int i = 0; i < n; ++i) {\n        int x; cin >> x;\n        pre ^= calc(x);\n        ans += mp[pre];\n        mp[pre]++;\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
       score: 25,
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 9,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     }
 ];
 
@@ -95,7 +63,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: `下列 C++ 代码的输出结果是（ ）。`,
+            question: "下列 C++ 代码的输出结果是（ ）。\n```cpp\n#include <iostream>\n#include <cmath>\nusing namespace std;\nint main() {\n    cout << sin(3.1415926 / 2);\n    return 0;\n}\n```",
             options: [
                 "0",
                 "1",
@@ -117,33 +85,23 @@ export const paperData = {
 **考点：** cmath 三角函数使用弧度制，sin(π/2) = 1；浮点近似不会改变默认输出结果。
 
 **易错提醒：** 看到 3.1415926 要立刻想到它是 π 的近似值；sin 的参数是弧度，不要把它当成角度 90 再算。浮点误差只会让结果略小于 1，不会变成其他选项。`,
-            tags: ['数学函数']
+            tags: ['数学函数'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","reviewedBy","reviewedAt"]
         },
         {
             id: 2,
             type: "single",
-            question: `对于如下图的二叉树，说法正确的是（ ）。`,
-            options: [
-                "先序遍历是132。",
-                "中序遍历是123。",
-                "后序遍历是312。",
-                "先序遍历和后序遍历正好是相反的。 #include <iostream> #include <cmath> using namespace std; int main() { cout << sin(3.1415926 / 2); return 0; } 1 2 3 4 5 6 7",
-            ],
+            question: "对于如下图的二叉树（1 为根，2 是 1 的右孩子，3 是 2 的左孩子），说法正确的是（ ）。",
+            options: ["先序遍历是132。","中序遍历是123。","后序遍历是312。","先序遍历和后序遍历正好是相反的。"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D（先序和后序恰好相反）**
-题目二叉树：1 为根，左 3 右 2；3 的左 4 右 5；2 的左 6 右 7。三种遍历：
-- 先序（根左右）：1 3 4 5 2 6 7
-- 中序（左根右）：4 3 5 1 6 2 7
-- 后序（左右根）：4 5 3 6 7 2 1
-
-- A 错：先序是 1345267，不是 132。
-- B 错：中序是 4351627，不是 123。
-- C 错：后序是 4567213，不是 312。
-- D 对：先序 1345267 与后序 4567213 恰好逆序，是本题树形下的特征。
-
-**易混概念**：先序与后序一般并不相反；D 正确是特定树形的结果，不可当普遍规律记。`,
-            tags: ['树与二叉树', '遍历']
+            explanation: "**答案：D（先序和后序正好相反）**\n\n原图是一条三结点链：1 为根，2 是 1 的右孩子，3 是 2 的左孩子。\n\n- 先序（根左右）：1, 2, 3\n- 中序（左根右）：1, 3, 2\n- 后序（左右根）：3, 2, 1\n\n先序 1,2,3 与后序 3,2,1 恰好相反，D 正确。A 的 132、B 的 123、C 的 312 都不等于上述序列。\n\n**易错提醒**：先序与后序一般并不相反，D 只对本题这种单链形态成立。",
+            tags: ['树与二叉树', '遍历'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt"]
         },
         {
             id: 3,
@@ -199,7 +157,11 @@ export const paperData = {
 
 **易错提醒：**
 - 子序列可以跳过元素；“最长”只看长度，达到该长度的序列可以有多条。`,
-            tags: ['动态规划']
+            tags: ['动态规划'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 5,
@@ -231,7 +193,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: `对于如下二叉树，下面访问顺序说法错误的是（ ）。`,
+            question: "对于如下二叉树（A 为根，左孩子 B、右孩子 C；B 的左孩子 D、右孩子 E；C 的左孩子 F、右孩子 G；D 的左孩子 H；G 的左孩子 I），下面访问顺序说法错误的是（ ）。",
             options: [
                 "HDEBFIGCA 不是它的后序遍历序列",
                 "ABCDEFGHI 是它的广度优先遍历序列",
@@ -269,7 +231,11 @@ export const paperData = {
 
 **易错提醒：**
 - 本题选“说法错误”的一项。A 里有“不是”，序列本身是后序，否定句才是错的。`,
-            tags: ['树与二叉树', '遍历']
+            tags: ['树与二叉树', '遍历'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 7,
@@ -345,12 +311,7 @@ export const paperData = {
             id: 10,
             type: "single",
             question: `图的存储和遍历算法，下面说法错误的是（ ）。`,
-            options: [
-                "图的深度优先搜索和广度优先搜索对有向图和无向图都适用。",
-                "图的深度优先搜索和二叉树的先序遍历道理是不一样的。",
-                "图的深度优先搜索需要借助栈来完成。",
-                "邻接表中，顶点 对应链表中的边结点数目正好是顶点 的度。",
-            ],
+            options: ["图的深度优先搜索和广度优先搜索对有向图和无向图都适用。","图的深度优先搜索和二叉树的先序遍历道理是不一样的。","图的深度优先搜索需要借助栈来完成。","邻接表中，顶点v_i对应链表中的边结点数目正好是顶点v_i的度。"],
             answer: 1,
             score: 2,
             explanation: `**答案：不正确的是 B（图的深度优先搜索和二叉树的先序遍历道理是不一样的）**
@@ -370,75 +331,39 @@ export const paperData = {
 
 **知识延伸：**
 若在明确的有向图语境下，邻接表中每个顶点的链表结点数代表该顶点的**出度**（Out-Degree）；若要快速查询顶点的入度，通常需要建立**逆邻接表**。`,
-            tags: ['图论', '深度优先搜索']
+            tags: ['图论', '深度优先搜索'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["options","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 11,
             type: "single",
-            question: `如下图所示的邻接表结构，表示的是下列哪个选项中的图？`,
-            options: [
-                "含3个顶点、3条边的有向图",
-                "含4个顶点、3条边的无向图",
-                "含4个顶点、4条边的有向图",
-                "含3个顶点、4条边的无向图",
-],
+            question: "如下图所示的邻接表结构（行下标 0~4 对应 V1~V5，链中数字为邻接顶点下标）：V1→3,1；V2→4,2,0；V3→4,3,1；V4→2,0；V5→2,1。表示的是下列哪个选项中的图？",
+            options: ["含 5 个顶点、7 条边的无向图：V1-V2、V1-V4、V2-V3、V2-V5、V3-V4、V3-V5、V4-V5","含 5 个顶点、6 条边的无向图：V1-V2、V1-V4、V2-V3、V3-V4、V3-V5、V4-V5","含 5 个顶点、6 条边的无向图：V1-V2、V1-V4、V2-V3、V2-V5、V3-V4、V3-V5","含 5 个顶点、4 条边的无向图：V1-V2、V1-V4、V2-V5、V3-V5"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C（与邻接表边集一致的图）**
-
-**核心解析：**
-原卷邻接表里，行下标 \`0~4\` 对应 \`V1~V5\`，结点中的数字是邻接顶点下标，\`^\` 表示链尾：
-- \`V1\`：3、1 → \`V4\`、\`V2\`
-- \`V2\`：4、2、0 → \`V5\`、\`V3\`、\`V1\`
-- \`V3\`：4、3、1 → \`V5\`、\`V4\`、\`V2\`
-- \`V4\`：2、0 → \`V3\`、\`V1\`
-- \`V5\`：2、1 → \`V3\`、\`V2\`
-
-每条边在两端各出现一次，是无向图。边为 \`V1-V2\`、\`V1-V4\`、\`V2-V3\`、\`V2-V5\`、\`V3-V4\`、\`V3-V5\`，共 5 个顶点、6 条边，没有 \`V4-V5\`。表中边结点共 12 个，等于边数的 2 倍。原卷选项是图，与这张表一致的是 C。
-
-**选项逐项分析：**
-- **A**：❌ 图中的边与上表不同。
-- **B**：❌ 图中的边与上表不同。
-- **C**：✅ 顶点相邻关系与邻接表一致。
-- **D**：❌ 图中的边与上表不同。
-
-**易错提醒：**
-- 链表中的数是下标。\`V1\`（下标 0）指向 3，对应 \`V4\`，不是 \`V3\`。题库里“几个顶点、几条边”的句子是图示占位，不能当成选项原文。`,
-            tags: ['图论']
+            explanation: "**答案：C**\n\n邻接表 5 行（下标 0~4 对应 V1~V5），链中数字为邻接顶点下标：V1 连 4、2；V2 连 5、3、1；V3 连 5、4、2；V4 连 3、1；V5 连 3、2。无向边去重后边集为 V1-V2、V1-V4、V2-V3、V2-V5、V3-V4、V3-V5，共 6 条。\n\n- 图 A：还含底边 V4-V5，共 7 条边，不符。\n- 图 B：无 V2-V5、含 V4-V5，不符。\n- 图 C：边集恰为上述 6 条，相符 ✅。\n- 图 D：仅 4 条边，不符。\n\n故邻接表对应图 C，与官方答案表一致。",
+            tags: ['图论'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 12,
             type: "single",
-            question: `如下图所示的邻接矩阵（ inf 表示无穷大），表示的是下列哪个选项中的图？`,
-            options: [
-                "含4个顶点的带权有向图",
-                "含4个顶点的带权无向图",
-                "含4个顶点的无权有向图",
-                "含5个顶点的带权有向图",
-],
+            question: "如下图所示的邻接矩阵（inf 表示无穷大）：\n```\n    0   1   2   3   4\n0 inf inf  12  30 inf\n1 inf inf inf inf inf\n2 inf inf inf inf  32\n3 inf   5 inf inf inf\n4  50 inf inf inf inf\n```\n表示的是下列哪个选项中的图？",
+            options: ["5 个顶点的带权有向图：0→2(12)、0→3(30)、2→4(32)、4→0(50)、3→1(5)","5 个顶点的带权有向图：0→2(12)、2→4(32)、4→0(50)、0→3(30)、4→1(5)","5 个顶点的带权无向图：0-2(12)、0-3(30)、0-4(50)、2-4(32)、3-1(5)","5 个顶点的带权无向图：0-2(12)、0-3(30)、0-4(50)、2-4(32)、4-1(5)"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（与该邻接矩阵对应的图）**
-
-**核心解析：**
-原卷矩阵是 5 行 5 列，顶点下标 \`0~4\`。\`inf\` 表示没有这条边，其它数字是权值：
-- \`0→2\` 权 12，\`0→3\` 权 30
-- \`2→4\` 权 32
-- \`3→1\` 权 5
-- \`4→0\` 权 50
-- 顶点 1 没有出边
-
-\`M[0][2]=12\` 而 \`M[2][0]=inf\`，矩阵不对称，所以是有向图；边上是具体权值，所以带权。这是 5 个顶点的带权有向图。原卷四个选项都是图，与这张矩阵一致的是 A。
-
-**选项逐项分析：**
-- **A**：✅ 与矩阵的顶点、方向和权值一致。
-- **B**：❌ 无向图的邻接矩阵必须对称，本题不对称。
-- **C**：❌ 无权图只记是否有边，本题有 12、30、32、5、50 这些权。
-- **D**：❌ 图与上面列出的有向边不一致。
-
-**易错提醒：**
-- 行数就是顶点数，这里是 5 不是 4。题库选项文字是图示占位；看到 \`inf\` 和不成对的权值，就应判断为带权有向图，再按边去对图。`,
-            tags: ['图论']
+            explanation: "**答案：A（与该邻接矩阵对应的图）**\n\n**核心解析：**\n原卷矩阵是 5 行 5 列，顶点下标 `0~4`。`inf` 表示没有这条边，其它数字是权值：\n- `0→2` 权 12，`0→3` 权 30\n- `2→4` 权 32\n- `3→1` 权 5\n- `4→0` 权 50\n- 顶点 1 没有出边\n\n`M[0][2]=12` 而 `M[2][0]=inf`，矩阵不对称，所以是有向图；边上是具体权值，所以带权。这是 5 个顶点的带权有向图。\n\n**选项逐项分析：**\n- **A**：✅ 有向边 0→2(12)、0→3(30)、2→4(32)、4→0(50)、3→1(5)，与矩阵逐项一致。\n- **B**：❌ 把 3→1(5) 换成了 4→1(5)；矩阵中 `M[3][1]=5`、`M[4][1]=inf`，不符。\n- **C**：❌ 标为无向图，但矩阵不对称（如 `M[0][2]=12` 而 `M[2][0]=inf`）；且无向边 0-4(50) 会要求 `M[0][4]=M[4][0]=50`，与矩阵不符。\n- **D**：❌ 同样是无向图，且用 4-1(5) 代替了矩阵中的 3→1(5)，不符。\n\n**易错提醒：**\n- 行数就是顶点数，这里是 5 不是 4。\n- 先看矩阵是否对称判断有向/无向，再逐条核对起点、终点和权值，不要只看权值集合。",
+            tags: ['图论'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 13,
@@ -536,7 +461,7 @@ int count_triple(int n) {
         {
             id: 15,
             type: "single",
-            question: `下列选项中，哪个可能是下图的深度优先遍历序列（ ）。`,
+            question: "下列选项中，哪个可能是下图的深度优先遍历序列（ ）。图为一含 9 个顶点、14 条弧的有向图，弧包括：2→1、4→2、9→4、1→3、1→5、5→3、3→2、3→4、3→7、9→7、7→5、7→6、6→8、8→9。",
             options: [
                 "1, 3, 7, 5, 4, 2, 6, 8, 9",
                 "9, 4, 2, 1, 3, 5, 7, 6, 8",
@@ -545,13 +470,12 @@ int count_triple(int n) {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C（1,3,4,2,7,6,8,9,5）**
-DFS 从 1 出发（图示：1 连 3,4；3 连 2,7；2 连 6；6 连 8；8 连 9；7 连 5，按编号顺序访问未访问邻居）：
-1 → 3 → 4 → 2 → 6 → 8 → 9 →（回溯）7 → 5，得 1,3,4,2,7,6,8,9,5。
-- A、B、D 的回溯顺序违反「优先访问最小编号未访问邻居」的确定性 DFS 规则。
-
-**考点**：深度优先遍历的确定性序列判定。`,
-            tags: ['深度优先搜索', '图的遍历']
+            explanation: "**答案：C（1,3,4,2,7,6,8,9,5）**\n\n从 1 出发：1→3→4→2；2 的出边只有已访问的 1，回溯到 3；3→7；7→6→8→9；9 的出边 4 已访问，逐层回溯到 7；7→5。得到 1,3,4,2,7,6,8,9,5。\n\n- A：7→5 之后访问 4，但 5 没有指向 4 的弧，回溯到 7 后应先走 7 的另一未访问出边 6。\n- B：访问 3 之后应走 3 的未访问出边 7，而不是 5。\n- D：回溯到 7 后应先访问未访问的 5，而不是 4（且图中 8→9 方向决定了 9 之后不能再接 8）。\n\n**考点**：DFS 的深入与回溯顺序。",
+            tags: ['深度优先搜索', '图的遍历'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 16,
@@ -602,19 +526,19 @@ DFS 从 1 出发（图示：1 连 3,4；3 连 2,7；2 连 6；6 连 8；8 连 9�
         {
             id: 18,
             type: "judge",
-            question: `唯一分解定理（算术基本定理）指出，每个大于 1 的自然数都可以唯一地分解成若干个素数的乘积。因此， 我们可以很容易的对给定的自然数n进行质因数分解，时间复杂度仅为 。 int count_triple(int n) { int cnt = 0; for (int a = 1; a <= n; a++) for (int b = a; a+b <= n; b++) { int c = sqrt(a * a+b * b); if (a+b+c > n) break; if (a * a+b * b == c * c) cnt++; } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12`,
+            question: "唯一分解定理（算术基本定理）指出，每个大于 1 的自然数都可以唯一地分解成若干个素数的乘积。因此，我们可以很容易的对给定的自然数 n 进行质因数分解，时间复杂度仅为 $O(\\log n)$。",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
-算术基本定理：每个 >1 的自然数可唯一分解为若干素数之积（不计顺序）。但后半句“可容易质因数分解、时间复杂度仅为 O(1)”错误（试除法为 O(√n)），整句陈述错误。
-（注：题干后半段附带的 \`count_triple\` 代码与「质因数分解时间复杂度」无关，属噪点；判断题核心命题是前半句定理表述；但命题整体因“O(1) 质因数分解”这一错误断言而应判错误。）
-
-**考点**：数论——唯一分解定理（算术基本定理）。`,
-            tags: ['数论']
+            explanation: "**答案：错误**\n\n算术基本定理本身正确：每个大于 1 的自然数都可唯一分解为若干素数之积（不计顺序）。\n\n错在后半句“时间复杂度仅为 $O(\\log n)$”。常用的试除法要枚举到 $\\sqrt n$，复杂度为 $O(\\sqrt n)$；即使逐个试除所有小于 $n$ 的数，也是 $O(n)$。质因数分解并不是对数级操作，故整句错误。\n\n**考点**：算术基本定理与试除法分解质因数的复杂度。",
+            tags: ['数论'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 19,
@@ -665,7 +589,11 @@ C++11 引入了**委托构造函数（Delegating Constructor）**，允许一个
 本题陈述「值为 7.0」与严格计算不符（若以 2 为底 log₂128 = 7），应为错误，严格 C++ 中 log 为自然对数（≈4.85），log₂128 = 7 需用 log2。
 
 **纠错**：严格 C++ 中 \`log(128)\` ≈ 4.85（自然对数）；如需 7 应使用 \`log2(128)\`。`,
-            tags: ['数学函数']
+            tags: ['数学函数'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 21,

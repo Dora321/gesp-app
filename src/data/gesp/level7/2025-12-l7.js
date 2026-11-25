@@ -15,35 +15,19 @@ const programmingQuestions = [
 3 4
 2 4`, output: `2` }
       ],
-      question: `
-# [GESP202512 七级] 城市规划
-
-## 题目描述
-
-A 国有 $n$ 座城市，城市之间由 $m$ 条双向道路连接，任意一座城市均可经过若干条双向道路到达另一座城市。城市依次以 $1,2,\\ldots,n$ 编号。第 $i$（$1\\le i\\le m$）条双向道路连接城市 $u_i$ 与城市 $v_i$。
-
-对于城市 $u$ 和城市 $v$ 而言，它们之间的连通度 $d(u,v)$ 定义为从城市 $u$ 出发到达城市 $v$ 所需经过的双向道路的最少条数。由于道路是双向的，可以知道连通度满足 $d(u,v)=d(v,u)$，特殊地有 $d(u,u)=0$。
-
-现在 A 国正在规划城市建设方案。城市 $u$ 的建设难度为它到其它城市的最大连通度。请你求出建设难度最小的城市，如果有多个满足条件的城市，则选取其中编号最小的城市。形式化地，你需要求出使得 $\\max\\limits_{1\\le i\\le n}d(u,i)$ 最小的 $u$，若存在多个可能的 $u$ 则选取其中最小的。
-
-## 输入格式
-
-第一行，两个正整数 $n,m$，表示 A 国的城市数量与双向道路数量。
-
-接下来 $m$ 行，每行两个整数 $u_i,v_i$，表示一条连接城市 $u_i$ 与城市 $v_i$ 的双向道路。
-
-## 输出格式
-
-输出一行，一个整数，表示建设难度最小的城市编号。如果有多个满足条件的城市，则选取其中编号最小的城市。
-`,
+      question: "\n# [GESP202512 七级] 城市规划\n\n## 题目描述\n\nA 国有 $n$ 座城市，城市之间由 $m$ 条双向道路连接，任意一座城市均可经过若干条双向道路到达另一座城市。城市依次以 $1,2,\\ldots,n$ 编号。第 $i$（$1\\le i\\le m$）条双向道路连接城市 $u_i$ 与城市 $v_i$。\n\n对于城市 $u$ 和城市 $v$ 而言，它们之间的连通度 $d(u,v)$ 定义为从城市 $u$ 出发到达城市 $v$ 所需经过的双向道路的最少条数。由于道路是双向的，可以知道连通度满足 $d(u,v)=d(v,u)$，特殊地有 $d(u,u)=0$。\n\n现在 A 国正在规划城市建设方案。城市 $u$ 的建设难度为它到其它城市的最大连通度。请你求出建设难度最小的城市，如果有多个满足条件的城市，则选取其中编号最小的城市。形式化地，你需要求出使得 $\\max\\limits_{1\\le i\\le n}d(u,i)$ 最小的 $u$，若存在多个可能的 $u$ 则选取其中最小的。\n\n## 输入格式\n\n第一行，两个正整数 $n,m$，表示 A 国的城市数量与双向道路数量。\n\n接下来 $m$ 行，每行两个整数 $u_i,v_i$，表示一条连接城市 $u_i$ 与城市 $v_i$ 的双向道路。\n\n## 输出格式\n\n输出一行，一个整数，表示建设难度最小的城市编号。如果有多个满足条件的城市，则选取其中编号最小的城市。\n\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1\\le n\\le 300$。\n\n对于所有测试点，保证 $1\\le n\\le 2000$，$1\\le m\\le 2000$，$1\\le u_i,v_i\\le n$。",
       explanation: "对每个城市都做一次 BFS，得到它到所有城市的最短距离，并取其中最大值作为该城市的建设难度（也就是图论中的离心率）。最后在所有城市中选离心率最小的，若并列则取编号最小的。由于图无权且连通，BFS 可以在线性时间求出单源最短路。",
       tags: ["编程题", "图论", "BFS", "最短路"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> g(n+1);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    int bestCity = 1;\n    int bestEcc = INT_MAX;\n    vector<int> dist(n+1);\n    queue<int> q;\n\n    for (int s = 1; s <= n; ++s) {\n        fill(dist.begin(), dist.end(), -1);\n        while (!q.empty()) q.pop();\n        dist[s] = 0;\n        q.push(s);\n        while (!q.empty()) {\n            int u = q.front();\n            q.pop();\n            for (int v : g[u]) {\n                if (dist[v] == -1) {\n                    dist[v] = dist[u]+1;\n                    q.push(v);\n                }\n            }\n        }\n\n        int ecc = 0;\n        for (int i = 1; i <= n; ++i) ecc = max(ecc, dist[i]);\n        if (ecc < bestEcc) {\n            bestEcc = ecc;\n            bestCity = s;\n        }\n    }\n\n    cout << bestCity << '\\n';\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -56,37 +40,19 @@ A 国有 $n$ 座城市，城市之间由 $m$ 条双向道路连接，任意一�
 1 3 2 4 3 5 4 6
 0 2 5 6 4 3 3 4`, output: `21` }
       ],
-      question: `
-# [GESP202512 七级] 学习小组
-
-## 题目描述
-
-班主任计划将班级里的 $n$ 名同学划分为若干个学习小组，每名同学都需要分入某一个学习小组中。班级里的同学依次以 $1,2,\\ldots,n$ 编号，第 $i$ 名同学有其发言积极度 $c_i$。
-
-观察发现，如果一个学习小组中恰好包含编号为 $p_1,p_2,\\ldots,p_k$ 的 $k$ 名同学，则该学习小组的基础讨论积极度为 $a_k$，综合讨论积极度为 $a_k+\\max\\{c_{p_1},c_{p_2},\\ldots,c_{p_k}\\}−\\min\\{c_{p_1},c_{p_2},\\ldots,c_{p_k}\\}$，也即基础讨论积极度加上小组内同学的最大发言积极度与最小发言积极度之差。
-
-给定基础讨论积极度 $a_1,a_2,\\ldots,a_n$，请你计算将这 $n$ 名同学划分为学习小组的所有可能方案中，综合讨论积极度之和的最大值。
-
-## 输入格式
-
-第一行，一个正整数 $n$，表示班级人数。
-
-第二行，$n$ 个非负整数 $c_1,c_2,\\ldots,c_n$，表示每位同学的发言积极度。
-
-第三行，$n$ 个非负整数 $a_1,a_2,\\ldots,a_n$，表示不同人数学习小组的基础讨论积极度。
-
-## 输出格式
-
-输出一行，一个整数，表示所有划分方案中，学习小组综合讨论积极度之和的最大值。
-`,
+      question: "\n# [GESP202512 七级] 学习小组\n\n## 题目描述\n\n班主任计划将班级里的 $n$ 名同学划分为若干个学习小组，每名同学都需要分入某一个学习小组中。班级里的同学依次以 $1,2,\\ldots,n$ 编号，第 $i$ 名同学有其发言积极度 $c_i$。\n\n观察发现，如果一个学习小组中恰好包含编号为 $p_1,p_2,\\ldots,p_k$ 的 $k$ 名同学，则该学习小组的基础讨论积极度为 $a_k$，综合讨论积极度为 $a_k+\\max\\{c_{p_1},c_{p_2},\\ldots,c_{p_k}\\}−\\min\\{c_{p_1},c_{p_2},\\ldots,c_{p_k}\\}$，也即基础讨论积极度加上小组内同学的最大发言积极度与最小发言积极度之差。\n\n给定基础讨论积极度 $a_1,a_2,\\ldots,a_n$，请你计算将这 $n$ 名同学划分为学习小组的所有可能方案中，综合讨论积极度之和的最大值。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示班级人数。\n\n第二行，$n$ 个非负整数 $c_1,c_2,\\ldots,c_n$，表示每位同学的发言积极度。\n\n第三行，$n$ 个非负整数 $a_1,a_2,\\ldots,a_n$，表示不同人数学习小组的基础讨论积极度。\n\n## 输出格式\n\n输出一行，一个整数，表示所有划分方案中，学习小组综合讨论积极度之和的最大值。\n\n\n## 数据范围\n\n对于 40% 的测试点，保证 $c_i=0$。\n\n对于所有测试点，保证 $1\\le n\\le 300$，$0\\le c_i\\le 10^4$，$0\\le a_i\\le 10^4$。",
       explanation: "先将所有积极度从小到大排序。一个人数大于 1 的小组对“最大值减最小值”的贡献，本质上是在所有学生中取一个当前最小值和一个当前最大值配成一组；组内其余成员只影响人数，不影响这部分差值。于是可以按“已经取走了多少对最小/最大值”做动态规划。设 f[j][k] 表示已经形成 j 个小组、共使用了 k 名同学时的最大总收益。若新建一个大小为 s 的小组，则会使用 1 个新的最小值、1 个新的最大值以及 s-2 个中间值，转移增量为 a_s+(sorted[n-j+1]-sorted[j])（当 s=1 时差值部分为 0）。枚举小组大小即可求得最优划分。",
       tags: ["编程题", "动态规划", "排序", "区间贪心思想"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> c(n+1), a(n+1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n\n    sort(c.begin()+1, c.end());\n\n    const int NEG = -1000000000;\n    vector<vector<int>> f(n+1, vector<int>(n+1, NEG));\n    f[0][0] = 0;\n    int ans = 0;\n\n    for (int groups = 1; groups <= n; ++groups) {\n        int diff = c[n-groups+1]-c[groups];\n        for (int used = 1; used <= n; ++used) {\n            for (int sz = 1; sz <= used; ++sz) {\n                if (f[groups-1][used-sz] <= NEG / 2) continue;\n                int add = a[sz]+(sz == 1 ? 0 : diff);\n                f[groups][used] = max(f[groups][used], f[groups-1][used-sz]+add);\n                if (used == n) ans = max(ans, f[groups][used]);\n            }\n        }\n    }\n\n    cout << ans << '\\n';\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     }
 ];
 
@@ -375,7 +341,7 @@ int main() {
         {
             id: 9,
             type: "single",
-            question: `有 5 个字符，它们出现的次数分别为 2 次、 2 次、 3 次、 3 次、 5 次。现在要用哈夫曼编码的方式来为这些字符进 行编码，最小加权路径长度 WPL （每个字符的出现次数 它的编码长度，再把每个字符结果加起来）的值为（ ）。`,
+            question: "有 5 个字符，它们出现的次数分别为 2 次、2 次、3 次、3 次、5 次。现在要用哈夫曼编码的方式来为这些字符进行编码，最小加权路径长度 WPL（每个字符的出现次数×它的编码长度，再把每个字符结果加起来）的值为（ ）。",
             options: [
                 "30",
                 "34",
@@ -404,7 +370,11 @@ int main() {
 
 **易错提醒：**
 每次合并后都要和剩余权值重新比大小。第三次应合并 4 和 5，不能拿 6 去配 4。`,
-            tags: ['哈夫曼编码']
+            tags: ['哈夫曼编码'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 10,
@@ -515,12 +485,7 @@ int main() {
             id: 12,
             type: "single",
             question: `下面关于二叉树的说法正确的是（ ）。`,
-            options: [
-                "任意二叉树的中序遍历与后序遍历必定不相同。",
-                "对任意二叉树，若已知先序遍历与后序遍历，则该二叉树唯一确定。",
-                "若二叉树有 个结点，根节点高度为 ，则其高度满足： 。",
-                "在二叉树的先序遍历中，根后紧跟的结点一定是根的左孩子。",
-            ],
+            options: ["任意二叉树的中序遍历与后序遍历必定不相同。","对任意二叉树，若已知先序遍历与后序遍历，则该二叉树唯一确定。","若二叉树有 n 个结点，根节点高度为 1，则其高度满足：⌈log₂(n+1)⌉ ≤ h ≤ n。","在二叉树的先序遍历中，根后紧跟的结点一定是根的左孩子。"],
             answer: 2,
             score: 2,
             explanation: `**答案：C**
@@ -530,7 +495,11 @@ int main() {
 - C 正确：n 个结点、根高度为 1 的二叉树，高度下界为 ⌈log2(n+1)⌉，上界为 n。
 - D 错误：先序中根之后紧跟的是其左孩子，仅当左子树存在；若只有右子树，则紧跟右孩子。
 **考点**：二叉树遍历性质与高度范围。`,
-            tags: ['树与二叉树']
+            tags: ['树与二叉树'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["options","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 13,
@@ -556,7 +525,7 @@ A遗漏了层数因子。C、D给出了更宽松的上界，未反映本题要�
         {
             id: 14,
             type: "single",
-            question: `下面哪一个可能是下图的深度优先遍历序列（ ）。`,
+            question: "下面哪一个可能是下图的深度优先遍历序列（ ）。\n\n![图中共有 9 个顶点，各有向边为：1→4、1→5；2→1、2→5、2→6；3→2；4→7；5→4、5→6、5→8；6→3、6→9；8→4、8→7、8→9（其中 7、9 没有出边）。](/question-assets/2025-12-l7/q14-graph.png)",
             options: [
                 "1, 5, 6, 3, 2, 8, 9, 4, 7",
                 "1, 5, 8, 9, 7, 4, 6, 3, 2",
@@ -568,12 +537,17 @@ A遗漏了层数因子。C、D给出了更宽松的上界，未反映本题要�
             explanation: `**答案：B**
 **解析：**DFS 从起点出发，沿未访问邻接点深入，回溯后再探索其它分支，遍历序列取决于起点与邻接点访问顺序。对照原图（图以图片给出），选项 B（1,5,8,9,7,4,6,3,2）是可实现的深度优先遍历序列；其余选项在边的连通性或访问顺序上与图矛盾。故选 B。
 **考点**：图的深度优先遍历（DFS）。`,
-            tags: ['深度优先搜索']
+            tags: ['深度优先搜索'],
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核 / Codex 集成复查",
+            reviewedAt: "2026-11-25",
+            sourceVerified: true,
+            sourcePage: 4,
+            reviewedFields: ["question", "reviewedBy", "reviewedAt", "sourcePage"]
         },
         {
             id: 15,
             type: "single",
-            question: `下面这个有向图的强连通分量的个数是（ ）。`,
+            question: "下面这个有向图的强连通分量的个数是（ ）。\n\n![12 个顶点的有向图，边为 1→2、2→1；2→3；3→6、3→10；1→4；4→7；5→4；7→8；8→4、8→5、8→9；6→10；10→11、10→9；11→6；9→11；12→9、12→11](/question-assets/2025-12-l7/q15-graph.png)",
             options: [
                 "3",
                 "4",
@@ -582,10 +556,13 @@ A遗漏了层数因子。C、D给出了更宽松的上界，未反映本题要�
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-**解析：**强连通分量（SCC）指有向图中互相可达的极大顶点集合。对照原图（图以图片给出），该有向图可划分出 5 个强连通分量，故选 C。可用 Kosaraju 或 Tarjan 算法判定。
-**考点**：有向图强连通分量（SCC）。`,
-            tags: ['图论']
+            explanation: "**答案：C（5 个）**\n\n**解析：**强连通分量是任意两点互相可达、且无法再加入其他顶点的集合。这张图的强连通分量为：\n\n- `{1, 2}`：1 和 2 直接双向连通。\n- `{3}`：3 的出边通往其他分量，那些顶点无法返回 3。\n- `{4, 5, 7, 8}`：4、7、8 成环，5 可以经过 4、7、8 形成往返。\n- `{6, 9, 10, 11}`：6、10、11 成环，9 可以经过 11、6、10 形成往返。\n- `{12}`：12 指向 9 和 11，没有边通往 12。\n\n各组之间没有形成可以往返的路径，所以不能合并。共 5 组，选 C。\n\n**考点：**有向图强连通分量。",
+            tags: ['图论'],
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核 / Codex 集成复查",
+            reviewedAt: "2026-11-25",
+            reviewedFields: ["question","explanation","sourcePage","reviewedBy","reviewedAt"],
+            sourceVerified: true,
+            sourcePage: 4
         },
         {
             id: 16,
@@ -667,7 +644,7 @@ A遗漏了层数因子。C、D给出了更宽松的上界，未反映本题要�
         {
             id: 20,
             type: "judge",
-            question: `求两个长度为 序列的最长公共子序列（ LCS ）长度时，可以使用滚动数组将空间复杂度从 优化到 。`,
+            question: "求两个长度为 n 序列的最长公共子序列（LCS）长度时，可以使用滚动数组将空间复杂度从 O(n²) 优化到 O(n)。",
             options: [
                 "正确",
                 "错误",
@@ -677,7 +654,11 @@ A遗漏了层数因子。C、D给出了更宽松的上界，未反映本题要�
             explanation: `**答案：正确**
 **解析：**LCS 的标准 DP 用二维数组 f[i][j]，空间复杂度 O(nm)。由于转移只依赖上一行，可用滚动数组（仅保留两行或一行）将空间优化到 O(min(n,m))（或 O(n)）。故说法正确。
 **考点**：LCS 动态规划与滚动数组优化。`,
-            tags: ['动态规划', '字符串']
+            tags: ['动态规划', '字符串'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 21,
@@ -772,31 +753,19 @@ A遗漏了层数因子。C、D给出了更宽松的上界，未反映本题要�
         {
             id: 25,
             type: "judge",
-            question: `一个包含 个顶点的连通无向图，其任何一棵生成树都恰好包含 条边。`,
+            question: "一个包含 V 个顶点的连通无向图，其任何一棵生成树都恰好包含 V-1 条边。",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
-
-**判定依据：**
-题干陈述完全符合生成树的定义与图论性质。
-1. **生成树的定义**：对于一个包含 \`n\` 个顶点的连通无向图，其生成树（Spanning Tree）是该图的一个极小连通子图。它必须包含原图的全部 \`n\` 个顶点，且满足连通、无环。
-2. **树的边数性质**：根据树的基本性质，任何包含 \`k\` 个节点的树，其边数必然严格等于 \`k - 1\` 条。由于生成树必须覆盖原图的全部 \`n\` 个顶点，因此无论通过何种遍历或构造方式（如 DFS 生成树、BFS 生成树或最小生成树），所得生成树的边数都恒等于 \`n - 1\` 条。
-
-**选项逐项分析：**
-- **A 正确**：✅ 命题成立。包含 \`n\` 个顶点的生成树本质上就是一棵具有 \`n\` 个节点的树，其边数必然恰好为 \`n - 1\`。
-- **B 错误**：❌ 命题本身正确。若边数少于 \`n - 1\` 条，子图必然无法连通全部 \`n\` 个顶点；若边数多于 \`n - 1\` 条，连通图中必然产生回路，不再是树。
-
-**易错提醒：**
-- **生成子图 vs 生成树**：生成子图仅要求包含全部 \`n\` 个顶点，边数可以任意；而生成树在此基础上强制要求“连通且无环”，边数被严格锁定为 \`n - 1\`。
-- **极小连通与极大无环**：生成树是原图的“极小连通子图”（去掉任意一条边就会变成非连通图），同时也是包含全顶点的“极大无环子图”（加入任意一条未选边都会形成环）。
-
-**知识延伸：**
-在 GESP 七级涉及的最小生成树算法（Kruskal 算法与 Prim 算法）中，“选出恰好 \`n - 1\` 条安全边后算法终止”正是直接应用了生成树边数固定为 \`n - 1\` 的性质。`,
-            tags: ['图论', '最小生成树']
+            explanation: "**答案：正确**\n\n连通无向图有 V 个顶点，其生成树包含全部 V 个顶点且无环，是一棵 V 个结点的树，因此恰有 V-1 条边。无论用 DFS、BFS 还是最小生成树算法构造，边数都相同。\n\n**考点：** 生成树的定义与树的性质。",
+            tags: ['图论', '最小生成树'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         ...programmingQuestions
     ]

@@ -1,0 +1,290 @@
+{
+  "paperId": "2023-12-l8",
+  "phase": "deepseek",
+  "questionIds": [
+    4,
+    6,
+    8,
+    11,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:56:14.116813Z",
+  "completedAt": "2026-11-25T08:56:14.116813Z",
+  "finishReason": "stop",
+  "inputSha256": "d7f2b13d9d3beac250773915647bf60751a7b6a7574cecc0c7df10e816c34c64",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++8级.pdf",
+    "mirrorSha": "660ecc3145534eb96284fb9af099591e239f82c2",
+    "mirrorBytes": 2113648,
+    "shaVerified": true,
+    "sha256": "17316ebcb8543990cc59e49592a201e870bfd271eeaa642f19e37f24be7b7421"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP、C++ 八级、2023 年 12 月”，与 paperId 2023-12-l8 一致；共 11 页，含单选 15 题、判断 10 题、编程 2 题，与候选结构一致。"
+    },
+    "questions": [
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题题干为“使用邻接矩阵表达 n 个顶点的有向图，则该矩阵的大小为（ ）。”，与候选 question 逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A–D 依次为 n×(n+1)、n×n、n×(n−1)、n×(n−1)/2，与候选 options 的顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 4 格为 B（0 起始索引 1），与候选 answer=1 一致；独立判断 n 个顶点的邻接矩阵为 n×n。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 n×n 方阵说明，并逐项排除 A/C/D；n×(n−1)/2 为无向完全图的无序边对数，推导与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题题干为“一个无向图包含 n 个顶点，则其最小生成树包含多少条边？（ ）。”，与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为 n−1、n、n+1、最小生成树可能不存在，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 6 格为 D（0 起始索引 3），与候选 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：连通图生成树恰含 n−1 条边；题面未保证连通，不连通时生成树不存在，故 D 正确；候选解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 8 题题干为“对有 n 个元素的二叉排序树进行中序遍历，其时间复杂度是（ ）。”，与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为 O(1)、O(log(n))、O(n)、O(n²)，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 8 格为 C（0 起始索引 2），与候选 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：中序遍历按“左-根-右”访问每个结点一次，与树形无关，时间为 O(n)；候选解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题给出 record_choose 记忆化递归程序，候选 question 的代码块与之逐行一致，仅空白排版不同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A–D 依次为 O(2^n)、O(2^m × (n−m))、O(C(n,m))、O(m × (n−m))，与候选 options 一致；B 项确为 2^m，候选未再误作 2^n。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 格为 D（0 起始索引 3），与候选 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：记忆化后可达状态 (i,j) 满足 0≤j≤m、0≤i−j≤n−m，共 O(m(n−m)) 个，每个状态常数转移；递归树结点数为 2C(n,m)−1 属无记忆化情形。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题面、第 7 页输入/输出/样例、第 8 页数据规模与候选 question 逐项对照一致：N 名同学、M 类奖品、sum(a_i)∈[N,N+1]、答案模 1e9+7；30% N≤10、另 30% M=2、全部 N≤1000、T≤1000、M≤1001。原卷“30%/60%”的百分号在排版中丢失，候选补回，属排版修复。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：按种类依次选位，方案数为 ∏C(剩余件数,a_i)；sum=N+1 时可把多出的一个奖品看作一个不分配给学生的虚拟位置，公式仍成立。样例 1 的 3/4/20 与样例 2 的 1/1/125970/895031741/307187590 均复算吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译并运行候选参考程序：两组官方样例输出完全一致；边界 1 1 1→1、1 1 2→1、2 2 1 2→3、1000 2 500 500→159835829（C(1000,500) mod 1e9+7）全部通过。程序用杨辉三角预处理组合数并逐类相乘，sum≤1001，无越界。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\n1 1 1\n",
+            "output": "1",
+            "reason": "N=M=1、a_0=1，唯一方案。"
+          },
+          {
+            "name": "剩余 1 件",
+            "input": "1\n2 2 1 2\n",
+            "output": "3",
+            "reason": "sum=3=N+1；两名学生分到 (0,1)/(1,0)/(1,1) 三类组合，公式 C(3,1)·C(2,2)=3。"
+          },
+          {
+            "name": "取模上界",
+            "input": "1\n1000 2 500 500\n",
+            "output": "159835829",
+            "reason": "sum=N=1000，方案数 C(1000,500) mod 1e9+7，独立计算为 159835829。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页题面、第 10 页输入/输出/样例与数据规模、第 11 页参考程序均与候选 question 的语义一致：f_i 定义员工 i 的直接领导、公共管理者为最近公共祖先、答案取满足条件者中编号最大者；25% N≤50、50% N≤300、全部 3≤N≤10^5、Q≤100、m≤10^4。原卷第二行写“N−1 个正整数”，而样例 1 的第二行含 0，候选保持原卷原文，争议见 unresolved。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：参与者的公共管理者即其树上 LCA；再取根到 LCA 路径上的最大编号。候选解析与之一致，样例 1 输出 2/2/0、样例 2 输出 2/1/1/1/0 均吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译运行候选压缩版（与 PDF 第 11 页参考程序语义一致）：两组官方样例通过；边界 N=3 链 1/0、最大编号不在 LCA 的树 2/0、星形 0/0 均通过；另与 200 组 n≤9 随机树的全路径穷举对拍零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小链",
+            "input": "3\n0 1\n2\n2 1 2\n2 0 2\n",
+            "output": "1\n0",
+            "reason": "N=3 最小规模；LCA(1,2)=1，根到 1 的最大编号为 1；LCA(0,2)=0，答案为 0。"
+          },
+          {
+            "name": "最大编号不在 LCA",
+            "input": "5\n2 0 1 1\n2\n2 3 4\n2 0 4\n",
+            "output": "2\n0",
+            "reason": "树为 0→2→1→3、1→4；LCA(3,4)=1，根到 1 的路径 0,2,1 最大编号为 2；第二问含根，答案为 0。"
+          },
+          {
+            "name": "星形",
+            "input": "4\n0 0 0\n2\n3 1 2 3\n2 0 3\n",
+            "output": "0\n0",
+            "reason": "三个叶子 1、2、3 的 LCA 为 0，路径最大编号 0；含根的询问同样为 0。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 9 页输入格式写“N−1 个用空格隔开的正整数”，但第 10 页样例 1 第二行为“0 0 2 2”（f_1=0），原卷“正整数”表述与样例不符；按“保留既有原卷争议”不改候选原文。",
+          "原卷 3.2 节时间限制为 2.0 s，候选 timeLimit 字段为 1.0 s；该元数据字段不在本轮五维可改范围，记录待处理。"
+        ]
+      }
+    ],
+    "summary": "Q4、Q6、Q8、Q11、Q26、Q27 的题干、选项、答案、解析与参考程序均经原卷页图核对；编程题参考程序编译运行原样例及独立边界用例全部通过。全部适用维度 verified，候选可原样应用。仅记录两项非五维元数据/原卷表述争议待后续处理。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        4,
+        6,
+        8,
+        11,
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T08:56:14.116813Z",
+      "completedAt": "2026-11-25T08:56:14.116813Z"
+    }
+  ]
+}

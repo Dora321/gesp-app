@@ -248,7 +248,7 @@ int lcs_len(const string &a, const string &b) {
         {
             id: 7,
             type: "single",
-            question: `已知两个点 和 在平面直角坐标系中的坐标。下列 C++ 表达式中，能正确计算这两点之间 直线距离的是（ ）。`,
+            question: "已知两个点 A(x1, y1) 和 B(x2, y2) 在平面直角坐标系中的坐标。下列 C++ 表达式中，能正确计算这两点之间直线距离的是（ ）。",
             options: [
                 "sqrt((x1-x2) ^ 2+(y1-y2) ^ 2)",
                 "sqrt(pow(x1-x2, 2)+pow(y1-y2, 2))",
@@ -273,6 +273,10 @@ int lcs_len(const string &a, const string &b) {
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 8,
@@ -579,13 +583,8 @@ x & -x 取出 x 二进制最低位的 1（lowbit），x -= x & -x 每次消去�
         {
             id: 15,
             type: "single",
-            question: `对连通无向图执行 Kruskal 算法。已按边权从小到大依次扫描到某条边 。此时在已经构建的部分 MST 结构中， 已在同一连通块内。关于边 的处理，下列说法正确的是（ ）。`,
-            options: [
-                "必须选入 MST ，否则可能不连通。",
-                "一定不能选入 MST （在此扫描顺序下）。",
-                "若后续出现更大的边权，可以回溯改选 。",
-                "只有当 是当前最小边时才能舍弃。",
-            ],
+            question: "对连通无向图执行 Kruskal 算法。已按边权从小到大依次扫描到某条边 e = (u, v)。此时在已经构建的部分 MST 结构中，(u, v) 已在同一连通块内。关于边 e 的处理，下列说法正确的是（ ）。",
+            options: ["必须选入 MST，否则可能不连通。","一定不能选入 MST（在此扫描顺序下）。","若后续出现更大的边权，可以回溯改选 e。","只有当 e 是当前最小边时才能舍弃。"],
             answer: 1,
             score: 2,
             explanation: `**答案：B（一定不能选入 MST（在此扫描顺序下））**
@@ -613,6 +612,10 @@ Kruskal 算法是求解无向连通图最小生成树（MST）的经典贪心算
             tags: [
                 "最小生成树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","options","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 16,

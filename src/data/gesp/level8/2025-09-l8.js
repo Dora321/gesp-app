@@ -191,7 +191,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: `二项式 的展开式中 项的系数是（ ）。`,
+            question: "二项式 (x+y)^6 的展开式中 x^2y^4 项的系数是（ ）。",
             options: [
                 "720",
                 "120",
@@ -200,45 +200,30 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-**解析：**
-二项式定理中 (a+b)ⁿ 展开各项的系数为组合数 C(n,k)，其取值均为组合数值。15 = C(6,2) = C(6,4)，是 6 次二项式展开中某次项系数的典型取值；而 720=6!、120=5!、20=C(6,3) 均不属于题目所求项的系数。
-
-- **A 720**：错误。720=6! 为阶乘值，并非二项式展开中项的系数。
-- **B 120**：错误。120=5! 为阶乘值，不是组合系数。
-- **C 20**：错误。20=C(6,3)，虽为组合系数但非本题所问项。
-- **D 15**：正确。15=C(6,2)=C(6,4)，符合所求项的系数。
-
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+            explanation: "**答案：D（15）**\n\n**解析：**\n由二项式定理，(x+y)^6 = Σ_{k=0}^{6} C(6,k)·x^(6-k)·y^k。\n要求 x^2y^4 项，令 6-k=2（即 k=4），该项为 C(6,4)·x^2·y^4 = 15·x^2y^4，系数为 15。\n（等价地按 k=2 取 x^2 项，C(6,2)=C(6,4)=15，结果相同。）\n\n**选项逐项分析：**\n- **A 720**：错误。720=6!，是把 6 个位置全排列，而非从 6 个 (x+y) 因子中选 2 个出 x 的组合数。\n- **B 120**：错误。120=5!，与 6 次展开无关。\n- **C 20**：错误。20=C(6,3)，对应 x^3y^3 项，指标不匹配。\n- **D 15**：正确。C(6,2)=C(6,4)=6!/(2!4!)=15。\n\n**易错提醒：**\n- 求某一项系数时先写出通项 C(n,k)·a^(n-k)·b^k，再由指数反解 k，不要直接套阶乘。",
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
             type: "single",
-            question: `对一个包含 个顶点、 条边的图，执行广度优先搜索，其最优时间复杂度是（ ）。`,
-            options: [
-                "O(n)",
-                "O(n+m)",
-                "O(n²)",
-                "O(m)",
-],
+            question: "对一个包含 V 个顶点、E 条边的图，执行广度优先搜索，其最优时间复杂度是（ ）。",
+            options: ["O(V)","O(V+E)","O(V²)","O(E)"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-**解析：**
-对含 V 个顶点、E 条边的图执行广度优先搜索（BFS），需将每个顶点入队、出队各一次，并沿每条边检查一次邻接关系，因此最优（邻接表）时间复杂度为 O(V+E)，即 O(n+m)。
-
-- **A O(n)**：错误。仅统计顶点而忽略了必须遍历的每条边。
-- **B O(n+m)**：正确。BFS 遍历所有顶点与边各一次，复杂度为 O(V+E)。
-- **C O(n²)**：错误。这是邻接矩阵下 BFS 的复杂度上界，非最优情形。
-- **D O(m)**：错误。漏掉了必须访问的所有顶点部分。`,
+            explanation: "**答案：B（O(V+E)）**\n\n**解析：**\n对含 V 个顶点、E 条边的图执行广度优先搜索，采用邻接表存储时：每个顶点入队、出队各一次，累计 O(V)；访问每个顶点时扫描其全部出边，所有顶点合计扫描 O(E)（无向图每条边被正反各看一次，仍为 O(E)）。两项相加得 O(V+E)。\n\n**选项逐项分析：**\n- **A O(V)**：错误。只统计了顶点，遗漏了必须沿每条边检查邻接关系的开销。\n- **B O(V+E)**：正确。顶点与边各遍历常数次，这是 BFS 的最优（邻接表）复杂度。\n- **C O(V²)**：错误。这是邻接矩阵存储时每行都要扫描 V 个位置的结果，不是最优情形。\n- **D O(E)**：错误。孤立顶点同样要入队出队，缺少 O(V) 项；稀疏图（E<V）时偏差更明显。\n\n**易错提醒：**\n- 复杂度写作 O(V+E) 而不是 O(max(V,E)) 或 O(E)，因为孤立点与森林同样要被访问。",
             tags: [
                 "贪心",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 8,
@@ -366,106 +351,66 @@ void sieve() {
         {
             id: 11,
             type: "single",
-            question: `下列Dijkstra算法，假设图 中顶点数 、边数 ，则程序的时间复杂度为（ ）。`,
-            options: [
-                "O(V²)",
-                "O(V·E)",
-                "O(E log V)",
-                "O(E + V log V)",
-],
+            question: "下列 Dijkstra 算法，假设图 graph 中顶点数 v、边数 e，则程序的时间复杂度为（ ）。\n\n```cpp\ntypedef struct Edge {\n    int in, out;      // 从下标 in 顶点到下标 out 顶点的边\n    int len;          // 边长度\n    struct Edge * next;\n} Edge;\n// v: 顶点个数，graph: 出边邻接表，start: 起点下标，dis: 输出每个顶点的最短距离\nvoid dijkstra(int v, Edge * graph[], int start, int * dis) {\n    const int MAX_DIS = 0x7fffffff;\n    for (int i = 0; i < v; i++)\n        dis[i] = MAX_DIS;\n    dis[start] = 0;\n    int * visited = new int[v];\n    for (int i = 0; i < v; i++)\n        visited[i] = 0;\n    visited[start] = 1;\n    for (int t = 0; ; t++) {\n        int min = MAX_DIS, minv = -1;\n        for (int i = 0; i < v; i++) {\n            if (visited[i] == 0 && min > dis[i]) {\n                min = dis[i];\n                minv = i;\n            }\n        }\n        if (minv < 0)\n            break;\n        visited[minv] = 1;\n        for (Edge * e = graph[minv]; e != NULL; e = e->next)\n            if (dis[e->out] > e->len)\n                dis[e->out] = e->len;\n    }\n    delete[] visited;\n}\n```",
+            options: ["O(v²)","O(v log v + e)","O((v+e) log v)","O(v+e)"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-**解析：**
-Dijkstra 算法的时间复杂度取决于“选取当前距离最小顶点”的实现方式。若使用线性扫描（数组）在未访问顶点中找最小值，每轮需 O(V)，共 V 轮，整体为 O(V²)，这正是本题所列算法（数组/邻接矩阵实现）的复杂度。
-
-- **A O(V²)**：正确。线性扫描取最小值的 Dijkstra 实现复杂度为 O(V²)。
-- **B O(V·E)**：错误。这是 Bellman-Ford 算法的复杂度，非 Dijkstra。
-- **C O(E log V)**：错误。这是二叉堆优化 Dijkstra 的复杂度，本题未用堆。
-- **D O(E + V log V)**：错误。这是斐波那契堆优化下的复杂度，本题未采用。
-
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+            explanation: "**答案：A（O(v²)）**\n\n**解析：**\n代码外层是一个最长 v+1 轮的主循环，每轮做两件事：\n1. **选点**：`for (i = 0; i < v; i++)` 线性扫描所有顶点，挑出未访问且 `dis` 最小者，代价 O(v)；\n2. **松弛**：`for (Edge * e = graph[minv]; e != NULL; e = e->next)` 遍历该点的出边，代价等于该点出度。\n\nv 轮选点合计 O(v·v)=O(v²)；所有顶点的出边只被遍历一次，合计 O(e)。由于 e ≤ v²，总复杂度取主项为 **O(v²)**。\n\n**选项逐项分析：**\n- **A O(v²)**：正确。选点用线性扫描而不是堆，v 轮 × O(v) 即 O(v²)，已覆盖 e ≤ v² 的松弛开销。\n- **B O(v log v + e)**：错误。只有用优先队列维护候选点、每个顶点只入队出队 O(1) 次并配 O(log v) 调整时才会出现 v log v 项，代码中没有堆。\n- **C O((v+e) log v)**：错误。这是“优先队列 + 邻接表”的标准堆优化 Dijkstra 复杂度，要求每次取最小点 O(log v)，本题是 O(v) 的线性扫描。\n- **D O(v+e)**：错误。达到 O(v+e) 需要在 O(1) 时间内取到最小值（如特殊图上的桶/基数结构），线性扫描做不到。\n\n**易错提醒：**\n- Dijkstra 的复杂度取决于“取当前最小点”的数据结构：数组/线性扫描 O(v²)，二叉堆 O((v+e) log v)，斐波那契堆 O(e + v log v)。先看代码里是哪种实现，再套对应的界。",
             tags: [
                 "最短路",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 12,
             type: "single",
-            question: `下面 count_triple 函数的时间复杂度为( )。`,
-            options: [
-                "O(n)",
-                "O(n log n)",
-                "O(n³)",
-                "O(n²)",
-],
+            question: "下面 count_triple 函数的时间复杂度为（ ）。\n\n```cpp\nint gcd(int m, int n) {\n    if (m == 0) return n;\n    return gcd(n % m, m);\n}\nint count_triple(int n) {\n    int cnt = 0;\n    for (int v = 1; v * v * 4 <= n; v++)\n        for (int u = v + 1; u * (u + v) * 2 <= n; u += 2)\n            if (gcd(u, v) == 1) {\n                int a = u * u - v * v;\n                int b = u * v * 2;\n                int c = u * u + v * v;\n                cnt += n / (a + b + c);\n            }\n    return cnt;\n}\n```",
+            options: ["O(n²)","O(n² log n)","O(n)","O(n log n)"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-**解析：**
-题目所考查函数的时间复杂度依题面标注答案为 O(n²)，即其主导操作为规模与 n 同阶的两层嵌套循环（如枚举 i、j 各约 n 次），累计约 n² 次运算。
-
-- **A O(n)**：错误。单层线性扫描才可能达到。
-- **B O(n log n)**：错误。需分治或排序结构，本题函数不具备。
-- **C O(n³)**：错误。三层嵌套才达此量级，与答案不符。
-- **D O(n²)**：正确。两层同阶循环累计为 O(n²)。
-
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+            explanation: "**答案：D（O(n log n)）**\n\n**解析：**\n`count_triple` 用欧几里得公式 (u²-v², 2uv, u²+v²) 枚举本原勾股三元组：\n\n1. **枚举次数**：外层 `v` 满足 `4v² ≤ n`（v ≤ √n/2）；内层 `u` 从 `v+1` 起、步长 2，满足 `2u(u+v) ≤ n`（u = O(√n)）。两层合计的枚举总量为 O(n)。\n2. **单次代价**：每组 (u,v) 调用一次 `gcd(u, v)`，Euclid 算法 O(log n)。\n3. **合计**：O(n) × O(log n) = O(n log n)。\n\n**选项逐项分析：**\n- **A O(n²)**：错误。两层循环上界分别受 √n 限制，乘积为 O(n) 而非 O(n²)。\n- **B O(n² log n)**：错误。在错误的高估循环上界之上再乘对数因子，量级不符。\n- **C O(n)**：错误。忽略了每次枚举附带的 gcd 对数代价。\n- **D O(n log n)**：正确。O(n) 次枚举 × 每次 O(log n) 的 gcd。\n\n**易错提醒：**\n- 判定双重循环复杂度必须先算每层变量的真实上界：本题外层到 √n/2、内层到 O(√n)，总量 O(n)，再乘 gcd 的 O(log n) 即 O(n log n)。这与 2025 年 6 月八级卷同一 count_triple 函数一题的官方答案 O(n log n) 一致。",
             tags: [
                 "复杂度分析",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 13,
             type: "single",
-            question: `下面merge_sort函数试图实现归并排序算法，横线处应该填入的是（ ）。`,
-            options: [
-                "if (a[i] <= a[j]) temp[k++] = a[i++];",
-                "if (a[i] >= a[j]) temp[k++] = a[i++];",
-                "if (a[i] < a[j]) temp[k++] = a[j++];",
-                "if (a[i] == a[j]) temp[k++] = a[i++];",
-],
+            question: "下面 merge_sort 函数试图实现归并排序算法，横线处应该填入的是（ ）。\n\n```cpp\n#include <vector>\nusing namespace std;\nvoid merge_sort(vector<int> & arr, int left, int right) {\n    if (right - left <= 1)\n        return;\n\n    int mid = (left + right) / 2;\n    merge_sort(________); // 在此处填入选项\n    merge_sort(________); // 在此处填入选项\n\n    vector<int> temp(right - left);\n    int i = left, j = mid, k = 0;\n    while (i < mid && j < right)\n        if (arr[i] <= arr[j])\n            temp[k++] = arr[i++];\n        else\n            temp[k++] = arr[j++];\n    while (i < mid)\n        temp[k++] = arr[i++];\n    while (j < right)\n        temp[k++] = arr[j++];\n    for (i = left, k = 0; i < right; ++i, ++k)\n        arr[i] = temp[k];\n}\n```",
+            options: ["第一空 arr, left, mid；第二空 arr, mid, right","第一空 arr, left, mid + 1；第二空 arr, mid + 1, right","第一空 arr, left, mid；第二空 arr, mid + 1, right","第一空 arr, left, mid + 1；第二空 arr, mid + 1, right + 1"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-**解析：**
-归并排序的 merge 步骤将两个已排序子段合并到辅助数组 temp 中，每次应取 a[i] 与 a[j] 中较小者写入 temp 并后移对应指针。选项 A 使用 \`a[i] <= a[j]\` 时取 a[i]，既保证升序又在处理相等元素时优先取左段，符合稳定的归并逻辑。
-
-- **A \`if (a[i] <= a[j]) temp[k++] = a[i++];\`**：正确。取两指针较小（含相等）元素写入，标准且稳定的归并写法。
-- **B \`if (a[i] >= a[j]) temp[k++] = a[i++];\`**：错误。当 a[i] 较大时才取 a[i]，会破坏升序合并。
-- **C \`if (a[i] < a[j]) temp[k++] = a[j++];\`**：错误。条件与取值方向矛盾，无法正确合并升序序列。
-- **D \`if (a[i] == a[j]) temp[k++] = a[i++];\`**：错误。仅相等时才写入，遗漏了大量不相等的情况。`,
+            explanation: "**答案：A**\n\n**解析：**\n本题的区间约定是**左闭右开** [left, right)：\n\n1. 递归出口 `if (right - left <= 1) return;`：区间长度为 0 或 1 时无需排序。\n2. `int mid = (left + right) / 2;` 切分后，固定合并代码以 `i = left, j = mid` 为两段起点，即默认第一段为 [left, mid)、第二段为 [mid, right)（mid 归第二段开头）。因此两处横线应分别填 `arr, left, mid` 与 `arr, mid, right`；两段长度之和恰为 right-left，且都严格短于原区间，不会死递归。\n\n**选项逐项分析：**\n- **A `arr, left, mid` 与 `arr, mid, right`**：✅ 正确。恰为 [left,mid) 与 [mid,right)，与 `j = mid`、`i < mid` 的合并逻辑自洽。\n- **B `arr, left, mid + 1` 与 `arr, mid + 1, right`**：❌ 错误。当 right−left = 2 时 mid+1 = right，第一次递归的区间 [left, mid+1) 与原区间完全相同，无限递归直至栈溢出；即使不考虑这一点，固定合并代码把 `j = mid` 当作第二段开头，而 B 的第二段从 mid+1 开始，arr[mid]（第一段的末元素）会被错当第二段参与比较，合并结果错误。注意 [left,mid+1) 与 [mid+1,right) 的并集实为完整的 [left, right)，并不缺元素——缺陷在递归不终止与合并错位，而非漏掉 arr[mid]。\n- **C `arr, left, mid` 与 `arr, mid + 1, right`**：❌ 错误。两段为 [left,mid) 与 [mid+1,right)，下标 mid 不属于任何一段：arr[mid] 既不会被排序，也不会被正确合并，两段拼不成完整的 [left, right)。\n- **D `arr, left, mid + 1` 与 `arr, mid + 1, right + 1`**：❌ 错误。第二段 [mid+1, right+1) 把下标 right 卷进来，而 right 已越出本次调用的管辖范围 [left, right)，会读改不属于自己的元素；两段本身并不重叠，缺陷在越界与合并边界（`j = mid`）不符，而非重叠。\n\n**易错提醒：**\n- 区间端点约定决定 mid 归哪一段：本题 `right - left <= 1` 与 `j = mid` 都表明是左闭右开、mid 归第二段，因此第一空以 mid 结尾、第二空从 mid 开始，写成 mid±1 都会破坏递归或合并。",
             tags: [
                 "排列组合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 14,
             type: "single",
-            question: `下面 Prim 算法程序中，横线处应该填入的是（ ）。`,
-            options: [
-                "if (vis[j] && g[u][j] < dist[j]) dist[j] = g[u][j];",
-                "if (!vis[j] && dist[j] < g[u][j]) dist[j] = g[u][j];",
-                "for (int j=0;j<n;j++) if (!vis[j]) dist[j] = min(dist[j], g[u][j]);",
-                "if (!vis[j] && g[u][j] < dist[j]) { dist[j] = g[u][j]; prev[j] = u; }",
-],
+            question: "下面 Prim 算法程序中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint prim(vector<vector<int>> & graph, int n) {\n    vector<int> key(n, INT_MAX);\n    vector<int> parent(n, -1);\n    key[0] = 0;\n    for (int i = 0; i < n; i++) {\n        int u = min_element(key.begin(), key.end()) - key.begin();\n        if (key[u] == INT_MAX)\n            break;\n        for (int v = 0; v < n; v++) {\n            if (__________) { // 在此处填入选项\n                key[v] = graph[u][v];\n                parent[v] = u;\n            }\n        }\n    }\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        if (parent[i] != -1) {\n            cout << \"Edge: \" << parent[i] << \" - \" << i << \" Weight: \" << key[i] << endl;\n            sum += key[i];\n        }\n    }\n    return sum;\n}\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> graph(n, vector<int>(n, 0));\n    for (int i = 0; i < m; i++) {\n        int u, v, w;\n        cin >> u >> v >> w;\n        graph[u][v] = w;\n        graph[v][u] = w;\n    }\n    int result = prim(graph, n);\n    cout << \"Total weight of the minimum spanning tree: \" << result << endl;\n    return 0;\n}\n```",
+            options: ["graph[u][v] >= 0 && key[v] > graph[u][v]","graph[u][v] <= 0 && key[v] > graph[u][v]","graph[u][v] == 0 && key[v] > graph[u][v]","graph[u][v] != 0 && key[v] > graph[u][v]"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-**解析：**
-Prim 算法在将顶点 u 加入生成树后，需对所有“尚未访问”的相邻顶点 j 进行松弛：若边 g[u][j] 小于当前 dist[j]，则更新 dist[j] 并记录前驱 prev[j]。选项 D 以 \`!vis[j]\` 筛除已访问点，用 \`g[u][j] < dist[j]\` 比较并同时维护 prev，正是正确的松弛语句。
-
-- **A \`if (vis[j] && g[u][j] < dist[j]) dist[j] = g[u][j];\`**：错误。条件 \`vis[j]\` 只对已访问点松弛，方向反了。
-- **B \`if (!vis[j] && dist[j] < g[u][j]) dist[j] = g[u][j];\`**：错误。比较方向相反，会把较大的边误当作更优。
-- **C \`for (int j=0;j<n;j++) if (!vis[j]) dist[j] = min(dist[j], g[u][j]);\`**：错误。比较逻辑不完整且缺少前驱记录，无法正确松弛。
-- **D \`if (!vis[j] && g[u][j] < dist[j]) { dist[j] = g[u][j]; prev[j] = u; }\`**：正确。对未访问邻居做正确松弛并更新前驱。`,
+            explanation: "**答案：D**\n\n**解析：**\nPrim 在把顶点 u 纳入生成树后，要用 u 的边去更新其余各点的 `key`：`key[v]` 是“把 v 接进当前生成树的最小边权”。\n\n1. **排除无边**：本程序用邻接矩阵存储，`graph[u][v] == 0` 表示 u、v 之间没有边（初始化即为 0，且边权为正），必须先排除这种情况，否则会把 0 当成边权写进 `key[v]`。\n2. **判断更优**：只有当 `graph[u][v] < key[v]` 时才更优，代码写作 `key[v] > graph[u][v]`。\n3. 两者用 `&&` 连接，即 `graph[u][v] != 0 && key[v] > graph[u][v]`，与后面 `key[v] = graph[u][v]; parent[v] = u;` 的更新动作吻合。\n\n**选项逐项分析：**\n- **A `graph[u][v] >= 0`**：错误。邻接矩阵中 0 恒满足 ≥0，等于把“无边”也当作可更新，会把 `key[v]` 错误地刷成 0。\n- **B `graph[u][v] <= 0`**：错误。边权均为正，该条件只能筛出“无边”的情形，方向完全相反。\n- **C `graph[u][v] == 0`**：错误。只在“没有边”时更新，逻辑颠倒。\n- **D `graph[u][v] != 0 && key[v] > graph[u][v]`**：正确。先排除无边，再取更小的边权。\n\n**易错提醒：**\n- 用邻接矩阵做 Prim 时，0 既可能是“无边”也可能是“边权为 0”，本题保证边权为正，所以 `!= 0` 可安全表示“有边”。",
             tags: [
                 "最小生成树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 15,
@@ -561,20 +506,20 @@ addEdge 双向建边，图含 4 个顶点、5 条无向边：0-1(8)、0-2(5)、1
         {
             id: 17,
             type: "judge",
-            question: `下列C++语言代码，能够安全地输出 arr[5] 的值。`,
+            question: "下列 C++ 语言代码，能够安全地输出 arr[5] 的值。\n\n```cpp\nint n = 5;\nint arr[n] = {1, 2, 3};\nstd::cout << arr[5];\n```",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
-
-**解析：**
-“能够安全地输出 arr[5]”并非普遍成立的命题。若数组长度不超过 5（如 int arr[5]），合法下标为 0~4，访问 arr[5] 已越界，属未定义行为，并不安全；只有当数组长度至少为 6 且访问前确有边界保证时才能安全读取。因此作为一般性陈述，该命题为假。`,
+            explanation: "**答案：错误**\n\n**解析：**\n代码中 `int arr[n]` 用 n=5 定义数组，元素个数为 5，合法下标只有 0、1、2、3、4；`arr[5]` 已越界一个元素。\n\n- 对原生数组，C++ 标准**不做下标检查**，`arr[5]` 属于未定义行为（UB）：可能读到相邻内存里的任意值，也可能触发段错误，但绝不保证“安全地输出”。\n- 另外 `int arr[n]` 中 n 为变量，属于变长数组（VLA），并非 C++ 标准特性（GCC 作为扩展支持），移植到 MSVC 等编译器会直接编译失败。\n\n**考点**：数组下标越界、未定义行为（UB）与变长数组的可移植性。",
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 18,
@@ -582,8 +527,8 @@ addEdge 双向建边，图含 4 个顶点、5 条无向边：0-1(8)、0-2(5)、1
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 6,
             sourcePages: [6],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-07",
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             sourceVerified: true,
             type: "judge",
             question: `对n个元素的数组进行排序，最差情况的时间复杂度为 O(n²)。`,
@@ -593,14 +538,11 @@ addEdge 双向建边，图含 4 个顶点、5 条无向边：0-1(8)、0-2(5)、1
             ],
             answer: 1,
             score: 2,
-            explanation: `原卷答案为错误。
-
-原题未指定排序算法，不能把O(n²)作为所有排序算法统一的最坏紧确量级。归并排序与堆排序的最坏量级为Θ(n log n)，冒泡排序的最坏量级为Θ(n²)，算法不同，界限不同。
-
-严格的大O允许宽松上界，Θ(n log n)也属于O(n²)。因此原卷以考试中常用的紧确复杂度口径判×，理解时应保留这一口径区别。`,
+            explanation: "**答案：错误**\n\n**解析：**\n题面只说“对 n 个元素的数组进行排序”，并未限定算法。\n\n- 冒泡、插入、选择排序的最坏复杂度确实是 O(n²)；\n- 但归并排序、堆排序的最坏复杂度都是 O(n log n)，在所有 n 上都优于 n²；\n- 更进一步，基于比较的排序存在 Ω(n log n) 的下界。\n\n因此“排序的最差时间复杂度为 O(n²)”不能作为普遍结论，命题错误。\n\n**考点**：常见排序算法的最坏复杂度与比较排序的下界。",
             tags: [
                 "排列组合",
             ],
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 19,
@@ -705,8 +647,8 @@ addEdge 双向建边，图含 4 个顶点、5 条无向边：0-1(8)、0-2(5)、1
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 7,
             sourcePages: [7],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-07",
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             sourceVerified: true,
             type: "judge",
             question: `Dijkstra算法的时间复杂度为 O(V²)，其中V为图中顶点的数量。`,
@@ -714,15 +656,13 @@ addEdge 双向建边，图含 4 个顶点、5 条无向边：0-1(8)、0-2(5)、1
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
-
-**解析：**
-采用邻接矩阵实现的 Dijkstra 算法，每轮需从所有顶点中选出当前距离最小的顶点（耗时 O(V)），共进行 V 轮，并对各边进行松弛，总体时间复杂度为 O(V²)。这是 Dijkstra 在稠密图下的经典且紧的时间复杂度结论，因此该命题为真。`,
+            explanation: "**答案：错误**\n\n**解析：**\nDijkstra 算法的时间复杂度**取决于“取当前距离最小顶点”所用数据结构**，并不固定为 O(V²)：\n\n- 邻接矩阵 / 数组线性扫描：O(V²)；\n- 邻接表 + 二叉堆（优先队列）：O((V+E) log V)；\n- 邻接表 + 斐波那契堆：O(E + V log V)。\n\n题面只说“Dijkstra 算法的时间复杂度为 O(V²)”，没有限定实现方式，把一种特定实现（稠密图下的数组实现）当作算法的固有复杂度，概括过强，故命题错误。\n\n**考点**：Dijkstra 的多种实现及其复杂度差异。",
             tags: [
                 "最短路",
             ],
+      "reviewedFields": ["answer","explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 25,

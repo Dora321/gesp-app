@@ -38,29 +38,7 @@ lucky
 lucky 
 lucky` }
       ],
-      question: `
-# [GESP202312 五级] 小杨的幸运数
-
-## 题目描述
-
-小杨认为，所有大于等于 $a$ 的完全平方数都是他的超级幸运数。
-
-小杨还认为，所有超级幸运数的倍数都是他的幸运数。自然地，小杨的所有超级幸运数也都是幸运数。
-
-对于一个非幸运数，小杨规定，可以将它一直 $+1$，直到它变成一个幸运数。我们把这个过程叫做幸运化。例如，如果 $a=4$，那么 $4$ 是最小的幸运数，而 $1$ 不是，但我们可以连续对 $1$ 做 $3$ 次 $+1$ 操作，使其变为 $4$，所以我们可以说， $1$ 幸运化后的结果是 $4$。
-
-现在，小杨给出 $N$ 个数，请你首先判断它们是不是幸运数；接着，对于非幸运数，请你将它们幸运化。
-
-## 输入格式
-
-第一行 $2$ 个正整数 $a, N$。
-
-接下来 $N$ 行，每行一个正整数 $x$ ，表示需要判断（幸运化）的数。
-
-## 输出格式
-
-输出 $N$ 行，对于每个给定的 $x$ ，如果它是幸运数，请输出 \`lucky\`，否则请输出将其幸运化后的结果。
-`,
+      question: "\n# [GESP202312 五级] 小杨的幸运数\n\n## 题目描述\n\n小杨认为，所有大于等于 $a$ 的完全平方数都是他的超级幸运数。\n\n小杨还认为，所有超级幸运数的倍数都是他的幸运数。自然地，小杨的所有超级幸运数也都是幸运数。\n\n对于一个非幸运数，小杨规定，可以将它一直 $+1$，直到它变成一个幸运数。我们把这个过程叫做幸运化。例如，如果 $a=4$，那么 $4$ 是最小的幸运数，而 $1$ 不是，但我们可以连续对 $1$ 做 $3$ 次 $+1$ 操作，使其变为 $4$，所以我们可以说， $1$ 幸运化后的结果是 $4$。\n\n现在，小杨给出 $N$ 个数，请你首先判断它们是不是幸运数；接着，对于非幸运数，请你将它们幸运化。\n\n## 输入格式\n\n第一行 $2$ 个正整数 $a, N$。\n\n接下来 $N$ 行，每行一个正整数 $x$ ，表示需要判断（幸运化）的数。\n\n## 输出格式\n\n输出 $N$ 行，对于每个给定的 $x$ ，如果它是幸运数，请输出 `lucky`，否则请输出将其幸运化后的结果。\n\n\n## 数据规模\n\n对于 30% 的测试点，保证 $a,x \\le 100$，$N \\le 100$。\n\n对于 60% 的测试点，保证 $a,x \\le 10^6$。\n\n对于所有测试点，保证 $a \\le 1{,}000{,}001$，$N \\le 2 \\times 10^5$，$1 \\le x \\le 1{,}000{,}001$。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -111,6 +89,10 @@ lucky` }
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, n;\n    cin >> a >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <cmath>\nusing namespace std;\nconst int MAX = 2000005;\nbool is_lucky[MAX];\nint next_lucky[MAX];\nint main() {\n    int a, n;\n    cin >> a >> n;\n    for (long long i = 1; i * i < MAX; i++) {\n        long long sq = i * i;\n        if (sq >= a) {\n            for (long long j = sq; j < MAX; j += sq) is_lucky[j] = true;\n        }\n    }\n    int last = -1;\n    for (int i = MAX-1; i >= 1; i--) {\n        if (is_lucky[i]) last = i;\n        next_lucky[i] = last;\n    }\n    while (n--) {\n        int x; cin >> x;\n        if (is_lucky[x]) cout << \"lucky\" << endl;\n        else cout << next_lucky[x] << endl;\n    }\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -123,122 +105,17 @@ lucky` }
         { input: `5
 5 6 2 10 13`, output: `8` }
       ],
-      question: `
-# [GESP202312 五级] 烹饪问题
-
-## 题目描述
-
-有 $N$ 种食材，编号从 $1$ 至 $N$，其中第 $i$ 种食材的美味度为 $a_i$。
-
-不同食材之间的组合可能产生奇妙的化学反应。具体来说，如果两种食材的美味度分别为 $x$ 和 $y$ ，那么它们的契合度为 $x\\ \\text{and}\\ y $。
-
-其中，$\\text{and}$ 运算为按位与运算，需要先将两个运算数转换为二进制，然后在高位补足 ，再逐位进行与运算。例如，$12$ 与 $6$ 的二进制表示分别为 $1100$ 和 $0110$ ，将它们逐位进行与运算，得到 $0100$ ，转换为十进制得到 4，因此 $12\\ \\text{and}\\ 6 = 4$。**在 C++ 或 Python 中，可以直接使用 \`&\` 运算符表示与运算。**
-
-
-现在，请你找到契合度最高的两种食材，并输出它们的契合度。
-
-## 输入格式
-
-第一行一个整数 $N$，表示食材的种数。
-
-接下来一行 $N$ 个用空格隔开的整数，依次为 $a_1,\\cdots,a_N$，表示各种食材的美味度。
-
-## 输出格式
-
-输出一行一个整数，表示最高的契合度。
-`,
+      question: "\n# [GESP202312 五级] 烹饪问题\n\n## 题目描述\n\n有 $N$ 种食材，编号从 $0$ 至 $N-1$，其中第 $i$ 种食材的美味度为 $a_i$。\n\n不同食材之间的组合可能产生奇妙的化学反应。具体来说，如果两种食材的美味度分别为 $x$ 和 $y$ ，那么它们的契合度为 $x\\ \\text{and}\\ y $。\n\n其中，$\\text{and}$ 运算为按位与运算，需要先将两个运算数转换为二进制，然后在高位补足 $0$，再逐位进行与运算。例如，$12$ 与 $6$ 的二进制表示分别为 $1100$ 和 $0110$ ，将它们逐位进行与运算，得到 $0100$ ，转换为十进制得到 4，因此 $12\\ \\text{and}\\ 6 = 4$。**在 C++ 或 Python 中，可以直接使用 `&` 运算符表示与运算。**\n\n\n现在，请你找到契合度最高的两种食材，并输出它们的契合度。\n\n## 输入格式\n\n第一行一个整数 $N$，表示食材的种数。\n\n接下来一行 $N$ 个用空格隔开的整数，依次为 $a_0,\\cdots,a_{N-1}$，表示各种食材的美味度。\n\n## 输出格式\n\n输出一行一个整数，表示最高的契合度。\n\n\n## 数据规模\n\n对于 40% 的测试点，保证 $N \\le 1{,}000$。\n\n对于所有测试点，保证 $N \\le 10^6$，$0 \\le a_i \\le 2{,}147{,}483{,}647$。\n",
       score: 25,
-      explanation: `**解析：**
-
-### 1. 题目大意与思路分析
-题目给定 \`N\` 个正整数，要求从中挑选出任意两个不同的数 \`x\` 和 \`y\`，使得它们按位与（\`&\`）的结果 \`x \\& y\` 最大。
-
-- **暴力法局限**：如果使用双重循环枚举所有两两组合，时间复杂度为 \`O(N^2)\`。当 \`N\` 达到 \`10^5\` 级别时，运算次数高达 \`10^{10}\`，会严重超时。
-- **二进制与贪心策略**：
-  二进制数的大小由高位决定。例如，\`2^3 = 8\` 大于低位之和 \`2^2 + 2^1 + 2^0 = 7\`。因此，只要更高位能凑出 1，即使所有更低位全为 0，数值也一定比更高位为 0 的情况更大。
-  两数做按位与运算，只有当两数的对应二进制位**同时为 1** 时，结果的该位才为 1。因此，我们可以从二进制的最高位（第 30 位）向最低位（第 0 位）逐位贪心确定最终答案的每一位能否为 1。
-
----
-
-### 2. 完整算法流程
-1. **初始化**：
-   - 设当前找到的最优答案为 \`ans = 0\`。
-   - 设初始候选数字集合 \`candidates\` 包含所有输入的 \`N\` 个食材美味度。
-2. **从高位到低位逐位试探**（令 \`i\` 从 30 递减到 0）：
-   - 假设当前第 \`i\` 位可以为 1，构造目标掩码 \`target = ans | (1 << i)\`。该掩码表示：既要保留前面已经确定能凑出的所有高位 1，又要尝试将当前的第 \`i\` 位也置为 1。
-   - 遍历当前的候选集合 \`candidates\`，筛选出能完全覆盖 \`target\` 中所有 1 的数字（即满足 \`(val & target) == target\` 的数），放入临时集合 \`next_candidates\`。
-   - **判断与决策**：
-     - 若 \`next_candidates\` 中的数字个数至少有 2 个（\`>= 2\`），说明存在至少两个食材，它们在已经确定的所有高位及当前第 \`i\` 位上都是 1。因此，当前位**可以为 1**：将 \`ans\` 更新为 \`target\`，并将候选集合 \`candidates\` 缩减为 \`next_candidates\`。
-     - 若不足 2 个，说明无法同时满足已有高位和当前位均为 1，当前位只能为 0：\`ans\` 保持不变，候选集合也不变，继续检查更低的一位。
-3. **输出结果**：循环结束后，\`ans\` 即为契合度最高的值。
-
----
-
-### 3. 样例走查（以样例 2 为例）
-
-**输入**：
-\`\`\`text
-5
-5 6 2 10 13
-\`\`\`
-
-将各数值转化为 5 位二进制表示：
-- \`5 = (00101)_2\`
-- \`6 = (00110)_2\`
-- \`2 = (00010)_2\`
-- \`10 = (01010)_2\`
-- \`13 = (01101)_2\`
-
-初始状态：\`ans = 0\`，候选集 \`candidates = {5, 6, 2, 10, 13}\`。
-高于第 3 位的更高位全为 0，试探均无法满足，直接从第 3 位开始走查：
-
-- **第 3 位（权值 \`2^3 = 8\`）**：
-  - 构造 \`target = ans | (1 << 3) = 8\`（二进制 \`01000\`）。
-  - 检查候选集中第 3 位为 1 的数：10（\`01010\`）和 13（\`01101\`）。
-  - 满足条件的数字有 2 个（\`{10, 13}\`），数量 \`>= 2\`。
-  - **决策**：第 3 位成功置为 1！更新 \`ans = 8\`，候选集缩减为 \`{10, 13}\`。
-
-- **第 2 位（权值 \`2^2 = 4\`）**：
-  - 构造 \`target = ans | (1 << 2) = 8 | 4 = 12\`（二进制 \`01100\`）。
-  - 在当前候选集 \`{10, 13}\` 中检查：
-    - \`10 \\& 12 = 8 \\ne 12\`
-    - \`13 \\& 12 = 12\`
-  - 仅有 13 满足条件，数量为 1（小于 2）。
-  - **决策**：第 2 位无法置为 1。\`ans\` 保持 8，候选集仍为 \`{10, 13}\`。
-
-- **第 1 位（权值 \`2^1 = 2\`）**：
-  - 构造 \`target = ans | (1 << 1) = 8 | 2 = 10\`（二进制 \`01010\`）。
-  - 在当前候选集 \`{10, 13}\` 中检查：
-    - \`10 \\& 10 = 10\`
-    - \`13 \\& 10 = 8 \\ne 10\`
-  - 仅有 10 满足条件，数量为 1（小于 2）。
-  - **决策**：第 1 位无法置为 1。\`ans\` 保持 8，候选集仍为 \`{10, 13}\`。
-
-- **第 0 位（权值 \`2^0 = 1\`）**：
-  - 构造 \`target = ans | (1 << 0) = 8 | 1 = 9\`（二进制 \`01001\`）。
-  - 在当前候选集 \`{10, 13}\` 中检查：
-    - \`10 \\& 9 = 8 \\ne 9\`
-    - \`13 \\& 9 = 9\`
-  - 仅有 13 满足条件，数量为 1（小于 2）。
-  - **决策**：第 0 位无法置为 1。\`ans\` 保持 8。
-
-最终输出 \`ans = 8\`（即选出的两种最佳食材为 10 和 13，其契合度 \`10 \\& 13 = 8\`）。
-
----
-
-### 4. 复杂度分析
-- **时间复杂度**：外层循环遍历二进制位数（常量约 31 次），内层遍历候选列表，每轮最多遍历 \`N\` 个元素。总时间复杂度为 \`O(31 * N) \\approx O(N)\`，可在几毫秒内轻松通过 \`N = 10^5\` 的测试点。
-- **空间复杂度**：需要存储候选数组，空间复杂度为 \`O(N)\`。
-
----
-
-### 易错提醒：
-- **运算符优先级陷阱**：在 C++ 中，按位与 \`&\` 的优先级低于关系运算符 \`==\`。判断必须写成 \`(val & target) == target\`，不能漏掉小括号；若写成 \`val & target == target\`，会被编译器解析为 \`val & (target == target)\`，引发逻辑错误。
-- **候选集必须逐步收窄**：当某一位确定能置为 1 后，后续查找**必须**在保留了这一位为 1 的数构成的子集中进行。如果每轮都从全量 \`N\` 个数中单独找当前位为 1 的数，可能找到的两个数并不能同时满足前面已确定的高位 1。`,
+      explanation: "**解析：**\n\n### 1. 题目大意与思路分析\n题目给定 `N` 个非负整数，要求从中挑选出任意两个不同的数 `x` 和 `y`，使得它们按位与（`&`）的结果 `x \\& y` 最大。\n\n- **暴力法局限**：如果使用双重循环枚举所有两两组合，时间复杂度为 `O(N^2)`。当 `N` 达到 `10^6` 级别时，运算次数高达 `10^{12}`，会严重超时。\n- **二进制与贪心策略**：\n  二进制数的大小由高位决定。例如，`2^3 = 8` 大于低位之和 `2^2 + 2^1 + 2^0 = 7`。因此，只要更高位能凑出 1，即使所有更低位全为 0，数值也一定比更高位为 0 的情况更大。\n  两数做按位与运算，只有当两数的对应二进制位**同时为 1** 时，结果的该位才为 1。因此，我们可以从二进制的最高位（第 30 位）向最低位（第 0 位）逐位贪心确定最终答案的每一位能否为 1。\n\n---\n\n### 2. 完整算法流程\n1. **初始化**：\n   - 设当前找到的最优答案为 `ans = 0`。\n   - 设初始候选数字集合 `candidates` 包含所有输入的 `N` 个食材美味度。\n2. **从高位到低位逐位试探**（令 `i` 从 30 递减到 0）：\n   - 假设当前第 `i` 位可以为 1，构造目标掩码 `target = ans | (1 << i)`。该掩码表示：既要保留前面已经确定能凑出的所有高位 1，又要尝试将当前的第 `i` 位也置为 1。\n   - 遍历当前的候选集合 `candidates`，筛选出能完全覆盖 `target` 中所有 1 的数字（即满足 `(val & target) == target` 的数），放入临时集合 `next_candidates`。\n   - **判断与决策**：\n     - 若 `next_candidates` 中的数字个数至少有 2 个（`>= 2`），说明存在至少两个食材，它们在已经确定的所有高位及当前第 `i` 位上都是 1。因此，当前位**可以为 1**：将 `ans` 更新为 `target`，并将候选集合 `candidates` 缩减为 `next_candidates`。\n     - 若不足 2 个，说明无法同时满足已有高位和当前位均为 1，当前位只能为 0：`ans` 保持不变，候选集合也不变，继续检查更低的一位。\n3. **输出结果**：循环结束后，`ans` 即为契合度最高的值。\n\n---\n\n### 3. 样例走查（以样例 2 为例）\n\n**输入**：\n```text\n5\n5 6 2 10 13\n```\n\n将各数值转化为 5 位二进制表示：\n- `5 = (00101)_2`\n- `6 = (00110)_2`\n- `2 = (00010)_2`\n- `10 = (01010)_2`\n- `13 = (01101)_2`\n\n初始状态：`ans = 0`，候选集 `candidates = {5, 6, 2, 10, 13}`。\n高于第 3 位的更高位全为 0，试探均无法满足，直接从第 3 位开始走查：\n\n- **第 3 位（权值 `2^3 = 8`）**：\n  - 构造 `target = ans | (1 << 3) = 8`（二进制 `01000`）。\n  - 检查候选集中第 3 位为 1 的数：10（`01010`）和 13（`01101`）。\n  - 满足条件的数字有 2 个（`{10, 13}`），数量 `>= 2`。\n  - **决策**：第 3 位成功置为 1！更新 `ans = 8`，候选集缩减为 `{10, 13}`。\n\n- **第 2 位（权值 `2^2 = 4`）**：\n  - 构造 `target = ans | (1 << 2) = 8 | 4 = 12`（二进制 `01100`）。\n  - 在当前候选集 `{10, 13}` 中检查：\n    - `10 \\& 12 = 8 \\ne 12`\n    - `13 \\& 12 = 12`\n  - 仅有 13 满足条件，数量为 1（小于 2）。\n  - **决策**：第 2 位无法置为 1。`ans` 保持 8，候选集仍为 `{10, 13}`。\n\n- **第 1 位（权值 `2^1 = 2`）**：\n  - 构造 `target = ans | (1 << 1) = 8 | 2 = 10`（二进制 `01010`）。\n  - 在当前候选集 `{10, 13}` 中检查：\n    - `10 \\& 10 = 10`\n    - `13 \\& 10 = 8 \\ne 10`\n  - 仅有 10 满足条件，数量为 1（小于 2）。\n  - **决策**：第 1 位无法置为 1。`ans` 保持 8，候选集仍为 `{10, 13}`。\n\n- **第 0 位（权值 `2^0 = 1`）**：\n  - 构造 `target = ans | (1 << 0) = 8 | 1 = 9`（二进制 `01001`）。\n  - 在当前候选集 `{10, 13}` 中检查：\n    - `10 \\& 9 = 8 \\ne 9`\n    - `13 \\& 9 = 9`\n  - 仅有 13 满足条件，数量为 1（小于 2）。\n  - **决策**：第 0 位无法置为 1。`ans` 保持 8。\n\n最终输出 `ans = 8`（即选出的两种最佳食材为 10 和 13，其契合度 `10 \\& 13 = 8`）。\n\n---\n\n### 4. 复杂度分析\n- **时间复杂度**：外层循环遍历二进制位数（常量约 31 次），内层遍历候选列表，每轮最多遍历 `N` 个元素。总时间复杂度为 `O(31 * N) \\approx O(N)`，可在 1 秒内通过 `N = 10^6` 的测试点。\n- **空间复杂度**：需要存储候选数组，空间复杂度为 `O(N)`。\n\n---\n\n### 易错提醒：\n- **运算符优先级陷阱**：在 C++ 中，按位与 `&` 的优先级低于关系运算符 `==`。判断必须写成 `(val & target) == target`，不能漏掉小括号；若写成 `val & target == target`，会被编译器解析为 `val & (target == target)`，引发逻辑错误。\n- **候选集必须逐步收窄**：当某一位确定能置为 1 后，后续查找**必须**在保留了这一位为 1 的数构成的子集中进行。如果每轮都从全量 `N` 个数中单独找当前位为 1 的数，可能找到的两个数并不能同时满足前面已确定的高位 1。",
       tags: ["编程题", "位运算", "贪心"],
       template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    int ans = 0;\n    vector<int> candidates = a;\n    for (int i = 30; i >= 0; i--) {\n        vector<int> next_candidates;\n        int target = ans | (1 << i);\n        for (int val : candidates) {\n            if ((val & target) == target) next_candidates.push_back(val);\n        }\n        if (next_candidates.size() >= 2) {\n            ans = target;\n            candidates = next_candidates;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
+      referenceCode: "#include<cstdio>\n#include<iostream>\n#include<algorithm>\n#include<cstdlib>\n#include<cstring>\nusing namespace std;\n\nconst int MAX_N = int(1e6) + 100;\n\nint a[MAX_N];\n\nint sort(int l,int r,int k) {\n    while(l <= r) {\n        while ((l <= r) && (a[l] >> k & 1)) l++;\n        while ((l <= r) && (!(a[r] >> k & 1))) r--;\n        if (l <= r) swap(a[l++], a[r--]);\n    }\n    return r;\n}\n\nint main() {\n    int n, j, ans=0;\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++) scanf(\"%d\", &a[i]);\n    for (int i = 31; i >= 0; i--)\n        if ((j = sort(1, n, i)) >= 2) {\n            ans = ans | 1 << i;\n            n = j;\n        }\n    printf(\"%d\\n\", ans);\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["question","explanation","referenceCode","reviewedBy","reviewedAt","sourcePage"],
     }
 ];
 
@@ -280,12 +157,7 @@ int fiboB(int N)
 }
 \`\`\`
 `,
-            options: [
-                "fiboA( )用递归方式，fiboB()循环方式",
-                "fiboA( )更加符合斐波那契数列的数学定义，直观易于理解",
-                "fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执行效率更高",
-                "fiboB( )虽然代码量有所增加，但其执行效率更高",
-            ],
+            options: ["fiboA( )用递归方式，fiboB()循环方式","fiboA( )更加符合斐波那契数列的数学定义，直观易于理解，而 fiboB() 需要将数学定义转换为计算机程序实现","fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执行效率更高","fiboB( )虽然代码量有所增加，但其执行效率更高"],
             answer: 2,
             score: 2,
             explanation: `**答案：不正确的是 C（fiboA 执行效率更低）**
@@ -309,11 +181,14 @@ int fiboB(int N)
 **知识延伸：**
 若想同时保留递归代码直观的结构并达到与循环相当的效率，可以使用**记忆化搜索**（用数组保存计算过的子问题答案），将递归的时间复杂度同样降至 \`O(N)\`。`,
             tags: ["客观题", "单选题", "GESP5级", "递归", "递推", "斐波那契"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","reviewedBy","reviewedAt"],
         },
         {
             id: 2,
             type: "single",
-            question: `下面 C++ 代码以递归方式实现合并排序。横线处应填上代码是 ( ) 。`,
+            question: "下面 C++ 代码以递归方式实现合并排序，并假设 merge(int T[], int R[], int s, int m, int t) 函数将有序（同样排序规则）的 T[s..m] 和 T[m+1..t] 归并到 R[s..t] 中。横线处应填上代码是 ( ) 。",
             options: [
                 "mergeSort(SList, T2, s, m,len), mergeSort(SList, T2, m,t,len)",
                 "mergeSort(SList, T2, s, $m-1$,len), mergeSort(SList, T2, m+1,t,len)",
@@ -340,6 +215,9 @@ int fiboB(int N)
 
 **易错提醒：**`,
             tags: ["客观题", "单选题", "GESP5级", "归并排序", "分治", "递归"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","reviewedBy","reviewedAt"],
         },
         {
             id: 3,
@@ -353,19 +231,11 @@ int fiboB(int N)
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-            **解析：**
-            考察全局变量 stepCount 的变化。第一次递归后增加，第二次从新值开始。
-
-            - **A 1->120<===>2->120**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **B 1->120<===>1->120**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **C 1->120<===>1->2->3->4->5->120**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **D 1->120<===>2->3->4->5->6->120**：正确答案。
-
-            **考点：** 递归
-            `,
+            explanation: "**答案：D**\n\nfracA(5) 先把 stepCount 从 0 增至 1 并输出 `1->`，循环算出 120，返回后由 main 输出 120，故前半段为 `1->120`；随后输出 `<===>`。fracB(5) 从 stepCount=1 继续递归，每层先自增并输出，依次为 `2->3->4->5->6->`，N=1 时返回 1 并逐层乘回 120，main 最后输出 120。完整输出为 `1->120<===>2->3->4->5->6->120`，选 D。A/B 缺少 3、4、5 层输出，C 误把 fracB 首次输出当作 1。",
             tags: ["客观题", "单选题", "GESP5级", "递归", "变量追踪"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 4,
@@ -481,18 +351,11 @@ void sortA(int lstA[], int n)
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-            **解析：**
-            代码通过递归统计调用次数或特定条件。经分析，A选项表述正确。
-
-            - **A 如果x小于 10 ，rc值也不会超过 20**：正确答案。
-            - **B foo可能无限递归**：不是本题答案。
-            - **C foo可以求出 x 和 y 的最大公共质因子**：不是本题答案。
-            - **D foo能够求出 x 和 y 的最小公倍数**：不是本题答案。
-            **考点：** 递归
-            `,
+            explanation: "**答案：A**\n\n**解析：** foo(x, y) 是欧几里得算法：y == 0 时返回 x，否则递归 foo(y, x % y)，返回 gcd(x, y)；rc 只在递归分支自增，统计递归调用次数。\n\n- **A 如果 x 小于 10，rc 值也不会超过 20**：正确。x<10 时，辗转相除很快使两个参数都小于 10，递归层数是常数级，远小于 20。\n- **B foo 可能无限递归**：错误。每次递归第二个参数严格变小（x % y < y），必然到达 y == 0。\n- **C foo 可以求出 x 和 y 的最大公共质因子**：错误。返回的是最大公约数，不是最大公共质因子。\n- **D foo 能够求出 x 和 y 的最小公倍数**：错误。返回的是 gcd，不是 lcm。\n\n**考点：** 递归、欧几里得算法",
             tags: ["客观题", "单选题", "GESP5级", "递归", "程序分析"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 7,
@@ -506,55 +369,27 @@ void sortA(int lstA[], int n)
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：不正确的是 C（对 pivot 做不恰当的 vector 强制转换）**
-
-
-**核心解析：**
-本题是反向选择题，问的是「有关说法错误的是」。\`qSort\` 把序列按基准 \`pivot\` 分成不大于它的 \`less\` 与大于它的 \`greater\`，递归排好后再拼回完整有序序列。正确的拼接语义是：
-
-\`排好的 less + 基准 pivot + 排好的 greater\`
-
-也就是先放小于等于基准的部分，中间插入基准，最后放大于基准的部分。
-
-**选项逐项分析：**
-- **A \`qSort(less)+qSort(greater)+(vector<int>)pivot\`**：❌ 把基准放到了最后。这样基准会落在两组之后，无法得到「左小右大」的有序结果。
-- **B \`(vector<int>)pivot+(qSort(less)+qSort(greater))\`**：❌ 把基准放到了最前面，同样破坏了快速排序的合并顺序。
-- **C \`(qSort(less)+(vector<int>)pivot+qSort(greater))\`**：❌ 本题要选的错误说法。虽然「左—中—右」的骨架看起来像对的，但对 \`pivot\` 写成 \`(vector<int>)pivot\` 这种强制转换并不符合题中代码的拼接写法（\`pivot\` 本身是 \`int\`，这样转换既不是「含一个基准值的向量」，也和可编译、可运行的正确拼法不一致），因此该说法错误。
-- **D \`qSort(less)+pivot+qSort(greater)\`**：✅ 顺序正确：小于等于部分 + 基准 + 大于部分，符合快速排序合并结果的要求。
-
-**易错提醒：**
-- 看到「错误的是」时，不要习惯性去找「看起来最正确」的选项；本题官方答案是 C。
-- 快速排序合并时，基准必须夹在两段中间，不能放到最前或最后。
-- 注意选项里对 \`pivot\` 的类型处理：直接把 \`int\` 强转成 \`vector\` 往往不是题目代码里的合法拼法。
-
-**知识延伸：**
-若要用向量字面量表达「单个基准」，常见写法是构造只含一个元素的容器（例如 \`vector<int>{pivot}\`），再与左右两段拼接；不要误用 C 风格强制转换。`,
+            explanation: "**答案：C（官方口径；四个选项作为代码均不能真正完成排序）**\n\n**核心解析：**\n`qSort` 取 `lst[0]` 为基准 `pivot`，把其余元素分入 `less`（≤ pivot）与 `greater`（> pivot），递归排好两段后拼回。按快速排序语义，正确拼装顺序是「排好的 less + 基准 pivot + 排好的 greater」，基准必须夹在中间。\n\n**选项逐项分析（结合实测）：**\n- **A `qSort(less)+qSort(greater)+(vector<int>)pivot`**：❌ 基准放到末尾，破坏「左小右大」的合并顺序。\n- **B `(vector<int>)pivot+(qSort(less)+qSort(greater))`**：❌ 基准放到最前，同样破坏合并顺序。\n- **C `(qSort(less)+(vector<int>)pivot+qSort(greater))`**：❌ 本题官方选定的错误说法。骨架虽是左—中—右，但 `(vector<int>)pivot` 是 C 风格强转，按 `vector<int>(pivot)` 的尺寸构造语义生成 pivot 个 0（实测 pivot=3 得 {0,0,0}，pivot=0 得空向量），并不会把基准值本身插入中间；叠加 `operator+` 从下标 1 开始复制（丢弃每个实参首元素）后，实测输入 3,1,2 输出 `0` 而非有序的 `1 2 3`。\n- **D `qSort(less)+pivot+qSort(greater)`**：顺序虽然正确，但实测（Apple clang 21，-std=c++98/11/17 结果一致）无法编译：`vector<int> + int` 不能匹配本题只接受两个 `vector<int>` 的 `operator+`，且 `vector` 的尺寸构造函数是 explicit，`int` 无法隐式转换为 `vector<int>`。官方在四个选项中取 C 为「错误说法」，站点按官方保留答案 C。\n\n**原卷缺陷（保留记录）：** ① `operator+` 两个循环都从下标 1 开始复制，丢弃每个实参的首元素；② 原卷第 19–24 行是两段完全相同的收集循环，元素被重复放入 less/greater（本次已按原卷补回第二段）；③ 实测原卷形态在「剩余元素与基准同值」时无限递归（对向量 [1,1] 递归深度超 60 仍不收敛，进程 SIGSEGV 崩溃）；④ 叠加后四个选项没有一个能真正完成排序。官方答案 C 是选项层面的判定，站点按官方保留、不擅改答案。\n\n**考点：** 快速排序的划分与递归拼接、类型转换与运算符重载。",
             tags: ["客观题", "单选题", "GESP5级", "快速排序", "分治", "递归"],
+      "code": "vector<int> operator +(vector<int> lA, vector<int> lB)\n{\n    vector<int> lst;\n    for (int i = 1; i < lA.size(); i++)\n        lst.push_back(lA[i]);\n    for (int i = 1; i < lB.size(); i++)\n        lst.push_back(lB[i]);\n    return lst;\n}\n\nvector<int> qSort(vector<int> lst)\n{\n    if (lst.size() < 2) return lst;\n    int pivot = lst[0];\n    vector<int> less, greater;\n    for (int i = 1; i < lst.size(); i++)\n        if (lst[i] <= pivot) less.push_back(lst[i]);\n        else greater.push_back(lst[i]);\n    for (int i = 1; i < lst.size(); i++)\n        if (lst[i] <= pivot) less.push_back(lst[i]);\n        else greater.push_back(lst[i]);\n\n    return __________________________________________;\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["code","explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 8,
             type: "single",
             question: `isPrimeA() 和 isPrimeB() 判定参数 N 是否素数，有关其时间复杂度的说法正确的是（ ）。`,
-            options: [
-                "isPrimeA()优于isPrimeB()",
-                "isPrimeB()绝大多数情况下优于isPrimeA()",
-                "isPrimeA()的最坏时间复杂度是 O(sqrt(N))",
-                "isPrimeA()优于 isPrimeB()",
-            ],
+            options: ["isPrimeA()的最坏时间复杂度是 $O(N/2)$，isPrimeB()的最坏时间复杂度是 $O(\\log N)$，isPrimeA()优于isPrimeB()","isPrimeA()的最坏时间复杂度是 $O(N/2)$，isPrimeB()的最坏时间复杂度是 $O(N^{1/2})$，isPrimeB()绝大多数情况下优于isPrimeA()","isPrimeA()的最坏时间复杂度是 $O(N^{1/2})$，isPrimeB()的最坏时间复杂度是 $O(N)$，isPrimeA()优于isPrimeB()","isPrimeA()的最坏时间复杂度是 $O(\\log N)$，isPrimeB()的最坏时间复杂度是 $O(N)$，isPrimeA()优于isPrimeB()"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-            **解析：**
-            isPrimeB 通常采用遍历到 sqrt(N) 的优化，比 isPrimeA 遍历到 N/2 更高效。
-
-            - **A isPrimeA()优于isPrimeB()**：不是本题答案。
-            - **B isPrimeB()绝大多数情况下优于isPrimeA()**：正确答案。
-            - **C isPrimeA()的最坏时间复杂度是 O(sqrt(N))**：不是本题答案。复杂度分析有误，
-            - **D isPrimeA()优于 isPrimeB()**：不是本题答案。
-            **考点：** 筛法
-            `,
+            explanation: "**答案：B**\n\nisPrimeA 的循环上界是 N/2，最坏要检查约 N/2 个因子，时间复杂度为 O(N)（写成 O(N/2) 也等价于 O(N)）；isPrimeB 的循环上界是 sqrt(N)，最坏检查约 sqrt(N) 个因子，时间复杂度为 O(sqrt(N))=O(N^(1/2))。因此 isPrimeB 在绝大多数情况下明显快于 isPrimeA。\n\n- **A**：把 isPrimeB 说成 O(log N) 且说 A 更优，错误。\n- **B**：两个复杂度和结论都正确。\n- **C**：把两个复杂度写反，错误。\n- **D**：把 isPrimeA 说成 O(log N) 且说 A 更优，错误。",
             tags: ["客观题", "单选题", "GESP5级", "质数判定", "复杂度分析"],
+      "code": "bool isPrimeA(int N)\n{\n    if (N < 2)\n        return false;\n    for (int i = 2; i <= N / 2; i++)\n        if (N % i == 0)\n            return false;\n    return true;\n}\nbool isPrimeB(int N)\n{\n    if (N < 2)\n        return false;\n    for (int i = 2; i <= sqrt(N); i++)\n        if (N % i == 0)\n            return false;\n    return true;\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["code","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 9,
@@ -568,19 +403,11 @@ void sortA(int lstA[], int n)
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-            **解析：**
-            二分查找不属于动态规划算法。
-
-            - **A 代码采用二分法实现有序list的查找**：不是本题答案。二分查找的边界或 mid 更新有误，请验证循环条件和指针移动。
-            - **B 代码采用分治算法实现有序list的查找**：不是本题答案。
-            - **C 代码采用递归方式实现有序list的查找**：不是本题答案。
-            - **D 代码采用动态规划算法实现有序list的查找**：正确答案。
-
-            **考点：** 二分查找
-            `,
+            explanation: "**答案：D**\n\n**解析：** 该函数用二分（折半）查找、分治思想和递归实现有序 list 的查找，不是动态规划，因此“采用动态规划算法”说法错误，选 D。\n\n- **A、B、C**：代码确实采用二分法、分治算法和递归方式，三种说法都成立。\n- **D**：二分查找不属于动态规划。\n\n需要说明：原卷 bSearch 把上界写成 `lst.size()`，正确应为 `lst.size() - 1`；当目标大于全部元素时可能访问 `lst[size]`，这是原卷代码的边界缺陷，不影响本题选 D。\n\n**考点：** 二分查找、分治与递归",
             tags: ["客观题", "单选题", "GESP5级", "二分查找", "分治"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 10,
@@ -594,19 +421,12 @@ void sortA(int lstA[], int n)
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-            **解析：**
-            二分查找的时间复杂度是 $O(log n)$。
-
-            - **A $O(N)$**：错误。
-            - **B $O(log n)$**：正确答案。
-            - **C $O(n log n)$**：错误。
-            - **D $O(N^2)$**：错误。该代码逻辑与题目要求不符，请逐步推演。
-
-            **考点：** 二分查找
-            `,
+            explanation: "**答案：B**\n\n**解析：** `_binarySearch` 每次用 Mid 比较后把查找区间缩小一半，最多递归 O(log N) 层，按比较次数计时间复杂度为 O(log N)。\n\n- **A O(N)、C O(N log N)、D O(N^2)**：均不符合折半查找的比较次数。\n- 注意：形参 `vector<int> lst` 是按值传递，每层递归会复制整个向量；若把复制开销计入，严格总开销会达到 O(N log N)。本题按常规二分查找/官方答案取 B，复制开销作为实现瑕疵说明。\n\n**考点：** 二分查找",
             tags: ["客观题", "单选题", "GESP5级", "二分查找", "复杂度分析"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 11,
@@ -713,19 +533,12 @@ vector<int> operator + (vector<int> a, vector<int> b)
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-            **解析：**
-            素数判定没有单调性，不能使用二分答案。
-
-            - **A 埃氏筛法**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
-            - **B 线性筛法**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
-            - **C 二分答案**：正确答案。
-            - **D 枚举法**：错误。
-
-            **考点：** 二分查找
-            `,
+            explanation: "**答案：C**\n\n**解析：** 题目要求判断「任意输入的单个整数 N」是否为素数，逐项考察各方法能否完成这一判定：\n\n- **A 埃氏筛法**：可行。对 [2, N] 建埃氏筛表后查看 N 是否被标记即可判定；对单个 N 需先筛出整个范围、效率不高，但方法成立。\n- **B 线性筛法**：可行。欧拉筛每个合数只被最小质因子筛一次，同样可对 [2, N] 建表后判定 N，方法成立。\n- **C 二分答案**：不可行，为本题「不合适」的方法。二分答案要求判定条件随候选值单调（如「边长 x 能否切出 K 块」随 x 单调变化）；「N 是否为素数」随 N 增大忽真忽假（2、3、5、7 为素数，4、6、8、9 不是），不存在可二分的单调区间，无法使用。\n- **D 枚举法**：可行。用 2..√N 逐个试除即可直接判定单个 N。\n\n**考点：** 素数判定的常见方法（筛法、试除）与二分答案的单调性前提。",
             tags: ["客观题", "单选题", "GESP5级", "质数判定", "筛法", "二分答案"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 15,
@@ -810,29 +623,28 @@ vector<int> operator + (vector<int> a, vector<int> b)
             **考点：** 二分查找
             `,
             tags: ["客观题", "判断题", "GESP5级", "二分答案", "二分查找"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 18,
             type: "judge",
-            question: `C++ 代码能以递归方式实现斐波那契数列。 ( )`,
+            question: "以下 C++ 代码能以递归方式实现斐波那契数列，该数列第 1、2 项为 1，以后各项均是前两项之和。（ ）",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
-
-            **判定依据：**
-            原题图中的代码可能缺少基准情况或逻辑有误。
-
-            **纠错：** 原命题说法有误。原题图中的代码可能缺少基准情况或逻辑有误。
-
-            **易混概念：** 递归三要素：终止条件、递归调用、状态传递。注意递归深度限制，深层递归可能导致栈溢出；尾递归可被优化。
-
-            **考点：** 递归
-            `,
+            explanation: "**答案：错误**\n\n**判定依据：** 图示代码中 `Fibo` 在 N=1 或 N=2 时返回 1，基例本身存在；但递归分支调用的是 `fiboA(N - 1)` 和 `fiboB(N - 2)`——这两个函数在题给代码中并未定义，全代码也没有一处调用 `Fibo` 自身。实测编译报 `fiboA`、`fiboB` 两处 undeclared identifier 错误，整体无法通过编译，不能构成「以递归方式实现斐波那契数列」的程序，命题为假。\n\n**纠错：** 若把两处调用改为 `Fibo(N - 1)` 与 `Fibo(N - 2)`，才构成标准递归实现（第 1、2 项为 1，以后各项均是前两项之和）。\n\n**易混概念：** 递归三要素：终止条件、递归调用、状态传递；递归调用必须指向函数自身，调用未定义函数会直接编译失败；深层递归可能栈溢出。\n\n**考点：** 递归",
             tags: ["客观题", "判断题", "GESP5级", "递归", "斐波那契"],
+      "code": "int Fibo(int N)\n{\n    if (N == 1 || N == 2)\n        return 1;\n    else\n    {\n        int m = fiboA(N - 1);\n        int n = fiboB(N - 2);\n        return m + n;\n    }\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["question","code","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 19,
@@ -907,18 +719,11 @@ vector<int> operator + (vector<int> a, vector<int> b)
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
-
-            **判定依据：**
-            进制转换需正确处理取模和除法顺序，图中代码有误。
-
-            **纠错：** 原命题说法有误。进制转换需正确处理取模和除法顺序，图中代码有误。
-
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
-
-            **考点：** C++基础
-            `,
+            explanation: "**答案：错误**\n\n**判定依据：** 逐轮模拟：每轮先执行 `s[0] = N % 8 + '0'` 得到当前最低位的数字字符，再用 `rst += string(s)` 把它追加到 rst 末尾，最后 `N /= 8`。取模与除法的先后顺序本身没有问题（全局数组 s 未用到的位置零初始化，`string(s)` 恰为单个字符）；真正的缺陷是各位按从低位到高位的顺序被依次追加到末尾、程序没有反转，输出的是倒序八进制串。\n\n**逐例实测（g++ 编译运行）：** N=8 输出 01（应为 10）；N=10 输出 21（应为 12）；N=64 输出 001（应为 100）；N=100 输出 441（应为 144）；N=9 输出 11 与正确答案相同属回文巧合；N=1 输出 1 正确。任一多位非回文输入即可暴露倒序缺陷。\n\n**修正思路：** 每轮把新数字插到结果串前面，或先按低位在前保存、最后整体逆序输出。另注：题干限定正整数，但 N=0 时该代码不进循环、输出空行，属边界外的附带观察。\n\n**考点：** 进制转换",
             tags: ["客观题", "判断题", "GESP5级", "进制转换"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 23,

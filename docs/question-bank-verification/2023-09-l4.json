@@ -114,44 +114,48 @@
       "id": 3,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1,
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 1 页题干为“对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。”；网站 question 末尾多出“ A”，不属于题干。",
-          "review": "PDF 第 1 页题干为『对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。』，选项跨第 2 页；网站题干末尾多出的“ A”为解析残留，删除后核验通过。"
+          "initial": "第1页第3题题干为『对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。』，变量 n 为斜体且两侧留空格；候选 question 逐字一致。第4轮批准的题干修复（清除跨页裁切残字『 A』并补『包含 n』空格）已真实落入本轮 paper.json，核验通过。",
+          "review": "第 1 页页末第 3 题题干为『对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。』，变量 n 为斜体、两侧留空格，无跨页裁切残字。候选 question 与页图逐字一致；本复核另以脚本将第 4 轮 changes.question 与 paper.json 该字段做逐字节比较，确认第 4 轮批准的题干修复已真实落入本轮候选。"
         },
         "options": {
-          "initial": "PDF 第 2 页选项为 A. O(n)、B. O(n log n)、C. O(n²)、D. 以上都不正确，顺序与网站 options 一致。",
-          "review": "PDF 第 1–2 页选项为 A. O(n)、B. O(n log n)、C. O(n²)、D. 以上都不正确，与网站 options 顺序一致。"
+          "initial": "第1页页末选项 A 被页边界部分裁切，可辨为『O(n)』；第2页自上而下为 B. O(n log n)、C. O(n²)、D. 以上都不正确。候选 options 内容、顺序与之一致，0 起始索引映射不受跨页排版影响。",
+          "review": "第 1 页页末选项 A『O(n)』被页边界部分裁切但仍可辨认；第 2 页页首自上而下为 B. O(n log n)、C. O(n²)、D. 以上都不正确。候选 options 的内容与顺序与两页页图完全一致，answer 的 0 起始索引映射不受跨页排版影响。"
         },
         "answer": {
-          "initial": "PDF 答案表第 3 题答案为 C；C 的 0 起始索引为 2，与网站 answer=2 一致。",
-          "review": "PDF 答案表第 3 题为 C（索引 2），与网站 answer=2 一致；独立推导冒泡排序平均比较次数 n(n-1)/2，平均复杂度 O(n²)，结论 C。"
+          "initial": "第1页答案表『B A C D D B A B B C C A A D C』第3格为 C，即 0 起始索引 2，候选 answer=2 一致。独立推导：按固定轮数执行的冒泡排序总比较次数为 (n-1)+(n-2)+…+1=n(n-1)/2=Θ(n²)，与输入无关；交换次数等于逆序对数，均匀随机排列每对逆序概率 1/2、共 n(n-1)/2 对，期望交换 n(n-1)/4，仍为 Θ(n²)，故平均时间复杂度为 O(n²)，对应 C。",
+          "review": "第 1 页答案表『B A C D D B A B B C C A A D C』第 3 格为 C，即 0 起始索引 2，候选 answer=2 一致。独立推导：按固定轮数执行的冒泡排序总比较次数为 (n-1)+(n-2)+…+1=n(n-1)/2=Θ(n²)，与输入分布无关；交换次数等于逆序对数，均匀随机排列每对元素逆序概率 1/2、共 n(n-1)/2 对，期望交换 n(n-1)/4，仍为 Θ(n²)。故平均时间复杂度为 O(n²)，对应 C。"
         },
         "explanation": {
-          "initial": "解析按冒泡排序双层循环推导总比较次数为 n(n-1)/2，平均和最坏均为 O(n²)，最好为 O(n)，结论 C，与官方答案一致。",
-          "review": "解析按双层循环推导总比较次数 n(n-1)/2，给出最好 O(n)、最坏与平均 O(n²)，结论 C，与官方答案一致，推导过程独立可复现。"
+          "initial": "第5轮批准的解析修订已逐字落入本轮 paper.json。逐条核算：未优化版总比较次数 n(n-1)/2 与输入无关；交换次数等于逆序对数，最坏（逆序）n(n-1)/2、最好（已有序）0；均匀随机排列期望交换 n(n-1)/4；带『本轮无交换则提前结束』优化时最好 O(n)、平均与最坏仍 O(n²)；A/B/D 选项分析与复杂度归类（O(n²)：冒泡/选择/插入，O(n log n)：快排/归并/堆排，O(n)：计数/桶/基数排序）均无事实错误，未虚构运行结果。原解析中『平均交换次数 n(n-1)/2』与『最好情况 O(n) 未注明提前退出优化』两处问题已消失。",
+          "review": "以脚本将第 5 轮 changes.explanation 与 paper.json 该字段做逐字节比较，确认解析修订已真实落入。逐条独立核算：未优化版总比较次数 n(n-1)/2 与输入无关；交换次数等于逆序对数，最坏（逆序）n(n-1)/2、最好（已有序）0；均匀随机排列期望交换 n(n-1)/4（每对逆序概率 1/2）；带『本轮无交换则提前结束』优化时最好情况 O(n) 而平均与最坏仍 O(n²)；A/B/D 选项分析与复杂度归类（O(n²)：冒泡/选择/插入，O(n log n)：快排/归并/堆排，O(n)：计数/桶/基数排序）均无事实错误，未虚构运行结果。候选旧解析中『平均交换 n(n-1)/2』与『最好 O(n) 未注明优化』两处不准确表述已消失。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-6/2023-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-6/2023-09-l4.glm.json"
       ]
     },
     {
@@ -1060,19 +1064,8 @@
       "unresolved": []
     }
   ],
-  "unresolved": [
-    {
-      "id": 3,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2023-09-l4.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-09-l4.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-6/2023-09-l4.integration.json"
 }

@@ -1,0 +1,121 @@
+{
+  "executedAt": "2026-11-25T07:44:22.391Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "2\n3 3 1\n000\n111\n01?\n3 3 1\n000\n?0?\n01?",
+          "output": "4\n2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n2\n",
+          "passed": true
+        },
+        {
+          "name": "单格矩阵",
+          "input": "1\n1 1 1\n1\n",
+          "output": "1",
+          "reason": "起点即终点且为 1，得分 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "全问号不许改",
+          "input": "1\n2 2 0\n??\n??\n",
+          "output": "0",
+          "reason": "x=0 时 ? 不能转 1，路径上无 1，得 0 分。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "一行三格改一处",
+          "input": "1\n1 3 1\n?11\n",
+          "output": "3",
+          "reason": "单行 ?11 且 x=1，把 ? 改成 1 后路径全 1，得 3 分。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "改上还是改下",
+          "input": "1\n2 2 1\n0?\n?0\n",
+          "output": "1",
+          "reason": "2×2、x=1：任一条路径最多经过一个 ?，改后得 1 分。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两处全改",
+          "input": "1\n1 4 2\n0?0?\n",
+          "output": "2",
+          "reason": "1×4、x=2：两个 ? 全改得 2 分。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "3fda9d37b73c547e3fc043ee0c3619b70b42ee1124e8bb51affac9440fed95b6"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "2\n5\n0 1 0 1 0\n1 2\n1 3\n3 4\n3 5\n5\n1 1 1 1 1\n1 2\n1 3\n3 4\n3 5",
+          "output": "Yes\nNo",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "Yes\nNo\n",
+          "passed": true
+        },
+        {
+          "name": "单节点有宝物",
+          "input": "1\n1\n1\n",
+          "output": "Yes",
+          "reason": "起点即宝物节点，无需走边。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "三节点链全宝物",
+          "input": "1\n3\n1 1 1\n1 2\n2 3\n",
+          "output": "Yes",
+          "reason": "链上各点度 ≤2，可沿路径一次取完。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "星形仅中心有宝物",
+          "input": "1\n4\n1 0 0 0\n1 2\n1 3\n1 4\n",
+          "output": "Yes",
+          "reason": "无宝物叶子被剪枝后仅剩中心，单节点即路径。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "星形三叶全宝物",
+          "input": "1\n4\n0 1 1 1\n1 2\n1 3\n1 4\n",
+          "output": "No",
+          "reason": "宝物子树存在度 3 分叉，一条不重复边的路径无法覆盖三个分支。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d5843b11511daccf8700752df85c684a5760a783b43b60670c11156795e28c93"
+    }
+  ]
+}

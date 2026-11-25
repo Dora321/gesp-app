@@ -16,34 +16,20 @@ const programmingQuestions = [
 01?`, output: `4
 2` }
       ],
-      question: `
-# [GESP202409 七级] 矩阵移动
-
-## 题目描述
-
-小杨有一个 $n \\times m$ 的矩阵，仅包含 \`01?\` 三种字符。矩阵的行从上到下编号依次为 $1,2,\\dots, n$，列从左到右编号依次为 $1, 2, \\dots, m$。小杨开始在矩阵的左上角 $(1,1)$，小杨只能向下或者向右移动，最终到达右下角 $(n, m)$ 时停止，在移动的过程中每经过一个字符 \`1\` 得分会增加一分（包括起点和终点），经过其它字符则分数不变。小杨的初始分数为 $0$ 分。
-
-小杨可以将矩阵中不超过 $x$ 个字符 \`?\` 变为字符 \`1\`。小杨在修改矩阵后，会以最优的策略从左上角移动到右下角。他想知道自己最多能获得多少分。
-
-## 输入格式
-
-第一行包含一个正整数 $t$，代表测试用例组数，接下来是 $t$ 组测试用例。对于每组测试用例，一共 $n + 1$ 行。
-
-第一行包含三个正整数 $n, m, x$，含义如题面所示。 
-之后 $n$ 行，每行一个长度为 $m$ 的仅含 \`01?\` 的字符串。
-
-## 输出格式
-
-对于每组测试用例，输出一行一个整数，代表最优策略下小杨的得分最多是多少。
-`,
-      explanation: "把所有有宝物的节点连成的最小连通子树取出来。由于每条边最多走一次，整条行走轨迹必须是一条不重复边的路径；因此只有当这棵“宝物子树”本身是一条简单路径时，才可能一次性经过所有宝物节点。实现时可先 DFS 统计每条边两侧是否都含宝物，只把确实属于宝物子树的边计入度数；若子树中存在度数大于 2 的节点，则答案为 No，否则为 Yes。",
+      question: "\n# [GESP202409 七级] 矩阵移动\n\n## 题目描述\n\n小杨有一个 $n \\times m$ 的矩阵，仅包含 `01?` 三种字符。矩阵的行从上到下编号依次为 $1,2,\\dots, n$，列从左到右编号依次为 $1, 2, \\dots, m$。小杨开始在矩阵的左上角 $(1,1)$，小杨只能向下或者向右移动，最终到达右下角 $(n, m)$ 时停止，在移动的过程中每经过一个字符 `1` 得分会增加一分（包括起点和终点），经过其它字符则分数不变。小杨的初始分数为 $0$ 分。\n\n小杨可以将矩阵中不超过 $x$ 个字符 `?` 变为字符 `1`。小杨在修改矩阵后，会以最优的策略从左上角移动到右下角。他想知道自己最多能获得多少分。\n\n## 输入格式\n\n第一行包含一个正整数 $t$，代表测试用例组数，接下来是 $t$ 组测试用例。对于每组测试用例，一共 $n + 1$ 行。\n\n第一行包含三个正整数 $n, m, x$，含义如题面所示。 \n之后 $n$ 行，每行一个长度为 $m$ 的仅含 `01?` 的字符串。\n\n## 输出格式\n\n对于每组测试用例，输出一行一个整数，代表最优策略下小杨的得分最多是多少。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $t \\le 5$、$n,m \\le 10$、$x=1$；对于另外 30% 的测试点，保证 $t \\le 10$、$n,m \\le 500$、$x \\le 30$；对于 100% 的测试点，保证 $1 \\le t \\le 10$、$1 \\le n,m \\le 500$、$1 \\le x \\le 300$，且所有测试用例的 $n \\times m$ 之和不超过 $2.5 \\times 10^5$。\n",
+      explanation: "**解析**：设 `dp[j][k]` 为到达当前行第 j 列、已用 k 次修改时的最大得分。每个格子只能从上方或左方转移；遇到 `1` 得分加 1，遇到 `0` 不加分，遇到 `?` 可以选择不修改，也可以在 $k<x$ 时改成 `1` 并加 1。最后在终点 $(n,m)$ 的所有 $k\\le x$ 状态中取最大值。时间复杂度 $O(nmx)$，滚动掉行后空间 $O(mx)$。",
       tags: ["编程题", "树", "DFS", "构造判定"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        int n, m, x;\n        cin >> n >> m >> x;\n        vector<string> g(n + 1);\n        for (int i = 1; i <= n; ++i) {\n            cin >> g[i];\n            g[i] = \" \" + g[i];\n        }\n        const int NEG = -1000000000;\n        // dp[j][k]：到达当前行第 j 列、已用 k 次转换的最大得分（滚动数组）\n        vector<vector<int>> dp(m + 1, vector<int>(x + 1, NEG));\n        dp[0][0] = 0;\n        for (int i = 1; i <= n; ++i) {\n            vector<vector<int>> next(m + 1, vector<int>(x + 1, NEG));\n            for (int j = 1; j <= m; ++j) {\n                for (int k = 0; k <= x; ++k) {\n                    int from = max(i > 1 ? dp[j][k] : NEG, next[j - 1][k]);\n                    if (i == 1 && j == 1 && k == 0) from = 0;\n                    if (from == NEG) continue;\n                    char ch = g[i][j];\n                    if (ch == '1') {\n                        next[j][k] = max(next[j][k], from + 1);\n                    } else {\n                        next[j][k] = max(next[j][k], from);\n                        if (ch == '?' && k < x) next[j][k + 1] = max(next[j][k + 1], from + 1);\n                    }\n                }\n            }\n            dp = move(next);\n        }\n        int best = 0;\n        for (int k = 0; k <= x; ++k) best = max(best, dp[m][k]);\n        cout << best << '\\n';\n    }\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage","memoryLimit","paperOrder"],
+      "paperOrder": 27,
     },
     {
       id: 27,
@@ -64,38 +50,20 @@ const programmingQuestions = [
 3 5`, output: `Yes
 No` }
       ],
-      question: `
-# [GESP202409 七级] 小杨寻宝
-
-## 题目描述
-
-小杨有一棵包含 $n$ 个节点的树，树上的一些节点放置有宝物。
-
-小杨可以任意选择一个节点作为起点并在树上移动，但是小杨只能经过每条边至多一次，当小杨经过一条边后，这条边就会消失。小杨每经过一个放置有宝物的节点就会取得该宝物。
-
-小杨想请你帮他判断自己能否成功取得所有宝物。
-
-## 输入格式
-
-**本题单个测试点内有多组测试数据**。输入第一行包含一个正整数 $t$，代表测试用例组数。 
-接下来是 $t$ 组测试用例。对于每组测试用例，一共 $n+1$ 行。
-
-第一行包含一个正整数 $n$，代表树的节点数。 
-第二行包含 $n$ 个非负整数 $a_1, a_2, \\dots a_n$，其中如果 $a_i = 1$，则节点 $i$ 放置有宝物；若 $a_i = 0$，则节点 $i$ 没有宝物。 
-之后 $n - 1$ 行，每行包含两个正整数 $x_i, y_i$，代表存在一条连接节点 $x_i$ 和 $y_i$ 的边。
-
-## 输出格式
-
-对于每组测试数据，如果小杨能成功取得所有宝物，输出 Yes，否则输出 No。
-`,
-      explanation: "设 $dp[i]$[j][c] 表示走到格子 (i,j) 且恰好把 c 个问号改成 1 时，能够得到的最大分数。由于转移只来自上方和左方，可以把第一维滚动掉，只保留当前行状态。遇到 1 时分数直接加 1；遇到 0 时只做普通转移；遇到 ? 时既可以不修改，也可以在还可修改时把它改成 1 再额外加 1。最终在终点位置的所有 c≤k 的状态中取最大值即可。",
+      question: "\n# [GESP202409 七级] 小杨寻宝\n\n## 题目描述\n\n小杨有一棵包含 $n$ 个节点的树，树上的一些节点放置有宝物。\n\n小杨可以任意选择一个节点作为起点并在树上移动，但是小杨只能经过每条边至多一次，当小杨经过一条边后，这条边就会消失。小杨每经过一个放置有宝物的节点就会取得该宝物。\n\n小杨想请你帮他判断自己能否成功取得所有宝物。\n\n## 输入格式\n\n**本题单个测试点内有多组测试数据**。输入第一行包含一个正整数 $t$，代表测试用例组数。 \n接下来是 $t$ 组测试用例。对于每组测试用例，一共 $n+1$ 行。\n\n第一行包含一个正整数 $n$，代表树的节点数。 \n第二行包含 $n$ 个非负整数 $a_1, a_2, \\dots a_n$，其中如果 $a_i = 1$，则节点 $i$ 放置有宝物；若 $a_i = 0$，则节点 $i$ 没有宝物。 \n之后 $n - 1$ 行，每行包含两个正整数 $x_i, y_i$，代表存在一条连接节点 $x_i$ 和 $y_i$ 的边。\n\n## 输出格式\n\n对于每组测试数据，如果小杨能成功取得所有宝物，输出 Yes，否则输出 No。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $t \\le 10$、$n \\le 5$；对于另外 20% 的测试点，保证 $t \\le 10$、$n \\le 1000$；对于 100% 的测试点，保证 $1 \\le t \\le 10$、$1 \\le n \\le 10^5$、$0 \\le a_i \\le 1$，且树上至少有一个节点放置有宝物。\n",
+      explanation: "**解析**：每条边至多走一次，所以走过的边集必须是一条简单路径；要取得全部宝物，所有宝物节点必须落在同一条简单路径上。\n\n做法：反复删除“没有宝物”的叶子，剩下的就是包含所有宝物的最小子树。若该子树中所有节点度数都不超过 2，它本身是一条路径，输出 `Yes`；否则存在度数 ≥3 的分叉，无法一次不重复边地走完，输出 `No`。时间复杂度 $O(n)$。",
       tags: ["编程题", "动态规划", "网格DP"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        int n;\n        cin >> n;\n        vector<int> treasure(n + 1);\n        for (int i = 1; i <= n; ++i) cin >> treasure[i];\n        vector<vector<int>> g(n + 1);\n        vector<int> deg(n + 1, 0);\n        for (int i = 0; i < n - 1; ++i) {\n            int x, y;\n            cin >> x >> y;\n            g[x].push_back(y);\n            g[y].push_back(x);\n            deg[x]++; deg[y]++;\n        }\n        // 树上不重复走边的路线就是一条简单路径，\n        // 所以要求：所有宝物节点都落在同一条简单路径上。\n        // 做法：反复剪掉没有宝物的叶子，剩余子树上所有点度数 <= 2 即可。\n        vector<int> curDeg = deg;\n        vector<bool> removed(n + 1, false);\n        queue<int> q;\n        for (int i = 1; i <= n; ++i) {\n            if (curDeg[i] <= 1 && !treasure[i]) q.push(i);\n        }\n        int remaining = n;\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            if (removed[u]) continue;\n            removed[u] = true;\n            remaining--;\n            for (int v : g[u]) {\n                if (removed[v]) continue;\n                curDeg[v]--;\n                if (curDeg[v] <= 1 && !treasure[v]) q.push(v);\n            }\n        }\n        bool ok = true;\n        for (int i = 1; i <= n; ++i) {\n            if (!removed[i] && curDeg[i] > 2) ok = false;\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\\n';\n    }\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage","memoryLimit","paperOrder"],
+      "paperOrder": 26,
     }
 ];
 
@@ -139,28 +107,14 @@ export const paperData = {
             id: 2,
             type: "single",
             question: `已知a为int类型变量，下列表达式不符合语法的是（ ）。`,
-            options: [
-                "&a+3",
-                "+a & 3",
-                "a-- 4",
-                "a++3",
-            ],
+            options: ["&a+3","+a & 3","a - - 4","a++3"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D（a++3）**
-
-**解析：**
-逐项看语法是否合法：
-
-- **A（&a+3）** ✅：先取 a 的地址（int*），再做指针算术 \`+3\`，合法。
-- **B（+a & 3）** ✅：一元正号 \`+a\` 得 int，再与 3 做按位与 \`&\`，合法。
-- **C（a-- 4）**：\`a--\` 是后缀自减，后面紧跟 \`4\`，二者之间没有运算符，本身也是非法的。
-- **D（a++3）** ❌：\`a++\` 是后缀自增表达式，其结果是一个右值（a 旧值的临时副本），后面直接跟 \`3\`，中间没有任何二元运算符，无法通过编译——这是官方判定不符合语法的选项。
-
-**注**：严格来讲，\`a-- 4\` 与 \`a++3\` 都缺少运算符、均为非法表达式；本题按官方标准答案取 D。
-
-**考点**：C++ 表达式与运算符、\`++\`/\`--\` 后缀形式产生右值、指针算术与按位运算。`,
-            tags: ['运算符', '表达式']
+            explanation: "**答案：D（a++3）**\n\n逐项判断语法：\n\n- A `&a+3`：先取 a 的地址得到 `int*`，再做指针算术 `+3`，合法。\n- B `+a & 3`：一元正号作用于 a 得到 int，再与 3 按位与，合法。\n- C `a - - 4`：两个减号之间有空格，是 `a - (-4)`，合法。\n- D `a++3`：后缀 `++` 的结果是右值，后面直接跟 3，中间没有二元运算符，无法通过编译。\n\n因此不符合语法的只有 D。\n\n**易错提醒**：不要把 `a - - 4` 看成 `a-- 4`；空格和词法分割会改变语义。",
+            tags: ['运算符', '表达式'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt"]
         },
         {
             id: 3,
@@ -200,7 +154,7 @@ struct Node {
         {
             id: 4,
             type: "single",
-            question: `下列关于 C++ 类的说法，错误的是 ( ) 。 #include <iostream> using namespace std; int main() { char a = 'b'; a++; cout << a; return 0; } 1 2 3 4 5 6 7 8`,
+            question: "下列关于 C++ 类的说法，错误的是 ( ) 。",
             options: [
                 "将 C++ 类对象通过值传递给函数参数时，会自动调用复制构造函数。",
                 "将一个类的对象赋值给该类的另一个对象时，不会自动调用构造函数。",
@@ -228,7 +182,11 @@ C++ 中定义类对象时具体调用哪个构造函数，取决于对象的定�
 
 **知识延伸：**
 在 C++11 及以上标准中，若在定义了带参构造函数后仍希望编译器生成无参默认构造函数，可以在类声明中显式书写 \`A() = default;\`。`,
-            tags: ['类', '面向对象']
+            tags: ['类', '面向对象'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 5,
@@ -560,86 +518,35 @@ int main() {
             id: 13,
             type: "single",
             question: `上题中程序的时间复杂度为（ ）。`,
-            options: [
-                "O(n)",
-                "O(n log n)",
-                "O(2ⁿ)",
-                "O(n²)",
-],
+            options: ["$O(1)$","$O(N)$","$O(N\\log N)$","$O(N^2)$"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D（O(n²)）**
-
-**核心解析：**
-题目考查程序的时间复杂度分析。上一题（第 12 题）的代码规模由宏定义常量 \`N\` 决定（复杂度分析中规模记为 \`n\`），主体分为两部分：
-1. **单重初始化循环**：
-   - \`for (int i = 1; i < N; i++) path[i][0] = i;\` 与 \`for (int j = 1; j < N; j++) path[0][j] = j;\` 各执行 \`N - 1\` 次赋值。
-   两循环并列执行，单次赋值为 \`O(1)\`，初始化耗时为 \`O(n)\`。
-2. **核心双重嵌套循环**：
-\`\`\`cpp
-for (int i = 1; i < N; i++)
-    for (int j = 1; j < N; j++)
-        path[i][j] = path[i - 1][j] + path[i][j - 1];
-\`\`\`
-   - 外层与内层循环均从 1 遍历至 \`N - 1\`，各执行 \`N - 1\` 次；
-   - 循环体仅包含一次加法和一次赋值，单次耗时为 \`O(1)\`；
-   - 双重循环总执行次数为 \`(N - 1) * (N - 1) = N² - 2N + 1\` 次。
-
-程序总操作次数为 \`2(N - 1) + (N - 1)² = N² - 1\` 次。在大 O 渐进复杂度分析中，忽略低阶项与常数系数，最高阶为二次项，因此时间复杂度为 **O(n²)**。
-
-**选项逐项分析：**
-- **A O(n)**：❌ 错误。\`O(n)\` 为线性阶复杂度。程序虽有单重循环，但核心双重嵌套循环的操作次数与规模 \`n\` 的平方成正比。
-- **B O(n log n)**：❌ 错误。\`O(n log n)\` 常见于快速排序、归并排序等分治算法。本题两重循环均为步长为 1 的均匀遍历，不存在二分、折半等对数操作。
-- **C O(2ⁿ)**：❌ 错误。\`O(2ⁿ)\` 为指数阶复杂度。网格路径问题若采用未记忆化的朴素递归会导致指数级重叠计算；本题采用自底向上递推填表（动态规划），避免了重复计算。
-- **D O(n²)**：✅ 正确。程序利用双重循环填满大小为 \`N × N\` 的二维网格，内外层循环次数均为 \`n - 1\`，内层操作为常数级加法，时间复杂度为 \`O(n²)\`。
-
-**易错提醒：**
-- **主导项原则**：当代码包含多个并列部分时，时间复杂度由阶数最高的部分主导。单层循环的 \`O(n)\` 与双重循环的 \`O(n²)\` 相加，整体仍由二次项主导，为 \`O(n²)\`。
-- **递推与递归的差异**：相同转移方程若用未记忆化的朴素递归求解，复杂度高达 \`O(2ⁿ)\`；用二维数组递推求解时，每个状态仅计算一次，复杂度降为表格规模对应的 \`O(n²)\`。
-
-**知识延伸：**
-- 动态规划（DP）的时间复杂度通常遵循通用规律：\`时间复杂度 = 状态总数 × 单个状态转移代价\`。本题状态总数约为 \`n²\`，每个状态转移只需相加两个相邻元素（代价为 \`O(1)\`），故总时间复杂度为 \`O(n²)\`。`,
-            tags: ['复杂度分析']
+            explanation: "**答案：D（O(n²)）**\n\n**核心解析：**\n题目考查程序的时间复杂度分析。上一题（第 12 题）的代码规模由宏定义常量 `N` 决定（复杂度分析中规模记为 `n`），主体分为两部分：\n1. **单重初始化循环**：\n   - `for (int i = 1; i < N; i++) path[i][0] = i;` 与 `for (int j = 1; j < N; j++) path[0][j] = j;` 各执行 `N - 1` 次赋值。\n   两循环并列执行，单次赋值为 `O(1)`，初始化耗时为 `O(n)`。\n2. **核心双重嵌套循环**：\n```cpp\nfor (int i = 1; i < N; i++)\n    for (int j = 1; j < N; j++)\n        path[i][j] = path[i - 1][j] + path[i][j - 1];\n```\n   - 外层与内层循环均从 1 遍历至 `N - 1`，各执行 `N - 1` 次；\n   - 循环体仅包含一次加法和一次赋值，单次耗时为 `O(1)`；\n   - 双重循环总执行次数为 `(N - 1) * (N - 1) = N² - 2N + 1` 次。\n\n程序总操作次数为 `2(N - 1) + (N - 1)² = N² - 1` 次。在大 O 渐进复杂度分析中，忽略低阶项与常数系数，最高阶为二次项，因此时间复杂度为 **O(n²)**。\n\n**选项逐项分析：**\n- **A $O(1)$**：❌ 错误。程序有与 `N` 相关的初始化和双重循环，操作次数随 `N` 增长，不是常数阶。\n- **B $O(N)$**：❌ 错误。初始化虽是线性的，但核心双重循环执行 `(N - 1)²` 次，整体不是线性阶。\n- **C $O(N\\log N)$**：❌ 错误。两重循环均为步长为 1 的均匀遍历，不存在二分、折半等对数操作。\n- **D $O(N^2)$**：✅ 正确。程序利用双重循环填满大小为 `N × N` 的二维网格，内外层循环次数均为 `N - 1`，内层操作为常数级加法，时间复杂度为 `O(N²)`。\n\n**易错提醒：**\n- **主导项原则**：当代码包含多个并列部分时，时间复杂度由阶数最高的部分主导。单层循环的 `O(N)` 与双重循环的 `O(N²)` 相加，整体仍由二次项主导，为 `O(N²)`。\n- **递推与递归的差异**：相同转移方程若用未记忆化的朴素递归求解，复杂度可能达到指数级；用二维数组递推求解时，每个状态仅计算一次，复杂度降为表格规模对应的 `O(N²)`。\n\n**知识延伸：**\n- 动态规划（DP）的时间复杂度通常遵循通用规律：`时间复杂度 = 状态总数 × 单个状态转移代价`。本题状态总数约为 `N²`，每个状态转移只需相加两个相邻元素（代价为 `O(1)`），故总时间复杂度为 `O(N²)`。",
+            tags: ['复杂度分析'],
+      "code": "#include <iostream>\n#define N 10\nusing namespace std;\nint path[N][N];\nint main() {\n    for (int i = 1; i < N; i++)\n        path[i][0] = i;\n    for (int j = 1; j < N; j++)\n        path[0][j] = j;\n    for (int i = 1; i < N; i++)\n        for (int j = 1; j < N; j++)\n            path[i][j] = path[i - 1][j] + path[i][j - 1];\n    cout << path[8][4] << endl;\n    return 0;\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["options","explanation","code","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 14,
             type: "single",
-            question: `下面fib函数的时间复杂度为 ( ) 。`,
-            options: [
-                "O(n)",
-                "O(2ⁿ)",
-                "O(n log n)",
-                "O(n²)",
-],
+            question: "下面fib函数的时间复杂度为 ( ) 。\n\n```cpp\nint fib_rcd[MAX_N];\nint fib(int n) {\n    if (n <= 1)\n        return 1;\n    if (fib_rcd[n] > 0)\n        return fib_rcd[n];\n    return fib(n - 1) + fib(n - 2);\n}\n```",
+            options: ["$O(n)$","$O(\\varphi^n),\\varphi=\\frac{\\sqrt5-1}{2}$","$O(2^n)$","无法正常结束。"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B（O(2ⁿ)）**
-
-**核心解析：**
-\`\`\`cpp
-int fib_rcd[MAX_N];
-int fib(int n) {
-    if (n <= 1) return 1;
-    if (fib_rcd[n] > 0) return fib_rcd[n];
-    return fib(n-1) + fib(n-2);
-}
-\`\`\`
-\`fib_rcd\` 是全局数组，初值全为 0。函数只判断 \`fib_rcd[n] > 0\`，算出 \`fib(n-1) + fib(n-2)\` 后直接返回，没有写回数组，判断永远为假，记忆化失效。于是 \`T(n) = T(n-1) + T(n-2) + O(1)\`，调用次数与斐波那契数同阶，大 O 记为 **O(2ⁿ)**。
-
-**选项逐项分析：**
-- **A O(n)**：❌ 只有写回结果（如 \`return fib_rcd[n] = fib(n-1) + fib(n-2);\`）才是每个状态算一次的 \`O(n)\`。本题没有存表。
-- **B O(2ⁿ)**：✅ 未剪枝的双递归有大量重复计算，时间复杂度为指数级 \`O(2ⁿ)\`。
-- **C O(n log n)**：❌ 那是规模不断减半的分治（如归并排序）。本题每次只把规模减 1 和减 2。
-- **D O(n²)**：❌ 平方级常见于双重循环。本题调用次数随 \`n\` 指数增长，不是多项式。
-
-**易错提醒：**
-- 数组只读不写就不是记忆化。求 \`fib(5)\` 时 \`fib(3)\` 会完整计算 2 次，\`fib(2)\` 会完整计算 3 次。`,
-            tags: ['复杂度分析', '递归']
+            explanation: "**答案：按官方答案表为 B。**\n\n`fib_rcd` 只判断 `fib_rcd[n] > 0`，计算后没有写回数组，因此记忆化失效；调用次数满足 $T(n)=T(n-1)+T(n-2)$，增长阶为 $\\varphi^n$，其中 $\\varphi=(1+\\sqrt5)/2\\approx1.618$。\n\n但原卷选项 B 印成 $\\varphi=(\\sqrt5-1)/2\\approx0.618$，以小于 1 的底做指数会递减，与递归增长矛盾。该选项疑为符号笔误；答案字母 B 与选项内容存在冲突，需人工确认。",
+            tags: ['复杂度分析', '递归'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["options","explanation","question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 15,
             type: "single",
-            question: `下列选项中，哪个可能是下图的广度优先遍历序列（ ）。`,
+            question: "下列选项中，哪个可能是下图的广度优先遍历序列（ ）。图为一含 9 个顶点、14 条弧的有向图，弧包括：2→1、4→2、9→4、1→3、1→5、5→3、3→2、3→4、3→7、9→7、7→5、7→6、6→8、8→9。",
             options: [
                 "1, 3, 5, 7, 4, 2, 6, 8, 9",
                 "9, 4, 2, 1, 3, 7, 5, 6, 8",
@@ -648,23 +555,12 @@ int fib(int n) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（1,3,5,7,4,2,6,8,9）**
-
-**解析：**
-BFS 从结点 1 出发，按“逐层、先访问先扩展”的规则：
-
-1. 访问 **1**（第 0 层）。
-2. 访问 1 的邻居 **3,5,7**（第 1 层，按编号顺序入队）。
-3. 依次扩展它们的邻居：**4,2,6,8**（第 2 层）。
-4. 再扩展得到 **9**（第 3 层）。
-
-得到序列 **1,3,5,7,4,2,6,8,9**，正是选项 A。
-
-- **B、D**：以 9 或 9,4… 开头，说明起点不是 1，不符合从 1 开始的 BFS。
-- **C**：1,3,5,7 之后直接跳到 6,8,9 再回到 4,2，破坏了“同层节点应先于下一层”的 BFS 顺序，故不是合法的 BFS。
-
-**考点**：广度优先搜索（BFS）的逐层访问顺序；同一层的结点先于下一层出现。`,
-            tags: ['广度优先搜索', '图的遍历']
+            explanation: "**答案：A（1,3,5,7,4,2,6,8,9）**\n\n按原图从 1 出发做 BFS：第 1 层为 3、5；第 2 层由 3 扩展到 2、4、7；第 3 层为 6；第 4 层为 8；第 5 层为 9。同层内按 7、4、2 的顺序入队即可得到 A。\n\n- B、D 以 9 或 9,4 开头，起点不是 1。\n- C 在 7 之后先访问 6、8、9，再回到同层的 4、2，破坏了 BFS 的同层优先顺序。\n\n**考点**：BFS 的逐层访问与同层顺序。",
+            tags: ['广度优先搜索', '图的遍历'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 16,
@@ -758,26 +654,19 @@ BFS 从结点 1 出发，按“逐层、先访问先扩展”的规则：
         {
             id: 20,
             type: "judge",
-            question: `使用math.h或cmath头文件中的正弦函数，表达式sin(30)的结果类型为double、值约为0.5。 int fib_rcd[MAX_N]; int fib(int n) { if (n <= 1) return 1; if (fib_rcd[n] > 0) return fib_rcd[n]; return fib(n-1)+fib(n-2); } 1 2 3 4 5 6 7 8`,
+            question: "使用math.h或cmath头文件中的正弦函数，表达式sin(30)的结果类型为double、值约为0.5。",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
-
-**解析：**
-题目陈述：\`sin(30)\` 的结果类型为 double、值约为 0.5。
-
-\`sin\` 的返回类型确实是 **double**（这点正确）；但 C++ 的 \`sin\` 参数是**弧度**而非角度，\`sin(30)\` 计算的是 30 弧度（≈ 30 - 9π）的正弦，值约为 **-0.988**，远不是 0.5。要得到 0.5 应写 \`sin(3.1415926/6)\`（即 sin(π/6)）。
-
-故“值约为 0.5”错误，命题为假。
-
-（注：题面中夹杂的 \`fib_rcd\` 代码片段为 OCR 串入的无关内容，与本题无关。）
-
-**考点**：\`<cmath>\` 中 \`sin\` 返回 double、且以弧度为参数。`,
-            tags: ['数学函数']
+            explanation: "**答案：错误**\n\n**解析：**\n题目陈述：`sin(30)` 的结果类型为 double、值约为 0.5。\n\n`sin` 的返回类型确实是 **double**（这点正确）；但 C++ 的 `sin` 参数是**弧度**而非角度，`sin(30)` 计算的是 30 弧度（≈ 30 - 9π）的正弦，值约为 **-0.988**，远不是 0.5。要得到 0.5 应写 `sin(3.1415926/6)`（即 sin(π/6)）。\n\n故“值约为 0.5”错误，命题为假。\n\n**考点**：`<cmath>` 中 `sin` 返回 double、且以弧度为参数。",
+            tags: ['数学函数'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 21,

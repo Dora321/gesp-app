@@ -235,5 +235,24 @@
     "题库 25 题题面与原卷一一对应，单选与判断答案全部一致，无修改。"
   ],
   "unresolved": [],
-  "lastReviewedAt": "2026-10-28"
+  "lastReviewedAt": "2026-10-28",
+  "programmingLimitCheck": {
+    "reviewedAt": "2026-11-25",
+    "mirrorSha": "f952766f38fa8e9b063924ef18a68a055a14dab2",
+    "method": "比对 SHA 校验通过的原卷 PDF 文本层与站点加载数据，原卷两道编程题的内存限制一致。",
+    "questions": [
+      {
+        "id": 26,
+        "sourcePage": 8,
+        "memoryLimit": "512 MB",
+        "previousMemoryLimit": "128 MB"
+      },
+      {
+        "id": 27,
+        "sourcePage": 9,
+        "memoryLimit": "512 MB",
+        "previousMemoryLimit": "128 MB"
+      }
+    ]
+  }
 }

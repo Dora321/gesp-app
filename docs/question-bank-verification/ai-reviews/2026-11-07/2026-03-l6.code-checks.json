@@ -1,0 +1,119 @@
+{
+  "executedAt": "2026-11-25T06:29:35.619Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n1 2 3 4\n3 3 1 1",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "input": "6\n1 1 4 5 1 4\n1 2 3 2 1 0",
+          "output": "11",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "11\n",
+          "passed": true
+        },
+        {
+          "name": "全零数组",
+          "input": "2\n0 0\n0 0\n",
+          "output": "0",
+          "reason": "a_i 可为 0，任何选择和均为 0，验证 ans 初值与 f 传递不产生负值。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "b 全零可连续选取",
+          "input": "3\n10 1 10\n0 0 0\n",
+          "output": "21",
+          "reason": "b_i=0 时 p_{i+1}≥p_i，可连选 1、2、3，验证 f[i]+a[i] 先算 ans 再回写 f[i] 的顺序细节。",
+          "kind": "boundary",
+          "actual": "21\n",
+          "passed": true
+        },
+        {
+          "name": "跨段跳选",
+          "input": "5\n1 100 1 1 100\n1 2 1 1 1\n",
+          "output": "202",
+          "reason": "选 1,2,4,5（2≥1+1、4≥2+2、5≥4+1）得 1+100+1+100=202，优于 {2,5}=200，验证长链转移。",
+          "kind": "boundary",
+          "actual": "202\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "220f3890b74918ad6bce596d5ec50aadf047a9fb12effaf1374cb6aeb1e457b8"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "4\n2 3\n4 0\n0 0\n0 0",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "4\n2 3\n0 0\n4 0\n0 0",
+          "output": "3",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "单结点",
+          "input": "1\n0 0\n",
+          "output": "1",
+          "reason": "单叶子自身为完全二叉树，验证空儿子按完全处理与计数。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "只有右孩子",
+          "input": "2\n0 2\n0 0\n",
+          "output": "1",
+          "reason": "缺左孩子只有右孩子的子树不是完全二叉树（验证 mn[l]>=mx[r] 条件），叶子 2 计 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "三结点满树",
+          "input": "3\n2 3\n0 0\n0 0\n",
+          "output": "3",
+          "reason": "根与两叶子子树均为完全二叉树，验证 mn[u]>=mx[u]-1 与 mn[l]>=mx[r] 同时满足。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "左链三结点",
+          "input": "3\n2 0\n3 0\n0 0\n",
+          "output": "2",
+          "reason": "结点 3（叶）、结点 2（仅一个左孩子，2 结点完全树）计入，根 1 为三结点左链不完全，验证逐层回溯判定。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "e9e74e1f72354b7e31d2a95b49a0513d1f9ea17ed8fbd0d0d6241aef9dc913cd"
+    }
+  ]
+}

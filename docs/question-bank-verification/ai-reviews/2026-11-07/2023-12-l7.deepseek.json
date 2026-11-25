@@ -1,0 +1,975 @@
+{
+  "paperId": "2023-12-l7",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:47:42.000Z",
+  "completedAt": "2026-11-25T05:47:42.000Z",
+  "finishReason": "stop",
+  "inputSha256": "a1232aee09d38305072949096072c0083f3ac14f5cf5a8b5d7fe0df3aa1316ea",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++7级.pdf",
+    "mirrorSha": "e1902f47973b200a76de0078d308c6eec55e7c05",
+    "mirrorBytes": 2065093,
+    "shaVerified": true,
+    "sha256": "ac104b6d5ab07248c642584706ca6f243e1c133cc9d44eb8d9011d3658b6097c"
+  },
+  "pageCount": 13,
+  "report": {
+    "paperId": "2023-12-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 七级 2023 年 12 月”，与 paperId 2023-12-l7 的年份、月份、等级一致；第1页单选答案表与第7页判断答案表清晰可读，答案表逐项与站点 answer 对照。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题为 B；按 0 起始选项索引映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1、2页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1、2页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题为 D；按 0 起始选项索引映射为 3，站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题为 B；按 0 起始选项索引映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2、3页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2、3页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题为 C；按 0 起始选项索引映射为 2，站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题为 D；按 0 起始选项索引映射为 3，站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 D；按 0 起始选项索引映射为 3，站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 B；按 0 起始选项索引映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第4页题干称“最长公共子串（LCS）”，但所给代码的 else 分支为 dp[i][j]=max(dp[i-1][j],dp[i][j-1])，实际求的是最长公共子序列，不是子串；题干与代码口径不一致，属原卷表述问题，站点照录。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 C；按 0 起始选项索引映射为 2，站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷把最长公共子序列写成“最长公共子串（LCS）”；选项 C 仍为错误项，但题干术语与代码不一致，建议人工确认是否改为“子序列”。"
+        ]
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 B；按 0 起始选项索引映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 C；按 0 起始选项索引映射为 2，站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 D；按 0 起始选项索引映射为 3，站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题为 C；按 0 起始选项索引映射为 2，站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5、6页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5、6页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 B；按 0 起始选项索引映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第6页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题为 D；按 0 起始选项索引映射为 3，站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第6页 A-D 四项与站点 options 的顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 B；按 0 起始选项索引映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第1题为“√”；平台 answer=0（正确），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第2题为“√”；平台 answer=0（正确），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第3题为“×”；平台 answer=1（错误），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第4题为“√”；平台 answer=0（正确），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第5题为“√”；平台 answer=0（正确），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第6题为“×”；平台 answer=1（错误），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第7题为“×”；平台 answer=1（错误），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第8题为“×”；平台 answer=1（错误），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第9题为“√”；平台 answer=0（正确），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第10题为“×”；平台 answer=1（错误），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第8—10页题面含“数据规模”一节：30% $N\\le10,M\\le20$，70% $N\\le10^3,M\\le10^4$，100% $N\\le10^5,M\\le2\\times10^5$；站点 question 未包含该节。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的状态定义、转移与复杂度说明成立，且与参考程序、样例结果一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点参考程序用 SPFA 求边权 $1+v_y-v_x$ 的最短路，路径和等于交易次数 $+v_b-v_a$，与官方 BFS 最少边数思路等价；样例 1/2/3 全部通过，另以单边、负花费、不可达三组边界复核。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202312 七级] 商品交易\n\n## 题目描述\n\n市场上共有 $N$ 种商品，编号从 $0$ 至 $N-1$ ，其中，第 $i$ 种商品价值 $v_i$ 元。\n\n现在共有 $M$ 个商人，编号从 $0$ 至 $M-1$ 。在第 $j$ 个商人这，你可以使用你手上的第 $x_j$ 种商品交换商人手上的第 $y_j$ 种商品。每个商人都会按照商品价值进行交易，具体来说，如果 $v_{x_j}>v_{y_j}$，他将会付给你 $v_{x_j}-v_{y_j}$元钱；否则，那么你需要付给商人 $v_{y_j}-v_{x_j}$ 元钱。除此之外，每次交易商人还会收取 $1$ 元作为手续费，不论交易商品的价值孰高孰低。\n\n你现在拥有商品 $a$ ，并希望通过一些交换来获得商品 $b$ 。请问你至少要花费多少钱？（当然，这个最小花费也可能是负数，这表示你可以在完成目标的同时赚取一些钱。）\n\n## 输入格式\n\n第一行四个整数 $N , M , a , b$，分别表示商品的数量、商人的数量、你持有的商品以及你希望获得的商品。保证 $0 \\le a,b < N$ ，保证 $a \\ne b$。\n\n第二行 $N$ 个用单个空格隔开的正整数 $v_0,v_1,…,v_{N-1}$ ，依次表示每种商品的价值。保证 $1≤v_i≤10^9$。\n\n接下来 $M$ 行，每行两个整数 $x_j,y_j$ ，表示在第 $j$ 个商人这，你可以使用第 $x_j$ 种商品交换第 $y_j$ 种商品。保证 $0 \\le x_j,y_j < N$ ，保证 $x_j \\ne y_j$。\n\n## 输出格式\n\n输出一行一个整数，表示最少的花费。特别地，如果无法通过交换换取商品 $b$ ，请输出 `No solution`。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $N \\le 10$、$M \\le 20$。\n\n对于 70% 的测试点，保证 $N \\le 10^3$、$M \\le 10^4$。\n\n对于 100% 的测试点，保证 $N \\le 10^5$、$M \\le 2 \\times 10^5$。\n"
+        },
+        "tests": [
+          {
+            "name": "单边最小差价",
+            "input": "2 1 0 1\n1 2\n0 1\n",
+            "output": "2",
+            "reason": "边权为 1+v1-v0=1+2-1=2，直达即最优。"
+          },
+          {
+            "name": "负花费（赚钱）",
+            "input": "2 1 0 1\n5 1\n0 1\n",
+            "output": "-3",
+            "reason": "边权 1+1-5=-3，输出允许负花费。"
+          },
+          {
+            "name": "不可达",
+            "input": "3 1 0 2\n1 1 1\n0 1\n",
+            "output": "No solution",
+            "reason": "只有 0→1 的边，无法到达 2。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12,
+          13
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第11—12页题面含数据规模：30% $N\\le15$，60% $N\\le100$，全部 $N\\le1000$、$0\\le a_i,b_i\\le10^6$；站点 question 未包含该节。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的状态定义、转移与复杂度说明成立，且与参考程序、样例结果一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点参考程序按“当前手牌、已换牌次数”做 DP，最后统一减去 $b_1+\\dots+b_t$；样例 1=219、样例 2=56 均通过，另以单轮、免费换牌、高额罚分三组边界复核。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202312 七级] 纸牌游戏\n\n## 题目描述\n\n你和小杨在玩一个纸牌游戏。\n\n你和小杨各有 $3$ 张牌，分别是 $0、1、2$。你们要进行 $N$ 轮游戏，每轮游戏双方都要出一张牌，并按 $1$ 战胜 $0$，$2$ 战胜 $1$，$0$ 战胜 $2$ 的规则决出胜负。第 $i$ 轮的胜者可以获得 $2 \\times a_i$ 分，败者不得分，如果双方出牌相同，则算平局，二人都可获得 $a_i$ 分 $(i=1,2,\\cdots,N)$。\n\n玩了一会后，你们觉得这样太过于单调，于是双方给自己制定了不同的新规则。小杨会在整局游戏开始前确定自己全部 $n$ 轮的出牌，并将他的全部计划告诉你；而你从第 $2$ 轮开始，要么继续出上一轮出的牌，要么记一次“换牌”。游戏结束时，你换了 $t$ 次牌，就要额外扣 $b_1+\\cdots+b_t$ 分。\n\n请计算出你最多能获得多少分。\n\n## 输入格式\n\n第一行一个整数 $N$，表示游戏轮数。\n\n第二行 $N$ 个用单个空格隔开的非负整数 $a_1,\\cdots,a_N$，意义见题目描述。\n\n第三行 $N-1$ 个用单个空格隔开的非负整数 $b_1,\\cdots,b_{N-1}$，表示换牌的罚分，具体含义见题目描述。由于游戏进行 $N$ 轮，所以你至多可以换 $N-1$ 次牌。\n\n第四行 $N$ 个用单个空格隔开的整数 $c_1,\\cdots,c_N$，依次表示小杨从第 $1$ 轮至第 $N$ 轮出的牌。保证 $c\n_i\\in{0,1,2}$。\n\n## 输出格式\n\n一行一个整数，表示你最多获得的分数。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $N \\le 15$。\n\n对于 60% 的测试点，保证 $N \\le 100$。\n\n对于所有测试点，保证 $N \\le 1000$，$0 \\le a_i,b_i \\le 10^6$。\n"
+        },
+        "tests": [
+          {
+            "name": "只有一轮",
+            "input": "1\n5\n\n0\n",
+            "output": "10",
+            "reason": "首轮出 1 战胜 0，得 2×5=10；无换牌罚分。"
+          },
+          {
+            "name": "两次免费换牌",
+            "input": "2\n1 1\n0\n0 1\n",
+            "output": "4",
+            "reason": "第 1 轮出 1 得 2，第 2 轮换出 2 战胜 1 再得 2，b1=0。"
+          },
+          {
+            "name": "高额换牌罚分",
+            "input": "2\n1 1\n100\n0 1\n",
+            "output": "3",
+            "reason": "全程出 1：首轮胜得 2、次轮平得 1，合计 3；换牌扣 100 不划算。"
+          }
+        ],
+        "unresolved": []
+      }
+    ]
+  }
+}

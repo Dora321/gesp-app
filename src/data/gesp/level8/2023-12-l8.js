@@ -4,49 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [
-        { input: `3
-3 2 1 2
-3 2 1 3
-5 3 1 3 1`, output: `3
-4
-20` },
-        { input: `5
-100 1 100
-100 1 101
-20 2 12 8
-123 4 80 20 21 3
-999 5 101 234 499 66 99`, output: `1
-1
-125970
-895031741
-307187590` }
-      ],
-      question: `
-# [GESP202312 八级] 奖品分配
-
-## 题目描述
-
-班上有 $N$ 名同学，学号从 $0$ 到 $N-1$。有 $M$ 种奖品要分给这些同学，其中，第 $i$ 种奖品总共有 $a_i$ 个 （$i=0,1, \\cdots ,M-1$）。
-
-巧合的是，奖品的数量不多不少，每位同学都可以恰好分到一个奖品，且最后剩余的奖品不超过 $1$ 个（即：$N\\le a_0+a_1+ \\cdots +a_{M-1}\\le N+1$）。
-
-现在，请你求出每个班级礼物分配的方案数，所谓方案，指的是为每位同学都分配一个种类的奖品。
-
-只要有一位同学获得了不同种类的奖品，即视为不同的方案。方便起见，你只需要输出方案数对 $10^{9}+7$ 取模后的结果即可。
-
-共有 $T$ 个班级都面临着奖品分配的问题，你需要依次为他们解答。
-
-## 输入格式
-
-第一行一个整数 $T$，表示班级数量。
-
-接下来 $T$ 行，每行若干用单个空格隔开的正整数。首先是两个正整数$N,M$，接着是 $M$ 个正整数 $a_0,a_1...a_{M-1}$。保证 $N \\le a_0+a_1+\\cdots+a_{M-1} \\le N+1 $。
-
-## 输出格式
-
-输出 $T$ 行，每行一个整数，表示该班级分配奖品的方案数对 $10^{9}+7$ 取模的结果。
-`,
+      samples: [{"input":"3\n3 2 1 2\n3 2 1 3\n5 3 3 1 1","output":"3\n4\n20"},{"input":"5\n100 1 100\n100 1 101\n20 2 12 8\n123 4 80 20 21 3\n999 5 101 234 499 66 99","output":"1\n1\n125970\n895031741\n307187590"}],
+      question: "\n# [GESP202312 八级] 奖品分配\n\n## 题目描述\n\n班上有 $N$ 名同学，学号从 $0$ 到 $N-1$。有 $M$ 种奖品要分给这些同学，其中，第 $i$ 种奖品总共有 $a_i$ 个 （$i=0,1, \\cdots ,M-1$）。\n\n巧合的是，奖品的数量不多不少，每位同学都可以恰好分到一个奖品，且最后剩余的奖品不超过 $1$ 个（即：$N\\le a_0+a_1+ \\cdots +a_{M-1}\\le N+1$）。\n\n现在，请你求出每个班级礼物分配的方案数，所谓方案，指的是为每位同学都分配一个种类的奖品。\n\n只要有一位同学获得了不同种类的奖品，即视为不同的方案。方便起见，你只需要输出方案数对 $10^{9}+7$ 取模后的结果即可。\n\n共有 $T$ 个班级都面临着奖品分配的问题，你需要依次为他们解答。\n\n## 输入格式\n\n第一行一个整数 $T$，表示班级数量。\n\n接下来 $T$ 行，每行若干用单个空格隔开的正整数。首先是两个正整数$N,M$，接着是 $M$ 个正整数 $a_0,a_1...a_{M-1}$。保证 $N \\le a_0+a_1+\\cdots+a_{M-1} \\le N+1 $。\n\n## 输出格式\n\n输出 $T$ 行，每行一个整数，表示该班级分配奖品的方案数对 $10^{9}+7$ 取模的结果。\n\n\n## 数据规模\n\n对于 30% 的测试点，保证 $N \\le 10$。\n\n对于另外 30% 的测试点，保证 $M = 2$。\n\n对于所有测试点，保证 $N \\le 1000$；$T \\le 1000$；$M \\le 1001$。",
       tags: ["编程题", "组合数学", "组合数", "计数"],
       explanation: "按奖品种类依次分配。若当前还剩 sum 件奖品，其中某类有 a_i 件，则有 C(sum, a_i) 种选位方式，依次相乘即可。",
       template: "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){/* 在这里编写你的代码 */}return 0;}",
@@ -55,6 +14,10 @@ const programmingQuestions = [
       timeLimit: '1.0 s',
       memoryLimit: '128 MB',
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","samples","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -81,41 +44,19 @@ const programmingQuestions = [
 1
 0` }
       ],
-      question: `
-# [GESP202312 八级] 大量的工作沟通
-
-## 题目描述
-
-某公司有 $N$ 名员工，编号从 $0$ 至 $N-1$。其中，除了 $0$ 号员工是老板，其余每名员工都有一个直接领导。我们假设编号为 $i$ 的员工的直接领导是 $f_i$。
-
-该公司有严格的管理制度，每位员工只能受到本人或直接领导或间接领导的管理。具体来说，规定员工 $x$ 可以管理员工 $y$，当且仅当 $x=y$，或 $x=f_y$，或 $x$ 可以管理 $f_y$。特别地，$0$ 号员工老板只能自我管理，无法由其他任何员工管理。
-
-现在，有一些同事要开展合作，他们希望找到一位同事来主持这场合作，这位同事必须能够管理参与合作的所有同事。如果有多名满足这一条件的员工，他们希望找到编号最大的员工。你能帮帮他们吗？
-
-## 输入格式
-
-第一行一个整数 $N$ ，表示员工的数量。
-
-第二行 $N-1$ 个用空格隔开的正整数，依次为 $f_1, f_2, \\dots f_{N-1}$。
-
-第三行一个整数 $Q$ ，表示共有 $Q$ 场合作需要安排。
-
-接下来 $Q$ 行，每行描述一场合作：开头是一个整数 $m$（$2 \\leq m \\leq N$），表示参与本次合作的员工数量；接着是 $m$ 个整数，依次表示参与本次合作的员工编号（保证编号合法且不重复）。
-
-保证公司结构合法，即不存在任意一名员工，其本人是自己的直接或间接领导。
-
-## 输出格式
-
-输出 $Q$ 行，每行一个整数，依次为每场合作的主持人选。
-`,
+      question: "\n# [GESP202312 八级] 大量的工作沟通\n\n## 题目描述\n\n某公司有 $N$ 名员工，编号从 $0$ 至 $N-1$。其中，除了 $0$ 号员工是老板，其余每名员工都有一个直接领导。我们假设编号为 $i$ 的员工的直接领导是 $f_i$。\n\n该公司有严格的管理制度，每位员工只能受到本人或直接领导或间接领导的管理。具体来说，规定员工 $x$ 可以管理员工 $y$，当且仅当 $x=y$，或 $x=f_y$，或 $x$ 可以管理 $f_y$。特别地，$0$ 号员工老板只能自我管理，无法由其他任何员工管理。\n\n现在，有一些同事要开展合作，他们希望找到一位同事来主持这场合作，这位同事必须能够管理参与合作的所有同事。如果有多名满足这一条件的员工，他们希望找到编号最大的员工。你能帮帮他们吗？\n\n## 输入格式\n\n第一行一个整数 $N$ ，表示员工的数量。\n\n第二行 $N-1$ 个用空格隔开的非负整数，依次为 $f_1, f_2, \\dots f_{N-1}$。\n\n第三行一个整数 $Q$ ，表示共有 $Q$ 场合作需要安排。\n\n接下来 $Q$ 行，每行描述一场合作：开头是一个整数 $m$（$2 \\leq m \\leq N$），表示参与本次合作的员工数量；接着是 $m$ 个整数，依次表示参与本次合作的员工编号（保证编号合法且不重复）。\n\n保证公司结构合法，即不存在任意一名员工，其本人是自己的直接或间接领导。\n\n## 输出格式\n\n输出 $Q$ 行，每行一个整数，依次为每场合作的主持人选。\n\n\n## 数据规模\n\n对于 25% 的测试点，保证 $N \\le 50$。\n\n对于 50% 的测试点，保证 $N \\le 300$。\n\n对于所有测试点，保证 $3 \\le N \\le 10^5$；$Q \\le 100$；$m \\le 10^4$。",
       tags: ["编程题", "树", "LCA", "重链剖分"],
       explanation: "所有参与者的公共管理者就是这些点在树上的最近公共祖先。再预处理根到每点路径上的最大编号 mxId，答案即为 mxId[LCA]。",
       template: "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;/* 在这里编写你的代码 */return 0;}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;const int N=100005;int fa[N],sz[N],dep[N],son[N],tp[N],mxId[N],cnt,fir[N],tar[N],nxt[N];void linkEdge(int a,int b){tar[++cnt]=b;nxt[cnt]=fir[a];fir[a]=cnt;}void dfs(int x,int mxid){int mx=0;sz[x]=1;mxId[x]=max(x,mxid);for(int i=fir[x];i;i=nxt[i]){dep[tar[i]]=dep[x]+1;dfs(tar[i],mxId[x]);sz[x]+=sz[tar[i]];if(mx<sz[tar[i]])mx=sz[son[x]=tar[i]];}}void getTop(int x){tp[x]=x;if(son[fa[x]]==x)tp[x]=tp[fa[x]];for(int i=fir[x];i;i=nxt[i])getTop(tar[i]);}int lca(int x,int y){while(tp[x]!=tp[y])dep[tp[x]]>dep[tp[y]]?x=fa[tp[x]]:y=fa[tp[y]];return dep[x]<dep[y]?x:y;}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;for(int i=2;i<=n;++i){cin>>fa[i];++fa[i];linkEdge(fa[i],i);}dfs(1,1);getTop(1);int q;cin>>q;while(q--){int m,x,y;cin>>m>>x;x++;for(int i=2;i<=m;++i){cin>>y;x=lca(x,y+1);}cout<<mxId[x]-1<<\"\\n\";}return 0;}",
       score: 25,
-      timeLimit: '1.0 s',
+      timeLimit: "2.0 s",
       memoryLimit: '128 MB',
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 9,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","timeLimit"],
     }
 ];
 
@@ -216,26 +157,16 @@ export const paperData = {
             id: 4,
             type: "single",
             question: `使用邻接矩阵表达n个顶点的有向图，则该矩阵的大小为（ ）。`,
-            options: [
-                "n×(n+1)/2",
-                "n×n",
-                "(n-1)×(n-1)",
-                "2n×2n",
-],
+            options: ["n×(n+1)","n×n","n×(n-1)","n×(n-1)/2"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-**解析：**
-使用邻接矩阵表示 n 个顶点的有向图时，需要一个 n 行 n 列的方阵（共 n² 个元素），其中 matrix[i][j] 表示顶点 i 到顶点 j 是否有边（或边权）。因此矩阵大小为 n×n。
-
-- **A n×(n+1)/2**：错误。这是无向完全图的边数（三角数），并非邻接矩阵的规模。
-- **B n×n**：正确。n 个顶点的邻接矩阵是 n×n 的方阵。
-- **C (n-1)×(n-1)**：错误。规模应为 n×n，而不是 (n-1)²。
-- **D 2n×2n**：错误。这是 2n 个顶点时的矩阵规模。`,
+            explanation: "**答案：B**\n\n**解析：**\n使用邻接矩阵表示 n 个顶点的有向图时，需要一个 n 行 n 列的方阵，共 n² 个元素；matrix[i][j] 表示顶点 i 到顶点 j 是否有边或边权，因此矩阵大小为 n×n。\n\n- A n×(n+1)：错误，不是方阵规模；\n- B n×n：正确；\n- C n×(n−1)：错误，少一行；\n- D n×(n−1)/2：错误，这是无向完全图的无序边对数。\n\n**考点：** 邻接矩阵的规模。",
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 5,
@@ -287,26 +218,17 @@ export const paperData = {
             id: 6,
             type: "single",
             question: `一个无向图包含n个顶点，则其最小生成树包含多少条边？（ ）。`,
-            options: [
-                "n 条边",
-                "n-1 条边",
-                "n+1 条边",
-                "最小生成树可能不存在",
-],
+            options: ["n-1 条边","n 条边","n+1 条边","最小生成树可能不存在"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-**解析：**
-对连通的无向图，其生成树（含最小生成树）恰含 n−1 条边。但若图不连通，则根本不存在生成树，也就不存在最小生成树，因此“最小生成树包含多少条边”在图不连通时无法成立——选项 D 指出其可能不存在最为严谨。
-
-- **A n 条边**：错误。生成树不含环，边数应为 n−1 而非 n。
-- **B n-1 条边**：错误。仅在图连通时成立；题面未保证连通性，故不能作为普遍结论。
-- **C n+1 条边**：错误。生成树边数不会超过 n−1。
-- **D 最小生成树可能不存在**：正确。当图不连通时不存在生成树，最小生成树也可能不存在。`,
+            explanation: "**答案：D**\n\n**解析：**\n对连通的无向图，生成树（含最小生成树）恰含 n−1 条边。但题面只说“一个无向图包含 n 个顶点”，未保证连通；图不连通时生成树不存在，最小生成树也可能不存在，因此 D 最严谨。\n\n- A n−1 条边：仅在图连通时成立，不能作为普遍结论；\n- B n 条边：生成树不含环，边数应为 n−1；\n- C n+1 条边：超过 n−1，必含环；\n- D 最小生成树可能不存在：正确。\n\n**考点：** 生成树的存在条件。",
             tags: [
                 "最小生成树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
@@ -338,26 +260,17 @@ export const paperData = {
             id: 8,
             type: "single",
             question: `对有n个元素的二叉排序树进行中序遍历，其时间复杂度是（ ）。`,
-            options: [
-                "O(log n)",
-                "O(n log n)",
-                "O(n)",
-                "O(n²)",
-],
+            options: ["O(1)","O(log(n))","O(n)","O(n²)"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-二叉排序树的中序遍历按“左-根-右”顺序访问每个节点恰好一次，无论树的形态（平衡与否）如何，遍历 n 个元素的时间复杂度恒为 O(n)。
-
-- **A O(log n)**：错误。O(log n) 是对平衡树单次查找或树高的量级，不是遍历全部节点。
-- **B O(n log n)**：错误。每个节点仅访问一次，不会达到 n log n。
-- **C O(n)**：正确。每个节点访问一次，总时间为线性。
-- **D O(n²)**：错误。没有嵌套式的逐节点遍历，不会达到平方级。`,
+            explanation: "**答案：C**\n\n**解析：**\n二叉排序树的中序遍历按“左-根-右”访问每个结点恰好一次，无论树形是否平衡，遍历 n 个元素的时间都是 O(n)。\n\n- A O(1)：错误，需要访问全部结点；\n- B O(log n)：错误，这是平衡树单次查找的量级；\n- C O(n)：正确；\n- D O(n²)：错误，没有嵌套遍历。\n\n**考点：** 中序遍历的线性复杂度。",
             tags: [
                 "排列组合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 9,
@@ -458,28 +371,17 @@ int choose(int n, int m) {
 }
 \`\`\`
 `,
-            options: [
-                "O(2^n)",
-                "O(2^n × (n-m))",
-                "O(C(n,m))",
-                "O(m × (n-m))",
-],
+            options: ["O(2^n)","O(2^m × (n-m))","O(C(n,m))","O(m × (n-m))"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-**解析：**
-程序是带记忆化的组合数递归求值（帕斯卡三角恒等式 C(n,m)=C(n-1,m-1)+C(n-1,m)）。每个状态 (i, j) 只在 record_choose[i][j]==0 时计算一次，之后直接返回缓存值。可达状态满足 i-j ≤ n-m 且 j ≤ m、j ≥ 0，构成一个 m 行 × (n-m) 列的带状区域，状态总数为 O(m × (n-m))，每个状态常数时间转移。
-
-- **A O(2^n)**：错误。这是无记忆化时的指数级上界，本题有 record_choose 记忆化。
-- **B O(2^n × (n-m))**：错误。记忆化后每个状态只算一次，不存在指数因子。
-- **C O(C(n,m))**：错误。复杂度取决于状态数而非组合数值；C(n,m) 本身可远大于状态数。
-- **D O(m × (n-m))**：正确。可达状态 (i,j) 构成 j∈[0,m]、i-j∈[n-m,n] 的带状区域，共 O(m×(n-m)) 个。
-
-**考点**：递归 + 记忆化的复杂度按"状态数 × 单状态转移代价"计算。`,
+            explanation: "**答案：D**\n\n**解析：**\n程序是带记忆化的组合数递归求值（帕斯卡三角恒等式 C(n,m)=C(n-1,m-1)+C(n-1,m)）。每个状态 (i, j) 只在 record_choose[i][j]==0 时计算一次，之后直接返回缓存值。可达状态满足 i-j ≤ n-m 且 j ≤ m、j ≥ 0，构成一个 m 行 × (n-m) 列的带状区域，状态总数为 O(m × (n-m))，每个状态常数时间转移。\n\n- **A O(2^n)**：错误。这是无记忆化时的指数级上界，本题有 record_choose 记忆化。\n- **B O(2^m × (n-m))**：错误。记忆化后每个状态只算一次，不存在指数因子。\n- **C O(C(n,m))**：错误。复杂度取决于状态数而非组合数值；C(n,m) 本身可远大于状态数。\n- **D O(m × (n-m))**：正确。可达状态 (i,j) 构成 j∈[0,m]、i-j∈[n-m,n] 的带状区域，共 O(m×(n-m)) 个。\n\n**考点**：递归 + 记忆化的复杂度按\"状态数 × 单状态转移代价\"计算。",
             tags: [
                 "复杂度分析",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 12,
@@ -740,29 +642,26 @@ A、B的目标下标使第一次迭代访问负下标，且无法填到返回的
         },
         {
             id: 19,
-            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            verificationNote: "核对原卷第 6 页答案表和第 6 页题面。无自环有向完全图按有序顶点对计数，边数 N(N−1)。N=2 时实有两条有向边，题式仅给一条。",
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 6,
             sourcePages: [6],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-25",
+            reviewedBy: "AI-Codex",
             sourceVerified: true,
-            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
-            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
             question: `N个顶点的有向完全图（不带自环）有 N×(N-1)/2 条边。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `原卷答案表为错误。有向完全图的每个顶点都向其余N-1个顶点连边，共N(N-1)条有向边。相反方向是不同的边，不能除以2。除以2对应无向完全图的无序顶点对计数。
-
-题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
+            explanation: "**答案：错误**\n\n每个顶点都有 $N-1$ 条通向其他顶点的出边，因此共有 $N(N-1)$ 条有向边。题目给出的 $N(N-1)/2$ 是无向完全图的边数。",
             tags: [
                 "C++综合",
             ],
+      "reviewedFields": ["answer","explanation","reviewedBy","reviewedAt","verificationNote"],
         },
         {
             id: 20,

@@ -1,0 +1,107 @@
+{
+  "paperId": "2025-06-l5",
+  "integratedAt": "2026-11-25T06:59:44.090Z",
+  "accepted": [
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "explanation",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "8 8\n2 1",
+          "output": "5",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "input": "314159 2653589\n27 1828",
+          "output": "1599",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "1599\n",
+          "passed": true
+        },
+        {
+          "name": "n>m 且 a>b 需双重规范化",
+          "input": "100 3\n7 2",
+          "output": "1",
+          "reason": "规范化后 n=3、m=100、a=2、b=7：1 份按方式一耗课堂券 2、作业券 7，可行；2 份课堂券至少 2×2=4>3，不可行。独立暴力枚举器与参考程序实测同为 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "a==b 恰好兑换一份",
+          "input": "4 9\n4 4",
+          "output": "1",
+          "reason": "a=b=4 走 a==b 特判输出 n/a=4/4=1：1 份两券各耗 4 恰好够，2 份需各 8>4 不可行。独立暴力枚举器与参考程序实测同为 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两种方式混用",
+          "input": "5 5\n2 3",
+          "output": "2",
+          "reason": "2 份取方式一 (2,3) + 方式二 (3,2)，两券各耗 5 恰好用完；3 份课堂券至少 3×2=6>5 不可行。独立暴力枚举器与参考程序实测同为 2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "10^9 量级防溢出",
+          "input": "1000000000 1000000000\n1 10000",
+          "output": "199980",
+          "reason": "每份恒耗 a+b=10001 张、两券合计 2×10^9，由 10001v≤2×10^9 得 v≤199980；v=199980 取 t=99990 份改方式二后两券各耗 999999990≤10^9 可行，v=199981 需 2000009981>2×10^9 必不可行。二分中途 mid·b≈5×10^12 远超 int 上限，印证 1ll 必要。参考程序实测输出 199980。",
+          "kind": "boundary",
+          "actual": "199980\n",
+          "passed": true
+        },
+        {
+          "name": "大规模下无可行兑换",
+          "input": "1 1000000000\n10000 9999",
+          "output": "0",
+          "reason": "规范化后 a=9999、b=10000，任一方式每份至少耗 9999 张课堂券，n=1 不足一份，答案为 0；该用例同时覆盖 a>b 交换规范化与大规模 check 判假路径。独立暴力枚举器与参考程序实测同为 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ed5b9a83bacc9f6c263a9d72eaa35a2733422f068ca25295743e52e9ad6ed0de"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 13
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 14
+    }
+  ]
+}

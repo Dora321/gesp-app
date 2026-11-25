@@ -1,0 +1,128 @@
+{
+  "executedAt": "2026-11-25T06:29:34.602Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "4\n1 2 3\n5 6 2 3",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "7\n1 1 2 2 3 3\n64 16 15 4 3 2 1",
+          "output": "10",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=2 且代价取上界",
+          "input": "2\n1\n1000000000 1000000000\n",
+          "output": "1000000000",
+          "reason": "叶子 2 必须染黑 dp[2]=1e9；根取 min(1e9, 1e9)=1e9，验证 cᵢ=10⁹ 上界与 long long。",
+          "kind": "boundary",
+          "actual": "1000000000\n",
+          "passed": true
+        },
+        {
+          "name": "染根优于染叶",
+          "input": "3\n1 1\n5 100 3\n",
+          "output": "5",
+          "reason": "dp[2]=100、dp[3]=3，根自染 5 优于 103，验证 min(c[u],Σ) 两个分支。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "链形树（f_i=i-1 子分）",
+          "input": "4\n1 2 3\n1 1 1 1\n",
+          "output": "1",
+          "reason": "链 1→2→3→4 全代价 1，仅染叶子 4 即覆盖，验证逐层回溯与 f_i=i−1 特例分。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "星形树取叶子和",
+          "input": "5\n1 1 1 1\n10 1 1 1 1\n",
+          "output": "4",
+          "reason": "四个叶子各 dp=1，根 min(10, 4)=4，验证多叶子累加。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0441fd445fb36e25fdae6f4529ee972629ef3c27eaa4a0f1c0e12104017de560"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3 5\n99 1\n33 2\n11 3",
+          "output": "132",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "132\n",
+          "passed": true
+        },
+        {
+          "input": "4 100\n10 1\n20 11\n40 33\n100 99",
+          "output": "110",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "110\n",
+          "passed": true
+        },
+        {
+          "name": "金币为 0 买不起任何道具",
+          "input": "1 0\n1 1\n",
+          "output": "0",
+          "reason": "k=0 时无道具可买，答案 0，验证 dp[0]=0 与 dp[j]≤m 判定边界。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "等价道具只能买一件",
+          "input": "2 1\n1 1\n1 1\n",
+          "output": "1",
+          "reason": "两件道具各需 1 金币，k=1 仅够一件，验证每件至多选一次。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "预算恰好买一件更优道具",
+          "input": "2 3\n5 2\n7 3\n",
+          "output": "7",
+          "reason": "两件同买需 5>3；单买第 2 件得 7 优于第 1 件 5，验证组合取舍。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "金币充裕全买",
+          "input": "3 1000000000\n500 1\n500 2\n500 3\n",
+          "output": "1500",
+          "reason": "k=1e9 ≥ 全部花费 6，可买全部三件，答案 3×500=1500，验证 aᵢ=500 上界与求和。",
+          "kind": "boundary",
+          "actual": "1500\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ed539afee7202f5d793ba1630a9c0cb834e75d733ab562b7026a78d42fe8ab3b"
+    }
+  ]
+}

@@ -1,0 +1,983 @@
+{
+  "paperId": "2025-03-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:53:11.461Z",
+  "completedAt": "2026-11-25T05:53:11.461Z",
+  "finishReason": "stop",
+  "inputSha256": "85ea9a613def59f84ff66362a86ae1c54c9dfa369f4cdf5e5a988c5287dec78d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1684804529553440.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++5级.pdf",
+    "mirrorSha": "f03dad621e5f613829e8aefc49865ea00ead7212",
+    "mirrorBytes": 1639595,
+    "shaVerified": true,
+    "sha256": "1ab80eaa00981a81c74d45c5797e08e5d3b37cd08cedb5f41c50bdd4a669d285"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 五级”“2025 年 03 月”，与 paperId 2025-03-l5 一致；第 1 页单选题答案表 1-15 为 A A B B D C A D A B C A A D B，第 8 页判断题答案表 1-10 为 √ × √ × √ × √ × × √，均清晰可读。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干“链表不具备的特点是（ ）。”与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A-D 四项为“可随机访问任何一个元素 / 插入删除不需要移动元素 / 无需事先估计存储空间 / 存储空间与元素个数成正比”，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 A；按 0 起始索引映射为 0，站点 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：链表不支持按下标随机访问，A 正是链表不具备的特点；B/C/D 都是链表的特点，故 A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干“双向链表中每个结点有两个指针域 prev 和 next……要删除结点 p，下述语句中错误的是（ ）”与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A-D 四段删除代码与站点 options 顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 A；按 0 起始索引映射为 0，站点 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：删除 p 应让前驱的 next 指向 p 的后继、后继的 prev 指向 p 的前驱；A 中 p->next->prev=p->next 与 p->prev->next=p->prev 都指向自身，链表断裂，故 A 错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 3 题给出 ListNode/LinkedList/InitLinkedList 代码，横线位于初始化空双向循环链表处，与站点 question 及 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A-D 四组初始化语句与站点 options 顺序和内容一致，B 为 head->next=tail; tail->prev=head;。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 B；按 0 起始索引映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：空表需建立 head 到 tail 的前向连接与 tail 到 head 的后向连接，B 同时设置 head->next 与 tail->prev，是四个选项中唯一同时建立前向/后向骨架的；A 只改 head->prev/tail->prev，C 只改 head->next/tail->next，D 把 tail->next 置空，均不符合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 3 题 B 项只设置 head->next=tail 与 tail->prev=head，未设置 head->prev 与 tail->next；按严格“双向循环链表”定义四条指针应互连。官方答案表为 B，站点 answer=1 与官方一致，记录原卷设问瑕疵。"
+        ]
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 2-3 页第 4 题给出辗转相除 gcd 代码，题干问 gcd(84,60) 的第二步计算的数；站点 question 只有题干，缺少该代码块。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 四项为“84 和 60 / 60 和 24 / 24 和 12 / 12 和 0”，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 B；按 0 起始索引映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：第一步 84%60=24，得到数对 (60,24)；第二步计算 60%24=12，因此第二步的数是 60 和 24，B 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "code": "int gcd(int a, int b) {\n    int big = a > b ? a : b;\n    int small = a < b ? a : b;\n    if (big % small == 0) {\n        return small;\n    }\n    return gcd(small, big % small);\n}"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 5 题题干“根据唯一分解定理，下面整数的唯一分解是正确的（ ）。”与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 四项为 18=3×6、28=4×7、36=2×3×6、30=2×3×5，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 D；按 0 起始索引映射为 3，站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：分解式中的因子必须全为质数；A 的 6、B 的 4、C 的 6 都不是质数，只有 D 的 2、3、5 全为质数，故 D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3-4 页第 6 题给出线性筛代码，横线位于内层 for 的循环条件，与站点 question 及 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 四项为 j<primes.size()、i*primes[j]<=n、两者同时满足、j<=n，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 C；按 0 起始索引映射为 2，站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：内层既要防止 primes 下标越界，又要防止 i*primes[j] 超过 n，必须同时满足两个条件，故 C 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 7 题题干“在程序运行过程中，如果递归调用的层数过多，会因为（ ）引发错误。”与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 四项为系统分配的栈/堆/队列/链表空间溢出，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 A；按 0 起始索引映射为 0，站点 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：函数调用使用调用栈，递归过深会耗尽栈空间，故 A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 8 题给出 factorialA（递归）与 factorialB（循环）代码及四个说法，与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 四项与站点 options 一致，D 项为“factorialB 采用递归方式”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 D；按 0 起始索引映射为 3，站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：factorialB 在函数体内用 for 循环累乘，没有调用自身，是迭代而非递归，故 D 错误；A/B/C 均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 9 题题干“下算法中，（ ）是不稳定的排序。”与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 四项为选择排序、插入排序、归并排序、冒泡排序，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 A；按 0 起始索引映射为 0，站点 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：选择排序每轮把最小元素与当前位置远距离交换，可能打乱相等元素的相对次序，是不稳定排序，故 A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4-5 页第 10 题给出以 arr[high] 为基准的 partition 与 quickSort 代码，横线位于 partition 内，与站点 question 及 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四段代码与站点 options 顺序和内容一致，B 为 if (arr[j] < pivot) { i++; swap(arr[i], arr[j]); }。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 B；按 0 起始索引映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：partition 要把小于 pivot 的元素划到左侧，遇到 arr[j]<pivot 时先扩大小于区 i++，再交换 arr[i] 与 arr[j]，故 B 正确；A 方向相反，C 缺少 i++，D 条件错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 11 题题干“若用二分法在[1,100]内猜数，最多需要猜（ ）次。”与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四项为 100、10、7、5，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 C；按 0 起始索引映射为 2，站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：2^6=64<100≤128=2^7，最坏需要 7 次，故 C 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页第 12 题给出 binarySearch 代码，横线位于 while 循环内求 mid 处，与站点 question 及 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 四项为 left+(right-left)/2、left、(left+right)/2、right，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 A；按 0 起始索引映射为 0，站点 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：left+(right-left)/2 与 (left+right)/2 数学等价，但避免了 left+right 的整型溢出，是最佳写法，故 A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 13 题题干“贪心算法的核心特征是（ ）。”与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 四项为总是选择当前最优解、回溯尝试所有可能、分阶段解决子问题、总能找到最优解，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 A；按 0 起始索引映射为 0，站点 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：贪心每一步选择当前局部最优且不回溯，A 正确；B 是回溯，D 过于绝对，C 不是贪心的核心特征。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6-7 页第 14 题给出 findMax 分治求最大值的四个实现选项，与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 D 项为 low==high 返回 arr[low]、mid=low+(high-low)/2、分别递归 [low,mid] 与 [mid+1,high]、返回较大值，与站点 D 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 D；按 0 起始索引映射为 3，站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：D 的基例、二分区间与合并取 max 均正确；A 直接返回 arr[mid]，B 返回两半之和，C 返回两半乘积，均不是求最大值，故 D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页第 15 题给出高精度乘法 multiply 代码，横线位于处理进位处，与站点 question 内联代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 A-D 四项为 temp=c[k]、temp=c[k]+carry、temp=c[k]-carry、temp=c[k]*carry，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 B；按 0 起始索引映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：当前位的总量应为本位累加值 c[k] 加上低位进位 carry，即 temp=c[k]+carry，故 B 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 1 题原文“要删除单链表中某个结点 p（非尾结点），但不知道头结点，可行的操作是将 p->next 的数据拷贝到 p 的数据部分，将 p->next 设置为 p->next->next，然后删除 p->next。”与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断答案表第 1 题为 √；平台 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：复制后继的数据与 next 后再删除后继，可在不知头结点时 O(1) 删除非尾结点，命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 2 题原文“链表存储线性表时要求内存中可用存储单元地址是连续的。”与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断答案表第 2 题为 ×；平台 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：链表结点通过指针链接，物理地址可以离散，命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 3 题原文“线性筛相对于埃拉托斯特尼筛法，每个合数只会被它的最小质因数筛去一次，因此效率更高。”与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断答案表第 3 题为 √；平台 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：线性筛的 break 保证每个合数只被最小质因子标记一次，效率高于埃氏筛，命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 4 题原文“贪心算法通过每一步选择当前最优解，从而一定能获得全局最优解。”与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断答案表第 4 题为 ×；平台 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：贪心不保证全局最优，需要贪心选择性质与最优子结构，命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 5 题原文“递归函数必须具有一个终止条件，以防止无限递归。”与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断答案表第 5 题为 √；平台 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：缺少终止条件会无限递归并栈溢出，命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 6 题原文“快速排序算法的时间复杂度与输入是否有序无关，始终稳定为 O(n log n)。”与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断答案表第 6 题为 ×；平台 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：快排在有序输入且取端点基准时会退化为 O(n²)，命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 7 题原文“归并排序算法的时间复杂度与输入是否有序无关，始终稳定在 O(n log n)。”与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断答案表第 7 题为 √；平台 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：归并排序划分层数固定，每层合并 O(n)，最好最坏平均均为 O(n log n)，命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 8 题原文“二分查找适用于对无序数组和有序数组的查找。”与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断答案表第 8 题为 ×；平台 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：二分查找依赖有序性，无序数组无法判断目标在哪一半，命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 9 题原文“小杨有 100 元去超市买东西……每次优先买价格最低的商品，这体现了分治思想。”与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断答案表第 9 题为 ×；平台 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：每次买最便宜是局部最优的贪心策略，不是分解子问题再合并的分治，命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 10 题原文“归并排序算法体现了分治算法，每次将大的待排序数组分成大小大致相等的两个小数组……最后合并成有序数组。”与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断答案表第 10 题为 √；平台 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：归并排序正是“分-治-合”的分治典型，命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 8-10 页题名“平均分配”、题意、输入输出、两组样例 3→36、2→35 均与站点一致；PDF 第 9 页数据范围给出 20% n≤8、20% 0≤b_i,c_i≤1、全部 1≤n≤10^5、0≤b_i,c_i≤10^9，站点 question 未包含数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：先假设全部卖给 B，收入 sum(b)；把第 i 件改卖给 C 的增量为 c_i-b_i，需恰好选 n 件改卖，取增量最大的 n 个即可；样例 1 的六个差值均为 1，sum(b)=33，加 3 得 36，与样例一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点参考程序与 PDF 第 9-10 页程序一致（省略 assert），排序差值后取最大的 n 个；已用 n=1、n=2、样例 1 复核，输出 13、13、36。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 五级] 平均分配\n\n## 题目描述\n\n小 A 有 $2n$ 件物品，小 B 和小 C 想从小 A 手上买走这些物品。对于第 $i$ 件物品，小 B 会以 $b_i$ 的价格购买，而小 C 会以 $c_i$ 的价格购买。为了平均分配这 $2n$ 件物品，小 A 决定小 B 和小 C 各自只能买走恰好 $n$ 件物品。你能帮小 A 求出他卖出这 $2n$ 件物品所能获得的最大收入吗？\n\n## 输入格式\n\n第一行，一个正整数 $n$。\n\n第二行，$2n$ 个整数 $b_1,b_2,\\dots,b_{2n}$。\n\n第三行，$2n$ 个整数 $c_1,c_2,\\dots,c_{2n}$。\n\n## 输出格式\n\n一行，一个整数，表示答案。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $1 \\le n \\le 8$；对于另外 20% 的测试点，保证 $0 \\le b_i \\le 1$，$0 \\le c_i \\le 1$；对于所有测试点，保证 $1 \\le n \\le 10^5$，$0 \\le b_i,c_i \\le 10^9$。"
+        },
+        "tests": [
+          {
+            "name": "n=1 两件物品",
+            "input": "1\n5 6\n7 8\n",
+            "output": "13",
+            "reason": "2n=2 件，B、C 各买 1 件；两种分配分别为 5+8=13、6+7=13，最大 13。"
+          },
+          {
+            "name": "全部差值为 0",
+            "input": "1\n0 0\n0 0\n",
+            "output": "0",
+            "reason": "价格全为 0，任选 1 件给 C，总收入 0。"
+          },
+          {
+            "name": "大差值优先",
+            "input": "2\n10 1 1 1\n1 1 1 1\n",
+            "output": "13",
+            "reason": "sum(b)=13，差值 c-b 为 -9,0,0,0；选最大的 2 个差值 0、0，收入 13。"
+          }
+        ],
+        "unresolved": [
+          "站点 memoryLimit=128 MB，原卷第 8 页标注内存限制 512.0 MB；memoryLimit 不在本次允许修改字段内，需人工同步。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 10 页题面给出原根的三条条件（1<g<p、g^(p-1) mod p=1、任意 1≤i<p-1 有 g^i mod p≠1）以及“判断 a 是否为 p 的原根”；站点 question 只剩第一条且 LaTeX 写成“$1 le g < p$”，后两条条件、任务句与数据范围均缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a 是 p 的原根当且仅当对 p-1 的每个不同质因子 q，都有 a^((p-1)/q) mod p ≠ 1；样例 p=998244353，p-1=2^23×7×17，3、5 均通过，7 在指数 (p-1)/2 处得到 1，故输出 Yes/Yes/No，与样例一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点参考程序与 PDF 第 11 页程序一致（省略 assert），用快速幂逐个检验 (p-1)/q；已用 p=3、5、7 与样例复核，输出正确。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 五级] 原根判断\n\n## 题目描述\n\n小 A 知道，对于质数 $p$ 而言，$p$ 的原根 $g$ 是满足以下条件的正整数：\n\n- $1 < g < p$；\n- $g^{p-1} \\bmod p = 1$；\n- 对于任意 $1 \\le i < p-1$ 均有 $g^i \\bmod p \\ne 1$。\n\n其中 $a \\bmod p$ 表示 $a$ 除以 $p$ 的余数。\n\n小 A 现在有一个整数 $a$，请你帮他判断 $a$ 是不是 $p$ 的原根。\n\n## 输入格式\n\n第一行，一个正整数 $T$，表示测试数据组数。\n\n每组测试数据包含一行，两个正整数 $a,p$。\n\n## 输出格式\n\n对于每组测试数据，输出一行，如果 $a$ 是 $p$ 的原根则输出 `Yes`，否则输出 `No`。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $3 \\le p \\le 10^3$；对于所有测试点，保证 $1 \\le T \\le 20$，$3 \\le p \\le 10^9$，$1 < a < p$，$p$ 为质数。"
+        },
+        "tests": [
+          {
+            "name": "最小质数 p=3，a=2",
+            "input": "1\n2 3\n",
+            "output": "Yes",
+            "reason": "p-1=2，唯一质因子 q=2，2^(2/2)=2 mod 3 ≠ 1，故 2 是原根。"
+          },
+          {
+            "name": "p=5，a=4（阶为 2）",
+            "input": "1\n4 5\n",
+            "output": "No",
+            "reason": "p-1=4，q=2，4^2=16 mod 5=1，存在 (p-1)/q 使幂为 1，故 4 不是原根。"
+          },
+          {
+            "name": "p=7，两组对照",
+            "input": "2\n3 7\n2 7\n",
+            "output": "Yes\nNo",
+            "reason": "p-1=6，3^3 mod 7=6、3^2 mod 7=2，均不为 1，3 是原根；2^3=8 mod 7=1，2 不是原根。"
+          }
+        ],
+        "unresolved": [
+          "站点 memoryLimit=128 MB，原卷第 10 页标注内存限制 512.0 MB；memoryLimit 不在本次允许修改字段内，需人工同步。"
+        ]
+      }
+    ],
+    "summary": "已逐页对照 11 页原卷完成 27 题五维初核。需修改题目：4、26、27；含待确认事项题目：3、26、27。"
+  },
+  "requests": []
+}

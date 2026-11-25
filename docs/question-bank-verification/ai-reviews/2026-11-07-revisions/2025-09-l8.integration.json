@@ -1,0 +1,206 @@
+{
+  "paperId": "2025-09-l8",
+  "integratedAt": "2026-11-25T12:12:33.118Z",
+  "accepted": [
+    {
+      "id": 6,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 13,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 17,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 18,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "explanation",
+        "referenceCode",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 7,
+      "tests": [
+        {
+          "input": "5 5\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8",
+          "output": "14\n15\n-1\n-1\n10",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "14\n15\n-1\n-1\n10\n",
+          "passed": true
+        },
+        {
+          "input": "6 10\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6",
+          "output": "15\n16\n17\n-1\n15\n17\n18\n15\n15\n15",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "15\n16\n17\n-1\n15\n17\n18\n15\n15\n15\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例 1（树边替换与否）",
+          "input": "5 5\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8\n",
+          "output": "14\n15\n-1\n-1\n10",
+          "reason": "MST 取 3-4(1)、2-5(2)、2-3(3)、1-2(4)，sum=10；删 1-2 用 3-1(8) 替换得 14，删 2-3 得 15，删 3-4 或 2-5 后 4/5 号点孤立输出 −1，删非树边 3-1 输出 10。",
+          "kind": "boundary",
+          "actual": "14\n15\n-1\n-1\n10\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例 2（含自环）",
+          "input": "6 10\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6\n",
+          "output": "15\n16\n17\n-1\n15\n17\n18\n15\n15\n15",
+          "reason": "自环 (3,3,6) 永不进 MST 也不可能是替换边，删它输出原 sum=15；其余树边按最小跨割非树边替换，逐条复算一致。",
+          "kind": "boundary",
+          "actual": "15\n16\n17\n-1\n15\n17\n18\n15\n15\n15\n",
+          "passed": true
+        },
+        {
+          "name": "n=1 全为自环",
+          "input": "1 3\n1 1 5\n1 1 2\n1 1 9\n",
+          "output": "0\n0\n0",
+          "reason": "单结点图的 MST 是空树、权值和 0；删任一自环后空树仍是 MST，三条边都输出 0。",
+          "kind": "boundary",
+          "actual": "0\n0\n0\n",
+          "passed": true
+        },
+        {
+          "name": "n=2 单边（删后不连通）",
+          "input": "2 1\n1 2 7\n",
+          "output": "-1",
+          "reason": "删去唯一一条边后不连通，不存在生成树，按题意输出 −1。",
+          "kind": "boundary",
+          "actual": "-1\n",
+          "passed": true
+        },
+        {
+          "name": "n=2 两条平行边（重边替换）",
+          "input": "2 2\n1 2 3\n1 2 5\n",
+          "output": "5\n3",
+          "reason": "MST 取权 3 的边，sum=3；删树边（权 3）用另一条权 5 的平行边替换得 3−3+5=5；删非树边（权 5）MST 不变得 3。",
+          "kind": "boundary",
+          "actual": "5\n3\n",
+          "passed": true
+        },
+        {
+          "name": "原图不连通",
+          "input": "4 2\n1 2 1\n3 4 1\n",
+          "output": "-1\n-1",
+          "reason": "原图只有 2 条边、4 个结点，Kruskal 得不到 n−1 条树边；删任何边都不存在生成树，全部输出 −1。",
+          "kind": "boundary",
+          "actual": "-1\n-1\n",
+          "passed": true
+        },
+        {
+          "name": "自环 + 链（自环既非树边也非替换边）",
+          "input": "3 3\n1 2 1\n2 3 2\n3 3 9\n",
+          "output": "-1\n-1\n3",
+          "reason": "MST 取边 1-2(1)、2-3(2)，sum=3；删任一树边后剩余图不连通输出 −1；删自环 (3,3,9) 不影响 MST，输出 3。",
+          "kind": "boundary",
+          "actual": "-1\n-1\n3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "e9c28a030d6771652b33b4e950f4ab8dedfffd0fa84bc4436e57378ca6053481"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 7
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 9
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 13,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：A**\n\n**解析：**\n本题的区间约定是**左闭右开** [left, right)：\n\n1. 递归出口 `if (right - left <= 1) return;`：区间长度为 0 或 1 时无需排序。\n2. `int mid = (left + right) / 2;` 切分后，固定合并代码以 `i = left, j = mid` 为两段起点，即默认第一段为 [left, mid)、第二段为 [mid, right)（mid 归第二段开头）。因此两处横线应分别填 `arr, left, mid` 与 `arr, mid, right`；两段长度之和恰为 right-left，且都严格短于原区间，不会死递归。\n\n**选项逐项分析：**\n- **A `arr, left, mid` 与 `arr, mid, right`**：✅ 正确。恰为 [left,mid) 与 [mid,right)，与 `j = mid`、`i < mid` 的合并逻辑自洽。\n- **B `arr, left, mid + 1` 与 `arr, mid + 1, right`**：❌ 错误。当 right−left = 2 时 mid+1 = right，第一次递归的区间 [left, mid+1) 与原区间完全相同，无限递归直至栈溢出；即使不考虑这一点，固定合并代码把 `j = mid` 当作第二段开头，而 B 的第二段从 mid+1 开始，arr[mid]（第一段的末元素）会被错当第二段参与比较，合并结果错误。注意 [left,mid+1) 与 [mid+1,right) 的并集实为完整的 [left, right)，并不缺元素——缺陷在递归不终止与合并错位，而非漏掉 arr[mid]。\n- **C `arr, left, mid` 与 `arr, mid + 1, right`**：❌ 错误。两段为 [left,mid) 与 [mid+1,right)，下标 mid 不属于任何一段：arr[mid] 既不会被排序，也不会被正确合并，两段拼不成完整的 [left, right)。\n- **D `arr, left, mid + 1` 与 `arr, mid + 1, right + 1`**：❌ 错误。第二段 [mid+1, right+1) 把下标 right 卷进来，而 right 已越出本次调用的管辖范围 [left, right)，会读改不属于自己的元素；两段本身并不重叠，缺陷在越界与合并边界（`j = mid`）不符，而非重叠。\n\n**易错提醒：**\n- 区间端点约定决定 mid 归哪一段：本题 `right - left <= 1` 与 `j = mid` 都表明是左闭右开、mid 归第二段，因此第一空以 mid 结尾、第二空从 mid 开始，写成 mid±1 都会破坏递归或合并。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,476 @@
+{
+  "paperId": "2026-06-l7",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:35:00.000Z",
+  "completedAt": "2026-11-25T08:18:03.000Z",
+  "finishReason": "stop",
+  "inputSha256": "c6ed7e3c92624a4e0b639cd4babe6b1cd316e1a6e991cc97a518d9ed0e4e6f5f",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295385264160.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++7级.pdf",
+    "mirrorSha": "d71be838c5fd77cc0ba60b281307c79286abbd0f",
+    "mirrorBytes": 753580,
+    "shaVerified": true,
+    "sha256": "d87a290ca4ace7437c59826ce1b54eebd72980e6981e1478f160aba9843ab94d"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2026-06-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为「CCF 编程能力等级认证 GESP / C++ 七级 / 2026 年 06 月」，页脚「1 / 8」，与 2026-06-l7 一致；第 1 页单选答案表（1-15：B A C D C C D A A C D B B B D）与第 4 页判断题答案表（×××√×√√×√√）在页图中清晰可读，候选 12 题中涉及的官方答案逐项对照一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "候选重写后的解析正确：sqrt/log2/pow 均返回 double，sqrt(49)=7.0 可参与浮点运算，A 正确；sin 参数为弧度，90 弧度 = 90×180/π ≈ 5156.6°（本人独立换算一致），D 错误；原解析「约 5147°」的换算错误已修正。题干、四选项与答案表（第 2 题 A→0）经第 1 页页图核对一致。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 2 题题干「下列关于 <cmath> 或 <math.h> 中的数学库函数的说法，正确的是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A sqrt(49) 的返回值可以参与浮点运算、B log2(32) 的返回值类型为 int、C pow(2, 5) 的返回值类型一定为 int、D sin(90) 的参数 90 表示 90 度，与候选逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 A，0 起始索引 0，候选 answer=0。独立判断：sqrt(49)=7.0 为 double，A 正确；B/C 返回 double 非 int，D 混淆弧度与角度。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐项分析并给出 5156.6° 的正确换算，与独立计算（90×180/π≈5156.62）一致；原解析 5147° 数值错误已消除。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受候选的 answer 类型修正：原卷与站点题干一致，答案表为「×」；站点原以布尔值存储（语义一致但类型不符 0/1 整数约定），候选已改为整数 1。独立判断成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 1 题「使用 cmath 或 math.h 中的三角函数时，角度参数默认采用角度制。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 1 题为「×」，语义为「错误」=1；候选改为整数 1。独立判断：三角函数默认弧度制，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明默认弧度制并给出角度转弧度写法，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受候选的 answer 类型修正：原卷与站点题干一致，答案表为「×」；站点原以布尔值存储（语义一致但类型不符 0/1 整数约定），候选已改为整数 1。独立判断成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 2 题「使用 cmath 或 math.h 中的 pow(2, 10) 计算 2¹⁰ 时，由于参数均为整型 int，返回值类型也为整型 int。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 2 题为「×」，映射 1；候选改为整数 1。独立判断：pow 原型 double pow(double,double)，int 实参隐式转换后返回 double，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出原型与隐式转换说明，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受候选的 answer 类型修正：原卷与站点题干一致，答案表为「×」；站点原以布尔值存储（语义一致但类型不符 0/1 整数约定），候选已改为整数 1。独立判断成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 3 题「0/1 背包使用一维数组优化时，容量从小到大枚举也能保证每件物品最多被选一次。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 3 题为「×」，映射 1；候选改为整数 1。独立判断：正序枚举时 dp[c−w] 已含当前物品，一件物品会被重复选取（退化为完全背包），命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明正序枚举的重复选取后果，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受候选的 answer 类型修正：原卷与站点题干一致，答案表为「√」；站点原以布尔值存储（语义一致但类型不符 0/1 整数约定），候选已改为整数 0。独立判断成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 4 题「哈希表采用开放定址法时，即使哈希函数设计合理，也仍然可能发生冲突。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 4 题为「√」，映射 0；候选改为整数 0。独立判断：鸽巢原理决定槽位有限必有冲突可能，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按鸽巢原理说明冲突只能缓解无法杜绝，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受候选的 answer 类型修正：原卷与站点题干一致，答案表为「×」；站点原以布尔值存储（语义一致但类型不符 0/1 整数约定），候选已改为整数 1。独立判断成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 5 题「同一个图从同一个起点进行深度优先搜索，访问序列一定与邻接点的枚举顺序无关。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 5 题为「×」，映射 1；候选改为整数 1。独立判断：邻接点枚举顺序不同，深入分支不同，DFS 序随之不同，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以邻接表顺序不同则访问序列不同说明，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受候选的 answer 类型修正：原卷与站点题干一致，答案表为「√」；站点原以布尔值存储（语义一致但类型不符 0/1 整数约定），候选已改为整数 0。独立判断成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 6 题「泛洪算法可以用递归 DFS 实现，但地图很大时可能由于递归层数过深导致调用栈溢出等运行时错误。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 6 题为「√」，映射 0；候选改为整数 0。独立判断：递归泛洪在大图上有栈溢出风险，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以大地图深连通块说明风险并给出显式栈/BFS 替代，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受候选的 answer 类型修正：原卷与站点题干一致，答案表为「√」；站点原以布尔值存储（语义一致但类型不符 0/1 整数约定），候选已改为整数 0。独立判断成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 7 题「哈夫曼树中不存在度为 1 的结点。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 7 题为「√」，映射 0；候选改为整数 0。独立判断：每次合并两棵树，内部结点度恒为 2，结点总数 2n−1，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按构建过程说明无度 1 结点，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受候选的 answer 类型修正：原卷与站点题干一致，答案表为「×」；站点原以布尔值存储（语义一致但类型不符 0/1 整数约定），候选已改为整数 1。独立判断成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 8 题「冒泡排序的常见实现是稳定排序，选择排序也是。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 8 题为「×」，映射 1；候选改为整数 1。独立判断：冒泡相邻交换稳定；选择排序远距离交换会打乱相等元素次序（如 [2,2,1]），不稳定，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出 [2,2,1] 反例，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受候选的 answer 类型修正：原卷与站点题干一致，答案表为「√」；站点原以布尔值存储（语义一致但类型不符 0/1 整数约定），候选已改为整数 0。独立判断成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 9 题「在无权图中从起点执行 BFS 时，某个顶点第一次被访问到的层数等于起点到该顶点经过的最少边数。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 9 题为「√」，映射 0；候选改为整数 0。独立判断：BFS 按层扩展，首次访问即最短边数，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 BFS 分层扩展原理说明，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受候选的 answer 类型修正：原卷与站点题干一致，答案表为「√」；站点原以布尔值存储（语义一致但类型不符 0/1 整数约定），候选已改为整数 0。独立判断成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 10 题「在二维动态规划中，状态 dp[i][j] 的计算常常依赖其他状态，这些状态的计算必须在完成 dp[i][j] 的计算前完成。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 10 题为「√」，映射 0；候选改为整数 0。独立判断：转移引用 dp[i−1][j]、dp[i][j−1] 等，须先算完（无后效性+计算顺序），命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按转移依赖说明计算顺序要求，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题/判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          4,
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "接受候选的数据范围修正：第 6 页 3.1.7 原文为「对于所有测试点，保证 1 ≤ t ≤ 100，3 ≤ n ≤ 10^5，Σn ≤ 10^5。保证 G 中没有重边与自环。」及「对于 40% 的测试点，保证 Σn ≤ 500」，候选 description 已将站点原误写的 t≤10 改为 t≤100，与页图逐字一致。参考代码维度：本人将候选 referenceCode 与第 6 页 3.1.8 官方参考程序逐行 diff，完全一致（仅空行差异），并实际编译运行——原样例 4 组输出 2/3/3/3 与页图一致；另建偶环(→2)、三角形(→3)、两个奇环(→3)、n=99998 大偶环(→2) 四组边界用例全部通过；再以 200 组随机不相交环并集（按奇环存在性暴力判定）对拍 0 处不一致。内存限制差异（PDF 512.0 MB、题库 128 MB）不在可修订字段集合内，记入 unresolved。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4—5 页 3.1.1 题目描述（每点度数均为 2、恰 n 条边、相邻异色、求最少颜色数）、3.1.2 输入格式（多组数据，首行 t）、3.1.3 输出格式、3.1.4—3.1.6 样例（4 组：6 偶环→2、双三角→3、三角→3、5 奇环→3）与候选 description/inputDescription/outputDescription/samples 逐段一致；第 6 页 3.1.7 数据范围候选已修正为 t≤100，与页图逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不出现在客观题答案表中，officialAnswer=null，以参考程序与样例承载判定。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：所有点度数为 2 的简单无向图是不相交简单环之并；偶环 2 色、奇环 3 色（最小染色数），整图取最大。样例 4 组（2/3/3/3）与独立推导一致；t≤100、Σn≤10^5 下线性可行。候选解析的环分解与奇环判定说明成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 与第 6 页 3.1.8 官方参考程序逐行 diff 一致（仅空行差异）；本人编译（g++ -std=c++17 -O2）运行：原样例输出 2/3/3/3，四组独立边界用例（偶环 2、三角 3、两奇环 3、99998 大偶环 2）全部正确，另 200 组随机环并集与暴力判定对拍 0 处不一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "三角形",
+            "input": "1\n3\n1 2\n2 3\n3 1\n",
+            "output": "3",
+            "reason": "奇环需 3 色。参考程序实测一致。"
+          },
+          {
+            "name": "偶环",
+            "input": "1\n4\n1 2\n2 3\n3 4\n4 1\n",
+            "output": "2",
+            "reason": "偶环 2 色交替即可。参考程序实测一致。"
+          },
+          {
+            "name": "两个奇环",
+            "input": "1\n6\n1 2\n2 3\n3 1\n4 5\n5 6\n6 4\n",
+            "output": "3",
+            "reason": "存在奇环时整图至少 3 色，两个三角形均可 3 色。参考程序实测一致。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 4 页标注编程题内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段集合内，未改动，留待发布流程处理。"
+        ]
+      }
+    ],
+    "summary": "对照原卷 8 页复核 12 个候选修订：Q2 解析重写（5156.6° 换算正确）、Q16–Q25 判断题 10 处 answer 由布尔改为 0/1 整数（与第 4 页答案表 ×××√×√√×√√ 逐一对应）、Q26 数据范围 t≤100 修正（与第 6 页 3.1.7 逐字一致）——全部真实落入且正确；参考代码与 3.1.8 官方程序逐行一致，原样例、4 组边界用例与 200 组随机对拍全部通过。12 题全部 approve、changes 为空，可直接进入门禁应用；memoryLimit 差异仅记录。"
+  }
+}

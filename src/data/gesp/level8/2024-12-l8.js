@@ -117,26 +117,17 @@ C++ 面向对象支持丰富的继承形式，包括单继承、多重继承（�
             id: 4,
             type: "single",
             question: `使用邻接表表达一个简单有向图，图中包含v个顶点、e条边，则该出边表中边节点的个数为（ ）。`,
-            options: [
-                "v",
-                "v+e",
-                "v-1",
-                "e",
-],
+            options: ["v×(v−1)","v×v","2×e","e"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-**解析：**
-使用邻接表（出边表）表示含 v 个顶点、e 条边的简单有向图时，每个顶点对应一个表头，每条有向边对应出边表中的一个边结点。因此出边表中边结点的个数就等于边数 e。
-
-- **A \`v\`**：错误。这是顶点个数，不是边结点个数。
-- **B \`v+e\`**：错误。这是“顶点表头 + 边结点”的总节点数。
-- **C \`v-1\`**：错误。这是树的边数，与本题无关。
-- **D \`e\`**：正确。每条边对应一个出边表结点。`,
+            explanation: "**答案：D**\n\n**解析：**\n使用出边邻接表表示含 v 个顶点、e 条边的简单有向图时，每条有向边对应出边表中的一个边结点，因此边结点数为 e。\n\n- A v×(v−1)：错误，这是有向完全图的弧数；\n- B v×v：错误，这是邻接矩阵的元素数；\n- C 2×e：错误，这是无向图邻接表的边结点数；\n- D e：正确。\n\n**考点：** 有向图出边邻接表的空间开销。",
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 5,
@@ -168,7 +159,7 @@ C++ 面向对象支持丰富的继承形式，包括单继承、多重继承（�
         {
             id: 6,
             type: "single",
-            question: `已知两个点A、B在平面直角坐标系下的坐标分别为 和 ，并分别定义变量double xa, ya, xb, yb;存储坐标。假设直线AB的斜率存在，下列哪个表达式可以用来表达它？（ ）。`,
+            question: "已知两个点 A、B 在平面直角坐标系下的坐标分别为 $(x_a,y_a)$ 和 $(x_b,y_b)$，并分别定义变量 double xa, ya, xb, yb; 存储坐标。假设直线 AB 的斜率存在，下列哪个表达式可以用来表达它？（ ）。",
             options: [
                 "(xa-xb) / (ya-yb)",
                 "(xa-xb) / (yb-ya)",
@@ -192,6 +183,10 @@ C++ 面向对象支持丰富的继承形式，包括单继承、多重继承（�
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
@@ -265,7 +260,7 @@ C++ 面向对象支持丰富的继承形式，包括单继承、多重继承（�
         {
             id: 9,
             type: "single",
-            question: `在下面的程序中，使用整数表示一种组合。整数二进制表示的某一位为 1 ，表示该位对应的数被选中，反之 为 0 表示未选中。例如，从0-5这6个数中选出3个，则0b111000代表选中3, 4, 5三个数，0b011001代表 选中0, 3, 4三个数。zuhe_next函数按组合对应的整数由大到小的顺序，求出组合c的下一个组合。横线处可 以填入的是（ ）。 int intlow2(int c) { return ________; // 在此处填入选项 } int zuhe_next_incur(int c, int n, int l) { if (n == 1) return c; if ((c & (1 << l)) == 0) { int d = intlow2(c); c = (c & ~d); c = (c | (d >> 1)); } else { 1 2 3 4 5 6 7 8 9 10`,
+            question: "在下面的程序中，使用整数表示一种组合。整数二进制表示的某一位为 1，表示该位对应的数被选中，反之为 0 表示未选中。例如，从 0-5 这 6 个数中选出 3 个，则 0b111000 代表选中 3, 4, 5 三个数，0b011001 代表选中 0, 3, 4 三个数。zuhe_next 函数按组合对应的整数由大到小的顺序，求出组合 c 的下一个组合。横线处可以填入的是（ ）。\n\n```cpp\nint intlow2(int c) {\n    return ________; // 在此处填入选项\n}\nint zuhe_next_incur(int c, int n, int l) {\n    if (n == 1) return c;\n    if ((c & (1 << l)) == 0) {\n        int d = intlow2(c);\n        c = (c & ~d);\n        c = (c | (d >> 1));\n    } else {\n        c = (c & ~(1 << l));\n        c = zuhe_next_incur(c, n - 1, l + 1);\n        int d = intlow2(c);\n        c = (c | (d >> 1));\n    }\n    return c;\n}\n// 从n个数中选m个，当前组合为c\nint zuhe_next(int c, int n, int m) {\n    return zuhe_next_incur(c, n, 0);\n}\n```",
             options: [
                 "((c-1) ^ c)",
                 "(((c-1) ^ c)+1)",
@@ -289,6 +284,10 @@ lowbit = c & -c。而 \`(c-1) ^ c\` 得到最低置位以下全 1 的掩码，�
             tags: [
                 "排列组合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 10,
@@ -336,36 +335,23 @@ int main() {
         {
             id: 11,
             type: "single",
-            question: `下面最长公共子序列程序中，横线处应该填入的是（ ）。 c = (c & ~(1 << l)); c = zuhe_next_incur(c, n-1, l+1); int d = intlow2(c); c = (c | (d >> 1)); } return c; } // 从 n 个数中选 m 个，当前组合为 c int zuhe_next(int c, int n, int m) { return zuhe_next_incur(c, n, 0); } 11 12 13 14 15 16 17 18 19 20 21 #include <iostream> using namespace std; int main() { int N = 15, cnt = 0; for (int x = 0; x+x+x <= N; x++) for (int y = x; x+y+y <= N; y++) for (int z = y; x+y+z <= N; z++) cnt++; cout << cnt << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 #define MAX(A, B) (((A) > (B)) ? (A) : (B)) #define MIN(A, B) (((A) < (B)) ? (A) : (B)) int dp[MAX_L+1][MAX_L+1]; int LCS(char str1[], char str2[]) { int len1 = strlen(str1); int len2 = strlen(str2); for (int i = 0; i < len1; i++) for(int j = 0; j < len2; j++) if (str1[i] == str2[j]) dp[i+1][j+1] = $dp[i]$[j]+1; else ________; // 在此处填入选项 return dp[len1][len2]; 1 2 3 4 5 6 7 8 9 10 11 12 13`,
-            options: [
-                "dp[i+1][j+1] = $dp[i]$[j+1]+dp[i+1][j]",
-                "dp[i+1][j+1] = MIN($dp[i]$[j+1], dp[i+1][j])",
-                "dp[i+1][j+1] = MAX($dp[i]$[j+1], dp[i+1][j])",
-                "dp[i+1][j+1] = MAX($dp[i]$[j+1], dp[i+1][j])+1",
-            ],
+            question: "下面最长公共子序列程序中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n\n#define MAX(A, B) (((A) > (B)) ? (A) : (B))\n#define MIN(A, B) (((A) < (B)) ? (A) : (B))\n\nint dp[MAX_L + 1][MAX_L + 1];\n\nint LCS(char str1[], char str2[]) {\n    int len1 = strlen(str1);\n    int len2 = strlen(str2);\n    for (int i = 0; i < len1; i++)\n        for(int j = 0; j < len2; j++)\n            if (str1[i] == str2[j])\n                dp[i + 1][j + 1] = dp[i][j] + 1;\n            else\n                ________; // 在此处填入选项\n    return dp[len1][len2];\n}\n```",
+            options: ["dp[i+1][j+1] = dp[i][j+1] + dp[i+1][j]","dp[i+1][j+1] = MIN(dp[i][j+1], dp[i+1][j])","dp[i+1][j+1] = MAX(dp[i][j+1], dp[i+1][j])","dp[i+1][j+1] = MAX(dp[i][j+1], dp[i+1][j]) + 1"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-最长公共子序列（LCS）标准状态转移：若 str1[i] == str2[j]，则 dp[i+1][j+1] = dp[i][j] + 1；否则 dp[i+1][j+1] = max(dp[i+1][j], dp[i][j+1])。
-（题中 \`$dp[i]$[j]\` 为数据格式损坏，实指 dp[i][j]。）
-- A \`dp[i+1][j+1] = dp[i][j+1] + dp[i+1][j]\`：求和，错误。
-- B \`MIN(dp[i][j+1], dp[i+1][j])\`：取最小，错误。
-- C \`MAX(dp[i][j+1], dp[i+1][j])\`：正确。
-- D \`MAX(...) + 1\`：多 +1，错误。
-
-**选项：** C 正确。
-
-**考点**：最长公共子序列（LCS）、动态规划。`,
+            explanation: "**答案：C**\n\n**解析：**\n最长公共子序列的标准转移：若 str1[i]==str2[j]，dp[i+1][j+1]=dp[i][j]+1；否则 dp[i+1][j+1]=max(dp[i][j+1],dp[i+1][j])，即 C。A 把两项相加；B 取最小；D 在取最大后多加了 1，均错误。\n\n**考点：** 最长公共子序列（LCS）动态规划。",
             tags: [
                 "动态规划",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 12,
             type: "single",
-            question: `下列 Dijkstra 算法中，横线处应该填入的是（ ）。`,
+            question: "下列 Dijkstra 算法中，横线处应该填入的是（ ）。",
             options: [
                 "if (dist[u] + w > dist[v]) dist[v] = dist[u] + w;",
                 "if (dist[u] + w < dist[v]) dist[v] = dist[u] + w;",
@@ -391,6 +377,10 @@ int main() {
             tags: [
                 "最短路",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","reviewedBy","reviewedAt","code"],
+      "code": "typedef struct Edge {\n    int in, out;        // 从下标in顶点到下标out顶点的边\n    int len;            // 边长度\n    struct Edge * next;\n} Edge;\n\n// v: 顶点个数, graph: 出边邻接表, start: 起点下标, dis: 输出每个顶点的最短距离\nvoid dijkstra(int v, Edge * graph[], int start, int * dis) {\n    const int MAX_DIS = 0x7fffff;\n    for (int i = 0; i < v; i++)\n        dis[i] = MAX_DIS;\n    dis[start] = 0;\n    int * visited = new int[v];\n    for (int i = 0; i < v; i++)\n        visited[i] = 0;\n    visited[start] = 1;\n    for (int t = 0; ; t++) {\n        int min = MAX_DIS, minv = -1;\n        for (int i = 0; i < v; i++) {\n            if (visited[i] == 0 && min > dis[i]) {\n                min = dis[i];\n                minv = i;\n            }\n        }\n        if (minv < 0)\n            break;\n        visited[minv] = 1;\n        for (Edge * e = graph[minv]; e != NULL; e = e->next) {\n            ________; // 在此处填入选项\n        }\n    }\n    delete[] visited;\n}",
         },
         {
             id: 13,
@@ -424,7 +414,7 @@ int main() {
         {
             id: 14,
             type: "single",
-            question: `下面的快速排序程序中，两处横线处分别应填入的是（ ）。`,
+            question: "下面的快速排序程序中，两处横线处分别应填入的是（ ）。",
             options: [
                 "quickSort(arr, low, pi - 1); quickSort(arr, pi + 1, high);",
                 "quickSort(arr, low, pi); quickSort(arr, pi + 1, high);",
@@ -451,31 +441,25 @@ int main() {
             tags: [
                 "排序算法",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","reviewedBy","reviewedAt","code"],
+      "code": "void quick_sort(int a[], int n) {\n    if (n <= 1)\n        return;\n    int pivot = 0, l = 0, r = n - 1;\n    while (________) { // 在此处填入选项\n        while (r > pivot && a[r] >= a[pivot])\n            r--;\n        if (r > pivot) {\n            int temp = a[pivot];\n            a[pivot] = a[r];\n            a[r] = temp;\n            pivot = r;\n        }\n        while (l < pivot && a[l] <= a[pivot])\n            l++;\n        if (l < pivot) {\n            int temp = a[pivot];\n            a[pivot] = a[l];\n            a[l] = temp;\n            pivot = l;\n        }\n    }\n    quick_sort(a, pivot);\n    quick_sort(________); // 在此处填入选项\n}",
         },
         {
             id: 15,
             type: "single",
             question: `上题程序的时间复杂度为（ ）。`,
-            options: [
-                "O(n)",
-                "O(n²)",
-                "O(log n)",
-                "O(n log n)",
-],
+            options: ["O(n)","O(n²)","O(2ⁿ)","O(n log n)"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-**解析：**
-快速排序每次划分将区间分成两部分，递归树的深度约为 O(log n)，而每一层合计要对 O(n) 个元素做划分扫描，因此平均时间复杂度为 O(n log n)。选项 D 正确。
-
-- **A O(n)**：错误。快排各层都要做划分，单层已耗时 O(n)，总复杂度高于线性。
-- **B O(n²)**：错误。这是最坏情况（如序列已有序且 pivot 选择不当）的复杂度，并非一般/平均情况。
-- **C O(log n)**：错误。这只是递归深度，未计入每层的划分开销。
-- **D O(n log n)**：正确。快速排序的平均时间复杂度为 O(n log n)。`,
+            explanation: "**答案：D**\n\n**解析：**\n快速排序平均每次划分把区间分成两部分，递归树深度约 O(log n)，每层合计扫描 O(n) 个元素，因此平均时间复杂度为 O(n log n)。\n\n- A O(n)：错误，每层都要划分；\n- B O(n²)：错误，这是最坏情况；\n- C O(2ⁿ)：错误，不是指数级；\n- D O(n log n)：正确。\n\n**考点：** 快速排序平均复杂度。",
             tags: [
                 "复杂度分析",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 16,
@@ -525,7 +509,7 @@ int main() {
         {
             id: 18,
             type: "judge",
-            question: `对 个元素的数组进行排序，快速排序和归并排序的平均时间复杂度都为 。但快速排序存在退化情 况，使得时间复杂度升高至 ；归并排序需要额外的空间开销。`,
+            question: "对 $n$ 个元素的数组进行排序，快速排序和归并排序的平均时间复杂度都为 $O(n\\log n)$。但快速排序存在退化情况，使得时间复杂度升高至 $O(n^2)$；归并排序需要额外的空间开销。",
             options: [
                 "正确",
                 "错误",
@@ -541,6 +525,10 @@ int main() {
             tags: [
                 "排序算法",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 19,
@@ -721,17 +709,13 @@ C++ 的二维数组 \`int a[M][N]\` 本质是"数组的数组"，在内存中是
             score: 2,
             sourceVerified: true,
             sourcePage: 6,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-07-26',
-            explanation: `**答案：错误**
-
-**解析：**
-C++ 中 \`^\` 是按位异或运算符，\`a ^ 2\` 并非"a 的平方"；且一元二次方程判别式应为 b^2 - 4ac（对应代码 \`b*b - 4*a*c\`）。题面式子 \`a ^ 2 - b * 4 >= 0\` 既误用了异或运算，公式本身也写错（应为 b^2 - 4ac 而非 a^2 - 4b）。故原命题错误。
-
-**考点**：C++ 位运算（^ 为异或）、一元二次方程判别式。`,
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            explanation: "**答案：错误**\n\n**解析：**\nC++ 中 `^` 是按位异或运算符，`a ^ 2` 表示 a 与 2 做异或，并非 a 的平方。方程 x²+ax+b=0 的判别式应为 a²−4b，程序里应写 `a * a - 4 * b >= 0`。题述用 `a ^ 2` 代替平方，故原命题错误。\n\n**考点：** 位运算与一元二次方程判别式。",
             tags: [
                 "C++综合",
             ],
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         }
     ]
 };

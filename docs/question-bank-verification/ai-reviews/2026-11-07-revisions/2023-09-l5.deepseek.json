@@ -1,0 +1,202 @@
+{
+  "paperId": "2023-09-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    12,
+    14,
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:30:00.000Z",
+  "completedAt": "2026-11-25T09:05:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "0344c680d32689065ef37f40c4c07f74aa49523013ff92b064760f75832d6f49",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611325304864.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++5级.pdf",
+    "mirrorSha": "7d1cb9e5cd39d721f9b483e377e54be55733be21",
+    "mirrorBytes": 1870596,
+    "shaVerified": true,
+    "sha256": "89534b84ef130115c0f3d0096b0930cc796d1b0b7933cb57b5a0f151f5ae0828"
+  },
+  "pageCount": 13,
+  "report": {
+    "paperId": "2023-09-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头为「CCF 编程能力等级认证 C++ 五级」「2023 年 9 月」，共 13 页；source.pdf 的 SHA-256 与清单 89534b84…0828 一致，与 2023-09-l5 一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页第3题原文「如果变量 a 和 b 分别为 double 类型和 int 类型，则表达式 (a = 6, b = 3 * (7 + 8) / 2, b += a) 的计算结果为（ ）。」候选作「如果变量a 和b 分别为double类型和int类型，则表达式(a = 6, b = 3 * (7+8) / 2, b += a)的计算结果为（ ）。」，仅中英文间距差异；变量类型、逗号表达式三项与设问完整，原「double类型 and int类型」的英文 and 误转已修复。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页 A 6、B 21、C 28、D 不确定，与候选四项逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第3题标 C，0 起始索引 2。独立编译求值（g++ -O2）：a=6.0；b=3*15/2=22（int 截断）；b+=a 得 28；逗号表达式取最后一项的值 28，与 C 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析「a=6; b=3*15/2=22; b+=6 => 28」与独立求值一致，并指出 A/B 数值不符、D 不确定不成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          8,
+          9
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8页代码与候选逐字对照：mergeSort 定义、merge 定义、main 中 lstA={1, 3, 2, 7, 11, 5, 3} 与 mergeSort(lstA, 0, size - 1) 均一致。原卷第4–5行声明顺序为 mergeSort 在前、merge 在后，候选把两条独立前置声明对调；两条声明的内容与参数个数（mergeSort 3 参数、merge 4 参数）均与原卷一致，不影响编译与调用。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第9页 A 0、B 1、C 6、D 7，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题标 C，0 起始索引 2。独立插桩编译运行候选代码，输出 merge calls: 6；区间 [0,6]→[0,3]/[4,6]→[0,1]/[2,3]/[4,5] 共 6 个内部结点，各调用 merge 一次。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按递归树非叶区间计数，列出 [0,6]、[0,3]、[4,6]、[0,1]、[2,3]、[4,5] 共 6 个，与插桩实测 6 次一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第9页第14题题干「归并排序算法的基本思想是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第9页 A 将数组分成两个子数组，分别排序后再合并；B 随机选择一个元素作为枢轴，将数组划分为两个部分；C 从数组的最后一个元素开始，依次与前一个元素比较并交换位置；D 比较相邻的两个元素，如果顺序错误就交换位置；与候选四项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题标 A，0 起始索引 0。独立判断：A 是归并排序的分解+合并；B 是快速排序枢轴划分；C 是相邻交换类排序；D 是冒泡排序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐项给出算法归属（B 快速排序、C 相邻交换、D 冒泡），结论 A 与官方一致；原解析对 B/C 使用「数组下标从 0 开始」的错误理由已消除。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第11页 3.1.1 原文「每个正整数都可以分解成素数的乘积，例如：6=2×3、20=2^2×5」「现在，给定一个正整数N，请按要求输出它的因数分解式」；3.1.2「输入第一行，包含一个正整数N。约定2≤N≤10^12」；3.1.3「输出一行，为N的因数分解式。要求按质因数由小到大排列，乘号用星号*表示，且左右各空一格。当且仅当一个素数出现多次时，将它们合并为指数形式，用上箭头^表示，且左右不空格」。候选两处均含 N，句意完整；举例分隔符由「、」写作「，」、乘方用 LaTeX，属排版差异。第10页 3.1 的试题编号/时限与「特别提醒（不要输出提示信息）」属卷面通用说明，未纳入题面不影响设问。样例 6→2 * 3、20→2^2 * 5、23→23 与第11页逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF 未提供编程题答案索引，第11–12页附参考程序；officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导试除法：p 从 2 枚举到 p*p<=N，除尽并计 cnt，cnt>1 输出 p^cnt 否则输出 p，循环后 N>1 输出自身；分隔符「 * 」与指数「^」符合题面。候选解析的算法步骤、6/20/23 样例走查与溢出/末因子提醒均与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本地 g++ -O2 -std=c++17 编译候选参考程序：原样例 6→2 * 3、20→2^2 * 5、23→23 全部通过；边界 N=2→2、N=65536→2^16、N=10^12→2^12 * 5^12、N=999999999999→3^3 * 7 * 11 * 13 * 37 * 101 * 9901、N=999999999989（10^12 内素数）→自身，均与独立分解一致；大素数最坏约 10^6 次试除，实测 0.008 s，1.0 s 时限余量充足。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小输入 N=2",
+            "input": "2\n",
+            "output": "2\n",
+            "reason": "2 为素数，p*p<=2 不成立，循环不执行，末尾 N>1 分支直接输出自身，验证最小边界。"
+          },
+          {
+            "name": "指数为两位的纯幂 N=65536",
+            "input": "65536\n",
+            "output": "2^16\n",
+            "reason": "65536=2^16，验证 while 连除 16 次、cnt=16 及「^16」两位数指数格式。"
+          },
+          {
+            "name": "上界 N=10^12",
+            "input": "1000000000000\n",
+            "output": "2^12 * 5^12\n",
+            "reason": "10^12=2^12×5^12，验证 long long 读入、p*p<=N 在 10^12 量级不溢出及多因子「 * 」拼接。"
+          },
+          {
+            "name": "10^12-1 多因子",
+            "input": "999999999999\n",
+            "output": "3^3 * 7 * 11 * 13 * 37 * 101 * 9901\n",
+            "reason": "999999999999=(10^6-1)(10^6+1)=3^3×7×11×13×37×101×9901，验证因子升序与指数/单因子混合格式。"
+          },
+          {
+            "name": "10^12 内大素数",
+            "input": "999999999989\n",
+            "output": "999999999989\n",
+            "reason": "该数无不超过 10^6 的因子，验证最坏试除路径后走末尾 N>1 分支输出自身。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "对照原卷 13 页逐题复核 Q3/Q12/Q14/Q26：Q3 题面「and」改回「和」、Q12 mergeSort 前置声明改回 3 参数、Q14 解析按算法归属重写、Q26 两处补回变量 N；四个候选的适用维度均通过，未提出追加修改。Q26 参考程序经 g++ 实测原样例 3 组与 5 条边界用例全部通过。"
+  },
+  "requests": []
+}

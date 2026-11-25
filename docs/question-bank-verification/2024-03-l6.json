@@ -1,165 +1,1045 @@
 {
   "paperId": "2024-03-l6",
-  "reviewedAt": "2026-10-31",
+  "reviewedAt": "2026-11-07",
+  "dimensionScopedUnresolved": true,
   "reviewedBy": {
     "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2024-03-l6"
+    "executor": "DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核",
+    "coordinator": "Grok CLI（调度）+ 本机机械队列（资料、自动校验与发布）"
   },
   "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047203868704.pdf",
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++6级.pdf",
     "mirrorSha": "5e0d648726a396dbde60a40d4ad987dccbb07494",
+    "mirrorBytes": 1348645,
     "shaVerified": true,
-    "fetchedAt": "2026-10-24",
-    "pages": {
-      "Q15": "p.5"
-    }
+    "sha256": "23d9a6343b26277407e0ed2e9fa0d36eebfeb07aea047b443b6c6039f3702ed3",
+    "pages": 9
   },
+  "reviewFiles": {
+    "initial": "ai-reviews/2026-11-07/2024-03-l6.deepseek.json",
+    "review": "ai-reviews/2026-11-07/2024-03-l6.glm.json",
+    "previous": "ai-reviews/2026-11-07/2024-03-l6.previous-evidence.json"
+  },
+  "inputSha256": "2aec3a0a98b8b9985259fd77f29663db4e3343ff6c9648f4b4e26f02b8291528",
   "questions": [
+    {
+      "id": 1,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        1
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页第 1 题题干为“在构建哈夫曼树时，每次应该选择（ ）合并。”，与站点 question 语义一致。",
+          "review": "第 1 页页图第 1 题题干「在构建哈夫曼树时，每次应该选择（ ）合并。」与站点 question 逐字一致。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页选项依次为：A 最小权值的节点；B 最大权值的节点；C 随机节点；D 深度最深的节点；与站点 options 顺序和内容一致。",
+          "review": "第 1 页页图选项 A 最小权值的节点、B 最大权值的节点、C 随机节点、D 深度最深的节点，与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 1 题为 A；站点 answer=0（0 起始），一致。",
+          "review": "第 1 页答案表第 1 题为 A，0 起始索引 0，站点 answer=0。独立推导：哈夫曼构建每次须取权值最小的两棵树合并，新树放回森林重复，才能使总带权路径长度最小，A 正确。"
+        },
+        "explanation": {
+          "initial": "独立推导：每次取权值最小的两个节点合并，A 正确；B/C/D 均违反哈夫曼贪心构造。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析按贪心过程推导并逐项排除 B/C/D，与独立重推一致，未发现事实错误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        1,
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页第 2 题题干为“面向对象的编程思想主要包括以下哪些原则（ ）？”，与站点 question 语义一致。",
+          "review": "第 1 页页图题干「面向对象的编程思想主要包括以下哪些原则（ ）？」与站点 question 语义一致。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页选项依次为：A 贪心、动态规划、回溯；B 并发、并行、异步；C 递归、循环、分治；D 封装、继承、多态；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A 贪心、动态规划、回溯；B 并发、并行、异步；C 递归、循环、分治；D 封装、继承、多态，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 2 题为 D；站点 answer=3（0 起始），一致。",
+          "review": "第 1 页答案表第 2 题为 D，索引 3，站点 answer=3。独立判断：OOP 三大特性为封装、继承、多态，A/B/C 均为算法或并发概念，D 正确。"
+        },
+        "explanation": {
+          "initial": "独立推导：OOP 三大原则为封装、继承、多态，D 正确；其余为算法或执行模型概念。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析逐项说明 A/B/C 属于算法策略或执行模型而非 OOP 原则，结论 D 与独立判断一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        1,
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页第 3 题题干为“在队列中，元素的添加和删除是按照（ ）原则进行的。”，与站点 question 语义一致。",
+          "review": "第 1 页页图题干「在队列中，元素的添加和删除是按照（ ）原则进行的。」与站点一致。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页选项依次为：A 先进先出；B 先进后出；C 最小值先出；D 随机进出；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A 先进先出、B 先进后出、C 最小值先出、D 随机进出，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 3 题为 A；站点 answer=0（0 起始），一致。",
+          "review": "第 1 页答案表第 3 题为 A，索引 0，站点 answer=0。队列按 FIFO 出入，A 正确。"
+        },
+        "explanation": {
+          "initial": "独立推导：队列按先进先出（FIFO）操作，A 正确；B 是栈、C 是优先队列。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析给出 FIFO 定义并与栈对比，推导无误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 4,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        1,
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1、2 页第 4 题题干为“给定一个简单的类定义如下，（ ）语句在类的外部正确地创建了一个 Circle 对象并调用了 getArea 函数？”，与站点 question 语义一致。",
+          "review": "第 1 页题干「给定一个简单的类定义如下，（ ）语句在类的外部正确地创建了一个 Circle 对象并调用了 getArea 函数？」与第 2 页代码（Circle(double r) : radius(r)，getArea 返回 3.14*radius*radius）与站点 question 及内嵌代码一致。"
+        },
+        "options": {
+          "initial": "PDF 第 1、2 页选项依次为：A Circle c = Circle(5.0); c.getArea(c);；B Circle c(5.0); getArea(c);；C Circle c = new Circle(5.0); c.getArea();；D Circle c(5.0); c.getArea();；与站点 options 顺序和内容一致。",
+          "review": "第 2 页页图选项 A Circle c = Circle(5.0); c.getArea(c);；B Circle c(5.0); getArea(c);；C Circle c = new Circle(5.0); c.getArea();；D Circle c(5.0); c.getArea();，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 4 题为 D；站点 answer=3（0 起始），一致。",
+          "review": "第 1 页答案表第 4 题为 D，索引 3，站点 answer=3。独立判断：D 在栈上构造对象并以成员调用语法 c.getArea() 调用，正确；A 把对象作为实参传给无参成员函数，编译错误；B 以函数调用语法 getArea(c) 调用成员函数，非法；C 中 new 返回指针、C++ 需手动 delete 且不能赋值给值对象，错误。"
+        },
+        "explanation": {
+          "initial": "独立推导：栈上构造 `Circle c(5.0);` 后用 `c.getArea();`，D 正确；A 多传参数、B 脱离对象、C 用 new 返回指针赋给对象。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析逐项指出 A/B 的调用语法错误与 C 的指针问题，与独立判断一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 5,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2 页第 5 题题干为“以下代码希望能在一棵二叉排序树中搜索特定的值，请在横线处填入（ ），使其能正确实现相应功能。”，与站点 question 语义一致。",
+          "review": "第 2 页页图题干「以下代码希望能在一棵二叉排序树中搜索特定的值，请在横线处填入（ ），使其能正确实现相应功能。」及 search 代码（root==NULL||root->val==target 返回 root；横线处为 if 条件，真走左、假走右）与站点一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页选项依次为：A target < root->left；B target < root->val；C target > root->val；D target > root->left；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A target < root->left；B target < root->val；C target > root->val；D target > root->left，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 5 题为 B；站点 answer=1（0 起始），一致。",
+          "review": "第 1 页答案表第 5 题为 B，索引 1，站点 answer=1。独立推导：BST 中目标小于当前根值时应进入左子树，横线填 target < root->val；A/D 与指针（结点地址）比较无意义，C 方向相反会导致进入错误子树。"
+        },
+        "explanation": {
+          "initial": "独立推导：BST 中小于根值走左子树，B 正确；A/D 与指针比较、C 方向相反。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析说明 BST 性质与左右分支走向，与独立推导一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2 页第 6 题题干为“3 位格雷编码的正确顺序是（ ）。”，与站点 question 语义一致。",
+          "review": "第 2 页页图题干「3 位格雷编码的正确顺序是（ ）。」与站点一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页选项依次为：A 000, 001, 010, 011, 100, 101, 110, 111；B 000, 001, 011, 010, 110, 111, 101, 100；C 000, 010, 001, 011, 100, 110, 101, 111；D 000, 010, 110, 100, 111, 101, 011, 001；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A 000,001,010,011,100,101,110,111；B 000,001,011,010,110,111,101,100；C 000,010,001,011,100,110,101,111；D 000,010,110,100,111,101,011,001，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 6 题为 B；站点 answer=1（0 起始），一致。",
+          "review": "第 1 页答案表第 6 题为 B，索引 1，站点 answer=1。独立验证：B 序列相邻两项恰有一位不同（000→001→011→010→110→111→101→100），为标准 3 位反射格雷码；A 为普通二进制递增（001→010 差两位），C/D 存在相邻差两位或重复项。"
+        },
+        "explanation": {
+          "initial": "独立推导：标准 3 位格雷码为 000,001,011,010,110,111,101,100，相邻仅一位不同，B 正确。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析按「相邻只差一位」逐对检验，结论 B 与独立验证一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        2,
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2、3 页第 7 题题干为“以下动态规划算法的含义与目的是（ ）。”，与站点 question 语义一致。",
+          "review": "第 2 页末题干「以下动态规划算法的含义与目的是（ ）。」及第 3 页代码（n==0 返回 0、n==1 返回 nums[0]、dp[0]=nums[0]、dp[1]=max(nums[0],nums[1])、dp[i]=max(dp[i-1], nums[i]+dp[i-2])、返回 dp[n-1]）与站点内嵌代码一致（仅排版差异）。"
+        },
+        "options": {
+          "initial": "PDF 第 2、3 页选项依次为：A 计算数组 nums 中的所有元素的和；B 计算数组 nums 中相邻元素的最大和；C 计算数组 nums 中不相邻元素的最大和；D 计算数组 nums 中的最小元素；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A 计算数组 nums 中的所有元素的和；B 计算数组 nums 中相邻元素的最大和；C 计算数组 nums 中不相邻元素的最大和；D 计算数组 nums 中的最小元素，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 7 题为 C；站点 answer=2（0 起始），一致。",
+          "review": "第 1 页答案表第 7 题为 C，索引 2，站点 answer=2。独立推导：dp[i] 在「不取第 i 个」与「取第 i 个并加上 dp[i-2]」间取优，正是选择互不相邻元素求最大和的打家劫舍模型，C 正确。"
+        },
+        "explanation": {
+          "initial": "独立推导：转移 `dp[i]=max(dp[i-1], nums[i]+dp[i-2])` 表示选或不选当前元素，即不相邻元素最大和，C 正确。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析给出状态含义与转移说明，与独立推导一致。"
+        }
+      },
+      "unresolved": []
+    },
     {
       "id": 8,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        3,
+        4
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q8 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页树图为：1 的孩子 2、3；2 的孩子 8、9；3 的右孩子 6；8 的孩子 4、5；9 的右孩子 7；7 的孩子 10、11；站点 question-assets/2024-03-l6/q8-tree.png 与该结构一致。",
+          "review": "第 3 页题干「阅读以下广度优先搜索的代码」及 bfs 函数（queue、front/pop、先输出再左右孩子入队）与树形（1 的孩子 2、3；2 的孩子 8、9；3 的孩子 6；下层 4、5、7；7 的孩子 10、11）与站点 question 及 q8-tree.png 引用一致。"
+        },
+        "options": {
+          "initial": "PDF 第 3、4 页选项依次为：A 1 2 8 9 4 5 3 6 7 10 11；B 1 2 3 4 5 6 7 8 9 10 11；C 1 2 3 8 9 6 4 5 7 10 11；D 1 2 3 8 9 4 5 6 7 10 11；与站点 options 顺序和内容一致。",
+          "review": "第 3—4 页页图选项 A 1 2 8 9 4 5 3 6 7 10 11；B 1 2 3 4 5 6 7 8 9 10 11；C 1 2 3 8 9 6 4 5 7 10 11；D 1 2 3 8 9 4 5 6 7 10 11，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 8 题为 C；站点 answer=2（0 起始），一致。",
+          "review": "第 1 页答案表第 8 题为 C，索引 2，站点 answer=2。独立模拟：BFS 逐层访问得 1 | 2 3 | 8 9 6 | 4 5 7 | 10 11，即 C；A 中 3 出现在 8 9 4 5 之后不符合队列先进先出，B 为编号顺序而非层序，D 的 4 5 6 7 顺序错乱。"
+        },
+        "explanation": {
+          "initial": "独立推导：BFS 层序为 1,2,3,8,9,6,4,5,7,10,11，C 正确；A 是 DFS 序。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析按层展开给出层序序列并逐项排除，与独立模拟一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 9,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页第 9 题题干为“给定一个空栈，执行以下操作序列： 操作序列：push(1), push(2), push(3), pop(), pop(), push(4)…”，与站点 question 语义一致。",
+          "review": "第 4 页页图题干「给定一个空栈，执行以下操作序列」及操作序列 push(1),push(2),push(3),pop(),pop(),push(4),push(5),pop() 与站点一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页选项依次为：A 1, 2；B 1, 4, 5；C 1, 2, 5；D 1, 4；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A 1, 2；B 1, 4, 5；C 1, 2, 5；D 1, 4，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 9 题为 D；站点 answer=3（0 起始），一致。",
+          "review": "第 1 页答案表第 9 题为 D，索引 3，站点 answer=3。独立模拟：压 1、2、3，弹 3、2，再压 4、5 后弹出 5，栈底到顶为 1,4，D 正确。"
+        },
+        "explanation": {
+          "initial": "独立推导：模拟 push/pop：剩 1,4，D 正确。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析逐步模拟栈变化，与独立演算一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 10,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页第 10 题题干为“一个有 124 个叶子节点的完全二叉树，最多有（ ）个结点。”，与站点 question 语义一致。",
+          "review": "第 4 页页图题干「一个有 124 个叶子节点的完全二叉树，最多有（ ）个结点。」与站点一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页选项依次为：A 247；B 248；C 249；D 250；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A 247、B 248、C 249、D 250，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 10 题为 B；站点 answer=1（0 起始），一致。",
+          "review": "第 1 页答案表第 10 题为 B，索引 1，站点 answer=1。独立推导：二叉树中 n0 = n2 + 1，得 n2 = 123；完全二叉树度数为 1 的结点 n1 只能是 0 或 1，结点总数 = 124+123+n1 = 247+n1，最多 248，B 正确。"
+        },
+        "explanation": {
+          "initial": "独立推导：n0=124，n2=123，n1 最多为 1，总结点最多 124+123+1=248，B 正确。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析使用 n0=n2+1 与 n1∈{0,1} 推出 247/248，与独立推导一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 11,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页第 11 题题干为“在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和（ ）。”，与站点 question 语义一致。",
+          "review": "第 4 页页图题干「在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和（ ）。」与站点一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页选项依次为：A 重叠子问题；B 分治法；C 贪心策略；D 回溯算法；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A 重叠子问题、B 分治法、C 贪心策略、D 回溯算法，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 11 题为 A；站点 answer=0（0 起始），一致。",
+          "review": "第 1 页答案表第 11 题为 A，索引 0，站点 answer=0。动态规划的两大要素即最优子结构与重叠子问题，A 正确。"
+        },
+        "explanation": {
+          "initial": "独立推导：DP 两大性质为最优子结构与重叠子问题，A 正确。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析解释重叠子问题含义并排除 B/C/D，推导成立。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 12,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        4
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q12 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页第 12 题题干为“若一棵二叉树的先序遍历为： A, B, D, E, C, F 、中序遍历为： D, B, E, A, F, C ，它的后序遍历为（ ）。”，与站点 question 语义一致。",
+          "review": "第 4 页页图题干给出先序遍历 A, B, D, E, C, F 与中序遍历 D, B, E, A, F, C，求后序遍历，与站点一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页选项依次为：A D, E, B, F, C, A；B E, D, B, F, C, A；C D, E, B, C, F, A；D E, D, B, C, F, A；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A D, E, B, F, C, A；B E, D, B, F, C, A；C D, E, B, C, F, A；D E, D, B, C, F, A，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 12 题为 A；站点 answer=0（0 起始），一致。",
+          "review": "第 1 页答案表第 12 题为 A，索引 0，站点 answer=0。独立重建：根 A，左子树 {D,B,E}（根 B，左 D、右 E），右子树 {F,C}（根 C，左 F）；后序为 D,E,B,F,C,A，A 正确。"
+        },
+        "explanation": {
+          "initial": "独立推导：由先序+中序重建：A 为根，左子树 B(D,E)，右子树 C(F)，后序 D,E,B,F,C,A，A 正确。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析按根划分左右子树并递归求后序，与独立重建一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 13,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页第 13 题题干为“线性筛法与埃氏筛法相比的优势是（ ）。”，与站点 question 语义一致。",
+          "review": "第 4 页页图题干「线性筛法与埃氏筛法相比的优势是（ ）。」与站点一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页选项依次为：A 更容易实现；B 更节省内存；C 更快速；D 更准确；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A 更容易实现、B 更节省内存、C 更快速、D 更准确，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 13 题为 C；站点 answer=2（0 起始），一致。",
+          "review": "第 1 页答案表第 13 题为 C，索引 2，站点 answer=2。独立判断：线性筛让每个合数只被最小质因子筛一次，总复杂度 O(n)，优于埃氏筛 O(n log log n)，优势是更快；实现上线性筛并不更简单，内存与正确性两者相当。"
+        },
+        "explanation": {
+          "initial": "独立推导：线性筛每个合数只被最小质因子筛一次，O(n) 快于埃氏 O(n log log n)，C 正确。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析对比两种筛法的复杂度与「每个合数只筛一次」机制，结论 C 成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        4,
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4、5 页第 14 题题干为“以下代码使用了辗转相除法求解最大公因数，请在横线处填入（ ），使其能正确实现相应功能。”，与站点 question 语义一致。",
+          "review": "第 4 页末题干「以下代码使用了辗转相除法求解最大公因数，请在横线处填入（ ）」及第 5 页代码 while (b != 0) { 横线 } return a; 与站点一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4、5 页选项依次为：A int temp = b; b = a / b; a = temp;；B int temp = a; a = b / a; b = temp;；C int temp = b; b = a % b; a = temp;；D b = a % b; a = b;；与站点 options 顺序和内容一致。",
+          "review": "第 5 页页图选项 A int temp = b; b = a / b; a = temp;；B int temp = a; a = b / a; b = temp;；C int temp = b; b = a % b; a = temp;；D b = a % b; a = b;，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 14 题为 C；站点 answer=2（0 起始），一致。",
+          "review": "第 1 页答案表第 14 题为 C，索引 2，站点 answer=2。独立跟踪：迭代 gcd 需同时更新 (a,b)=(b,a%b)，C 先暂存 b、再令 b=a%b、最后 a=temp，正确；A/B 用除法破坏余数递推，D 先覆盖 b 后 a=b 已丢失原 b。"
+        },
+        "explanation": {
+          "initial": "独立推导：辗转相除每轮 `temp=b; b=a%b; a=temp;`，C 正确；D 未保存旧 b。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析说明 (a,b) 同时轮换的必要性与取模运算，与独立跟踪一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 15,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页第 15 题题干为“下面的代码片段用于反转单链表，请进行（ ）修改，使其能正确实现相应功能。”，与站点 question 语义一致。",
+          "review": "第 5 页页图题干「下面的代码片段用于反转单链表，请进行（ ）修改，使其能正确实现相应功能。」及代码（prev=nullptr、current=head、循环内 next=current->next、current->next=next、prev=current、current=next、返回 prev）与站点一致。"
+        },
+        "options": {
+          "initial": "PDF 第 5 页选项依次为：A current->next = next; 应该改为 current->next = pr…；B ListNode* next = current->next; 应该改为 ListNode…；C current != nullptr 应该改为 current->next != null…；D ListNode* prev = nullptr; 应该改为 ListNode* prev…；与站点 options 顺序和内容一致。",
+          "review": "页图选项 A current->next = next; 应该改为 current->next = prev;；B ListNode* next = current->next; 应该改为 ListNode* next = prev->next;；C current != nullptr 应该改为 current->next != nullptr；D ListNode* prev = nullptr; 应该改为 ListNode* prev = head;，与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 15 题为 A；站点 answer=0（0 起始），一致。",
+          "review": "第 1 页答案表第 15 题为 A，索引 0，站点 answer=0。独立跟踪：反转需让当前结点指向前驱，current->next = next 与先前赋值重复、链方向未反转；改为 current->next = prev 后逐结点翻转成立，A 正确；B/C/D 均破坏遍历或初始条件。"
+        },
+        "explanation": {
+          "initial": "独立推导：反转链表应把 `current->next` 指向 `prev`，A 正确。 与站点解析结论一致，未发现事实错误。",
+          "review": "站点解析说明 prev/current/next 三指针翻转次序，与独立跟踪一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 16,
+      "resolved": true,
       "dimensions": [
         "statement",
         "answer",
         "explanation"
       ],
-      "method": [
-        "原卷对照（页面渲染人工查看）",
-        "程序执行"
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5
       ],
-      "findings": "题面缺失 reverseLinkedList 代码（原卷为图片）。原卷代码共 11 行，其中第 6 行为 current->next = next;（即题干所指的待修改处）。解析为占位模板。",
-      "fix": "按原卷 p.5 逐行转写 reverseLinkedList 代码（保持原缩进与 nullptr 写法），以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote；解析重写为具体推导（核心修改行 + 逐选项错误原因），并附编译运行证据。",
-      "evidence": "g++ 编译运行转写代码并把第 6 行按选项 A 修复为 current->next = prev;，输入 1→2→3 输出 3 2 1，反转成功，与答案 A（该修改才正确）一致。tmp/verify/2024-l6/q15_reverse.cpp",
-      "resolved": true
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页判断第 1 题（站点 id=16）题干为“哈夫曼树是一种二叉树。”，与站点 question 语义一致。",
+          "review": "第 5 页判断题第 1 题原文「哈夫曼树是一种二叉树。」与站点 question 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 5 页判断答案表第 1 题为 √；站点 answer=0（0=√、1=×），一致。",
+          "review": "第 5 页判断题答案表第 1 题为 √，按正确=0 映射为 0，与站点 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：哈夫曼树是带权路径长度最小的二叉树，√。 与站点解析结论一致，未发现事实错误。",
+          "review": "哈夫曼树由结点与两两链接构成、每个内部结点恰有两个孩子，是严格二叉树，命题正确；站点解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 17,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页判断第 2 题（站点 id=17）题干为“在动态规划中，状态转移方程的作用是定义状态之间的关系。”，与站点 question 语义一致。",
+          "review": "第 5 页判断题第 2 题原文「在动态规划中，状态转移方程的作用是定义状态之间的关系。」与站点一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 5 页判断答案表第 2 题为 √；站点 answer=0（0=√、1=×），一致。",
+          "review": "第 5 页判断题答案表第 2 题为 √，映射为 0，与站点 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：状态转移方程定义状态之间的关系，√。 与站点解析结论一致，未发现事实错误。",
+          "review": "状态转移方程刻画状态如何由其他状态推出，正是定义状态间关系，命题正确；站点解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 18,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页判断第 3 题（站点 id=18）题干为“继承是将已有类的属性和方法引入新类的过程。”，与站点 question 语义一致。",
+          "review": "第 5 页判断题第 3 题原文「继承是将已有类的属性和方法引入新类的过程。」与站点一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 5 页判断答案表第 3 题为 √；站点 answer=0（0=√、1=×），一致。",
+          "review": "第 5 页判断题答案表第 3 题为 √，映射为 0，与站点 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：继承是引入已有类属性和方法的过程，√。 与站点解析结论一致，未发现事实错误。",
+          "review": "派生类自动获得基类成员，正是将已有类的属性和方法引入新类，命题正确；站点解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 19,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页判断第 4 题（站点 id=19）题干为“完全二叉树的任意一层都可以不满。”，与站点 question 语义一致。",
+          "review": "第 5 页判断题第 4 题原文「完全二叉树的任意一层都可以不满。」与站点一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 5 页判断答案表第 4 题为 ×；站点 answer=1（0=√、1=×），一致。",
+          "review": "第 5 页判断题答案表第 4 题为 ×，映射为 1，与站点 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：完全二叉树除最后一层外必须排满，并非任意一层都可不满，×。 与站点解析结论一致，未发现事实错误。",
+          "review": "完全二叉树要求除最后一层外每层都满、最后一层左对齐，故「任意一层都可以不满」错误；站点解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 20,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页判断第 5 题（站点 id=20）题干为“删除单向链表中的节点，只需知道待删除节点的地址即可，无需访问前一个节点。”，与站点 question 语义一致。",
+          "review": "第 5 页判断题第 5 题原文「删除单向链表中的节点，只需知道待删除节点的地址即可，无需访问前一个节点。」与站点一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 5 页判断答案表第 5 题为 ×；站点 answer=1（0=√、1=×），一致。",
+          "review": "第 5 页判断题答案表第 5 题为 ×，映射为 1，与站点 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：单链表删除需前驱改链，仅知待删结点地址不够，×。 与站点解析结论一致，未发现事实错误。",
+          "review": "单向链表删除需修改前驱的 next，找不到前驱就无法在 O(1) 内安全摘除（复制下一结点再删尾的巧法只适用于非尾结点，不改变命题为假）；站点解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 21,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页判断第 6 题（站点 id=21）题干为“在宽度优先搜索中，通常使用队列来辅助实现。”，与站点 question 语义一致。",
+          "review": "第 5 页判断题第 6 题原文「在宽度优先搜索中，通常使用队列来辅助实现。」与站点一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 5 页判断答案表第 6 题为 √；站点 answer=0（0=√、1=×），一致。",
+          "review": "第 5 页判断题答案表第 6 题为 √，映射为 0，与站点 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：BFS 通常用队列辅助，√。 与站点解析结论一致，未发现事实错误。",
+          "review": "BFS 按层扩展依赖队列先进先出保证层序，命题正确；站点解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 22,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页判断第 7 题（站点 id=22）题干为“哈夫曼编码的主要应用领域是有损数据压缩。”，与站点 question 语义一致。",
+          "review": "第 5 页判断题第 7 题原文「哈夫曼编码的主要应用领域是有损数据压缩。」与站点一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 5 页判断答案表第 7 题为 ×；站点 answer=1（0=√、1=×），一致。",
+          "review": "第 5 页判断题答案表第 7 题为 ×，映射为 1，与站点 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：哈夫曼编码是无损压缩，不是有损，×。 与站点解析结论一致，未发现事实错误。",
+          "review": "哈夫曼编码可由码表完全还原原始数据，属无损熵编码，说其主要应用是有损压缩不成立；站点解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 23,
+      "resolved": false,
+      "dimensions": [],
+      "blockedDimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "unresolved": [
+        "保留原有争议/待审标记，模型结论不能自动解除"
+      ]
+    },
+    {
+      "id": 24,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5,
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 6 页判断第 9 题（站点 id=24）题干为“栈的基本操作包括入栈（ push ）和出栈（ pop ）。”，与站点 question 语义一致。",
+          "review": "第 6 页判断题第 9 题原文「栈的基本操作包括入栈（push）和出栈（pop）。」与站点一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 5 页判断答案表第 9 题为 √；站点 answer=0（0=√、1=×），一致。",
+          "review": "第 5 页判断题答案表第 9 题为 √，映射为 0，与站点 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：栈的基本操作是 push/pop，√。 与站点解析结论一致，未发现事实错误。",
+          "review": "栈以 push 入栈、pop 出栈（及 top 取栈顶），命题正确；站点解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 25,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 6 页判断第 10 题（站点 id=25）题干为“使用哈夫曼编码对一些字符进行编码，如果两个字符的频率差异最大，则它们的编码可能出现相同的前缀。”，与站点 question 语义一致。",
+          "review": "第 6 页判断题第 10 题原文「使用哈夫曼编码对一些字符进行编码，如果两个字符的频率差异最大，则它们的编码可能出现相同的前缀。」与站点一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 5 页判断答案表第 10 题为 ×；站点 answer=1（0=√、1=×），一致。",
+          "review": "第 5 页判断题答案表第 10 题为 ×，映射为 1，与站点 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：哈夫曼编码是前缀码，任一编码都不是另一编码的前缀，×。 与站点解析结论一致，未发现事实错误。",
+          "review": "哈夫曼树中字符均位于叶子，任一编码不是另一编码的前缀，与频率差异无关，「可能出现相同前缀」错误；站点解析一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 26,
       "resolved": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [],
+      "sourcePages": [
+        6,
+        7
       ],
       "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": {
+        "statement": {
+          "initial": "第 6 页题面逐段对照：四个正整数 n,a,b,c；每轮减 a 或减 b；n≤c 时结束；a=b 时减 a 与减 b 仍视为不同操作；答案对 10^9+7 取模；输入格式注明“一行四个正整数 n,a,b,c。保证 1≤a,b,c≤n”；三档数据范围与候选一致。PDF 中“20%/40%”的百分号在排版中丢失，候选补回，属排版修复。",
+          "review": "第 6 页原图 3.1.1—3.1.7 与候选题面逐项对照一致：四个正整数 n,a,b,c、每轮减 a 或减 b、n≤c 结束、a=b 也算不同操作、答案对 1 000 000 007 取模；样例 1「1 1 1 1」→1、样例 2「114 51 4 1」→176、样例 3「114514 191 9 810」→384178446 三组均一致；数据范围三档（20% a=b=c=1,n≤30；40% c=1,n≤10³；所有 1≤n≤2×10⁵）与原图一致，候选另把原卷 3.1.2 输入格式中的「保证 1≤a,b,c≤n」并入数据范围末句，信息无损失。原卷输出格式/输入格式中「正整数」的「正」字与「保证」句在候选输入格式行省略，属排版等价改写，不影响题意。"
+        },
+        "explanation": {
+          "initial": "独立推导：f(x)=f(x-a)+f(x-b)，x≤c 时 f(x)=1；减到负值仍属“已结束”，每个终态只计一次；这与候选解析及官方参考程序“f[N+n] 起推、对 0..N+c 求和”的语义一致。样例 1（1）与样例 2（114 51 4 1→176）复算吻合。",
+          "review": "候选解析的 DP 模型经独立推导成立：x≤c 为终态计 1（含初始 n≤c 的空序列特判），dp[x]=get(x−a)+get(x−b)，a=b 时两分支同值但计两次（题面明示视为不同操作）；样例 2 走查 dp[2..6] 递推（dp[2]=2、dp[6]=1+dp[2]=3）与 dp[114]=176 抽查一致（程序实测 176）；易错提醒（n≤c 特判、负下标、long long 取模）均属实；O(n) 时间、O(n) 空间复杂度正确。"
+        },
+        "referenceCode": {
+          "initial": "本机 g++ -std=c++17 -O2 编译并运行候选参考程序：官方样例 1/2/3 输出 1、176、384178446，与原卷一致；边界 5 2 3 5→1（初始即结束）、3 1 1 2→2（a=b 两分支）、4 2 1 1→5（递推）全部通过。",
+          "review": "本机 g++ -std=c++17 -O2 编译并实测候选参考程序：官方样例 1/2/3 分别输出 1、176、384178446，与第 6 页原图样例框完全一致。边界实测：「200000 1 1 1」输出 87947641=2^199999 mod (10^9+7)（与 Python pow 精确核对，覆盖 n 上界 2×10⁵ 与取模正确性）；「4 1 2 4」（n=c 边界）输出 1；「10 7 3 2」（x−a 常为负的分支）输出 5，与不取模精确递推计数一致。另以 300 组随机小数据（1≤a,b,c≤n≤40）与不取模精确计数对拍，零差异。与第 7 页原卷参考程序（f[N+n]=1 起点自顶向下分流、终态求和 f[0..N+c]）语义等价：同一计数模型，候选自底向上递推，殊途同归。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l6.glm.json"
+      ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [],
+      "sourcePages": [
+        7,
+        8,
+        9
       ],
       "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": {
+        "statement": {
+          "initial": "第 7—8 页题面、输入输出与数据范围逐项对照：相邻两牛间隔由左牛 b 与右牛 a 决定；20% N=2、另外 20% N=3、80% N≤8、全部 N≤9 且 a_i,b_i≤1000；候选均已补入。输出格式以“输出一行一个整数表示答案”概括原文“表示你最少需要留下多少牛棚”，语义一致。",
+          "review": "第 7—8 页原图 3.2.1—3.2.10 与候选题面逐项对照一致：10⁹ 个牛棚一字排开、第 i 头牛攻击范围 (aᵢ,bᵢ)（左 aᵢ 个或右 bᵢ 个棚有牛即挑事）、留一段连续牛棚求最少留下数；样例 1「2 / 1 2 / 1 2」→4、样例 2「3 / 1 2 3 / 3 2 1」→7 一致；数据规模四行（20% N=2；另外 20% N=3；80% N≤8；所有 N≤9、aᵢ,bᵢ≤1000）与原图逐字一致（原卷三档百分比为嵌套口径：N=2、N=3 两组均含于 N≤8 的 80% 内，候选按原卷保留）。候选省略原卷 3.2.4「特别提醒」（考试系统勿输出提示语），属考试组织性文字，非题意内容，与站点其他试卷惯例一致；「留下连续的一段牛棚」→「留下一段连续的牛棚」、「他」→「它」等为排版等价微调。"
+        },
+        "explanation": {
+          "initial": "独立推导：固定排列后总牛棚数 = n + Σmax(b_左,a_右)，非相邻牛自动满足；对排列取最小。样例 1（4）与样例 2（7）复算一致，候选解析中方向性（b_左 与 a_右）说明正确。",
+          "review": "候选解析经独立推导成立：相邻左牛 u、右牛 v 之间至少空 max(b[u], a[v]) 个棚（u 的右范围 b[u] 与 v 的左范围 a[v] 取大）；两端无外侧牛故不需留空；总数=n+间隔和，最小化间隔和为 TSP 型排列问题，n≤9 用状压 DP（dp[mask][last]）正确；样例 1 两种顺序均 4、样例 2 最优间隔和 4（2→1→0 与 2→0→1 两条均为 7）与官方样例解释（样例 1 留 4 棚、牛1 棚1/牛2 棚4）一致；易错提醒（贪心不可行、max(b[last],a[next]) 方向、答案加 n）均属实。"
+        },
+        "referenceCode": {
+          "initial": "本机 g++ -std=c++17 -O2 编译运行候选状压 DP：官方样例 4、7 通过；边界“单头牛 1/5/7→1”“两头对称 2 1 1/1 1→3”“方向性 2 1 10/1 1→3”均通过；另以 200 组 n≤7 随机数据与全排列穷举对拍，结果零差异。",
+          "review": "本机 g++ -std=c++17 -O2 编译并实测候选参考程序：官方样例 1/2 分别输出 4、7，与第 8 页原图一致。边界实测：「1 / 1000 / 1000」（n=1、范围上界）输出 1；「9 / 全 1 / 全 1」（N 上界 9）输出 17=9+8；「2 / 1000 1 / 1 1000」（方向性大间隔）输出 3（选 max(b0,a1)=1 的顺序）。另以 300 组随机数据（n≤6）与全排列暴力最小值对拍，零差异。与第 8—9 页原卷参考程序（next_permutation 枚举、cost=max(b[perm[i−1]],a[perm[i]])）完全同一目标函数，状压 DP 与全排列枚举在 n≤9 下等价。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l6.glm.json"
+      ]
     }
   ],
-  "judgeAnswerAudit": {
-    "executedAt": "2026-10-25",
-    "executor": "WorkBuddy 子代理",
-    "method": "回官方 PDF 判断题答案表（p.5 表头『题号 1..10 / 答案』）逐列 4 倍放大核对（tmp/crop-2024-03-l6-judge.png），洛谷仅作线索（A=√、B=×）。",
-    "officialSequence": "Q16→Q25 = √ √ √ × × √ × × √ ×（对应表内第 1..10 列）；题库原为 10 题全部 √，与官方仅 5 题相同，证实此前 integrityNote 的『整卷同值=答案未录入』判断",
-    "items": [
-      {
-        "qid": 19,
-        "bankAnswer": "√",
-        "luoguAnswer": "×（B）",
-        "officialAnswer": "×",
-        "officialLocation": "p.5 判断题答案表第 4 列（第4题：完全二叉树的任意一层都可以不满）",
-        "derivation": "完全二叉树要求除最后一层外各层必须排满、最后一层结点从左到右连续；只有最后一层允许不满。命题『任意一层都可以不满』错。",
-        "changed": true,
-        "changeDetail": "answer 0→1；移除 sourceIntegrity/integrityNote（恢复计分）；解析重写为定义辨析 + 反例。"
-      },
-      {
-        "qid": 20,
-        "bankAnswer": "√",
-        "luoguAnswer": "×（B）",
-        "officialAnswer": "×",
-        "officialLocation": "p.5 判断题答案表第 5 列（第5题：删除单向链表中的节点，只需知道待删除节点的地址即可，无需访问前一个节点）",
-        "derivation": "单链表删除需把前驱的 next 指向 p->next，必须访问前驱（O(n) 找）。『复制后继数据再删后继』的技巧要求 p 非尾结点且删除的实为后继，不能支撑题述一般结论。命题错。",
-        "changed": true,
-        "changeDetail": "answer 0→1；移除 sourceIntegrity/integrityNote；解析重写为前驱依赖 + 常见误解辨析。"
-      },
-      {
-        "qid": 22,
-        "bankAnswer": "√",
-        "luoguAnswer": "×（B）",
-        "officialAnswer": "×",
-        "officialLocation": "p.5 判断题答案表第 7 列（第7题：哈夫曼编码的主要应用领域是有损数据压缩）",
-        "derivation": "哈夫曼编码是前缀码，比特流可逐位精确还原，属无损压缩。命题错。",
-        "changed": true,
-        "changeDetail": "answer 0→1；移除 sourceIntegrity/integrityNote；解析重写为前缀码可逆性说明，并解释 JPEG 借用哈夫曼做熵编码的混淆来源。"
-      },
-      {
-        "qid": 25,
-        "bankAnswer": "√",
-        "luoguAnswer": "×（B）",
-        "officialAnswer": "×",
-        "officialLocation": "p.5 判断题答案表第 10 列（第10题：两个字符频率差异最大，则它们的编码可能出现相同的前缀）",
-        "derivation": "前缀码中任一编码都不是另一编码的前缀；哈夫曼树中每个字符对应叶子，两个叶子不可能在同一条根到叶路径上。频率差异与是否互为前缀无关，故命题错。",
-        "changed": true,
-        "changeDetail": "answer 0→1；移除 sourceIntegrity/integrityNote；解析重写为『叶子/前缀』结构论证；顺带修正题干 OCR 断行残留『前 缀』→『前缀』。"
-      }
-    ],
-    "outOfScopeFindings": [
-      "Q23（表内第 8 列）官方为 ×，题库为 √，洛谷为 ×；但该题题干已被污染（串入 Q14/Q15 的代码片段，sourceIntegrity=missing-formula），不属本次 11 题裁决清单，未改数据、未移除标记。",
-      "Q16/Q17/Q18/Q21/Q24 官方分别为 √ √ √ √ √，与题库当前值一致；但其解析仍是占位模板且保留 sourceIntegrity=answer-key-suspect，不在本次清单内，未处理。"
-    ]
-  },
-  "unresolved": [],
-  "lastUpdated": "2026-10-30",
-  "answerCorrection": {
-    "question": "judge-8(题库id23)",
-    "official": "×",
-    "was": "√",
-    "now": "×",
-    "evidence": "官方 p.4 判断题答案表 400dpi 渲染复核：√√√××√××√×，J8=×（普通 BST 最坏退化 O(n)，说法不严谨）"
-  },
-  "explanationUpgrade": {
-    "date": "2026-10-30",
-    "scope": "19题模板解析替换+5题题干结构修复(Q4/Q5/Q7/Q8/J23 恢复官方代码块/树图/清页码污染)"
-  }
+  "unresolved": [
+    {
+      "id": 23,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "保留原有争议/待审标记，模型结论不能自动解除"
+      ]
+    }
+  ],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2024-03-l6.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-03-l6.integration.json"
 }

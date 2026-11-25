@@ -1,0 +1,649 @@
+{
+  "paperId": "2023-12-l5",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    6,
+    7,
+    8,
+    9,
+    10,
+    14,
+    17,
+    18,
+    22,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T09:32:59.000Z",
+  "completedAt": "2026-11-25T09:32:59.000Z",
+  "finishReason": "stop",
+  "inputSha256": "f50828d85d24dce8568eeb84104cf93fdf702d560e4c7d40de9d6b3f038e88be",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++5级.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "mirrorBytes": 2493556,
+    "shaVerified": true,
+    "sha256": "8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为「CCF 编程能力等级认证 GESP C++ 五级 2023 年 12 月」，全卷 12 页，与 paperId 2023-12-l5 一致；source.pdf 实测 SHA-256 8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b，与缓存 manifest.source.sha256 一致（缓存卷与 revisions 卷 PDF 二进制逐字节相同，cmp 校验）；第 1 页单选答案表 1—15 为 C C D A B A C B D B D B B C B，第 7 页判断题答案表 1—10 为 √ × × √ √ √ × √ √ √，与候选客观题 answer 逐一对照一致。候选 questionIds [1,2,3,6,7,8,9,10,14,17,18,22,26,27] 与 revisions manifest.questionIds 完全一致；候选 paper.json 的 inputSha256=f50828d85d24dce8568eeb84104cf93fdf702d560e4c7d40de9d6b3f038e88be（SHA256(JSON.stringify(JSON.parse(paper.json)))）与 DeepSeek 报告登记值一致；14 条 previousQuestionSha256 经站点数据只读复算与当前题目对象逐一匹配，基线无漂移。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 1 题题干「下面C++代码用于求斐波那契数列，该数列第1、2项为1，以后各项均是前两项之和。下面有关说法错误的是( )。」与候选一致（候选仅按站点排版在 C++/数字前后加空格）；fiboA（N==1||N==2 返回 1，否则返回 fiboA(N-1)+fiboA(N-2)）与 fiboB（last2/last1 迭代，for i=2; i<N; i++）逐行与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A「fiboA( ) 用递归方式，fiboB() 循环方式」、B（含「而 fiboB() 需要将数学定义转换为计算机程序实现」完整后半句）、C「不仅仅更加符合数学定义……且因代码量较少执行效率更高」、D「fiboB( ) 虽然代码量有所增加，但其执行效率更高」与候选逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 1 题标 C，0 起始索引 2，与候选 answer=2 一致。独立判断：fiboA 无记忆化朴素递归，重复子问题指数级增长（fiboA(5) 时 fiboA(3) 已被算两次），时间复杂度约 O(2^N)；fiboB 线性递推 O(N)。代码量与执行效率无关，C 的「执行效率更高」不成立，为错误说法。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出 O(2^N) 与 O(N) 的对比、重复子问题示例（fiboA(3) 重复计算两次）及「执行效率取决于步数与代码行数无关」的结论，与独立推导和答案 C 吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 1 页页图：题面、代码、四个选项、答案 C（索引 2）与解析全部一致，选项与解析互相吻合，确认候选修复正确，无需再改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 2 题题干含整句契约说明「并假设 merge (int T[], int R[], int s, int m, int t) 函数将有序（同样排序规则）的T[s..m]和T[m+1..t]归并到R[s..t]中」，候选已补回；mergeSort 代码（基例 TList[s]=SList[s]、T2=new int[len]、m=(s+t)/2、横线、merge(T2, SList, s, m, t)、delete T2）与页图逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1–2 页 A（s,m 与 m,t）、B（s,m-1 与 m+1,t）、C（s,m 与 m+1,t）、D（s,m-1 与 m-1,t）与候选一致；候选 B/D 中的 $m-1$ 为站点 LaTeX 排版记法，页图为纯文本 m-1，语义相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题标 C，0 起始索引 2，与候选 answer=2 一致。独立判断：闭区间 [s,t] 以 m=(s+t)/2 分为 [s,m] 与 [m+1,t] 分别递归，C 正确；A 右半从 m 起会重复处理下标 m（t=s+1 时右调用仍为 (s,t)，区间不缩小会无限递归）；B/D 用 m-1 会漏掉下标 m 或错位区间。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按分治三步（分解/解决/合并）推导 [s,m]/[m+1,t] 划分，并指出 A 的区间重叠与不缩小区间导致无限递归，与独立推导和答案 C 吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷 mergeSort 基准情形写 TList[s]=SList[s]，而递归后 merge(T2, SList, s, m, t) 把结果写回 SList，TList 仅在叶子被写；顶层调用者若期望 TList 承接最终结果会不一致，属原卷代码契约瑕疵，横线处按区间划分仍唯一选 C，站点照录原卷未改，争议保留。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 1–2 页页图：题面契约句、代码、四个选项、答案 C（索引 2）与解析全部一致；基例写 TList 而归并写回 SList 的原卷契约瑕疵保留于 unresolved，不影响选 C。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 3 题题干「阅读下面的C++代码，执行后其输出是( )」及代码（全局 stepCount=0；fracA 先 stepCount+=1 并输出再循环算阶乘；fracB 每层 stepCount+=1 并输出，N==1 返回 1，否则返回 N*fracB(N-1)；main 依次输出 fracA(5)、\"<===>\"、fracB(5)）与候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A 1->120<===>2->120、B 1->120<===>1->120、C 1->120<===>1->2->3->4->5->120、D 1->120<===>2->3->4->5->6->120 与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题标 D，0 起始索引 3，与候选 answer=3 一致。独立推演：fracA(5) 把 stepCount 增至 1 输出「1->」，返回 120 由 main 输出；随后输出「<===>」；fracB(5) 从 stepCount=1 继续递归，逐层输出「2->3->4->5->6->」，返回 1 逐层乘回 120，main 最后输出 120。完整输出 1->120<===>2->3->4->5->6->120，选 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析与我的独立推演逐字一致（前半 1->120、<===> 后 2->3->4->5->6->120；A/B 缺 3、4、5 层输出，C 误把 fracB 首次输出当作 1），并已替换原占位语。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 2 页页图并独立推演输出序列，与候选解析及官方答案 D 完全一致，确认候选修复正确。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页第 6 题题干「有关下面C++代码说法正确的是（ ）」及代码（全局 int rc；foo(x,y)：y==0 时 r=x，否则 r=foo(y, x%y) 并 rc++，返回 r）与候选逐行一致（rc 为全局变量零初始化）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页 A「如果 x 小于10，rc 值也不会超过20」、B「foo 可能无限递归」、C「foo 可以求出 x 和 y 的最大公共质因子」、D「foo 能够求出 x 和 y 的最小公倍数」与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题标 A，0 起始索引 0，与候选 answer=0 一致。独立判断：foo 为欧几里得算法返回 gcd(x,y)，rc 统计递归调用次数。x<10 时首次递归后第二参数即小于 10（y≤x 时第二参数为 x%y<x，y>x 时为 x%y=x），其后第二参数严格递减，递归层数至多约 10 层，rc 远小于 20，A 正确且对任意大 y 也成立；B 因 x%y<y 必然终止；C 返回 gcd 非最大公共质因子；D 返回 gcd 非 lcm。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出欧几里得算法语义、rc 统计口径与 A/B/C/D 逐项判定，与独立推导及答案 A 吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 3 页页图：题面、代码、四个选项、答案 A（索引 0）与解析全部一致；补强验证：即使 y 很大，x<10 时第二参数一步内落入 [0,9]，递归层数仍远小于 20，A 成立。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第 3 页末第 7 题题干「下面的C++代码实现对list的快速排序，有关说法，错误的是（ ）。」（两处均为逗号，经高清放大确认）与候选一致（候选少一逗号并加排版空格，语义无损）；operator+ 与 qSort 代码在第 4 页：第 19–21 行与第 22–24 行是两段完全相同的收集循环（for i=1..size-1，≤pivot 进 less 否则进 greater），候选 code 只保留了一段，漏抄第二段，与原卷代码不一致（2026-11-07 初轮报告「与网站题面代码一致」的结论在这点上不成立）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A qSort(less) + qSort(greater) + (vector<int>)pivot、B (vector<int>)pivot + (qSort(less) + qSort(greater))、C (qSort(less) + (vector<int>)pivot + qSort(greater))、D qSort(less) + pivot + qSort(greater) 与候选逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题标 C，0 起始索引 2，与候选 answer=2 一致。独立判断（附实测）：本题问「说法错误的是」，官方取 C。实测 (vector<int>)pivot 为 C 风格强转，按 vector<int>(pivot) 尺寸构造语义生成 pivot 个 0（pivot=3 → {0,0,0}，pivot=0 → 空向量），编译可过但语义错误；D 的 qSort(less)+pivot+qSort(greater) 实测在 C++98/11/17 下均无法编译（invalid operands to binary expression ('vector<int>' and 'int')，int 无法隐式转换为 vector<int>，尺寸构造函数为 explicit）。四个选项均不能真正完成排序，官方答案 C 属选项层面判定，站点按官方保留。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析把 D 标为「✅ 顺序正确……符合快速排序合并结果的要求」，但实测 D 的 vector<int>+int 无法编译，作为「说法」本身不成立，解析未交代；也未指出 operator+ 从下标 1 开始复制会丢弃两个实参的首元素（实测 C 选项输入 3,1,2 输出 0 而非 1 2 3），归因不完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "code": "vector<int> operator +(vector<int> lA, vector<int> lB)\n{\n    vector<int> lst;\n    for (int i = 1; i < lA.size(); i++)\n        lst.push_back(lA[i]);\n    for (int i = 1; i < lB.size(); i++)\n        lst.push_back(lB[i]);\n    return lst;\n}\n\nvector<int> qSort(vector<int> lst)\n{\n    if (lst.size() < 2) return lst;\n    int pivot = lst[0];\n    vector<int> less, greater;\n    for (int i = 1; i < lst.size(); i++)\n        if (lst[i] <= pivot) less.push_back(lst[i]);\n        else greater.push_back(lst[i]);\n    for (int i = 1; i < lst.size(); i++)\n        if (lst[i] <= pivot) less.push_back(lst[i]);\n        else greater.push_back(lst[i]);\n\n    return __________________________________________;\n}",
+          "explanation": "**答案：C（官方口径；四个选项作为代码均不能真正完成排序）**\n\n**核心解析：**\n`qSort` 取 `lst[0]` 为基准 `pivot`，把其余元素分入 `less`（≤ pivot）与 `greater`（> pivot），递归排好两段后拼回。按快速排序语义，正确拼装顺序是「排好的 less + 基准 pivot + 排好的 greater」，基准必须夹在中间。\n\n**选项逐项分析（结合实测）：**\n- **A `qSort(less)+qSort(greater)+(vector<int>)pivot`**：❌ 基准放到末尾，破坏「左小右大」的合并顺序。\n- **B `(vector<int>)pivot+(qSort(less)+qSort(greater))`**：❌ 基准放到最前，同样破坏合并顺序。\n- **C `(qSort(less)+(vector<int>)pivot+qSort(greater))`**：❌ 本题官方选定的错误说法。骨架虽是左—中—右，但 `(vector<int>)pivot` 是 C 风格强转，按 `vector<int>(pivot)` 的尺寸构造语义生成 pivot 个 0（实测 pivot=3 得 {0,0,0}，pivot=0 得空向量），并不会把基准值本身插入中间；叠加 `operator+` 从下标 1 开始复制（丢弃每个实参首元素）后，实测输入 3,1,2 输出 `0` 而非有序的 `1 2 3`。\n- **D `qSort(less)+pivot+qSort(greater)`**：顺序虽然正确，但实测（Apple clang 21，-std=c++98/11/17 结果一致）无法编译：`vector<int> + int` 不能匹配本题只接受两个 `vector<int>` 的 `operator+`，且 `vector` 的尺寸构造函数是 explicit，`int` 无法隐式转换为 `vector<int>`。官方在四个选项中取 C 为「错误说法」，站点按官方保留答案 C。\n\n**原卷缺陷（保留记录）：** ① `operator+` 两个循环都从下标 1 开始复制，丢弃每个实参的首元素；② 原卷第 19–24 行是两段完全相同的收集循环，元素被重复放入 less/greater（本次已按原卷补回第二段）；③ 实测原卷形态在「剩余元素与基准同值」时无限递归（对向量 [1,1] 递归深度超 60 仍不收敛，进程 SIGSEGV 崩溃）；④ 叠加后四个选项没有一个能真正完成排序。官方答案 C 是选项层面的判定，站点按官方保留、不擅改答案。\n\n**考点：** 快速排序的划分与递归拼接、类型转换与运算符重载。"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷四个代码选项均不能真正完成排序（C 的 (vector<int>)pivot 构造 pivot 个 0 而非单元素向量，D 的 vector<int>+int 无法编译），官方答案仍为 C，站点按官方保留并记录缺陷。",
+          "原卷第 19–24 行重复收集循环为原卷自身缺陷：实测该形态与基准同值相遇时无限递归（[1,1] 递归深度>60 后 SIGSEGV）；站点原只保留一段循环（可终止），本次按原卷忠实补回第二段，无限递归风险随原卷缺陷一并保留记录。",
+          "候选题干比原卷少一个逗号（原卷「，有关说法，错误的是」，候选「，有关说法错误的是」），属排版归一，登记备查。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "独立复核第 3–4 页页图确认：候选 code 漏抄原卷第二段完全相同的收集循环（第 22–24 行），属题面转录缺陷，按原卷补回；候选解析把 D 标为「✅ 顺序正确」但实测 D 在 C++98/11/17 下均无法编译（vector<int>+int 无匹配重载、尺寸构造函数 explicit），已改写解析补入 D 的编译语义、operator+ 丢首元素与重复循环三项原卷缺陷。新增实测发现：原卷重复循环形态与基准同值相遇时无限递归（SIGSEGV），随原卷缺陷保留记录。官方答案 C 不变。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页第 8 题题干「下面C++代码中的 isPrimeA() 和 isPrimeB() 都用于判断参数N是否素数，有关其时间复杂度的正确说法是（ ）」；候选题面为凝写「isPrimeA() 和 isPrimeB() 判定参数 N 是否素数，有关其时间复杂度的说法正确的是（ ）」，指代对象由已补回的 code 字段承载，语义一致；isPrimeA（i<=N/2 试除）与 isPrimeB（i<=sqrt(N) 试除）代码已逐行补回，与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A O(N/2)/O(logN) 且 A 优、B O(N/2)/O(N^{1/2}) 且 B 绝大多数情况下优、C O(N^{1/2})/O(N) 且 A 优、D O(logN)/O(N) 且 A 优，与候选（$O(N/2)$、$O(\\log N)$、$O(N^{1/2})$ 记号）逐项一致，复杂度信息完整。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 8 题标 B，0 起始索引 1，与候选 answer=1 一致。独立判断：isPrimeA 最坏检查约 N/2 个因子，O(N/2) 即 O(N) 量级；isPrimeB 上界 sqrt(N)，O(N^{1/2})；sqrt(N)≤N/2 对 N≥4 成立且差距随 N 增大，B「绝大多数情况下更优」正确；A 把 isPrimeB 说成 O(logN)、C 把两复杂度写反、D 把 isPrimeA 说成 O(logN)，均错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出两个循环上界的复杂度推导（N/2 与 sqrt(N)）及 A/C/D 错因，与独立推导和答案 B 吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 4 页页图：代码与四个选项已按原卷补回且逐项一致，答案 B（索引 1）与解析吻合，确认候选修复正确。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页末第 9 题题干「下面C++代码用于有序 list 的二分查找，有关说法错误的是（ ）」与候选一致；第 5 页 _binarySearch（Low>High 返回 -1、Mid=(Low+High)/2、按 Target 与 lst[Mid] 比较递归两支）与 bSearch（return _binarySearch(lst, 0, lst.size(), Val)，形参名 Val 大写与调用一致，经高清放大确认）逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页 A 二分法、B 分治算法、C 递归方式、D 动态规划算法，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 9 题标 D，0 起始索引 3，与候选 answer=3 一致。独立判断：代码确为二分法、分治、递归实现，A/B/C 说法成立；动态规划的说法不成立，D 为错误说法。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出 A/B/C 成立、D 不成立的逐项判定，并注明原卷 bSearch 上界写 lst.size() 的越界隐患为原卷缺陷，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷 bSearch 调用 _binarySearch(lst, 0, lst.size(), Val)，上界多 1；目标大于全部元素时会访问 lst[lst.size()]（如下标越界读），存在未定义行为风险。题面照录原卷，答案 D 不受影响，争议保留。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 4–5 页页图（含 bSearch 形参 Val 的高清放大核验）：题面、代码、四个选项、答案 D（索引 3）与解析全部一致；上界 size() 的原卷边界缺陷保留于 unresolved。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页第 10 题题干「在上题的 _binarySearch 算法中，如果 lst 中有 N 个元素，其时间复杂度是（ ）」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页 A O(N)、B O(logN)、C O(NlogN)、D O(N²) 与候选一致（候选 B/C 写作 $O(log n)$、$O(n log n)$，大小写 n/N 为排版归一，语义相同）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题标 B，0 起始索引 1，与候选 answer=1 一致。独立判断：每次比较后区间折半，比较次数为 O(log N)，选 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出折半推导，并把形参 vector<int> lst 按值传递的每层复制开销（严格计为 O(N log N)）明确标注为实现瑕疵、仍按官方口径取 B，处理得当，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 5 页页图：题面、四个选项、答案 B（索引 1）与解析（含按值传递开销的瑕疵说明）全部一致，确认候选修复正确。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页第 14 题题干「小杨想编写一个判断任意输入的整数N是否为素数的程序，下面哪个方法不合适？（ ）」；候选省略主语「小杨想编写一个」，保留「判断任意输入的整数 N 是否为素数的程序」与「哪个方法不合适」的完整设问，语义等价（初轮已接受该省略）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页 A 埃氏筛法、B 线性筛法、C 二分答案、D 枚举法，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题标 C，0 起始索引 2，与候选 answer=2 一致。独立判断：二分答案要求判定条件随候选值单调，「N 是否为素数」随 N 无单调关系（2,3,5,7 真，4,6,8,9 假），无可二分的判定区间，C 为不合适的方法；A/B 可对 [2,N] 建筛表后判定，D 可试除判定，均可行。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析开头称埃氏筛/线性筛「都需要先确定范围并建表，不适合只判定一个任意大的 N」，随后 A 项又说其「仍是判断素数的常用算法」、B 项称「同样需要范围，不适合单个 N」——若 A/B 也「不适合」，单选题将出现多个答案，与官方唯一答案 C 自相矛盾；解析未给出「二分答案需单调性而素数判定不具备」之外的可行/不可行清晰界线。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C**\n\n**解析：** 题目要求判断「任意输入的单个整数 N」是否为素数，逐项考察各方法能否完成这一判定：\n\n- **A 埃氏筛法**：可行。对 [2, N] 建埃氏筛表后查看 N 是否被标记即可判定；对单个 N 需先筛出整个范围、效率不高，但方法成立。\n- **B 线性筛法**：可行。欧拉筛每个合数只被最小质因子筛一次，同样可对 [2, N] 建表后判定 N，方法成立。\n- **C 二分答案**：不可行，为本题「不合适」的方法。二分答案要求判定条件随候选值单调（如「边长 x 能否切出 K 块」随 x 单调变化）；「N 是否为素数」随 N 增大忽真忽假（2、3、5、7 为素数，4、6、8、9 不是），不存在可二分的单调区间，无法使用。\n- **D 枚举法**：可行。用 2..√N 逐个试除即可直接判定单个 N。\n\n**考点：** 素数判定的常见方法（筛法、试除）与二分答案的单调性前提。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "独立复核第 6 页页图与第 1 页答案表确认题面、选项、答案 C（索引 2）无误；候选解析对 A/B「不适合单个 N」的表述与单选唯一答案 C 自相矛盾，改写为「A/B 可行但需建表、C 因无单调性不可行、D 可行」的清晰界线，与我的独立推导一致。与 DeepSeek 同判 needs_fix；其建议文本与本报告改写思路一致，本报告文本为独立撰写。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 2 题原文「小杨在生日聚会时拿一块H*W的巧克力招待来的K个小朋友，保证每位小朋友至少能获得一块相同大小的巧克力。那么小杨想分出来最大边长的巧克力可以使用二分法。（ ）」与候选题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项；平台以「正确/错误」两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 2 格标 ×，0 起始索引 1（正确=0、错误=1），与候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析记录官方按狭义「二分法」（二分查找）与「二分答案」的概念界定判「错误」，并明示工程上 (H/x)*(W/x)>=K 具单调性可用二分答案、考试中以此题官方答案为准；推导路径正确，争议已保留。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案 × 与竞赛语境中「二分答案也属于二分法」的常见理解存在歧义；站点保留官方答案并在解析中说明，待教研确认。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 7 页判断题答案表第 2 格 ×：题面与候选一致，候选解析已完整保留官方口径与概念争议，无需再改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第 7 页判断题第 3 题题面为「以下C++代码能以递归方式实现斐波那契数列，该数列第1、2项为1，以后各项均是前两项之和。( )」并附 Fibo 代码图（if (N == 1 || N == 2) return 1; else { int m = fiboA(N - 1); int n = fiboB(N - 2); return m + n; }）。候选 question 为残句「C++ 代码能以递归方式实现斐波那契数列。 ( )」，缺「以下」与数列定义句，且 code 字段为空，判定对象的代码整体缺失。修订清单 proposals[18] 的 reviewNote 声称「采纳 question 与 code 修复」但 changes 为空、候选未含修复，属第一轮候选漏装（管线缺口），本报告直接给出修复值。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项；平台以「正确/错误」两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 3 格标 ×，0 起始索引 1，与候选 answer=1 一致。独立判断：Fibo 的递归分支调用未定义的 fiboA/fiboB 且从未调用 Fibo 自身，实测编译报 2 处 undeclared identifier 错误（Apple clang 21，-std=c++17），代码无法编译，不能「以递归方式实现」，判 × 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析仅「原题图中的代码可能缺少基准情况或逻辑有误」，与事实不符（基例 N==1||N==2 存在），也未指出确定缺陷：递归分支调用未定义的 fiboA/fiboB、从未调用 Fibo 自身、整体无法编译。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "以下 C++ 代码能以递归方式实现斐波那契数列，该数列第 1、2 项为 1，以后各项均是前两项之和。（ ）",
+          "code": "int Fibo(int N)\n{\n    if (N == 1 || N == 2)\n        return 1;\n    else\n    {\n        int m = fiboA(N - 1);\n        int n = fiboB(N - 2);\n        return m + n;\n    }\n}",
+          "explanation": "**答案：错误**\n\n**判定依据：** 图示代码中 `Fibo` 在 N=1 或 N=2 时返回 1，基例本身存在；但递归分支调用的是 `fiboA(N - 1)` 和 `fiboB(N - 2)`——这两个函数在题给代码中并未定义，全代码也没有一处调用 `Fibo` 自身。实测编译报 `fiboA`、`fiboB` 两处 undeclared identifier 错误，整体无法通过编译，不能构成「以递归方式实现斐波那契数列」的程序，命题为假。\n\n**纠错：** 若把两处调用改为 `Fibo(N - 1)` 与 `Fibo(N - 2)`，才构成标准递归实现（第 1、2 项为 1，以后各项均是前两项之和）。\n\n**易混概念：** 递归三要素：终止条件、递归调用、状态传递；递归调用必须指向函数自身，调用未定义函数会直接编译失败；深层递归可能栈溢出。\n\n**考点：** 递归"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷代码调用未定义的 fiboA/fiboB 且从未递归调用 Fibo 自身，属命题材料缺陷，但正是本题判 × 的依据；按原卷保留并补齐代码。",
+          "第一轮修订候选的 proposals[18] 声称已采纳 question/code 修复但 changes 为空、候选未含修复，属候选装配缺口，已由本报告给出修复值待回流。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "独立复核第 7 页页图：候选题面为残句且 code 缺失，而修订清单声称已采纳修复（changes 为空、候选未变），属第一轮候选漏装；本报告按原卷逐字补回题面全句与 Fibo 代码（与页图逐行一致），并实测编译确认 fiboA/fiboB 两处未定义错误（clang 21 / c++17），据此改写解析。答案 ×（第 3 格）不变。与 DeepSeek 同判 needs_fix，结论一致。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 7 题题面「下面的C++代码能实现十进制正整数N转换为八进制并输出。（ ）」及代码（全局 char s[10]；cin 读 N；while(N!=0){ s[0]=N%8+'0'; rst+=string(s); N/=8; } cout<<rst）与候选逐行一致（候选补齐 iostream/string 头文件之外的代码与页图逐字一致）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项；平台以「正确/错误」两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 7 格标 ×，0 起始索引 1，与候选 answer=1 一致。独立实测（g++ 编译运行）：N=8 输出 01 而 8 的八进制应为 10，代码不能正确转换，判 × 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析仅「进制转换需正确处理取模和除法顺序，图中代码有误」，归因不准确（先取模再除法本身正确；全局 s 未用位置零初始化使 string(s) 恰为单字符），未给出真正的缺陷（低位先追加且不反转，输出倒序）与具体反例。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：** 逐轮模拟：每轮先执行 `s[0] = N % 8 + '0'` 得到当前最低位的数字字符，再用 `rst += string(s)` 把它追加到 rst 末尾，最后 `N /= 8`。取模与除法的先后顺序本身没有问题（全局数组 s 未用到的位置零初始化，`string(s)` 恰为单个字符）；真正的缺陷是各位按从低位到高位的顺序被依次追加到末尾、程序没有反转，输出的是倒序八进制串。\n\n**逐例实测（g++ 编译运行）：** N=8 输出 01（应为 10）；N=10 输出 21（应为 12）；N=64 输出 001（应为 100）；N=100 输出 441（应为 144）；N=9 输出 11 与正确答案相同属回文巧合；N=1 输出 1 正确。任一多位非回文输入即可暴露倒序缺陷。\n\n**修正思路：** 每轮把新数字插到结果串前面，或先按低位在前保存、最后整体逆序输出。另注：题干限定正整数，但 N=0 时该代码不进循环、输出空行，属边界外的附带观察。\n\n**考点：** 进制转换"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "独立复核第 7 页页图：题面与代码与候选一致，答案 ×（第 7 格）不变；候选解析归因于「取模和除法顺序」不准确，本报告按实测（8→01、10→21、64→001、100→441，9→11 属回文巧合）改写为「低位先追加且不反转导致输出倒序」，并给出修正思路。与 DeepSeek 同判 needs_fix，反例集合一致且本报告额外含 100→441 与 N=0 空行观察。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页 3.1（时间限制 1.0 s、内存限制 128.0 MB）与 3.1.1 问题描述、3.1.2 输入描述、3.1.3 输出描述、3.1.5/3.1.6 样例 1（2 4/1/4/5/9 → 4/lucky/8/lucky）、第 9 页 3.1.8/3.1.9 样例 2（16 11 → 16×4/lucky×7）及 3.1.10 数据规模（30%: a,x≤100、N≤100；60%: a,x≤10^6；全部: a≤1,000,001、N≤2×10^5、1≤x≤1,000,001）与候选逐段一致；第 8 页「特别提醒（不要输出提示信息）」为卷面通用说明，站点未纳入题面属惯例；候选 memoryLimit 128 与原卷 128.0 MB 数值一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF 未提供编程题答案索引，第 9–10 页附参考程序；officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：枚举平方数 sq≥a 标记其全部倍数即幸运数集合（幸运数的倍数仍是超级幸运数的倍数，与官方「对每个幸运数标记倍数」等价），再逆序扫一遍 next_lucky 记录不小于自身的最近幸运数；因 a≤1,000,001 时 1001²=1,002,001 恒为幸运数，next_lucky 恒有解。样例 1/2 手推与页图一致；解析的埃氏筛思想、逆序预处理与复杂度论证成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本人实测（Apple M1，Apple clang 21.0.0，g++ -std=c++17 -O2）：官方参考程序（source.txt 3.1.11 逐字转录）与候选参考程序（MAX=2000005 向量筛）分别编译，6 组用例（两个原样例 + 4 条独立边界）全部通过且两版输出逐组一致；另以定义级暴力（枚举 1001..1414 的平方及其倍数求 ≥x 最小幸运数）对 a=1000001、N=2×10^5 随机查询抽样 50 例对拍 0 处不一致；最大查询规模 N=2×10^5、a=1000001 实测官方 0.123–0.128 s、候选 0.354–0.355 s，均在 1.0 s 限内（DeepSeek 机器候选实测 0.61 s，属机器差异，结论一致）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原样例 1",
+            "input": "2 4\n1\n4\n5\n9\n",
+            "output": "4\nlucky\n8\nlucky",
+            "reason": "独立推演：a=2 时 1 幸运化 2 次到 4（2²≥2）；4 幸运；5 幸运化 1 次到 8（4 的倍数）；9=3² 幸运。官方与候选参考程序实测输出一致。"
+          },
+          {
+            "name": "原样例 2",
+            "input": "16 11\n1\n2\n4\n8\n16\n32\n64\n128\n256\n512\n1024\n",
+            "output": "16\n16\n16\n16\nlucky\nlucky\nlucky\nlucky\nlucky\nlucky\nlucky",
+            "reason": "独立推演：a=16 时最小超级幸运数 16，幸运数含 16 的倍数；1/2/4/8 幸运化到 16，16 及其倍数输出 lucky。官方与候选实测一致。"
+          },
+          {
+            "name": "a 下界 a=1",
+            "input": "1 4\n1\n7\n36\n1000001\n",
+            "output": "lucky\nlucky\nlucky\nlucky",
+            "reason": "独立推演：a=1 时 1=1² 为超级幸运数，任何正整数都是其倍数，全部 lucky。官方与候选实测一致。"
+          },
+          {
+            "name": "幸运化最近边界与倍数 a=4",
+            "input": "4 5\n3\n12\n9\n2\n16\n",
+            "output": "4\nlucky\nlucky\n4\nlucky",
+            "reason": "独立推演：3→4（2²）；12=4×3 幸运；9=3²≥4 幸运；2→4；16 幸运。官方与候选实测一致。"
+          },
+          {
+            "name": "a 上界 a=1000001",
+            "input": "1000001 3\n1000000\n1000001\n1002001\n",
+            "output": "1002001\n1002001\nlucky",
+            "reason": "独立推演：a=1,000,001 时最小超级幸运数 1001²=1,002,001；x≤1,000,001 的幸运化结果均为 1,002,001；1,002,001 本身输出 lucky。官方与候选实测一致。"
+          },
+          {
+            "name": "a=999999 平方边界",
+            "input": "999999 3\n999998\n1000000\n1000001\n",
+            "output": "1000000\nlucky\n1002001",
+            "reason": "独立推演：1000²=1,000,000≥999,999 为超级幸运数；1,000,001 非任何超级幸运数的倍数，幸运化到 1,002,001（初版期望 lucky 系推演笔误，已按逐数验算更正）。官方与候选实测一致。"
+          }
+        ],
+        "unresolved": [
+          "原卷 3.1.1 问题描述末段为「现在，小样给出 N 个数」（第 8 页页图与文本层一致，「小样」系「小杨」笔误）；候选与站点题面写「小杨给出」，属对原卷明显笔误的无声修正，语义无碍，登记备查。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 8–10 页页图：题面（含候选补入的数据规模小节）逐段一致；官方与候选参考程序经本人编译实测两个原样例与 4 条独立边界全部通过、两版对拍一致、暴力抽样对拍 0 不一致，最大查询规模计时均在限内；「小样」笔误修正登记备查。与 DeepSeek 参考程序实测结论一致（其 6 条边界与本人 4 条互补）。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 10 页 3.2（时间限制 1.0 s、内存限制 128.0 MB）与 3.2.1 问题描述（「有 N 种食材，编号从 0 至 N−1，其中第 i 种食材的美味度为 a_i」0 基表述、「12 and 6 = 4」示例与加粗「在 C++ 或 Python 中，可以直接使用 & 运算符表示与运算」）、第 11 页 3.2.2 输入描述（「依次为 a_0,⋯,a_{N−1}」）、3.2.5–3.2.10 两组样例（3/1 2 3→2；5/5 6 2 10 13→8；样例解释「编号为 1,2」「编号为 3,4」佐证 0 基）及 3.2.11 数据规模（40%: N≤1,000；全部: N≤10^6、0≤a_i≤2,147,483,647）与候选逐段一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF 未提供编程题答案索引，第 11–12 页附参考程序；officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：从高位到低位构造 target=ans|(1<<i)，筛出满足 (val&target)==target 的候选，候选数≥2 则固定该位并收窄候选集——按位贪心正确（更高位权大于所有低位之和）。样例 2 的逐位走查（第 3 位取 {10,13}，其后各位试而不得）与独立推演一致。解析写 i 从 30 起试探，官方程序从 31 起循环——因 a_i≤2^31−1 最高可置位为第 30 位，第 31 位恒空试，两者等价无害。运算符优先级提醒（(val&target)==target 必须加括号）正确。"
+          },
+          "referenceCode": {
+            "status": "needs_fix",
+            "evidence": "候选（站点）参考程序算法正确：本人实测 8 组用例（两个原样例 + 6 条独立边界）全部通过，且与独立按位贪心（集合语义）对随机 N=10^6 数据的推演值 2147481602 一致。但大规模实测超时：Apple M1、Apple clang 21.0.0、-O2 下 N=10^6 三次中位耗时 random 1.478 s、全 2147483647 1.538 s（DeepSeek 机器实测约 1.66 s，属机器差异、结论相同），高于题面 1.0 s 限制。官方第 11–12 页参考程序为原地按位分区实现（sort(l,r,k) 把当前前缀中该位为 1 的元素换到前部并返回个数 j，j≥2 则固定该位并 n=j），本人逐字转录编译实测：同 8 组用例全部通过；N=10^6 四种形态（全 2^31−1、全 2^30、随机、两极混合）计时 0.075–0.112 s（-O2）/0.107–0.121 s（-O0），余量约 9 倍，且随机形态输出与独立推演完全一致。候选参考程序宜替换为官方原地实现（见 changes.referenceCode），语义与解析的按位贪心等价（j 即满足 target 的候选个数，n=j 即候选集收窄）。"
+          }
+        },
+        "changes": {
+          "referenceCode": "#include<cstdio>\n#include<iostream>\n#include<algorithm>\n#include<cstdlib>\n#include<cstring>\nusing namespace std;\n\nconst int MAX_N = int(1e6) + 100;\n\nint a[MAX_N];\n\nint sort(int l,int r,int k) {\n    while(l <= r) {\n        while ((l <= r) && (a[l] >> k & 1)) l++;\n        while ((l <= r) && (!(a[r] >> k & 1))) r--;\n        if (l <= r) swap(a[l++], a[r--]);\n    }\n    return r;\n}\n\nint main() {\n    int n, j, ans=0;\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++) scanf(\"%d\", &a[i]);\n    for (int i = 31; i >= 0; i--)\n        if ((j = sort(1, n, i)) >= 2) {\n            ans = ans | 1 << i;\n            n = j;\n        }\n    printf(\"%d\\n\", ans);\n    return 0;\n}"
+        },
+        "tests": [
+          {
+            "name": "原样例 1",
+            "input": "3\n1 2 3\n",
+            "output": "2",
+            "reason": "独立推演：2&3=2 为最大两两契合度。官方与候选实测一致。"
+          },
+          {
+            "name": "原样例 2",
+            "input": "5\n5 6 2 10 13\n",
+            "output": "8",
+            "reason": "独立推演：10&13=8 为最大两两契合度（逐对验算其余最高为 6&5=4 等）。官方与候选实测一致。"
+          },
+          {
+            "name": "全 0 下界",
+            "input": "3\n0 0 0\n",
+            "output": "0",
+            "reason": "独立推演：0 与任何数按位与为 0，验证 a_i 下界 0。官方与候选实测一致。"
+          },
+          {
+            "name": "上界相同值",
+            "input": "2\n2147483647 2147483647\n",
+            "output": "2147483647",
+            "reason": "独立推演：两数同为 2^31−1 且取不同下标，按位与仍为 2^31−1，验证 a_i 上界。官方与候选实测一致。"
+          },
+          {
+            "name": "高位取舍辨析",
+            "input": "4\n8 9 12 15\n",
+            "output": "12",
+            "reason": "独立推演：六对中最大为 15&12=12；验证贪心逐位筛选（第 3 位后候选 {12,15}，第 2 位保留 12&15 的位）正确。官方与候选实测一致。"
+          },
+          {
+            "name": "含 0 与 1 位上界",
+            "input": "3\n0 2147483647 1073741824\n",
+            "output": "1073741824",
+            "reason": "独立推演：0 项恒 0；2^31−1 与 2^30 按位与为 2^30，验证第 30 位为可固定最高位。官方与候选实测一致。"
+          },
+          {
+            "name": "互斥二进制位",
+            "input": "4\n1 2 4 8\n",
+            "output": "0",
+            "reason": "独立推演：两两按位与全为 0，验证候选集合收缩到不足 2 个时该位不保留。官方与候选实测一致。"
+          },
+          {
+            "name": "三数相同",
+            "input": "3\n7 7 7\n",
+            "output": "7",
+            "reason": "独立推演：不同食材可取相同值，7&7=7；验证同值多下标配对合法。官方与候选实测一致。"
+          }
+        ],
+        "unresolved": [
+          "数据规模只给 N≤10^6、未给下界；题面要求「两种食材」，N=1 时问题无解，官方与候选参考程序对 N=1 均输出 0。按原卷保留，未改题面。",
+          "官方参考程序按 1 基读入 a[1..n]，与题面 0 基 a_0..a_{N-1} 属实现细节差异，不影响正确性；前轮已登记，保留。",
+          "候选（站点）向量版参考程序在 N=10^6 实测 1.47–1.55 s（本人 Apple M1 / clang 21 / -O2）与约 1.66 s（DeepSeek 机器），均超题面 1.0 s 限；本报告提出以官方原地实现替换（机器差异已记录，两机结论一致）。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "独立复核第 10–12 页页图：题面（0 基编号、数据规模）与候选逐段一致，两组样例与解释一致。参考程序维度发现真实缺陷：候选向量版参考程序算法正确（8 组用例 + 随机对拍全过）但 N=10^6 实测 1.47–1.55 s 超题面 1.0 s 限（DeepSeek 机器 1.66 s，机器差异已记录）；官方原地实现经本人逐字转录、编译实测同 8 组用例全过且 N=10^6 四形态计时 0.075–0.112 s（-O2）/0.107–0.121 s（-O0）、随机形态输出与独立推演值 2147481602 一致，故提请将 referenceCode 替换为官方程序（逐字转录值见 changes）。N=1 无解与 1 基读入两项原卷争议保留。"
+      }
+    ],
+    "summary": "对照原卷 12 页页图与 PDF 文本层，先独立逐题复核第一轮修订候选 14 题（重点 Q7/Q14/Q18/Q22/Q26/Q27），后对照 DeepSeek 报告。Q1/Q2/Q3/Q6/Q8/Q9/Q10/Q17/Q26 九题通过：题面、选项、答案（单选索引 2/2/3/0/1/3/1、判断索引 1）、解析与原卷及答案表一致，Q26 官方与候选参考程序实测两个原样例 + 4 条独立边界全部通过并互相一致，最大查询规模（N=2×10^5、a=1,000,001）官方 0.123–0.128 s、候选 0.354–0.355 s，均在 1.0 s 限内。五题 revise：Q7 候选 code 漏抄原卷第 19–24 行重复收集循环（按原卷补回），解析把 D 标为「顺序正确」但实测 vector<int>+int 在 C++98/11/17 下均无法编译，已改写并记录新实测发现——原卷重复循环形态与基准同值相遇时无限递归（SIGSEGV）；Q14 解析对 A/B「不适合单个 N」的表述与单选唯一答案 C 自相矛盾，改写为「A/B 可行但需建表、C 因素数判定无单调性不可行、D 试除可行」；Q18 候选题面残句且 code 缺失（修订清单声称已采纳修复但 changes 为空，属第一轮候选漏装），按原卷补回题面全句与 Fibo 代码并实测编译确认 fiboA/fiboB 两处未定义错误；Q22 解析把倒序错误误归因于「取模和除法顺序」，实测 8→01、10→21、64→001、100→441（9→11 属回文巧合）后改写为「低位先追加且不反转」；Q27 候选参考程序算法正确（8 组用例 + 随机对拍全过）但 N=10^6 实测 1.47–1.55 s（本人 Apple M1/clang 21/-O2）超题面 1.0 s 限（DeepSeek 机器约 1.66 s），官方原地实现逐字转录编译实测同 8 组用例全过、四形态计时 0.075–0.112 s（-O2）/0.107–0.121 s（-O0）且随机形态输出与独立推演 2147481602 一致，提请以官方程序替换 referenceCode。原卷争议（Q2 mergeSort 基例写 TList 契约瑕疵、Q9 上界 size() 越界风险、Q17 二分答案概念歧义、Q27 N=1 无解与 1 基读入）逐题保留；新增登记 Q26 原卷「小样」笔误被候选无声修正、Q7 题干少一逗号。inputSha256=f50828d8… 经复算与 DeepSeek 报告一致，14 条 previousQuestionSha256 与站点基线逐一匹配，来源身份（卷头、12 页、双答案表、来源 PDF SHA-256）核验完整。机器环境：Apple M1（arm64，8 核，16 GB），macOS Darwin 27.2.0，Apple clang 21.0.0（g++ 别名），计时均为 -std=c++17 下三次运行的中位值，输入/输出模式已在各题 evidence 与 tests 中记录。"
+  },
+  "requests": []
+}

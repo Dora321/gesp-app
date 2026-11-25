@@ -8,27 +8,7 @@ const programmingQuestions = [
         { input: `2 5 2`, output: `9` },
         { input: `100 100 100`, output: `185233` }
       ],
-      question: `
-# [GESP202403 八级] 公倍数问题
-
-## 题目描述
-
-小 A 写了一个 $N \\times M$ 的矩阵 $A$，我们看不到这个矩阵，但我们可以知道，其中第 $i$ 行第 $j$ 列的元素 $A_{i,j}$ 是 $i$ 和 $j$ 的公倍数（$i=1,\\dots,N$，$j=1,\\dots,M$）。现在有 $K$ 个小朋友，其中第 $k$ 个小朋友想知道，矩阵 $A$ 中最多有多少个元素可以是 $k$（$k=1,2,\\dots,K$）。请你帮助这些小朋友求解。
-
-注意：每位小朋友的答案互不相关，例如，有些位置既可能是 $x$，又可能是 $y$，则它同时可以满足 $x,y$ 两名小朋友的要求。
-
-方便起见，你只需要输出 $\\sum_{k=1}^{K}{k \\times \\texttt{ans}_k}$ 即可，其中 $\\texttt{ans}_k$ 表示第 $k$ 名小朋友感兴趣的答案。
-
-## 输入格式
-
-第一行三个正整数 $N,M,K$。
-
-## 输出格式
-
-输出一行，即 $\\sum_{k=1}^{K}{k \\times \\texttt{ans}_k}$。
-
-请注意，这个数可能很大，使用 C++ 语言的选手请酌情使用 \`long long\` 等数据类型存储答案。
-`,
+      question: "\n# [GESP202403 八级] 公倍数问题\n\n## 题目描述\n\n小 A 写了一个 $N \\times M$ 的矩阵 $A$，我们看不到这个矩阵，但我们可以知道，其中第 $i$ 行第 $j$ 列的元素 $A_{i,j}$ 是 $i$ 和 $j$ 的公倍数（$i=1,\\dots,N$，$j=1,\\dots,M$）。现在有 $K$ 个小朋友，其中第 $k$ 个小朋友想知道，矩阵 $A$ 中最多有多少个元素可以是 $k$（$k=1,2,\\dots,K$）。请你帮助这些小朋友求解。\n\n注意：每位小朋友的答案互不相关，例如，有些位置既可能是 $x$，又可能是 $y$，则它同时可以满足 $x,y$ 两名小朋友的要求。\n\n方便起见，你只需要输出 $\\sum_{k=1}^{K}{k \\times \\texttt{ans}_k}$ 即可，其中 $\\texttt{ans}_k$ 表示第 $k$ 名小朋友感兴趣的答案。\n\n## 输入格式\n\n第一行三个正整数 $N,M,K$。\n\n## 输出格式\n\n输出一行，即 $\\sum_{k=1}^{K}{k \\times \\texttt{ans}_k}$。\n\n请注意，这个数可能很大，使用 C++ 语言的选手请酌情使用 `long long` 等数据类型存储答案。\n\n\n## 数据规模\n\n对于 30% 的测试点，保证 $N,M,K \\le 10$。\n\n对于 60% 的测试点，保证 $N,M,K \\le 500$。\n\n对于所有测试点，保证 $N,M \\le 10^5$，$K \\le 10^6$。",
       tags: ["编程题", "数论", "约数统计"],
       explanation: "若某位置能取值为 x，则该位置的行号和列号都必须是 x 的约数。分别统计 1..N 和 1..M 中各有多少数整除 x，即得可行位置数。",
       template: "#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int N,M,K;cin>>N>>M>>K;return 0;}",
@@ -37,6 +17,10 @@ const programmingQuestions = [
       timeLimit: '1.0 s',
       memoryLimit: '128 MB',
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -54,33 +38,7 @@ const programmingQuestions = [
 0
 2` }
       ],
-      question: `
-# [GESP202403 八级] 接竹竿
-
-## 题目描述
-
-小杨同学想用卡牌玩一种叫做“接竹竿”的游戏。
-
-游戏规则是：每张牌上有一个点数 $v$，将给定的牌依次放入一列牌的末端。若放入之前这列牌中已有与这张牌点数相同的牌，则小杨同学会将这张牌和点数相同的牌之间的所有牌全部取出队列（包括这两张牌本身）。
-
-小杨同学现在有一个长度为 $n$ 的卡牌序列 $A$，其中每张牌的点数为 $A_i$（$1\\le i\\le n$）。小杨同学有 $q$ 次询问。第 $i$ 次（$1\\le i\\le q$）询问时，小杨同学会给出 $l_i,r_i$ 小杨同学想知道如果用下标在 $[l_i,r_i]$ 的所有卡牌按照下标顺序玩“接竹竿”的游戏，最后队列中剩余的牌数。
-
-## 输入格式
-
-一行包含一个正整数 $T$，表示测试数据组数。
-
-对于每组测试数据，第一行包含一个正整数 $n$，表示卡牌序列 $A$ 的长度。
-
-第二行包含 $n$ 个正整数 $A_1,A_2,\\dots,A_n$，表示卡牌的点数 $A$。
-
-第三行包含一个正整数 $q$，表示询问次数。
-
-接下来 $q$ 行，每行两个正整数 $l_i,r_i$ 表示一组询问。
-
-## 输出格式
-
-对于每组数据，输出 $q$ 行。第 $i$ 行（$1\\le i\\le q$）输出一个非负整数，表示第 $i$ 次询问的答案。
-`,
+      question: "\n# [GESP202403 八级] 接竹竿\n\n## 题目描述\n\n小杨同学想用卡牌玩一种叫做“接竹竿”的游戏。\n\n游戏规则是：每张牌上有一个点数 $v$，将给定的牌依次放入一列牌的末端。若放入之前这列牌中已有与这张牌点数相同的牌，则小杨同学会将这张牌和点数相同的牌之间的所有牌全部取出队列（包括这两张牌本身）。\n\n小杨同学现在有一个长度为 $n$ 的卡牌序列 $A$，其中每张牌的点数为 $A_i$（$1\\le i\\le n$）。小杨同学有 $q$ 次询问。第 $i$ 次（$1\\le i\\le q$）询问时，小杨同学会给出 $l_i,r_i$ 小杨同学想知道如果用下标在 $[l_i,r_i]$ 的所有卡牌按照下标顺序玩“接竹竿”的游戏，最后队列中剩余的牌数。\n\n## 输入格式\n\n一行包含一个正整数 $T$，表示测试数据组数。\n\n对于每组测试数据，第一行包含一个正整数 $n$，表示卡牌序列 $A$ 的长度。\n\n第二行包含 $n$ 个正整数 $A_1,A_2,\\dots,A_n$，表示卡牌的点数 $A$。\n\n第三行包含一个正整数 $q$，表示询问次数。\n\n接下来 $q$ 行，每行两个正整数 $l_i,r_i$ 表示一组询问。\n\n## 输出格式\n\n对于每组数据，输出 $q$ 行。第 $i$ 行（$1\\le i\\le q$）输出一个非负整数，表示第 $i$ 次询问的答案。\n\n\n## 数据范围\n\n| 子任务编号 | 数据点占比 | $T$ | $n$ | $q$ | $\\max A_i$ | 特殊条件 |\n|---|---|---|---|---|---|---|\n| 1 | 30% | $\\le 5$ | $\\le 100$ | $\\le 100$ | $\\le 13$ | |\n| 2 | 30% | $\\le 5$ | $\\le 1.5\\times 10^4$ | $\\le 1.5\\times 10^4$ | $\\le 13$ | 所有询问的右端点等于 $n$ |\n| 3 | 40% | $\\le 5$ | $\\le 1.5\\times 10^4$ | $\\le 1.5\\times 10^4$ | $\\le 13$ | |\n\n对于全部数据，保证 $1 \\le T \\le 5$，$1 \\le n \\le 1.5\\times 10^4$，$1 \\le q \\le 1.5\\times 10^4$，$1 \\le A_i \\le 13$。",
       tags: ["编程题", "倍增", "模拟", "区间查询"],
       explanation: "预处理每个位置第一次形成消去时会跳到哪里，并做倍增。回答询问时一边统计无法消去的牌，一边尽量用倍增跳过可整体消去的段。",
       template: "#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){}return 0;}",
@@ -89,6 +47,10 @@ const programmingQuestions = [
       timeLimit: '1.0 s',
       memoryLimit: '128 MB',
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     }
 ];
 
@@ -234,33 +196,23 @@ C++ 在定义并初始化二维数组时，只有第一维（行数）可以省�
             id: 5,
             type: "single",
             question: `使用邻接表表达一个无向简单图，图中包含v个顶点、e条边，则该表中边节点的个数为（ ）。`,
-            options: [
-                "v",
-                "e",
-                "2e",
-                "v+e",
-],
+            options: ["v×(v-1)","v×v","2×e","e"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-用邻接表表示无向简单图时，每条无向边会在其两个端点的链表中各挂一个边结点，因此边结点总数为边数的两倍。
-
-- **A v**：错误。v 是顶点数，并非边结点个数。
-- **B e**：错误。有向图邻接表才是每条边对应一个边结点，无向图需计两倍。
-- **C 2e**：正确。每条边贡献两个边结点，总数为 2e。
-- **D v+e**：错误。该值与边结点实际数量不符。
-`,
+            explanation: "**答案：C**\n\n**解析：**\n用邻接表表示无向简单图时，每条无向边会在其两个端点的链表中各挂一个边结点，因此边结点总数为 2e。\n\n- A v×(v−1)：错误，这是有向完全图的弧数；\n- B v×v：错误，这是邻接矩阵的元素数；\n- C 2×e：正确；\n- D e：错误，这是有向图出边表的边结点数。\n\n**考点：** 无向图邻接表的空间开销。",
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 6,
             type: "single",
             question: `关于生成树的说法，错误的是（ ）。`,
-            options: ["一个无向连通图可以有多个生成树。", "一个无向图，只要连通，就一定有生成树。", "n个顶点的无向完全图，有 棵生成树。", "n个顶点的无向图，生成树包含n-1条边。"],
+            options: ["一个无向连通图可以有多个生成树。","一个无向图，只要连通，就一定有生成树。","n个顶点的无向完全图，有 n^{n-2} 棵生成树。","n个顶点的无向图，生成树包含n-1条边。"],
             answer: 3,
             score: 2,
             explanation: `**答案：不正确的是 D（n个顶点的无向图，生成树包含n-1条边）**
@@ -279,6 +231,10 @@ C++ 在定义并初始化二维数组时，只有第一维（行数）可以省�
             tags: [
                 "最小生成树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
@@ -359,7 +315,7 @@ C++ 在定义并初始化二维数组时，只有第一维（行数）可以省�
         {
             id: 9,
             type: "single",
-            question: `如下图所示，半径为r、圆心角为t（弧度）的扇形，下面哪个表达式能够求出顶部阴影部分的面积？（ ）。`,
+            question: "如下图所示，半径为 r、圆心角为 t（弧度）的扇形，下面哪个表达式能够求出顶部阴影部分的面积？（ ）。\n\n（图示：扇形半径为 r，圆心角为 t；阴影为扇形顶部由弦与弧围成的弓形，即扇形面积减去两条半径与弦构成的三角形面积。）",
             options: [
                 "r * r * sin(t) / 2",
                 "r * r * t / 2",
@@ -385,6 +341,10 @@ r*r*t/2 - r*r*sin(t)/2 = r*r*(t - sin(t)) / 2
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 10,
@@ -435,28 +395,17 @@ int choose(int n, int m) {
 }
 \`\`\`
 `,
-            options: [
-                "O(2^n)",
-                "O(2^n × (n-m))",
-                "O(C(n,m))",
-                "O(m × (n-m))",
-],
+            options: ["O(2^n)","O(2^m × (n-m))","O(C(n,m))","O(m × (n-m))"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-程序是无记忆化的帕斯卡递归。递归树中每个叶结点对应最终分解出的一个「m==0 或 m==n」的边界项，共 C(n,m) 个；每个内部结点恰分裂为两个子结点，故总结点数为 2·C(n,m) − 1，即 O(C(n,m))。
-
-- **A O(2^n)**：错误。这只是上界；递归树规模由 C(n,m) 决定，当 m 较小时远小于 2ⁿ。
-- **B O(2^n × (n-m))**：错误。不存在额外的 (n-m) 因子。
-- **C O(C(n,m))**：正确。叶结点 C(n,m) 个、总结点 2C(n,m)−1。
-- **D O(m × (n-m))**：错误。这是带记忆化版本的状态数；本题没有 record 记忆化。
-
-**考点**：无记忆化帕斯卡递归的调用次数 = 组合数的二倍减一。`,
+            explanation: "**答案：C**\n\n**解析：**\n程序是无记忆化的帕斯卡递归。递归树中每个叶结点对应最终分解出的一个「m==0 或 m==n」的边界项，共 C(n,m) 个；每个内部结点恰分裂为两个子结点，故总结点数为 2·C(n,m) − 1，即 O(C(n,m))。\n\n- **A O(2^n)**：错误。这只是上界；递归树规模由 C(n,m) 决定，当 m 较小时远小于 2ⁿ。\n- **B O(2^m × (n-m))**：错误。不存在额外的 (n-m) 因子。\n- **C O(C(n,m))**：正确。叶结点 C(n,m) 个、总结点 2C(n,m)−1。\n- **D O(m × (n-m))**：错误。这是带记忆化版本的状态数；本题没有 record 记忆化。\n\n**考点**：无记忆化帕斯卡递归的调用次数 = 组合数的二倍减一。",
             tags: [
                 "复杂度分析",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 12,
@@ -720,29 +669,26 @@ a, (b = b), a
         },
         {
             id: 19,
-            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            verificationNote: "核对原卷第 5 页答案表和第 5 页题面。无向完全图按无序顶点对计数，N=4 时有 6 条边，题式给 12 条。",
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 5,
             sourcePages: [5],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-25",
+            reviewedBy: "AI-Codex",
             sourceVerified: true,
-            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
-            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
             question: `N个顶点的无向完全图有 N×(N-1) 条边。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `原卷答案表为错误。无向完全图中，每对不同顶点之间恰有一条边，应计算无序对数量C(N,2)=N(N-1)/2。N(N-1)将每条边按两个方向重复计算，适用于不带自环的有向完全图。
-
-题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
+            explanation: "**答案：错误**\n\n每对不同顶点之间只有一条无向边，从 $N$ 个顶点中任选两个即可确定一条边，故边数为 $\\binom{N}{2}=N(N-1)/2$。\n\n例如 $N=4$ 时，边为 $12、13、14、23、24、34$，共有 6 条。若按 $N(N-1)$ 计数，边 $12$ 会随着顶点 1 和顶点 2 各数一次，结果会把每条边重复计算。",
             tags: [
                 "C++综合",
             ],
+      "reviewedFields": ["answer","explanation","reviewedBy","reviewedAt","verificationNote"],
         },
         {
             id: 20,
@@ -827,6 +773,10 @@ S = sqrt( ((a+b+c)/2) * ((b+c-a)/2) * ((a+c-b)/2) * ((a+b-c)/2) )
             tags: [
                 "面向对象",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 23,
@@ -854,8 +804,8 @@ S = sqrt( ((a+b+c)/2) * ((b+c-a)/2) * ((a+c-b)/2) * ((a+b-c)/2) )
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 5,
             sourcePages: [5],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-07",
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             sourceVerified: true,
             type: "judge",
             question: `在N个元素的二叉排序树中查找一个元素，平均情况的时间复杂度是 O(log N)。`,
@@ -865,17 +815,11 @@ S = sqrt( ((a+b+c)/2) * ((b+c-a)/2) * ((a+c-b)/2) * ((a+b-c)/2) )
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
-
-**解析：**
-在 n 个元素的二叉排序树中查找，平均情况（随机插入构成的树近似平衡）时间复杂度为 O(log n)；只有最差情况（退化为链）才是 O(n)。若题述空白处为 O(log n)，则结论正确。
-
-（注：本题源数据空白处缺失，按标准结论判正确；建议结合官方 PDF 复核空白处原式。）
-
-**考点**：二叉排序树平均查找时间复杂度 O(log n)。`,
+            explanation: "**答案：正确**\n\n**解析：**\n在 n 个元素的二叉排序树中查找，平均情况（随机插入构成的树近似平衡）时间复杂度为 O(log n)；只有最差情况（退化为链）才是 O(n)。故题干“平均情况是 O(log n)”正确。\n\n**考点：** 二叉排序树平均查找时间复杂度。",
             tags: [
                 "排列组合",
             ],
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 25,

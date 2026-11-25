@@ -1,0 +1,111 @@
+{
+  "executedAt": "2026-11-25T07:00:07.815Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4 2\n1 0\n-1 -1\n0 0\n1 1",
+          "output": "3.41",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3.41\n",
+          "passed": true
+        },
+        {
+          "input": "4 1\n1 0\n-1 -1\n0 0\n1 1",
+          "output": "Impossible",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "Impossible\n",
+          "passed": true
+        },
+        {
+          "name": "n=1 单座基站",
+          "input": "1 1\n0 0\n",
+          "output": "0.00",
+          "reason": "只有一座基站，无需修建任何线路即已“两两连通”，已选边数 0 = n−1，输出 0.00。",
+          "kind": "boundary",
+          "actual": "0.00\n",
+          "passed": true
+        },
+        {
+          "name": "n=2 恰好等于上限 l",
+          "input": "2 5\n0 0\n3 4\n",
+          "output": "5.00",
+          "reason": "两点距离 5 不超过 l=5，可建一条长 5 的线路，MST 权和 5.00（同时验证 dist2<=l*l 的边界取等）。",
+          "kind": "boundary",
+          "actual": "5.00\n",
+          "passed": true
+        },
+        {
+          "name": "三点全部超距",
+          "input": "3 1\n0 0\n2 0\n4 0\n",
+          "output": "Impossible",
+          "reason": "相邻点距离均为 2 > l=1，一条边都建不成，图不连通，t=0≠n−1=2，输出 Impossible。",
+          "kind": "boundary",
+          "actual": "Impossible\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "e43e7163e3f83b7796bcfd880be47b06949bef23538b2517da3a04e7f407c9f8"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3 5",
+          "output": "6",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "m=2, n=1 无解",
+          "input": "2 1\n",
+          "output": "0",
+          "reason": "a₁=1 时 a₂ 必须满足 1 ≤ a₂ < 1，不存在，组合数 C(0,1)=0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "m=2, n=5 线性情形",
+          "input": "2 5\n",
+          "output": "4",
+          "reason": "a₂ 可取 1、2、3、4，共 4 种，即 C(4,1)=4。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "m=5, n=100000 大 n",
+          "input": "5 100000\n",
+          "output": "419375106",
+          "reason": "答案为 C(99999,4) = 99999·99998·99997·99996/24，取模 10^9+7 后为 419375106（已用 Python 的 math.comb 独立核算）。",
+          "kind": "boundary",
+          "actual": "419375106\n",
+          "passed": true
+        },
+        {
+          "name": "m=n=100000 取满",
+          "input": "100000 100000\n",
+          "output": "1",
+          "reason": "m=n 时唯一方案是 aᵢ = n−i+1 的严格递减序列，C(99999,99999)=1；同时覆盖 m 取上界、组合数上标等于下标的情形。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "1280a922eec00943f4caa53d88b51407a873d4677e46abc3e582c2f3ff70e2eb"
+    }
+  ]
+}

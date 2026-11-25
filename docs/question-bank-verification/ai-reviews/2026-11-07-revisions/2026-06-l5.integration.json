@@ -1,0 +1,94 @@
+{
+  "paperId": "2026-06-l5",
+  "integratedAt": "2026-11-25T12:29:22.508Z",
+  "accepted": [
+    {
+      "id": 16,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 17,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 18,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 19,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 20,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 21,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 22,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 23,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 25,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 9
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 10
+    }
+  ]
+}

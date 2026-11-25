@@ -1,0 +1,450 @@
+{
+  "paperId": "2025-03-l7",
+  "phase": "deepseek",
+  "questionIds": [
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14,
+    22,
+    23,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:20:00.000Z",
+  "completedAt": "2026-11-25T08:42:31.000Z",
+  "finishReason": "stop",
+  "inputSha256": "40ceecb702caec53e451cbb912be6fb652597e7cb3334087ba812afe0e7eb03f",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1669256997503008.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++7级.pdf",
+    "mirrorSha": "a972ce1dbfcf5fd76cb114d677103aec71d2a3c1",
+    "mirrorBytes": 1496534,
+    "shaVerified": true,
+    "sha256": "e83b6375a9547c37af0de0d779cc26f0e9900a8d890e6d406ba5912167cb173d"
+  },
+  "pageCount": 13,
+  "report": {
+    "paperId": "2025-03-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头为「CCF 编程能力等级认证 GESP / C++ 七级 / 2025 年 03 月」，与 paperId 2025-03-l7 的年份、月份、等级一致，共 13 页；第1页单选答案表 1-15 为 B A B C B B B A D D A C B B D，第9页判断题答案表 1-10 为 × √ √ × × √ √ × √ ×，与候选客观题 answer 对照一致。"
+    },
+    "questions": [
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第5题题干「下列关于排序的说法，正确的是( )。」与候选一致（候选括号前多一空格，不改变语义）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页 A 选择排序是最快的排序算法之一、B 归并排序通常是稳定的、C 最差情况，$N$ 个元素做快速排序的时间复杂度为 $O(N)$、D 最好情况，$N$ 个元素做插入排序的时间复杂度为 $O(N^2)$，与候选逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第5题为 B，0 起始索引 1，候选 answer=1。独立判断：归并排序标准实现合并时优先取左段，通常是稳定的，B 正确；选择排序平均/最坏均为 O(N²)，快排最差为 O(N²)，插入排序最好为 O(N)，A/C/D 均错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析定义稳定性、说明归并合并取左段、逐项指出 C 应为 O(N²)、D 应为 O(N)，结论 B，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第7题题干「下列关于树和图的说法，错误的是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页 A-D 与候选逐字一致；C 项原文为「$N$ 个顶点且连通的无向图，其最小生成树一定包含 $N-1$ 个条边。」（「个条边」为原卷排版，候选保留），D 项为「$N+1$ 个顶点、$N$ 条边的有向图，一定不是强连通的。」"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第7题为 B，0 起始索引 1，候选 answer=1。独立判断：父指向子的树中根无入边、叶无出边，子节点回不到父节点，不是强连通图，B 错误；A 树是 DAG 且 DAG 未必是树、C 连通无向图的最小生成树恰有 N-1 条边、D 强连通有向图每个顶点出度至少为 1，N+1 个顶点至少需 N+1 条边，均正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的 A/B/C/D 判断本身正确，但仍保留旧版「题面排版缺了字母/数字，原意是 N 个顶点/N+1 个顶点」的说明；当前候选 C/D 已含 N、N-1、N+1，该说明与题面不符，已改写为完整解析（见 changes.explanation）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（如果把树看做有向图，每个节点指向其子节点，则该图是强连通图）**\n\n**核心解析：**\n强连通要求有向图中任意两点都能互相到达。把树的边定向为父节点指向子节点后，根没有入边，叶子没有出边，子节点回不到父节点，因此不是强连通图。B 的说法错误，是本题所求。\n\n**选项逐项分析：**\n- **A 树是一种有向无环图，但有向无环图不都是一棵树**：说法正确。父指向子时树没有有向环，是 DAG；但 DAG 可以有多个入度为 0 的点，或某个点入度大于 1，这样的图不是树。\n- **B 如果把树看做有向图，每个节点指向其子节点，则该图是强连通图**：❌ 说法错误。只能从祖先走向子孙，不能双向互达。\n- **C $N$ 个顶点且连通的无向图，其最小生成树一定包含 $N-1$ 条边**：说法正确。原卷 C 项原文为「$N-1$ 个条边」，属于排版赘字，语义就是 $N-1$ 条边；生成树含全部顶点且恰好 $N-1$ 条边，最小生成树也是如此。\n- **D $N+1$ 个顶点、$N$ 条边的有向图，一定不是强连通的**：说法正确。若 $N+1$ 个顶点的有向图强连通，每个顶点出度至少为 1，边数至少为 $N+1$；实际只有 $N$ 条边，矛盾，故一定不是强连通。\n\n**易错提醒：**\n父指向子的树只是弱连通，不是强连通。无向连通图最少 $N-1$ 条边；有向强连通图至少要和顶点数一样多的边。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页末第8题题干含 2025、20、25、$(20+25)^2$、小于 $N$ 的约束及 count_miracle 程序前 6 行，第3页续程序 8-18 行与四个选项，候选逐行一致。程序第7行在页图跨页处被裁切，PDF 文本层逐字为 `for (int i = 1; i < s.length(); i++)`，与第8行 `if (s[i] != '0') {` 衔接，候选转录正确。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页 A `nl + nr == n`、B `nl + nr == n2`、C `(nl + nr) * (nl + nr) == n`、D `(nl + nr) ^ 2 == n2`；候选变量统一为 nl/nr，与放大页图及文本层互证一致（不是 n1/n2）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第8题为 A，0 起始索引 0，候选 answer=0。独立判断：n2 = n²，切开后要求 n2 = (nl+nr)²；n 为正数时等价于 nl+nr == n，A 正确；B 比较 n2、C 把和的平方与 n 比、D 的 ^ 是按位异或，均错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的切口逻辑、45²=2025 示例、A 正确与 ^ 为按位异或的说明均成立，变量 nl 与修复后题面一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页末第10题题干与 LIS 程序 1-7 行、第5页 8-33 行（含 main 读入/输出与 `*max_element`）与候选逐行一致；候选已含 main，横线占位长度差异不影响作答。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页 A `dp[i] = max(dp[i], dp[j]);`、B `dp[i] = max(dp[i+1], dp[j] + 1);`、C `dp[i] = max(dp[i], dp[j] - 1);`、D `dp[i] = max(dp[i], dp[j] + 1);`，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第10题为 D，0 起始索引 3，候选 answer=3。独立判断：dp[i] 表示以 nums[i] 结尾的 LIS 长度，接在 nums[j] 后长度为 dp[j]+1，取最大值，D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的状态定义、转移方程、最终取全表最大值及 A/B/C 排除均与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页末第11题题干及 LIS 程序 1-17 行、第6页 18-33 行（含 main）与候选逐行一致；候选代码块完整，可指代「该程序」。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页 A `O(n²)`、B `O(n)`、C `O(log(n))`、D `O(nlog(n))`，与候选逐字一致；候选已把旧版错误的 O(n log n)/O(2ⁿ) 改为原卷选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第11题为 A，0 起始索引 0，候选 answer=0。独立判断：外层 i 执行 n-1 次，内层 j 累计 1+2+...+(n-1)=n(n-1)/2 次，时间复杂度 O(n²)，A 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的复杂度推导正确，但选项逐项分析仍按旧选项写「C O(n log n)」「D O(2ⁿ)」；当前候选 C 为 O(log(n))、D 为 O(nlog(n))，标签与内容不符，已改写（见 changes.explanation）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（O(n²)）**\n\n**核心解析：**\n最长严格上升子序列（LIS）是动态规划的经典问题。在 GESP 七级涉及的标准动态规划解法中：\n1. **状态定义**：设 `dp[i]` 表示以元素 `nums[i]` 结尾的最长上升子序列的长度。\n2. **状态转移**：计算 `dp[i]` 时，需要向前遍历前面所有元素 `nums[j]`（`0 <= j < i`）。若 `nums[i] > nums[j]`，则可以将 `nums[i]` 接在以 `nums[j]` 结尾的子序列后面，状态转移方程为：`dp[i] = max(dp[i], dp[j] + 1)`。\n3. **复杂度计算**：参考实现里外层 `i` 从 `1` 到 `n - 1`，内层 `j` 从 `0` 到 `i - 1`。比较次数是 `1 + 2 + ... + (n - 1) = n * (n - 1) / 2`，时间复杂度为 `O(n*n)`。\n\n**选项逐项分析：**\n- **A `O(n²)`**：✅ 正确。双重循环的朴素动态规划每一步都要向前比对所有历史状态，总操作次数约为 `n * (n - 1) / 2`，时间复杂度为 `O(n²)`。\n- **B `O(n)`**：❌ 错误。单层线性扫描无法在遍历到当前元素时知晓前面所有小于它的元素的最长状态，目前求 LIS 并不存在 `O(n)` 的通用算法。\n- **C `O(log(n))`**：❌ 错误。读取全部 `n` 个元素本身就需要 `O(n)`，且本程序是双层循环；`O(log n)` 不可能是该程序的复杂度。\n- **D `O(nlog(n))`**：❌ 错误。`O(n log n)` 是采用「贪心 + 二分查找（如 `std::lower_bound`）」优化算法达到的复杂度；本题代码是经典的双层循环动态规划基础实现，并未采用二分优化，复杂度仍为 `O(n²)`。\n\n**易错提醒：**\n贪心加二分可以把 LIS 做到 `O(n log n)`，但本题代码是双层循环，复杂度是 `O(n*n)`。内层次数随 `i` 增加，总和 `n * (n - 1) / 2` 仍是平方阶。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页末第13题题干与 minPathSum 程序 1-11 行、第8页 12-40 行（含 main）与候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第8页 A `dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][1];`（原卷 A 项列下标即 1）、B `... + grid[i][j];`、C `min(dp[i - 1][j], dp[i][j]) + grid[i][j];`、D `min(dp[i][j], dp[i][j - 1]) + grid[i][j];`，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第13题为 B，0 起始索引 1，候选 answer=1。独立判断：只能从上方或左方转移，取两者路径和较小值再加当前格，B 正确；A 列下标错误，C/D 自引用未计算值。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出 A 的 grid[i][1] 列下标错误、C/D 自引用 dp[i][j]，结论 B，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8页末第14题题干与 maxSubArray 程序 1-15 行、第9页 16-35 行（含 main）与候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第9页 A `dp[i] = max(nums[i+1], dp[i - 1] + nums[i]);`、B `dp[i] = max(nums[i], dp[i - 1] + nums[i]);`、C `dp[i] = max(nums[i], dp[i + 1] + nums[i]);`、D `dp[i] = max(nums[i], dp[i - 1] + nums[i+1]);`，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第14题为 B，0 起始索引 1，候选 answer=1。独立判断：dp[i] 表示以 nums[i] 结尾的最大子段和，可取「新开」nums[i] 或「接续」dp[i-1]+nums[i]，B 正确；A/C/D 引用未计算项或越界。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明状态定义与两种选择，并逐项排除 A/C/D，结论 B，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第9页判断题第7题原文仅「邻接表和邻接矩阵都是图的存储形式。为了操作时间复杂度考虑，同一个图可以同时维护两种存储形式。」；候选 question 末尾混入第14题 maxSubArray 的代码残片和行号 16-35，并非原卷内容。该残片不是排版噪声，而是混入题面的实质内容，需清除。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项；平台以「正确/错误」两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第9页判断题答案表第7题为「√」，映射 0；候选 answer=0。独立判断：邻接表遍历某点邻居为 O(度数)，邻接矩阵判边为 O(1)，同时维护两种存储可兼顾不同操作的时间复杂度，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明两种存储的复杂度互补，结论正确，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "邻接表和邻接矩阵都是图的存储形式。为了操作时间复杂度考虑，同一个图可以同时维护两种存储形式。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第10页判断题第8题原文为「子类对象包含父类的所有成员（包括私有成员）。从父类继承的私有成员也是子类的成员，因此子类可以直接访问。」；候选 question 误用了第9页判断题第7题的邻接表/邻接矩阵文字，与解析、答案均不对应，需整段替换。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项；平台以「正确/错误」两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第9页判断题答案表第8题为「×」，映射 1；候选 answer=1。独立判断：父类私有成员对子类不可见，子类不能直接访问，只能通过父类公有/保护接口间接访问，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析区分「对象包含成员」与「子类可见性」，指出私有成员只能经父类公有/保护接口访问，结论错误，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "子类对象包含父类的所有成员（包括私有成员）。从父类继承的私有成员也是子类的成员，因此子类可以直接访问。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第10页 3.1.1—3.1.5.2 的题名、题目描述、输入/输出格式、样例，以及第11页 3.1.6 数据范围（20% 的测试点 k=1；另外 20% 保证 1≤n≤50、1≤m≤50；全部 1≤n≤500、1≤m≤500、1≤k≤20、1≤u_i,v_i≤n）与候选逐段一致；站点 1.0 s/512 MB 与原卷 1.0 s/512.0 MB 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案表项，officialAnswer=null；以参考程序、样例与边界用例判定。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的 reach[t][s] 点集状态、逐层合并邻接点、bitset 加速与复杂度说明成立，与参考程序一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序用 bitset 维护「恰好 t 步可达点集」，逐层按 y 合并 adj[y]；原样例输出 2 4 4 / 2 4 4 / 3 3 4 / 1 3 3 通过；另以两点单步、三点链两步、三角形一步三组边界实测通过，并以 400 组 n≤6、m≤8、k≤5 随机图与暴力逐层扩展对拍一致；n=500、m=500、k=20 的最坏规模运行约 0.01 s。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "两点单步",
+            "input": "2 1 1\n1 2\n",
+            "output": "1\n1",
+            "reason": "n=2、m=1、k=1，1 与 2 相邻；从任一点出发走 1 步只能到达另一点，两行可达数均为 1。"
+          },
+          {
+            "name": "三点链两步",
+            "input": "3 2 2\n1 2\n2 3\n",
+            "output": "1 2\n2 1\n1 2",
+            "reason": "链 1-2-3：从 1 出发第 1 步到 2、第 2 步到 {1,3}，可达数 1、2；从 2 出发第 1 步到 {1,3}、第 2 步回 {2}，可达数 2、1；从 3 对称。"
+          },
+          {
+            "name": "三角形一步",
+            "input": "3 3 1\n1 2\n2 3\n3 1\n",
+            "output": "2\n2\n2",
+            "reason": "k=1 子任务；三角形每个顶点都有 2 个邻居，走 1 步可达 2 个点。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          12,
+          13
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第12页 3.2—3.2.13 的题名、题目描述、输入/输出格式、两组样例、数据范围（20% 的测试点 S 仅含 a/b；另外 20% 保证 1≤|S|≤2000；全部 1≤|S|≤2×10^5）与候选逐段一致；站点 1.0 s/512 MB 与原卷 1.0 s/512.0 MB 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案表项，officialAnswer=null；以参考程序、样例与边界用例判定。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析「可消除 ⇔ 每种字符出现偶数次」、前缀奇偶掩码相等、哈希表累计同掩码前缀数的推导成立，与参考程序一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序用 26 位掩码记录前缀奇偶性，unordered_map 统计同掩码出现次数，ans 为 long long；两组原样例 9、2 通过；另以 aaa=2、aabbccdd=10、abcabc=1 三组边界实测通过，并以 400 组 n≤10、字母表 {a,b,c} 的随机串与 O(n²) 暴力对拍一致；2×10^5 全 a 串输出 10^10，long long 足够。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "连续三个相同字符",
+            "input": "3\naaa\n",
+            "output": "2",
+            "reason": "可消除子串为两个长度为 2 的 aa（[1,2]、[2,3]）；长度 3 的 aaa 含奇数个 a，不可消除。"
+          },
+          {
+            "name": "四个双字符段",
+            "input": "8\naabbccdd\n",
+            "output": "10",
+            "reason": "所有字符成对相邻；可消除子串为长度 2 的 4 个、长度 4 的 3 个、长度 6 的 2 个、长度 8 的 1 个，共 10 个。"
+          },
+          {
+            "name": "两组重复模式",
+            "input": "6\nabcabc\n",
+            "output": "1",
+            "reason": "只有整个串 abcabc 中 a、b、c 各出现 2 次；任意真子串都至少有一种字符出现奇数次。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "对照原卷 13 页逐题复核 11 个候选。Q5/Q8/Q10/Q13/Q14/Q26/Q27 的题面、选项/答案、解析与参考程序均通过；Q7 解析残留旧版「题面缺字母/数字」说明、Q11 解析选项 C/D 标注与修复后选项不符，均按当前题面改写；Q22 题面混入第14题 maxSubArray 代码残片、Q23 题面误用第22题文字，均按页图整段替换。Q22 初轮分歧不是单纯排版：该残片是混入题面的实质内容，需清除；Q23 初轮两份报告均未正确识别题干错位，本轮一并纠正。两道编程题参考程序经原样例、独立边界用例与随机暴力对拍验证。"
+  },
+  "requests": []
+}

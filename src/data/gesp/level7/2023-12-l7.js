@@ -4,29 +4,7 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      question: `
-# [GESP202312 七级] 商品交易
-
-## 题目描述
-
-市场上共有 $N$ 种商品，编号从 $0$ 至 $N-1$ ，其中，第 $i$ 种商品价值 $v_i$ 元。
-
-现在共有 $M$ 个商人，编号从 $0$ 至 $M-1$ 。在第 $j$ 个商人这，你可以使用你手上的第 $x_j$ 种商品交换商人手上的第 $y_j$ 种商品。每个商人都会按照商品价值进行交易，具体来说，如果 $v_{x_j}>v_{y_j}$，他将会付给你 $v_{x_j}-v_{y_j}$元钱；否则，那么你需要付给商人 $v_{y_j}-v_{x_j}$ 元钱。除此之外，每次交易商人还会收取 $1$ 元作为手续费，不论交易商品的价值孰高孰低。
-
-你现在拥有商品 $a$ ，并希望通过一些交换来获得商品 $b$ 。请问你至少要花费多少钱？（当然，这个最小花费也可能是负数，这表示你可以在完成目标的同时赚取一些钱。）
-
-## 输入格式
-
-第一行四个整数 $N , M , a , b$，分别表示商品的数量、商人的数量、你持有的商品以及你希望获得的商品。保证 $0 \\le a,b < N$ ，保证 $a \\ne b$。
-
-第二行 $N$ 个用单个空格隔开的正整数 $v_0,v_1,…,v_{N-1}$ ，依次表示每种商品的价值。保证 $1≤v_i≤10^9$。
-
-接下来 $M$ 行，每行两个整数 $x_j,y_j$ ，表示在第 $j$ 个商人这，你可以使用第 $x_j$ 种商品交换第 $y_j$ 种商品。保证 $0 \\le x_j,y_j < N$ ，保证 $x_j \\ne y_j$。
-
-## 输出格式
-
-输出一行一个整数，表示最少的花费。特别地，如果无法通过交换换取商品 $b$ ，请输出 \`No solution\`。
-`,
+      question: "\n# [GESP202312 七级] 商品交易\n\n## 题目描述\n\n市场上共有 $N$ 种商品，编号从 $0$ 至 $N-1$ ，其中，第 $i$ 种商品价值 $v_i$ 元。\n\n现在共有 $M$ 个商人，编号从 $0$ 至 $M-1$ 。在第 $j$ 个商人这，你可以使用你手上的第 $x_j$ 种商品交换商人手上的第 $y_j$ 种商品。每个商人都会按照商品价值进行交易，具体来说，如果 $v_{x_j}>v_{y_j}$，他将会付给你 $v_{x_j}-v_{y_j}$元钱；否则，那么你需要付给商人 $v_{y_j}-v_{x_j}$ 元钱。除此之外，每次交易商人还会收取 $1$ 元作为手续费，不论交易商品的价值孰高孰低。\n\n你现在拥有商品 $a$ ，并希望通过一些交换来获得商品 $b$ 。请问你至少要花费多少钱？（当然，这个最小花费也可能是负数，这表示你可以在完成目标的同时赚取一些钱。）\n\n## 输入格式\n\n第一行四个整数 $N , M , a , b$，分别表示商品的数量、商人的数量、你持有的商品以及你希望获得的商品。保证 $0 \\le a,b < N$ ，保证 $a \\ne b$。\n\n第二行 $N$ 个用单个空格隔开的正整数 $v_0,v_1,…,v_{N-1}$ ，依次表示每种商品的价值。保证 $1≤v_i≤10^9$。\n\n接下来 $M$ 行，每行两个整数 $x_j,y_j$ ，表示在第 $j$ 个商人这，你可以使用第 $x_j$ 种商品交换第 $y_j$ 种商品。保证 $0 \\le x_j,y_j < N$ ，保证 $x_j \\ne y_j$。\n\n## 输出格式\n\n输出一行一个整数，表示最少的花费。特别地，如果无法通过交换换取商品 $b$ ，请输出 `No solution`。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $N \\le 10$、$M \\le 20$。\n\n对于 70% 的测试点，保证 $N \\le 10^3$、$M \\le 10^4$。\n\n对于 100% 的测试点，保证 $N \\le 10^5$、$M \\le 2 \\times 10^5$。\n",
       score: 25,
       timeLimit: '1.0 s',
       memoryLimit: '128 MB',
@@ -55,6 +33,10 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, s, t;\n    cin >> n >> m >> s >> t;\n    vector<long long> val(n);\n    for (int i = 0; i < n; ++i) cin >> val[i];\n    vector<vector<pair<int,long long>>> g(n);\n    for (int i = 0; i < m; ++i) {\n        int x, y;\n        cin >> x >> y;\n        long long w = 1+val[y]-val[x];\n        g[x].push_back({y, w});\n    }\n\n    const long long INF = (1LL << 60);\n    vector<long long> dist(n, INF);\n    vector<int> inq(n, 0), cnt(n, 0);\n    queue<int> q;\n    dist[s] = 0;\n    q.push(s);\n    inq[s] = 1;\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        inq[u] = 0;\n        for (auto [v, w] : g[u]) {\n            if (dist[u] != INF && dist[v] > dist[u]+w) {\n                dist[v] = dist[u]+w;\n                if (!inq[v]) {\n                    q.push(v);\n                    inq[v] = 1;\n                }\n            }\n        }\n    }\n    if (dist[t] == INF) cout << \"No solution\\n\";\n    else cout << dist[t] << '\\n';\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -69,34 +51,7 @@ const programmingQuestions = [
 1 3 9 27 81
 0 1 2 1 2 0`, output: `56` }
       ],
-      question: `
-# [GESP202312 七级] 纸牌游戏
-
-## 题目描述
-
-你和小杨在玩一个纸牌游戏。
-
-你和小杨各有 $3$ 张牌，分别是 $0、1、2$。你们要进行 $N$ 轮游戏，每轮游戏双方都要出一张牌，并按 $1$ 战胜 $0$，$2$ 战胜 $1$，$0$ 战胜 $2$ 的规则决出胜负。第 $i$ 轮的胜者可以获得 $2 \\times a_i$ 分，败者不得分，如果双方出牌相同，则算平局，二人都可获得 $a_i$ 分 $(i=1,2,\\cdots,N)$。
-
-玩了一会后，你们觉得这样太过于单调，于是双方给自己制定了不同的新规则。小杨会在整局游戏开始前确定自己全部 $n$ 轮的出牌，并将他的全部计划告诉你；而你从第 $2$ 轮开始，要么继续出上一轮出的牌，要么记一次“换牌”。游戏结束时，你换了 $t$ 次牌，就要额外扣 $b_1+\\cdots+b_t$ 分。
-
-请计算出你最多能获得多少分。
-
-## 输入格式
-
-第一行一个整数 $N$，表示游戏轮数。
-
-第二行 $N$ 个用单个空格隔开的非负整数 $a_1,\\cdots,a_N$，意义见题目描述。
-
-第三行 $N-1$ 个用单个空格隔开的非负整数 $b_1,\\cdots,b_{N-1}$，表示换牌的罚分，具体含义见题目描述。由于游戏进行 $N$ 轮，所以你至多可以换 $N-1$ 次牌。
-
-第四行 $N$ 个用单个空格隔开的整数 $c_1,\\cdots,c_N$，依次表示小杨从第 $1$ 轮至第 $N$ 轮出的牌。保证 $c
-_i\\in{0,1,2}$。
-
-## 输出格式
-
-一行一个整数，表示你最多获得的分数。
-`,
+      question: "\n# [GESP202312 七级] 纸牌游戏\n\n## 题目描述\n\n你和小杨在玩一个纸牌游戏。\n\n你和小杨各有 $3$ 张牌，分别是 $0、1、2$。你们要进行 $N$ 轮游戏，每轮游戏双方都要出一张牌，并按 $1$ 战胜 $0$，$2$ 战胜 $1$，$0$ 战胜 $2$ 的规则决出胜负。第 $i$ 轮的胜者可以获得 $2 \\times a_i$ 分，败者不得分，如果双方出牌相同，则算平局，二人都可获得 $a_i$ 分 $(i=1,2,\\cdots,N)$。\n\n玩了一会后，你们觉得这样太过于单调，于是双方给自己制定了不同的新规则。小杨会在整局游戏开始前确定自己全部 $n$ 轮的出牌，并将他的全部计划告诉你；而你从第 $2$ 轮开始，要么继续出上一轮出的牌，要么记一次“换牌”。游戏结束时，你换了 $t$ 次牌，就要额外扣 $b_1+\\cdots+b_t$ 分。\n\n请计算出你最多能获得多少分。\n\n## 输入格式\n\n第一行一个整数 $N$，表示游戏轮数。\n\n第二行 $N$ 个用单个空格隔开的非负整数 $a_1,\\cdots,a_N$，意义见题目描述。\n\n第三行 $N-1$ 个用单个空格隔开的非负整数 $b_1,\\cdots,b_{N-1}$，表示换牌的罚分，具体含义见题目描述。由于游戏进行 $N$ 轮，所以你至多可以换 $N-1$ 次牌。\n\n第四行 $N$ 个用单个空格隔开的整数 $c_1,\\cdots,c_N$，依次表示小杨从第 $1$ 轮至第 $N$ 轮出的牌。保证 $c_i \\in \\{0,1,2\\}$。\n\n## 输出格式\n\n一行一个整数，表示你最多获得的分数。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $N \\le 15$。\n\n对于 60% 的测试点，保证 $N \\le 100$。\n\n对于所有测试点，保证 $N \\le 1000$，$0 \\le a_i,b_i \\le 10^6$。\n",
       score: 25,
       timeLimit: '1.0 s',
       memoryLimit: '128 MB',
@@ -105,6 +60,10 @@ _i\\in{0,1,2}$。
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint roundScore(int me, int he, long long a) {\n    if ((me == 1 && he == 0) || (me == 2 && he == 1) || (me == 0 && he == 2)) return 2 * a;\n    if (me == he) return a;\n    return 0;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n + 1), b(n, 0), c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    for (int i = 1; i <= n - 1; ++i) cin >> b[i];\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    vector<long long> prefB(n, 0);\n    for (int i = 1; i <= n - 1; ++i) prefB[i] = prefB[i - 1] + b[i];\n\n    const long long NEG = LLONG_MIN / 4;\n    // dp[card][t]：当前轮出 card、已换 t 次牌时的最大累计得分（不含罚分）\n    vector<array<long long, 3>> dp(n, {NEG, NEG, NEG});\n    for (int card = 0; card < 3; ++card) dp[0][card] = roundScore(card, c[1], a[1]);\n    for (int i = 2; i <= n; ++i) {\n        vector<array<long long, 3>> next(n, {NEG, NEG, NEG});\n        for (int t = 0; t < i - 1; ++t) {\n            for (int card = 0; card < 3; ++card) {\n                if (dp[t][card] == NEG) continue;\n                long long base = dp[t][card];\n                for (int now = 0; now < 3; ++now) {\n                    int nt = t + (now == card ? 0 : 1);\n                    long long val = base + roundScore(now, c[i], a[i]);\n                    if (val > next[nt][now]) next[nt][now] = val;\n                }\n            }\n        }\n        dp = move(next);\n    }\n    long long best = NEG;\n    for (int t = 0; t < n; ++t) {\n        for (int card = 0; card < 3; ++card) {\n            if (dp[t][card] == NEG) continue;\n            best = max(best, dp[t][card] - prefB[t]);\n        }\n    }\n    cout << best << '\\n';\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     }
 ];
 
@@ -428,7 +387,11 @@ while (cin >> s1 >> s2) {
 - **B** ✅ dp 是二维数组，空间 O(n²)。
 - **C** ❌ dp[i][j] 只依赖第 i−1 行和第 i 行，可以用滚动数组把空间压缩到 O(n)——O(n²) 并非最优。
 - **D** ✅ 这是标准的动态规划解法。`,
-            tags: ['动态规划', '复杂度分析']
+            tags: ['动态规划', '复杂度分析'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 9,

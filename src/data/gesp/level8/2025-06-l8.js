@@ -150,69 +150,37 @@ export const paperData = {
             id: 4,
             type: "single",
             question: `关于生成树的说法，错误的是（ ）。`,
-            options: [
-                "一个无向连通图，一定有生成树。",
-                "个顶点的无向图，其生成树要么不存在，要么一定包含 条边。",
-                "个顶点、 条边的无向图，不可能有多颗生成树。",
-                "个顶点、 条边的无向图，它本身就是自己的生成树。",
-            ],
+            options: ["一个无向连通图，一定有生成树。","n 个顶点的无向图，其生成树要么不存在，要么一定包含 n-1 条边。","n 个顶点、n-1 条边的无向图，不可能有多颗生成树。","n 个顶点、n-1 条边的无向图，它本身就是自己的生成树。"],
             answer: 3,
             score: 2,
-            explanation: `**答案：不正确的是 D（n 个顶点、n - 1 条边的无向图不一定是生成树）**
-
-**核心解析：**
-无向图包含全部顶点的极小连通子图称为生成树。对于一个包含 \`n\` 个顶点的无向图，其生成树必须同时满足两个核心条件：
-1. **连通性**：必须连通原图中的所有 \`n\` 个顶点；
-2. **无环性**：任意两点间有且仅有一条简单路径，恰好包含 \`n - 1\` 条边。
-
-无向图存在生成树的充分必要条件是**图本身必须连通**：
-- 若图连通，则一定至少存在一棵生成树；若图不连通，则任何子图都无法连通全部顶点，因而无法构成生成树。
-- 一个具有 \`n\` 个顶点、\`n - 1\` 条边的无向图，**只有在图连通的前提下**才是一棵树（也即它自身的生成树）。如果原图不连通，它可能局部含环并存在孤立点，根本不是树，更不能成为自己的生成树。因此 D 选项的结论不成立。
-
-**选项逐项分析：**
-- **A 一个无向连通图，一定有生成树。**：✅ 说法正确。对于任意无向连通图，若本身无环，则其自身就是生成树；若包含回路（环），只要不断删去环上的边，图的连通性不会被破坏。反复破环直至图内无环时，便得到包含全部顶点的极小连通子图，即生成树。本题要求选择错误项，故排除 A。
-- **B 个顶点的无向图，其生成树要么不存在，要么一定包含 条边。**：✅ 说法正确。生成树必须覆盖图中的全部 \`n\` 个顶点，且必须是一棵树。由树的基本性质可知，任意包含 \`n\` 个顶点的树其边数恒等于 \`n - 1\`。因此，若原图不连通，则生成树不存在；若原图连通，生成树存在且边数必然恰为 \`n - 1\`。本题要求选择错误项，故排除 B。
-- **C 个顶点、 条边的无向图，不可能有多颗生成树。**：✅ 说法正确。针对 \`n\` 个顶点、\`n - 1\` 条边的无向图分情况讨论：
-  - 若图连通：根据树的等价性质，“\`n\` 个顶点、\`n - 1\` 条边的连通图”必然无环，本身就是一棵唯一的树，不存在多余的边可供替换，因此生成树只有它自身 1 棵；
-  - 若图不连通：该图无法形成覆盖全部顶点的连通树，生成树数量为 0。
-  无论图是否连通，其生成树数量只能是 1 或 0，不可能有多棵生成树。本题要求选择错误项，故排除 C。
-- **D 个顶点、 条边的无向图，它本身就是自己的生成树。**：❌ 说法错误。\`n\` 个顶点、\`n - 1\` 条边并不保证连通。例如 4 个顶点中 1、2、3 连成三角形，4 孤立：边数虽是 \`n - 1\`，但有环且不连通，不是生成树。应选 D。
-
-**易错提醒：**
-- 判定一个图是否为树，必须同时满足**连通**与**无环（或边数等于顶点数减一）**。切忌仅看到“\`n\` 个顶点、\`n - 1\` 条边”就武断认为它是树；缺少了“连通”前提，图完全可能由局部闭环和孤立点拼接而成。`,
+            explanation: "**答案：不正确的是 D（n 个顶点、n-1 条边的无向图不一定是生成树）**\n\n**核心解析：**\n无向图包含全部顶点的极小连通子图称为生成树。对于包含 `n` 个顶点的无向图，其生成树必须同时满足两个条件：\n1. **连通性**：必须连通原图中的全部 `n` 个顶点；\n2. **无环性**：任意两点间有且仅有一条简单路径，恰好包含 `n-1` 条边。\n\n无向图存在生成树的充要条件是**图本身连通**：连通时破环即可得到生成树；不连通时任何子图都无法连通全部顶点。而“`n` 个顶点、`n-1` 条边”只有在连通的前提下才等价于树，不连通时可能局部含环并带孤立点，因此 D 的结论不成立。\n\n**选项逐项分析：**\n- **A 一个无向连通图，一定有生成树**：✅ 正确。若本身无环即为自身；若含回路则反复删去环上的边，直到无环，得到的极小连通子图就是生成树。\n- **B n 个顶点的无向图，其生成树要么不存在，要么一定包含 n-1 条边**：✅ 正确。生成树覆盖全部 `n` 个顶点且无环，由树的性质边数恒为 `n-1`。\n- **C n 个顶点、n-1 条边的无向图，不可能有多颗生成树**：✅ 正确。连通时它无环、就是唯一的树，生成树只有自身一棵；不连通时生成树为 0 棵。两种情形都不会多于一棵。\n- **D n 个顶点、n-1 条边的无向图，它本身就是自己的生成树**：❌ 错误。例如 4 个顶点中 1、2、3 构成三角形、4 孤立，边数为 3 = n-1，但既有环又不连通，不是生成树。故本题选 D。\n\n**易错提醒：**\n- 判定树必须同时满足**连通**与**无环（或边数 = 顶点数 - 1）**，只数边数会误判。",
             tags: [
                 "最小生成树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 5,
             type: "single",
             question: `一对夫妻生男生女的概率相同。这对夫妻希望儿女双全。请问这对夫妻生下两个孩子时，实现儿女双全的概 率是多少？（ ）。`,
-            options: [
-                "1/4",
-                "1/3",
-                "1/2",
-                "3/4",
-],
+            options: ["2/3","1/3","1/2","1/4"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-每次生育生男生女概率各 1/2 且相互独立。生两个孩子的样本空间为 {男男, 男女, 女男, 女女}，各占 1/4。"儿女双全"即一儿一女，对应 {男女, 女男} 两种，概率 = 2/4 = 1/2。
-
-- **A 1/4**：错误。1/4 只对应一种特定顺序，遗漏了另一种排列。
-- **B 1/3**：错误。男女、女男两种顺序共有 1/2，不是 1/3。
-- **C 1/2**：正确。一儿一女两种顺序合计 2/4 = 1/2。
-- **D 3/4**：错误。3/4 是"至少有一个男孩"的概率，并非儿女双全。`,
+            explanation: "**答案：C（1/2）**\n\n**解析：**\n每次生育生男生女概率各 1/2 且相互独立，生两个孩子的样本空间为 {男男, 男女, 女男, 女女}，四种结果各占 1/4。“儿女双全”即一男一女，对应 {男女, 女男} 两种，概率 = 2/4 = 1/2。\n\n**选项逐项分析：**\n- **A 2/3**：错误。样本空间只有 4 个等可能结果，一男一女占 2 个，比例不可能大于 1/2。\n- **B 1/3**：错误。1/3 相当于把 {男女, 女男, 女女} 之类的三分类当作等可能，与等概率独立生育的前提不符。\n- **C 1/2**：正确。{男女, 女男} 共 2 个结果，2/4 = 1/2。\n- **D 1/4**：错误。1/4 只对应一种固定顺序（如“先男后女”），漏掉了另一种顺序。\n\n**易错提醒：**\n- 一男一女包含“先男后女”和“先女后男”两种互斥顺序，漏掉其一就会误选 D。",
             tags: [
                 "概率与期望",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 6,
             type: "single",
-            question: `已定义变量 double a, b; ，下列哪个表达式可以用来判断一元二次方程 是否有实根？（ ）。`,
+            question: "已定义变量 double a, b;，下列哪个表达式可以用来判断一元二次方程 x² + ax + b = 0 是否有实根？（ ）。",
             options: [
                 "4 * b-a * a < 0",
                 "4 * b <= a * a",
@@ -247,31 +215,26 @@ export const paperData = {
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
             type: "single",
-            question: `个结点的二叉树，执行广度优先搜索的平均时间复杂度是（ ）。`,
-            options: [
-                "O(log n)",
-                "O(n log n)",
-                "O(n)",
-                "O(n²)",
-],
+            question: "n 个结点的二叉树，执行广度优先搜索的平均时间复杂度是（ ）。",
+            options: ["O(log n)","O(n log n)","O(n)","O(2^n)"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-二叉树广度优先搜索（层序遍历）中，每个结点入队、出队各一次，每条边被访问一次，操作总量与结点数 n 成线性关系，时间复杂度为 O(n)。
-
-- **A O(log n)**：错误。BFS 需访问全部结点，不是 O(log n)。
-- **B O(n log n)**：错误。无排序或分治对数因子，不是 O(n log n)。
-- **C O(n)**：正确。遍历所有 n 个结点，整体线性 O(n)。
-- **D O(n²)**：错误。二叉树 BFS 不会达到平方级。`,
+            explanation: "**答案：C（O(n)）**\n\n**解析：**\n二叉树广度优先搜索（层序遍历）借助队列进行：每个结点入队、出队各一次，访问每个结点时枚举其至多 2 个孩子，总操作次数与结点数 n 成正比，时间复杂度为 O(n)。\n\n**选项逐项分析：**\n- **A O(log n)**：错误。BFS 必须访问全部 n 个结点，不可能只与树高同阶。\n- **B O(n log n)**：错误。遍历中没有排序或分治带来的对数因子，每个结点只处理常数次。\n- **C O(n)**：正确。n 次入队 + n 次出队 + 常数次孩子枚举，合计 O(n)。\n- **D O(2^n)**：错误。该量级出现在枚举全部子集或朴素递归求斐波那契等场景，与逐点遍历无关。\n\n**易错提醒：**\n- 树上的 BFS/DFS 只要每个结点只访问一次，复杂度就是 O(n)；O(n log n) 常来自排序、堆操作或倍增，不是遍历本身。",
             tags: [
                 "树与二叉树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 8,
@@ -313,27 +276,18 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: `下面的 sum_digit 函数试图求出从 1 到 n （包含 1 和 n ）的数中，包含数字 d 的个数。该函数的时间复杂 度为（ ）。 #include <string> int count_digit(int n, char d) { int cnt = 0; std::string s = std::to_string(n); for (int i = 0; i < s.length(); i++) if (s[i] == d) cnt++; return cnt; } int sum_digit(int n, char d) { int sum = 0; for (int i = 1; i <= n; i++) sum += count_digit(i, d); return sum; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15`,
-            options: [
-                "O(n log n)",
-                "O(n)",
-                "O(n²)",
-                "O(log n)",
-],
+            question: "下面的 sum_digit 函数试图求出从 1 到 n（包含 1 和 n）的数中，包含数字 d 的个数。该函数的时间复杂度为（ ）。\n\n```cpp\n#include <string>\nint count_digit(int n, char d) {\n    int cnt = 0;\n    std::string s = std::to_string(n);\n    for (int i = 0; i < s.length(); i++)\n        if (s[i] == d)\n            cnt++;\n    return cnt;\n}\nint sum_digit(int n, char d) {\n    int sum = 0;\n    for (int i = 1; i <= n; i++)\n        sum += count_digit(i, d);\n    return sum;\n}\n```",
+            options: ["O(n log n)","O(n)","O(log n)","O(n²)"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-**解析：**
-\`count_digit(i, d)\` 把 i 转成字符串后逐字符扫描，耗时 O(位数) = O(log₁₀ i)；\`sum_digit\` 对 i = 1…n 各调用一次，总时间为 Σ_{i=1}^{n} O(log i) = O(n log n)。
-
-- **A O(n log n)**：正确。外层 n 次、内层平均 O(log i)，累计 O(n log n)。
-- **B O(n)**：错误。忽略了对每个数做字符串扫描的 O(log n) 代价。
-- **C O(n²)**：错误。没有平方级嵌套，不是 O(n²)。
-- **D O(log n)**：错误。单次数位统计是 O(log n)，但外层循环 n 次，整体不是 O(log n)。`,
+            explanation: "**答案：A**\n\n**解析：**\n`count_digit(i, d)` 把 i 转成字符串后逐字符扫描，耗时 O(位数) = O(log₁₀ i)；`sum_digit` 对 i = 1…n 各调用一次，总时间为 Σ_{i=1}^{n} O(log i) = O(n log n)。\n\n- **A O(n log n)**：正确。外层 n 次、内层平均 O(log i)，累计 O(n log n)。\n- **B O(n)**：错误。忽略了对每个数做字符串扫描的 O(log n) 代价。\n- **C O(log n)**：错误。单次数位统计是 O(log n)，但外层循环 n 次，整体不是 O(log n)。\n- **D O(n²)**：错误。没有平方级嵌套，不是 O(n²)。",
             tags: [
                 "C++综合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","question","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 10,
@@ -390,32 +344,23 @@ ch[x][y][z] 是三维格路计数 DP：从 (0,0,0) 出发，每步沿 x、y、z 
         {
             id: 11,
             type: "single",
-            question: `下面 count_triple 函数的时间复杂度为( )。`,
-            options: [
-                "O(√n)",
-                "O(n log n)",
-                "O(n)",
-                "O(n²)",
-],
+            question: "下面 count_triple 函数的时间复杂度为（ ）。\n\n```cpp\nint gcd(int a, int b) {\n    if (a == 0)\n        return b;\n    return gcd(b % a, a);\n}\nint count_triple(int n) {\n    int cnt = 0;\n    for (int v = 1; v * v * 4 <= n; v++)\n        for (int u = v + 1; u * (u + v) * 2 <= n; u += 2)\n            if (gcd(u, v) == 1) {\n                int a = u * u - v * v;\n                int b = u * v * 2;\n                int c = u * u + v * v;\n                cnt += n / (a + b + c);\n            }\n    return cnt;\n}\n```",
+            options: ["O(n)","O(n²)","O(n log n)","O(n² log n)"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-\`count_triple\` 函数通过 Euclid 公式枚举不超过 n 的本原勾股三元组：外层循环变量 v 与内层循环变量 u 均为步进枚举，两层循环对每个本原三元组大约迭代一次，总迭代次数约为 O(n)。函数整体时间复杂度取主项，故答案为 O(n)。
-
-- **A O(√n)**：错误。√n 只是单层循环变量（如 v）的上界，并非整体迭代规模。
-- **B O(n log n)**：错误。虽然 gcd 调用带来 O(log n) 的因子，但本题答案取枚举次数的主项 O(n)。
-- **C O(n)**：正确。枚举本原勾股三元组的总迭代次数约为 O(n) 次。
-- **D O(n²)**：错误。双重循环上界受限，远未达到平方级迭代规模。`,
+            explanation: "**答案：C（O(n log n)）**\n\n**解析：**\n函数按欧几里得公式 (u²-v², 2uv, u²+v²) 枚举本原勾股三元组。\n\n1. **枚举次数**：外层 `v` 满足 `4v² ≤ n`，即 `v ≤ √n/2`；内层 `u` 从 `v+1` 起、步长 2，满足 `2u(u+v) ≤ n`，故 `u = O(√n)`。两层合起来的总枚举次数为 Σ_{v≤√n} O(√n - v) = O(n)。\n2. **单次代价**：每组 (u,v) 调用一次 `gcd(u, v)`，Euclid 算法为 O(log n)。\n3. **合计**：O(n) 次枚举 × O(log n) = O(n log n)。\n\n**选项逐项分析：**\n- **A O(n)**：错误。忽略了每次枚举中 gcd 的对数代价，也忽略了循环按 u ≤ √n 截断下界并非严格线性枚举。\n- **B O(n²)**：错误。两层循环上界都受 √n 限制，乘积为 O(n)，远达不到平方级。\n- **C O(n log n)**：正确。枚举 O(n) 次，每次 gcd 为 O(log n)。\n- **D O(n² log n)**：错误。需要两层循环都达到 n 量级，而本题上界受 `4v² ≤ n`、`2u(u+v) ≤ n` 双重限制。\n\n**易错提醒：**\n- 看到双重循环不要直接判 O(n²)，必须先算两层循环变量各自的上界：这里外层到 √n、内层到 √n，总数才是 O(n)。",
             tags: [
                 "数论",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 12,
             type: "single",
-            question: `下面 quick_sort 函数试图实现快速排序算法，两处横线处分别应该填入的是（ ）。`,
+            question: "下面 quick_sort 函数试图实现快速排序算法，两处横线处分别应该填入的是（ ）。\n\n```cpp\nvoid swap(int & a, int & b) {\n    int temp = a; a = b; b = temp;\n}\nint partition(int a[], int l, int r) {\n    int pivot = a[l], i = l + 1, j = r;\n    while (i <= j) {\n        while (i <= j && a[j] >= pivot)\n            j--;\n        while (i <= j && a[i] <= pivot)\n            i++;\n        if (i < j)\n            swap(a[i], a[j]);\n    }\n    ________;         // 在此处填入选项\n    return ________; // 在此处填入选项\n}\nvoid quick_sort(int a[], int l, int r) {\n    if (l < r) {\n        int pivot = partition(a, l, r);\n        quick_sort(a, l, pivot - 1);\n        quick_sort(a, pivot + 1, r);\n    }\n}\n```",
             options: [
                 "swap(a[l], a[i]); return i;",
                 "swap(a[l], a[j]); return i;",
@@ -424,70 +369,46 @@ ch[x][y][z] 是三维格路计数 DP：从 (0,0,0) 出发，每步沿 x、y、z 
 ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-**解析：**
-该 partition 以 a[l] 为枢轴，循环结束后 j 指向最后一个不大于枢轴的元素位置，应将枢轴归位到 j 处并以其为分界返回。因此第一空执行 \`swap(a[l], a[j])\`，第二空返回 \`j\`。
-
-- **A swap(a[l], a[i]); return i;**：错误。i 已越过分界点，用 i 交换并作为返回位置会把枢轴放到错误一侧。
-- **B swap(a[l], a[i]); return j;**：错误。交换对象错误，不应与 a[i] 交换。
-- **C swap(a[l], a[i]); return j;**：错误。同 B，交换对象应为 a[j] 而非 a[i]。
-- **D swap(a[l], a[j]); return j;**：正确。将枢轴 a[l] 与 a[j] 交换使枢轴就位，并返回枢轴下标 j。
-
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+            explanation: "**答案：D**\n\n**解析：**\n该 partition 以 a[l] 为枢轴，循环结束后 j 指向最后一个不大于枢轴的元素位置，应将枢轴归位到 j 处并以其为分界返回。因此第一空执行 `swap(a[l], a[j])`，第二空返回 `j`。\n\n- **A swap(a[l], a[i]); return i;**：错误。i 已越过分界点，用 i 交换并作为返回位置会把枢轴放到错误一侧。\n- **B swap(a[l], a[j]); return i;**：错误。交换对象虽是 a[j]，但返回 i 会把非枢轴位置当作分界；枢轴实际在 j，i 通常为 j+1，左递归区间仍包含枢轴甚至与原区间相同，会重复划分乃至无限递归。\n- **C swap(a[l], a[i]); return j;**：错误。交换对象应为 a[j] 而非 a[i]，否则枢轴没有归位到分界点。\n- **D swap(a[l], a[j]); return j;**：正确。将枢轴 a[l] 与 a[j] 交换使枢轴就位，并返回枢轴下标 j。",
             tags: [
                 "排列组合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 13,
             type: "single",
-            question: `下面 LIS 函数试图求出最长上升子序列的长度，横线处应该填入的是（ ）。 void swap(int & a, int & b) { int temp = a; a = b; b = temp; } int partition(int a[], int l, int r) { int pivot = a[l], i = l+1, j = r; while (i <= j) { while (i <= j && a[j] >= pivot) j--; while (i <= j && a[i] <= pivot) i++; if (i < j) swap(a[i], a[j]); } ________; // 在此处填入选项 return ________; // 在此处填入选项 } void quick_sort(int a[], int l, int r) { if (l < r) { int pivot = partition(a, l, r); quick_sort(a, l, pivot-1); quick_sort(a, pivot+1, r); } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 swap(a[l], a[i]) i 1 2 swap(a[l], a[j]) i 1 2 swap(a[l], a[i]) j 1 2 swap(a[l], a[j]) j 1 2 int max(int a, int b) { return (a > b) ? a : b; } int LIS(vector<int> & nums) { int n = nums.size(); if (n == 0) return 0; vector<int> dp(n, 1); int maxLen = 1; 1 2 3 4 5 6 7 8 9`,
-            options: [
-                "dp[i] = dp[j] + 1;",
-                "dp[i] = max(dp[j], dp[i] + 1);",
-                "dp[j] = max(dp[j], dp[i] + 1);",
-                "dp[i] = max(dp[i], dp[j] + 1);",
-],
+            question: "下面 LIS 函数试图求出最长上升子序列的长度，横线处应该填入的是（ ）。\n\n```cpp\nint max(int a, int b) {\n    return (a > b) ? a : b;\n}\nint LIS(vector<int> & nums) {\n    int n = nums.size();\n    if (n == 0)\n        return 0;\n    vector<int> dp(n, 1);\n    int maxLen = 1;\n    for (int i = 1; i < n; i++) {\n        for (int j = 0; j < i; j++)\n            if (nums[j] < nums[i])\n                ________; // 在此处填入选项\n        maxLen = max(maxLen, dp[i]);\n    }\n    return maxLen;\n}\n```",
+            options: ["dp[j] = max(dp[j] + 1, dp[i]);","dp[j] = max(dp[j], dp[i] + 1);","dp[i] = max(dp[i] + 1, dp[j]);","dp[i] = max(dp[i], dp[j] + 1);"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-**解析：**
-LIS 的 DP 解法是 \`dp[i]\` 表示以第 i 个元素结尾的最长上升子序列长度，初始为 1；对 \`j < i\` 且 \`nums[j] < nums[i]\` 时，用 \`dp[j]+1\` 更新 \`dp[i]\`。因此状态转移应为 \`dp[i] = max(dp[i], dp[j] + 1)\`。
-
-- **A dp[i] = dp[j] + 1;**：错误。直接赋值会丢弃此前 \`dp[i]\` 的较大值，未取最大值。
-- **B dp[i] = max(dp[j], dp[i] + 1);**：错误。应为在 \`dp[i]\` 与 \`dp[j]+1\` 间取大，而非 \`dp[j]\` 与 \`dp[i]+1\`。
-- **C dp[j] = max(dp[j], dp[i] + 1);**：错误。更新对象应是 \`dp[i]\` 而非 \`dp[j]\`。
-- **D dp[i] = max(dp[i], dp[j] + 1);**：正确。正确地以 \`dp[j]+1\` 刷新 \`dp[i]\` 的最大值。`,
+            explanation: "**答案：D**\n\n**解析：**\nLIS 的 DP 解法是 `dp[i]` 表示以第 i 个元素结尾的最长上升子序列长度，初始为 1；对 `j < i` 且 `nums[j] < nums[i]` 时，用 `dp[j]+1` 更新 `dp[i]`。因此状态转移应为 `dp[i] = max(dp[i], dp[j] + 1)`。\n\n- **A dp[j] = max(dp[j] + 1, dp[i]);**：错误。更新对象写成了 `dp[j]`，应为 `dp[i]`；候选值也写反了，不应用 `dp[i]` 去刷新 `dp[j]`。\n- **B dp[j] = max(dp[j], dp[i] + 1);**：错误。更新对象应为 `dp[i]`，候选值应来自 `dp[j] + 1`；写成 `dp[j] = max(dp[j], dp[i] + 1)` 无法把第 j 个元素接到第 i 个元素之前。\n- **C dp[i] = max(dp[i] + 1, dp[j]);**：错误。候选值写成了 `dp[i] + 1`（自增）与 `dp[j]`，没有使用 `dp[j] + 1`，会丢失“接在 j 之后”的转移。\n- **D dp[i] = max(dp[i], dp[j] + 1);**：正确。以 `dp[j] + 1` 刷新 `dp[i]` 的最大值。",
             tags: [
                 "字符串",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 14,
             type: "single",
-            question: `下面LIS 函数试图求出最长上升子序列的长度，其时间复杂度为（ ）。`,
-            options: [
-                "O(n)",
-                "O(n log n)",
-                "O(n²)",
-                "O(log n)",
-],
+            question: "下面 LIS 函数试图求出最长上升子序列的长度，其时间复杂度为（ ）。\n\n```cpp\n#define INT_MIN (-1000)\nint LIS(vector<int> & nums) {\n    int n = nums.size();\n    vector<int> tail;\n    tail.push_back(INT_MIN);\n    for (int i = 0; i < n; i++) {\n        int x = nums[i], l = 0, r = tail.size();\n        while (l < r) {\n            int mid = (l + r) / 2;\n            if (tail[mid] < x)\n                l = mid + 1;\n            else\n                r = mid;\n        }\n        if (r == tail.size())\n            tail.push_back(x);\n        else\n            tail[r] = x;\n    }\n    return tail.size() - 1;\n}\n```",
+            options: ["O(log n)","O(n)","O(n log n)","O(n²)"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-该 LIS 函数采用基础动态规划：对每个 i，遍历所有 j < i 并用 \`dp[i] = max(dp[i], dp[j]+1)\` 更新，双重循环共执行约 n²/2 次比较，故时间复杂度为 O(n²)。（若改用“贪心 + 二分”的 tail 数组法可达到 O(n log n)，但本题实现为基础 DP。）
-
-- **A O(n)**：错误。需要两层循环比较，无法在线性时间内完成。
-- **B O(n log n)**：错误。O(n log n) 是贪心+二分优化版 LIS 的复杂度，非本题基础 DP 实现。
-- **C O(n²)**：正确。双重循环枚举所有 (i, j) 对，比较次数约 n²/2，为 O(n²)。
-- **D O(log n)**：错误。与算法实际规模相差甚远。`,
+            explanation: "**答案：C（O(n log n)）**\n\n**解析：**\n本题代码用的是“贪心 + 二分”的 LIS 写法，而不是双重循环的基础 DP：\n\n1. `tail` 中保存当前长度为 i+1 的上升子序列的最小末尾值，初始放入 `INT_MIN`（保证任何元素都能接在其后）。\n2. 对每个 `nums[i] = x`，在 `tail` 上用二分查找（`while (l < r)`，`tail[mid] < x` 时 `l = mid + 1`，否则 `r = mid`）求出第一个不小于 x 的下标 r：\n   - 若 `r == tail.size()`，说明 x 比所有末尾都大，`push_back(x)`，LIS 长度加 1；\n   - 否则 `tail[r] = x`，用更小的末尾替换。\n3. 外层 n 次，每次二分 O(log n)，其余均摊 O(1)，总复杂度 O(n log n)，空间 O(n)；最后 `tail.size()-1` 即 LIS 长度（扣掉哨兵 INT_MIN）。\n\n**选项逐项分析：**\n- **A O(log n)**：错误。只算了一次二分，忽略了外层 n 次枚举。\n- **B O(n)**：错误。只有在本已有序、每次替换位置固定在末尾时才退化为线性，一般情况需二分。\n- **C O(n log n)**：正确。n 个元素各做一次二分。\n- **D O(n²)**：错误。这是双重循环基础 DP 的复杂度，不是本题 tail + 二分的实现。\n\n**易错提醒：**\n- 同名的 `LIS` 有两套常见实现：`dp[i] = max(dp[i], dp[j]+1)` 的 O(n²) 版，和 `tail` 二分的 O(n log n) 版；判断复杂度前必须先看内层是“枚举 j”还是“二分”。",
             tags: [
                 "字符串",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 15,
@@ -564,16 +485,14 @@ int weight[4][4] = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
-
-**解析：** C++ 对原生数组 / 指针的下标越界**不做运行时检查**（属于未定义行为，UB）。越界访问可能：恰好读到 / 写到别的内存、程序继续运行、也可能崩溃——但绝**不是"总是"**产生运行时错误并异常退出。只有标准容器（如 \`vector::at\`）才会抛异常，而题面是泛指"C++ 访问数据下标越界"。
-
-（注：题面原 answer 字段记为"正确"，与严格 C++ 语义不符，此处按语义判错误。）
-
-**考点**：数组下标越界与未定义行为（UB）。`,
+            explanation: "**答案：错误**\n\n**解析：** C++ 对原生数组 / 指针的下标越界**不做运行时检查**（属于未定义行为，UB）。越界访问可能恰好读到或写到别的内存、程序照常继续，也可能崩溃，但绝**不是“总是”**产生运行时错误并异常退出。只有标准容器（如 `vector::at`、`string::at`）在越界时才保证抛出 `std::out_of_range`，而题面是泛指“C++ 访问数据下标越界”。故陈述错误。\n\n**考点**：数组下标越界与未定义行为（UB）。",
             tags: [
                 "异常处理",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 18,
@@ -609,22 +528,14 @@ int weight[4][4] = {
                 "错误",
             ],
             answer: 1,            score: 2,
-            explanation: `**答案：错误**
-
-**解析：** 5 个相同红球、4 个相同蓝球，要求每个蓝球两侧都至少有一个红球。这意味着：① 蓝球不能在两端（端点只有一侧）；② 任意两个蓝球不能相邻（否则内侧那个蓝球有一侧是蓝球而非红球）。
-
-要放 4 个互相隔离且不在两端的蓝球，必须把它们分别放入 5 个红球形成的 4 个内部空隙中各 1 个，唯一排法为：
-
-\`R B R B R B R B R\`
-
-即只有 **1** 种排列方案，而非 15 种。故陈述错误。
-
-（注：题面 answer 字段记为"正确"，与组合计数结果不符，按计算判错误。）
-
-**考点**：相同元素排列、插空法、相邻约束。`,
+            explanation: "**答案：错误**\n\n**解析：** 5 个相同红球、4 个相同蓝球排成一排，问满足“每个蓝球的两侧都至少有一个红球”的方案数是否为 15。\n\n- **按“两侧相邻”理解**：每个蓝球左右紧邻都必须是红球，则任意两个蓝球不能相邻，且首尾不能是蓝球，排法只能是 `R B R B R B R B R`，仅 **1** 种。\n- **按“左右两侧区域”理解**：每个蓝球左侧、右侧区域都至少有一个红球，等价于序列以红球开头且以红球结尾。此时首位固定为 R、末位固定为 R，中间 7 个位置放 3 个红球与 4 个蓝球，方案数 C(7,3)=**35** 种。\n\n两种常见读法分别得到 1 与 35，均不等于 15，故原命题错误。（若只要求蓝球互不相邻而不限制首尾，才是 C(6,4)=15 种，但那会允许蓝球落在两端、有一侧没有红球，不满足题干要求。）\n\n**考点**：相同元素排列、插空法、相邻 / 两侧约束的准确理解。",
             tags: [
                 "排列组合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 20,
@@ -635,16 +546,14 @@ int weight[4][4] = {
                 "错误",
             ],
             answer: 1,            score: 2,
-            explanation: `**答案：错误**
-
-**解析：** \`<cmath>\` 中的 \`log\` 是**自然对数（以 e 为底）**，不是以 10 或 2 为底。\`log(8) = ln 8 ≈ 2.079\`，并非 3（log₂8 才等于 3）。结果类型确为 double，但"值约为 3"错误，故整体陈述错误。
-
-（注：题面 answer 字段记为"正确"，与数学事实不符，按计算判错误。）
-
-**考点**：\`log\` / \`log10\` / \`log2\` 的区别、自然对数取值。`,
+            explanation: "**答案：错误**\n\n**解析：** `<cmath>` 中的 `log` 是**自然对数（以 e 为底）**，`log(8) = ln 8 ≈ 2.079`，并不等于 3（只有 `log2(8)` 才等于 3）。结果类型确为 `double`，但“值约为 3”错误，故整个陈述错误。\n\n**考点**：`log` / `log10` / `log2` 的区别、自然对数取值。",
             tags: [
                 "面向对象",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 21,
@@ -655,16 +564,14 @@ int weight[4][4] = {
                 "错误",
             ],
             answer: 1,            score: 2,
-            explanation: `**答案：错误**
-
-**解析：** 前提"C++ 是 OOP 语言、C 不是"成立，但结论"用 C 无法实现继承"错误。C 虽无语言级继承，却可用结构体嵌套 / 组合 + 函数指针 + 手动 vtable 等技巧模拟继承与多态（如 Linux 内核、GTK 等大量用 C 模拟 OOP）。能否"实现某机制"与"语言是否原生支持该特性"是两回事。
-
-（注：题面 answer 字段记为"正确"，与事实不符，按分析判错误。）
-
-**考点**：OOP 特性（继承）与语言实现方式的关系。`,
+            explanation: "**答案：错误**\n\n**解析：** 前半段“C++ 是面向对象语言、C 不是”成立，但结论“使用 C 语言无法实现继承”错误。C 虽无语言级继承语法，却可以用“结构体嵌套（把父结构体作为首成员）+ 函数指针表”手工模拟继承与多态，Linux 内核的 `container_of`/`file_operations`、GTK 的 GObject 都是成熟实例。“语言是否原生支持某特性”与“能否用该语言实现该机制”是两回事。故陈述错误。\n\n**考点**：OOP 特性（继承、多态）与语言实现方式的关系。",
             tags: [
                 "面向对象",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 22,
@@ -788,15 +695,13 @@ DFS 的遍历过程主要由两部分耗时构成：
         },
         {
             id: 25,
-            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            verificationNote: "核对原卷第 6 页答案表和第 6 页题面。答案表第 10 格为 √。先选班长与学习委员各有 28、27 种，再选其余两职务各有 30、29 种，共 657720，等于 P(30,4)。",
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 6,
             sourcePages: [6],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-25",
+            reviewedBy: "AI-Codex",
             sourceVerified: true,
-            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
-            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
             question: `从32名学生中选出4人分别担任班长、副班长、学习委员和组织委员，老师要求班级综合成绩排名最后的4名学生不得参选班长或学习委员（仍可以参选副班长和组织委员），则共有 P(30,4) 种不同的选法。`,
             options: [
@@ -805,12 +710,11 @@ DFS 的遍历过程主要由两部分耗时构成：
             ],
             answer: 0,
             score: 2,
-            explanation: `原卷答案表为错误。先安排班长和学习委员，两人须从合资格的28人中依次选择，共28×27种。再安排副班长和组织委员，从剩下30人中依次选，共30×29种。总数为28×27×30×29=657720，与原题P(30,4)=30×29×28×27巧合相等，形成官方答案与实际计算的额外争议。
-
-题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
+            explanation: "**答案：正确**\n\n先选受限制的两个职务。班长有 28 种选法，学习委员从剩下符合条件的人中选，有 27 种。其余两个职务不受成绩限制，依次有 30、29 种选法。乘积为 $28\\times27\\times30\\times29=657720=P(30,4)$。",
             tags: [
                 "排列组合",
             ],
+      "reviewedFields": ["answer","explanation","reviewedBy","reviewedAt","verificationNote"],
         }
     ]
 };

@@ -1,0 +1,94 @@
+{
+  "executedAt": "2026-11-25T06:55:28.597Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "128",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "最小输入 n=2（单个质因子一次）",
+          "input": "2\n",
+          "output": "1",
+          "reason": "2=2^1，指数 1 只能取 1 项（数字 2），输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "n=64（2^6 恰好分解为 1+2+3）",
+          "input": "64\n",
+          "output": "3",
+          "reason": "64=2^6，1+2+3=6，可取 {2,4,8}，乘积 64 整除 64；再加 2^4 则指数和超 6，故为 3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "上界 n=10^12（两个指数 12）",
+          "input": "1000000000000\n",
+          "output": "8",
+          "reason": "10^12=2^12×5^12，每个指数 e=12 可贡献 4 项（1+2+3+4=10≤12，再加 5 超过），总计 4+4=8。",
+          "kind": "boundary",
+          "actual": "8\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d2dcf488f68dad0cade243fef906f3ebb6224014c6fa507b1c066f21c729e135"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4 4\n1 1\n2 1\n3 1\n3 2",
+          "output": "1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "只有 1 号武器（无需修改）",
+          "input": "1 1\n1 7\n",
+          "output": "0",
+          "reason": "只有武器 1 有材料，已严格多于其他武器，花费 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "两家竞争，移走最便宜材料",
+          "input": "2 2\n1 5\n2 1\n",
+          "output": "1",
+          "reason": "初始 1:1、2:1；把武器 2 的材料（花费 1）移给武器 1，得到 2:0，严格大于，花费 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "多武器需要补足到 cap+1",
+          "input": "3 3\n2 10\n2 20\n3 5\n",
+          "output": "15",
+          "reason": "cap=1 时武器 2 超额 1 个需移走花费 10，1 号仍只有 1 个，再从剩余材料中取最便宜的 5 补到 2 个，总花费 10+5=15；cap=0 需 35，cap=2 需 35，故最小 15。",
+          "kind": "boundary",
+          "actual": "15\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "4ec0954e1e165c2baad994bdfeb18cca42b36c518b95500d3dbc1ab232066021"
+    }
+  ]
+}

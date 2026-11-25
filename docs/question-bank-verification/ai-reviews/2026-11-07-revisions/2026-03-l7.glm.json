@@ -1,0 +1,174 @@
+{
+  "paperId": "2026-03-l7",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    3,
+    9,
+    11
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:05:00.000Z",
+  "completedAt": "2026-11-25T08:13:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "b7f01fb85722ef01526434de214eb1afd0062d51e7e5deb35d00e38bb8b8e846",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++7级.pdf",
+    "mirrorSha": "66260d17f4abfaae63c5c86e27f2a429b760168f",
+    "mirrorBytes": 990501,
+    "shaVerified": true,
+    "sha256": "9cc40a5206177a696a4c38fc3484effc690f1c5f48009987a1c047a4d60f234e"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为「CCF 编程能力等级认证 GESP / C++ 七级 / 2026 年 03 月」，页脚「第 1 页 / 共 11 页」，与 2026-03-l7 一致；第 1 页单选答案表（1-15：D D B B D D B A A B B C D D C）在页图中清晰可读，候选 4 题的官方答案逐项与站点 answer 对照一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "候选补全后的四选项与第 1 页页图逐字一致：A 含「n」「O(log n)」「质因数分解」、B/C 完整、D 含「O(n log log n)」；题干与答案表（第 2 题 D→3）经页图核对一致。独立判断：埃氏筛 O(n log log n) 的量级来自对每个素数扫倍数的调和级数型求和，与唯一分解定理无直接因果，D 为错误说法，A/B/C 表述均成立。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 2 题题干「下面关于“唯一分解定理”和“素数筛法”的说法中，错误的是（ ）。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A-D 与候选逐字一致：A「如果预处理出 n 以内每个数的最小质因子，那么可以在 O(log n) 时间内完成任意一个不超过 n 的整数的质因数分解。」、B「线性筛（欧拉筛）能够保证每个合数只被其最小质因子筛掉一次，这一性质依赖于唯一分解定理。」、C「唯一分解定理保证：若一个数未被任何不超过其平方根的质数筛去，则它一定是质数。」、D「唯一分解定理是埃氏筛时间复杂度为 O(n log log n) 的根本原因。」（本人以高分辨率页图逐项核对，A 项的 n、O(log n) 与 D 项的 O(n log log n) 均在原卷）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 D，0 起始索引 3，候选 answer=3。独立判断：D 把埃氏筛复杂度的成因错误归到唯一分解定理，为所求错误项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明最小质因子分解 O(log n)、线性筛每合数只被最小质因子标记一次的机制与 O(N) 复杂度、试除到平方根的素性判定，并指出 D 归因错误，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "候选补全后的题干「若字符串 A 与字符串 B 的最长公共子序列（LCS）长度为 5，则（ ）。」与第 1 页页图逐字一致（A、B 记号均已补回）；四选项与页图一致；答案表第 3 题 B→1，候选 answer=1。独立判断：LCS 中每个字符都是两串公共字符，长度 5 推出至少 5 个公共字符；编辑距离、最长公共子串长度、两串等长均推不出，B 正确。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 3 题题干与候选 question 逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A 它们的编辑距离为 5、B 它们至少有 5 个公共字符、C 它们最长公共子串长度为 5、D 它们一定长度相等，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 B，0 起始索引 1，候选 answer=1。独立判断与候选一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按子序列不要求连续的语义逐项排除（举 ABCDE 反例说明编辑距离可为 0），结论 B，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "候选重写后的解析正确：由先序 A B D H I E C F J G 与中序 H D I B E A F J C G 独立重建——根 A；左子树根 B，B 左子树根 D（H、I 为 D 的左右孩子）、右孩子 E；右子树根 C，C 左子树根 F（J 为 F 的右孩子）、右孩子 G；后序 H I D E B J F G C A，与候选解析及选项 A 一致。原解析称「J 是 F 的左孩子」确与中序 F J 矛盾，重写必要且正确。题干（第 3 页末）、四选项（第 4 页 A-D）与答案表（第 9 题 A→0）经页图核对一致。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页末第 9 题题干「某二叉树共有 10 个结点，记为 A~J，已知它的先序遍历序列为：A B D H I E C F J G，中序遍历序列为：H D I B E A F J C G，则该二叉树的后序遍历序列是（ ）」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A HIDEBJFGCA、B HIDBEJFGCA、C IHDEBJFGCA、D HIDEBFJGCA，与候选一致（候选以空格分隔字母，内容相同）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 9 题为 A，0 起始索引 0，候选 answer=0；本人独立重建后序 H I D E B J F G C A 与选项 A 相同。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选重写后的解析逐层重建（B 左 D 右 E、C 左 F 且 J 为 F 的右孩子、右 G），后序结果与独立重建一致；原解析「J 是 F 的左孩子」的推导错误已消除。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "本人以 6 倍分辨率放大第 4 页页图逐条核对 24 条有向边的端点与方向：1→2；3→2、3→4；4→3、4→7；2→6；6→5、6→9；5→1；12→6、12→7、12→13；10→12；9→10；10→11；11→9、11→15；7→8；8→7；13→14；14→16、14→15；16→15；15→13，与候选 changes.question 的边表完全一致。独立划分强连通分量：{1,2,5,6,9,10,11,12}（1→2→6→5→1 与 6→9→10→12→6 两环经 6 相连，10→11→9 内环）、{3,4}（3↔4）、{7,8}（7↔8）、{13,14,15,16}（13→14→15→13，14→16→15 并入），共 4 个，与选项 B 及候选解析一致。原缺陷（站点 question 整图缺失）已由补入的边表修复。候选无误，无需追加修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页第 11 题题干「下面这个有向图的强连通分量的个数是（ ）。」与候选一致；候选以文字补入的 16 结点 24 边有向图与页图逐边一致（见 reviewNote）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页选项 A 3、B 4、C 5、D 6，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 B，0 起始索引 1，候选 answer=1；独立划分 4 个分量与 B 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析先分 5 个内部互达小组再合并 {1,2,5,6}、12、{9,10,11} 为 8 点分量，最终 4 个分量（8+2+2+4=16），与独立划分完全一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "对照原卷 11 页逐项复核 4 个候选修订：Q2 选项补全、Q3 题干补回 A/B 记号、Q9 解析重写（J 为 F 的右孩子）、Q11 以文字补入 16 结点有向图完整边表（24 条边以 6 倍分辨率逐边核对，独立划分 4 个强连通分量）。全部与页图一致、独立判断均成立，四处候选全部 approve、changes 为空，可直接进入门禁应用。"
+  }
+}

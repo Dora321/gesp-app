@@ -13,6 +13,8 @@ import { paperCodingMap } from './paperCodingMap.js';
 
 export const CODING_QUESTION_IDS = [26, 27];
 
+const comparePaperOrder = (a, b) => Number(a.paperOrder ?? a.id) - Number(b.paperOrder ?? b.id);
+
 const hasQuestionId = (questions, id) => questions.some(
     (question) => Number(question.id) === id,
 );
@@ -47,11 +49,11 @@ const buildCodingQuestion = (id, problem) => ({
 
 /**
  * 按 paperCodingMap 从洛谷题池里取出这张卷子对应的两道上机题。
- * 卷文件已内嵌 26/27 题时原样返回，不覆盖已有内容。
+ * 卷文件已内嵌 26/27 题时保留内容，按原卷顺序排列。
  */
 export function withSynthesizedCoding(questions = [], { paperId, luoguPool = [] } = {}) {
     if (!needsSynthesizedCoding(questions)) {
-        return [...questions].sort((a, b) => Number(a.id) - Number(b.id));
+        return [...questions].sort(comparePaperOrder);
     }
 
     const byPid = new Map((luoguPool || []).map((problem) => [problem.pid, problem]));
@@ -64,7 +66,7 @@ export function withSynthesizedCoding(questions = [], { paperId, luoguPool = [] 
         merged.push(buildCodingQuestion(id, byPid.get(pid) || null));
     }
 
-    return merged.sort((a, b) => Number(a.id) - Number(b.id));
+    return merged.sort(comparePaperOrder);
 }
 
 /**

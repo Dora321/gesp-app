@@ -1,43 +1,1119 @@
 {
   "paperId": "2026-06-l5",
-  "reviewedAt": "2026-10-31",
+  "reviewedAt": "2026-11-07",
+  "dimensionScopedUnresolved": true,
   "reviewedBy": {
     "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2026-06-l5"
+    "executor": "DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核",
+    "coordinator": "Grok CLI（调度）+ 本机机械队列（资料、自动校验与发布）"
   },
-  "session": 14,
-  "answerTable": {
-    "content": {
-      "single": "BDABDCABBACDABA",
-      "judge": "×√√√×××√××"
-    }
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295343321120.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++5级.pdf",
+    "mirrorSha": "e64d12799f503490593d16332cef72b2b776c894",
+    "mirrorBytes": 1025170,
+    "shaVerified": true,
+    "sha256": "e0783f861dd1b55e66af727dff073240d3d5c476e9b3976bf03fd6a18ae65317",
+    "pages": 11
   },
-  "verification": {
-    "method": "收录时同步核验：官方答案表200dpi渲染逐格读取；单选15题+判断10题程序化正则提取比对；判断题逐题代码级逻辑复核；编程题样例程序化验证（跑参考算法）；pypdf文本层粘连数字（样例输出+行号）全部渲染核对纠正",
-    "answerKeySource": "官方PDF答案表程序化提取（非手工转录）",
-    "singleChoice": "15/15官方答案表比对一致",
-    "judge": "10/10官方答案表比对一致 + 逐题代码级逻辑复核通过",
-    "programming": "排排坐（样例7 5 8 9 3→111，1≤n,a_i≤1000）、晚宴（gcd配对样例→38，105与所有菜gcd>1排除）"
+  "reviewFiles": {
+    "initial": "ai-reviews/2026-11-07/2026-06-l5.deepseek.json",
+    "review": "ai-reviews/2026-11-07/2026-06-l5.glm.json",
+    "previous": "ai-reviews/2026-11-07/2026-06-l5.previous-evidence.json"
   },
-  "note": "",
-  "resolved": true,
+  "inputSha256": "f26e109558b478234b69365d6e426548c25ac7c3c2eb394d7c997b17e44b25d6",
   "questions": [
+    {
+      "id": 1,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        1
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页第 1 题给出 insertAfterHead 代码，横线位于插入新结点处，与站点 question 内联代码一致。",
+          "review": "第 1 页页图第 1 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页 A-D 四段代码与站点 options 顺序和内容一致，B 为 newNode->next=head->next; head->next=newNode;。",
+          "review": "第 1 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 1 题为 B；按 0 起始索引映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表第 1 题为 B，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "独立推导：必须先让新结点接上 head 原来的后继，再让 head 指向新结点；若先改 head->next 会丢失原后继，故 B 正确。",
+          "review": "先让 newNode 接上 head 原后继再改 head->next，B 正确；A 丢原后继、C 自环、D 只改局部指针。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        1,
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1-2 页第 2 题给出 printList 循环单链表代码，横线位于遍历处，与站点 question 内联代码一致。",
+          "review": "第 2 页页图第 2 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页 A-D 四段遍历代码与站点 options 顺序一致，C 为 do{...}while(p!=head);。",
+          "review": "第 2 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 2 题为 C；按 0 起始索引映射为 2，站点 answer=2。",
+          "review": "第 1 页答案表第 2 题为 C，0 起始索引 2，站点 answer=2。"
+        },
+        "explanation": {
+          "initial": "独立推导：循环单链表没有 nullptr 结尾，需先输出再前进，走到 p==head 停止，C 正确；A/B/D 都会死循环。",
+          "review": "循环单链表无 nullptr 终点，do-while 走到 p==head 恰一圈，C 正确；A/B/D 死循环。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        2,
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2-3 页第 3 题给出双链表结点定义与删除中间结点 p 的四个选项，与站点一致。",
+          "review": "第 3 页页图第 3 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 3 页 A-D 四段代码与站点 options 顺序一致，A 为 p->prev->next=p->next; p->next->prev=p->prev; delete p;。",
+          "review": "第 3 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 3 题为 A；按 0 起始索引映射为 0，站点 answer=0。",
+          "review": "第 1 页答案表第 3 题为 A，0 起始索引 0，站点 answer=0。"
+        },
+        "explanation": {
+          "initial": "独立推导：删除 p 应让前驱的 next 指向 p 的后继、后继的 prev 指向 p 的前驱，再释放 p；A 正确，B 让后继 prev 指向自身，C/D 只改 p 自身或错误方向。",
+          "review": "前驱 next 跳过 p、后继 prev 跳过 p 再 delete，A 正确；B 自指、C 只改 p 自身、D 接错对象。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 4,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页第 4 题给出 gcd 递归代码，问 gcd(105,45) 的调用序列，与站点一致。",
+          "review": "第 3 页页图第 4 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 3 页 A-D 四项为四条不同调用序列，与站点一致。",
+          "review": "第 3 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 4 题为 B；按 0 起始索引映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表第 4 题为 B，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "独立推导：gcd(105,45)→105%45=15→gcd(45,15)；45%15=0→gcd(15,0)，返回 15，故 B 正确。",
+          "review": "105%45=15→gcd(45,15)，45%15=0→gcd(15,0) 返回 15，B 正确；A/C/D 参数与取模结果不符。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 5,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页第 5 题给出线性筛 sieve 代码，横线位于内层 break 条件，与站点 question 内联代码一致。",
+          "review": "第 3 页页图第 5 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 3 页 A-D 四项为 i%primes[j]==0、primes[j]%i==0、i%primes[j]!=0、i==primes[j]，与站点一致。",
+          "review": "第 3 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 5 题为 A；按 0 起始索引映射为 0，站点 answer=0。",
+          "review": "第 1 页答案表第 5 题为 A，0 起始索引 0，站点 answer=0。"
+        },
+        "explanation": {
+          "initial": "独立推导：当 i 能被当前质数 primes[j] 整除时，primes[j] 是 i 的最小质因子，继续用更大质数会重复标记，必须 break，故 A 正确。",
+          "review": "i%primes[j]==0 时 primes[j] 是 i 的最小质因子，继续会用更大质数重复标记，须 break，A 正确。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页第 6 题题干“下面关于埃氏筛法的说法正确的是（ ）。”与站点一致。",
+          "review": "第 3 页页图第 6 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 3 页 A-D 四项与站点 options 一致，B 为“从每个素数出发，把它的倍数标记为合数”。",
+          "review": "第 3 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 6 题为 B；按 0 起始索引映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表第 6 题为 B，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "独立推导：埃氏筛的核心是从每个素数出发标记其倍数；A 是线性筛的性质，C/D 与筛法事实不符，故 B 正确。",
+          "review": "埃氏筛从每个素数出发标记其倍数，B 正确；A 是线性筛性质、C/D 与筛法事实不符。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页第 7 题给出快速幂 power 代码，问其体现的编程思想，与站点 question 内联代码一致。",
+          "review": "第 4 页页图第 7 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页 A-D 四项为枚举、贪心、分治、模拟，与站点一致。",
+          "review": "第 4 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 7 题为 C；按 0 起始索引映射为 2，站点 answer=2。",
+          "review": "第 1 页答案表第 7 题为 C，0 起始索引 2，站点 answer=2。"
+        },
+        "explanation": {
+          "initial": "独立推导：快速幂把 x^n 拆成 x^(n/2) 的平方，递归求解规模减半的同类子问题，属于分治，故 C 正确。",
+          "review": "快速幂把 x^n 拆成规模减半子问题再平方合并，是分治，C 正确。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页第 8 题给出统计 n=40 中因子 2 次数的代码，与站点 question 内联代码一致。",
+          "review": "第 4 页页图第 8 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页 A-D 四项为 1、2、3、4，与站点一致。",
+          "review": "第 4 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 8 题为 C；按 0 起始索引映射为 2，站点 answer=2。",
+          "review": "第 1 页答案表第 8 题为 C，0 起始索引 2，站点 answer=2。"
+        },
+        "explanation": {
+          "initial": "独立推导：40→20→10→5，连续除以 2 共 3 次，5%2≠0 停止，cnt=3，故 C 正确。",
+          "review": "40=2³×5，40→20→10→5 共除 3 次，cnt=3，C 正确。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 9,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4 页第 9 题给出 lowerBound 代码，横线位于 a[mid]>=x 分支，与站点 question 内联代码一致。",
+          "review": "第 4 页页图第 9 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页 A-D 四项为 r=mid+1、r=mid-1、r=mid、l=mid，与站点一致。",
+          "review": "第 4 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 9 题为 C；按 0 起始索引映射为 2，站点 answer=2。",
+          "review": "第 1 页答案表第 9 题为 C，0 起始索引 2，站点 answer=2。"
+        },
+        "explanation": {
+          "initial": "独立推导：a[mid]>=x 时 mid 可能是第一个满足条件的位置，应保留 mid 令 r=mid，故 C 正确。",
+          "review": "a[mid]>=x 时 mid 可能是答案须保留，r=mid 的 C 正确；A/B 丢候选、D 方向错。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 10,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4,
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 4-5 页第 10 题给出 binary_cut 二分答案代码，横线位于 check(mid) 为真分支，与站点 question 内联代码一致。",
+          "review": "第 5 页页图第 10 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 5 页 A-D 四项为 r=mid+1、r=mid、l=mid、r=mid-1，与站点一致。",
+          "review": "第 5 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 10 题为 B；按 0 起始索引映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表第 10 题为 B，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "独立推导：check(mid) 为真说明 mid 可行，但可能还有更小的可行值，应保留 mid 令 r=mid；否则 l=mid+1，故 B 正确。",
+          "review": "check 可行时 mid 可能是最小可行值须保留 r=mid，不可行 l=mid+1，B 正确；与第 9 题同一模板。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 11,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页第 11 题给出以首元素为基准的 partition 代码，横线位于循环结束后的交换处，与站点 question 内联代码一致。",
+          "review": "第 5 页页图第 11 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 5 页 A-D 四项为 swap(arr[low],arr[high])、swap(arr[low],arr[i])、swap(arr[i],arr[high])、arr[i]=pivot，与站点一致。",
+          "review": "第 5 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 11 题为 B；按 0 起始索引映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表第 11 题为 B，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "独立推导：循环结束时 i==j 指向最后一个不大于 pivot 的位置，应把基准 arr[low] 与 arr[i] 交换，故 B 正确。",
+          "review": "相遇点 i==j 指向最后一个不大于 pivot 的位置，swap(arr[low],arr[i]) 使基准归位，B 正确。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 12,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页第 12 题题干“下面哪句话最符合归并排序的思想？”与站点一致。",
+          "review": "第 5 页页图第 12 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 5 页 A-D 四项与站点 options 一致，B 为“将数组分成两半分别排序，再合并两个有序部分”。",
+          "review": "第 5 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 12 题为 B；按 0 起始索引映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表第 12 题为 B，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "独立推导：归并排序的核心是二分后分别排序再合并，B 正确；A 是选择排序，C 是冒泡，D 是插入排序。",
+          "review": "归并=二分分别排序再合并，B 正确；A 选择、C 冒泡、D 插入。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 13,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5,
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5-6 页第 13 题给出 mergeArray/mergeSort 代码，问 mergeArray 调用次数，与站点 question 内联代码一致。",
+          "review": "第 6 页页图第 13 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 6 页 A-D 四项为 n-1、log n、n log n、2n，与站点一致。",
+          "review": "第 6 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 13 题为 A；按 0 起始索引映射为 0，站点 answer=0。",
+          "review": "第 1 页答案表第 13 题为 A，0 起始索引 0，站点 answer=0。"
+        },
+        "explanation": {
+          "initial": "独立推导：归并递归树有 n 个叶子，每个内部结点对应一次 mergeArray，内部结点数为 n-1，故 A 正确。",
+          "review": "n 个叶子的递归树恰有 n-1 个内部结点，每个内部结点对应一次 mergeArray，A 正确（n=4 验证 3 次）。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        6,
+        7
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 6-7 页第 14 题给出 minBoxes 双指针代码，横线位于能配对分支，与站点 question 内联代码一致。",
+          "review": "第 7 页页图第 14 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 7 页 A-D 四项为 l++、r--、l++;r--;、boxes--;，与站点一致。",
+          "review": "第 7 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 14 题为 C；按 0 起始索引映射为 2，站点 answer=2。",
+          "review": "第 1 页答案表第 14 题为 C，0 起始索引 2，站点 answer=2。"
+        },
+        "explanation": {
+          "initial": "独立推导：最轻 l 与最重 r 能同盒时，两者都被装走，双指针同时内移 l++、r--；不能配对时只 r--，故 C 正确。",
+          "review": "最轻最重能配对时双指针同时内移 l++; r--;，C 正确；A 让最重盒凭空消失、B 重复计轻盒、D 逻辑相反。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 15,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        7
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 7 页第 15 题给出高精度减法借位代码，与站点 question 内联代码一致。",
+          "review": "第 7 页页图第 15 题题干及代码与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 7 页 A-D 四项为 a[i]+=10、a[i]-=10、b[i]+=10、a[i]=a[i+1]+10，与站点一致。",
+          "review": "第 7 页页图 A-D 四项与站点 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 15 题为 A；按 0 起始索引映射为 0，站点 answer=0。",
+          "review": "第 1 页答案表第 15 题为 A，0 起始索引 0，站点 answer=0。"
+        },
+        "explanation": {
+          "initial": "独立推导：a[i]<b[i] 时向高位借 1，高位 a[i+1]--，本位加 10 后再减，故 A 正确。",
+          "review": "借位后本位须加 10 再减，a[i]+=10 的 A 正确；B 方向反、C 给减数加、D 覆盖本位。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 16,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        7
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第 7 页判断题第 1 题「数组的存储空间在物理上通常是连续的，而链表的结点可以存储在不连续的内存空间中。」与候选 question 一致。",
+          "review": "本卷第 7 页判断题第 1 题「数组的存储空间在物理上通常是连续的，而链表的结点可以存储在不连续的内存空间中。」与候选 question 逐字一致。"
+        },
+        "answer": {
+          "initial": "第 7 页判断答案表第 1 题为 √（索引 0），候选 answer=0。独立判断：数组占用连续空间并靠下标偏移随机访问；链表结点单独分配、由指针链接，可以不相邻，命题正确。",
+          "review": "以本卷自己的答案页（第 7 页判断题答案表）核对（不沿用其他卷次的固定页假设）：第 1 题标 √，映射「正确」=索引 0，候选 answer=0（整数；修订候选已将站点原布尔 true 规整为 0，映射 true→0 与 √=0 一致）。独立判断：数组占用连续空间并靠下标偏移随机访问，链表结点单独分配、由指针链接可不相邻，命题正确。"
+        },
+        "explanation": {
+          "initial": "候选解析对数组随机访问与链表顺序访问的差异说明正确。",
+          "review": "候选解析对数组随机访问与链表顺序访问差异的说明正确，结论 √ 与答案页一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
+      ]
+    },
+    {
+      "id": 17,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        7
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第 7 页判断题第 2 题「带哨兵头尾节点的双向循环链表，在表头插入节点 p，以下四步操作无论什么顺序执行结果都正确。」及四步代码与候选 question 一致。",
+          "review": "本卷第 7 页判断题第 2 题「带哨兵头尾节点的双向循环链表，在表头插入节点 p，以下四步操作无论什么顺序执行结果都正确。」及四步代码 ①p->next=head->next; ②p->prev=head; ③head->next->prev=p; ④head->next=p; 与候选逐字一致。"
+        },
+        "answer": {
+          "initial": "第 7 页判断答案表第 2 题为 ×（索引 1），候选 answer=1。独立判断：③ 依赖 head->next 仍为原首结点，若先执行 ④ 再执行 ③，head->next 已变为 p，③ 变成 p->prev=p；同理 ④ 先于 ① 会使 p->next 指向自身，故顺序不可任意。",
+          "review": "本卷第 7 页判断答案表第 2 题标 ×，映射「错误」=索引 1，候选 answer=1（原布尔 false 已规整为 1，false→1 与 ×=1 一致）。独立判断：③ 依赖 head->next 仍为原首结点——先执行 ④ 再执行 ③ 会写成 p->prev=p 自环；① 也必须先于 ④（否则 p->next 指向自身），顺序不可任意，命题错误。"
+        },
+        "explanation": {
+          "initial": "候选解析正确指出 ①、③ 必须早于 ④，且 ④ 先于 ① 会产生自环。",
+          "review": "候选解析正确指出 ①、③ 必须先于 ④、④ 先行会使 p->prev 指向自身，与独立判断一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
+      ]
+    },
+    {
+      "id": 18,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        7,
+        8
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第 7–8 页判断题第 3 题「对任意正整数 a、b，以下两种写法的 gcd 函数返回值完全相同。」及 gcd1/gcd2 代码与候选 question 一致。",
+          "review": "本卷第 7 页判断题第 3 题题干与第 8 页 gcd1/gcd2 代码（gcd1 三目递归、gcd2 while 迭代）与候选逐行一致。"
+        },
+        "answer": {
+          "initial": "第 7 页判断答案表第 3 题为 √（索引 0），候选 answer=0。独立判断：gcd1 是欧几里得算法的递归版，gcd2 是同一算法的迭代版，每轮都做 (a,b)←(b,a%b)，终止与返回一致，命题正确。",
+          "review": "本卷第 7 页判断答案表第 3 题标 √，映射索引 0，候选 answer=0（true→0）。独立判断：对任意正整数 a、b，两版本每轮同为 (a,b)←(b,a%b)、终止与返回一致（如 gcd(1,1) 两版均返回 1），命题正确。"
+        },
+        "explanation": {
+          "initial": "候选解析对递归与迭代版本等价性的说明正确。",
+          "review": "候选解析对递归/迭代等价性的说明正确。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
+      ]
+    },
+    {
+      "id": 19,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        8
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第 8 页判断题第 4 题「在归并排序的合并操作中，如下代码片段可以正确地将两个已排序的子数组 L 和 R 合并回原数组 arr 中。」及 merge 代码与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 4 题「在归并排序的合并操作中，如下代码片段可以正确地将两个已排序的子数组 L 和 R 合并回原数组 arr 中。」及 merge 代码（n1/n2 计算、L/R 复制、双指针比较写回、剩余追加）与候选逐行一致。"
+        },
+        "answer": {
+          "initial": "第 7 页判断答案表第 4 题为 √（索引 0），候选 answer=0。独立判断：n1/n2 计算、L/R 复制、双指针取较小者写回、末尾追加剩余均正确，`<=` 还保证稳定，命题正确。",
+          "review": "本卷第 7 页判断答案表第 4 题标 √，映射索引 0，候选 answer=0（true→0）。独立判断：k 从 left 起、取小者写回、末尾追加剩余均正确，`<=` 相等时优先左半还保证稳定，命题正确。"
+        },
+        "explanation": {
+          "initial": "候选解析对合并边界与稳定性的说明正确。",
+          "review": "候选解析对合并边界与稳定性的说明正确。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
+      ]
+    },
+    {
+      "id": 20,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        8
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第 8 页判断题第 5 题「分治法通常将一个规模较大的问题拆分为若干个规模较小、结构相似的子问题，分别求解后再合并子问题的结果。」与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 5 题「分治法通常将一个规模较大的问题拆分为若干个规模较小、结构相似的子问题，分别求解后再合并子问题的结果。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 7 页判断答案表第 5 题为 √（索引 0），候选 answer=0。独立判断：这正是分治「分—治—合」的定义，命题正确。",
+          "review": "本卷第 7 页判断答案表第 5 题标 √，映射索引 0，候选 answer=0（true→0）。独立判断：这正是分治「分—治—合」的定义，命题正确。"
+        },
+        "explanation": {
+          "initial": "候选解析对分治三步（分、治、合）及典型应用的说明正确。",
+          "review": "候选解析对分治三步及典型应用的说明正确。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
+      ]
+    },
+    {
+      "id": 21,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        8
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第 8 页判断题第 6 题「贪心算法只要每一步选择当前最优解，就一定能得到全局最优解。」与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 6 题「贪心算法只要每一步选择当前最优解，就一定能得到全局最优解。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 7 页判断答案表第 6 题为 ×（索引 1），候选 answer=1。独立判断：贪心需要贪心选择性质与最优子结构，0-1 背包按单位价值贪心即可得到次优解，命题错误。",
+          "review": "本卷第 7 页判断答案表第 6 题标 ×，映射索引 1，候选 answer=1（false→1）。独立判断：贪心成立需贪心选择性质与最优子结构，0-1 背包按单位价值贪心可得次优解，命题错误。"
+        },
+        "explanation": {
+          "initial": "候选解析用 0-1 背包反例说明局部最优不保证全局最优，正确。",
+          "review": "候选解析以 0-1 背包反例说明局部最优不保证全局最优，正确。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
+      ]
+    },
+    {
+      "id": 22,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        8
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第 8 页判断题第 7 题「二分查找不仅可以应用于有序数组，也可以在不增加时间复杂度的情况下应用于有序的单链表，因为链表也支持 O(1)时间内的随机访问。」与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 7 题「二分查找不仅可以应用于有序数组，也可以在不增加时间复杂度的情况下应用于有序的单链表，因为链表也支持 O(1) 时间内的随机访问。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 7 页判断答案表第 7 题为 ×（索引 1），候选 answer=1。独立判断：单链表定位第 k 个结点需 O(k) 遍历，不支持 O(1) 随机访问；链表上二分每取中点 O(n)，总时间 O(n log n)，命题两处均错。",
+          "review": "本卷第 7 页判断答案表第 7 题标 ×，映射索引 1，候选 answer=1（false→1）。独立判断：单链表定位第 k 个结点需 O(k) 遍历，不支持 O(1) 随机访问；链表上取中点 O(n)，总时间 O(n log n)，命题两处均错。"
+        },
+        "explanation": {
+          "initial": "候选解析正确指出单链表不支持 O(1) 随机访问，二分退化为 O(n log n)。",
+          "review": "候选解析正确指出单链表不支持 O(1) 随机访问、二分退化为 O(n log n)。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
+      ]
+    },
+    {
+      "id": 23,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        8
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第 8 页判断题第 8 题「以下函数 f1 的时间复杂度比函数 f2 的更高。」及 f1/f2 代码与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 8 题「以下函数 f1 的时间复杂度比函数 f2 的更高。」及 f1（i 每次翻倍）与 f2（双分支递归）代码与候选逐行一致。"
+        },
+        "answer": {
+          "initial": "第 7 页判断答案表第 8 题为 ×（索引 1），候选 answer=1。独立判断：f1 的 i 每次翻倍，O(log n)；f2 双分支递归 T(n)=2T(n-1)+O(1)，O(2^n)；f1 更低，命题说反。",
+          "review": "本卷第 7 页判断答案表第 8 题标 ×，映射索引 1，候选 answer=1（false→1）。独立判断：f1 为 O(log n)，f2 满足 T(n)=2T(n-1)+O(1) 为 O(2^n)，f1 更低，命题说反。"
+        },
+        "explanation": {
+          "initial": "候选解析对 f1 的 O(log n) 与 f2 的 O(2^n) 推导正确。",
+          "review": "候选解析对 f1 的 O(log n) 与 f2 的 O(2^n)（约 2ⁿ−1 次调用）推导正确。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
+      ]
+    },
+    {
+      "id": 24,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        8
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第 8 页判断题第 9 题「唯一分解定理表明，任何一个大于 1 的自然数都可以唯一地分解为若干个质数的乘积，如果不考虑质因数的顺序，这种分解方式是唯一的。」与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 9 题「唯一分解定理表明，任何一个大于 1 的自然数都可以唯一地分解为若干个质数的乘积，如果不考虑质因数的顺序，这种分解方式是唯一的。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 7 页判断答案表第 9 题为 √（索引 0），候选 answer=0。独立判断：这正是算术基本定理，不计质因数次序时分解唯一，命题正确。",
+          "review": "本卷第 7 页判断答案表第 9 题标 √，映射索引 0，候选 answer=0（true→0）。独立判断：算术基本定理，不计次序分解唯一，命题正确。"
+        },
+        "explanation": {
+          "initial": "候选解析对算术基本定理的表述与示例正确。",
+          "review": "候选解析对算术基本定理的表述与 12=2²×3 示例正确。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
+      ]
+    },
+    {
+      "id": 25,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        8
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第 8 页判断题第 10 题「归并排序和快速排序在平均情况下的时间复杂度均为 O(nlogn)。但在稳定性方面，归并排序通常是不稳定的，而快速排序是稳定的。」与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 10 题「归并排序和快速排序在平均情况下的时间复杂度均为 O(nlogn)。但在稳定性方面，归并排序通常是不稳定的，而快速排序是稳定的。」与候选 question 一致。"
+        },
+        "answer": {
+          "initial": "第 7 页判断答案表第 10 题为 ×（索引 1），候选 answer=1。独立判断：前半句正确；后半句说反，归并排序稳定（合并时 `<=` 优先左半），快速排序不稳定（远距离交换），命题错误。",
+          "review": "本卷第 7 页判断答案表第 10 题标 ×，映射索引 1，候选 answer=1（false→1）。独立判断：前半句正确；后半句说反——归并排序稳定（合并 `<=` 优先左半）、快速排序不稳定（划分远距离交换），命题错误。"
+        },
+        "explanation": {
+          "initial": "候选解析对归并稳定、快排不稳定的判断正确。",
+          "review": "候选解析对归并稳定、快排不稳定的判断与典型排序稳定性归纳正确。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
+      ]
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [],
+      "sourcePages": [
+        9,
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 9-10 页题名“排排坐”、题意、输入输出、样例 5 / 7 5 8 9 3 → 111 与数据范围 1≤n≤1000、1≤a_i≤1000 均与站点 description 一致。",
+          "review": "第 9 页页图题目描述、输入/输出格式与数据范围（1≤n≤1000、1≤a_i≤1000）与站点 description/inputDescription/outputDescription 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：总糖果数为 ∑(n-i+1)b_i，越靠左的数字被累加次数越多，因此把数组从大到小排序后求前缀和再累加即可；样例降序 9,8,7,5,3 的前缀和为 9,17,24,29,32，总和 111，与样例一致。",
+          "review": "独立推导：位置 i 获前缀和，总量 Σ(n-i+1)b_i，大数排左侧权重高，降序排序后求前缀和累加；样例降序 9,8,7,5,3 前缀和 9,17,24,29,32 总和 111，与样例一致；站点解析与该推导一致。"
+        },
+        "referenceCode": {
+          "initial": "站点参考程序与 PDF 第 10 页程序一致（冒泡降序 + 前缀和累加），n≤1000 时 O(n²) 足够；已用 n=1、2、3、4 与样例复核，输出 5、5、6、30、111。",
+          "review": "站点参考程序与第 10 页官方程序一致（冒泡降序 + 前缀和累加），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（5 / 7 5 8 9 3→111）与全部复核边界用例（1/5→5、2/1 2→5、4/1 2 3 4→30），输出逐字符一致。"
+        }
+      },
+      "unresolved": [],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 9
+        }
+      ]
+    },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [],
+      "sourcePages": [
+        10,
+        11
       ],
       "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10-11 页题名“晚宴”、题意、输入输出、样例 5 / 3 5 7 35 105 → 38 与数据范围 2≤n≤1000、1≤v_i≤10^6 均与站点 description 一致。",
+          "review": "第 10-11 页页图题目描述、输入/输出格式、数据范围（2≤n≤1000、1≤v_i≤1000000）与唯一性/存在性保证均与站点 description 一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：枚举所有数对，用 gcd 判断互质并取和的最大值；样例中 3 与 35 互质，和 38 最大，105 与其余数均有公因子，与样例解释一致。",
+          "review": "独立推导：双重循环枚举全部数对，gcd=1 时更新最大和；样例中 3+35=38 为最大互质对（105 与其余数均有公因子），与样例解释一致；站点解析的枚举流程与复杂度分析与该推导一致。"
+        },
+        "referenceCode": {
+          "initial": "站点参考程序与 PDF 第 11 页程序一致（双重循环 + 递归 gcd），n≤1000 时约 5×10^5 对；已用 2、3、4 个数与样例复核，输出 41、17、53、38。",
+          "review": "站点参考程序与第 11 页官方程序一致（递归 gcd + 双重循环枚举），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（5 / 3 5 7 35 105→38）与全部复核边界用例（2/6 35→41、3/6 10 7→17、4/12 18 25 35→53），输出逐字符一致。"
+        }
+      },
+      "unresolved": [],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 10
+        }
+      ]
     }
-  ]
+  ],
+  "unresolved": [],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l5.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l5.integration.json"
 }

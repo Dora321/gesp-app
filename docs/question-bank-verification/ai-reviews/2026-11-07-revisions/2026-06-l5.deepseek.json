@@ -1,0 +1,382 @@
+{
+  "paperId": "2026-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:30:00.000Z",
+  "completedAt": "2026-11-25T08:44:28.000Z",
+  "finishReason": "stop",
+  "inputSha256": "41560e7cc4db48aca421247e730a8afc6b603122f5b9842a1064e2c5abf76b5e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295343321120.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++5级.pdf",
+    "mirrorSha": "e64d12799f503490593d16332cef72b2b776c894",
+    "mirrorBytes": 1025170,
+    "shaVerified": true,
+    "sha256": "e0783f861dd1b55e66af727dff073240d3d5c476e9b3976bf03fd6a18ae65317"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF GESP C++ 五级、2026 年 06 月；第 7–8 页为判断题第 1–10 题（对应站点 16–25）题面、代码与第 7 页判断答案表，与 paperId 2026-06-l5 一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 1 题「数组的存储空间在物理上通常是连续的，而链表的结点可以存储在不连续的内存空间中。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为「正确」「错误」，候选 options 一致；原卷以判断符号 √/× 作答，站点按 √=0、×=1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断答案表第 1 题为 √（索引 0），候选 answer=0。独立判断：数组占用连续空间并靠下标偏移随机访问；链表结点单独分配、由指针链接，可以不相邻，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对数组随机访问与链表顺序访问的差异说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 2 题「带哨兵头尾节点的双向循环链表，在表头插入节点 p，以下四步操作无论什么顺序执行结果都正确。」及四步代码与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为「正确」「错误」，候选 options 一致；原卷以判断符号 √/× 作答，站点按 √=0、×=1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断答案表第 2 题为 ×（索引 1），候选 answer=1。独立判断：③ 依赖 head->next 仍为原首结点，若先执行 ④ 再执行 ③，head->next 已变为 p，③ 变成 p->prev=p；同理 ④ 先于 ① 会使 p->next 指向自身，故顺序不可任意。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确指出 ①、③ 必须早于 ④，且 ④ 先于 ① 会产生自环。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7–8 页判断题第 3 题「对任意正整数 a、b，以下两种写法的 gcd 函数返回值完全相同。」及 gcd1/gcd2 代码与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为「正确」「错误」，候选 options 一致；原卷以判断符号 √/× 作答，站点按 √=0、×=1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断答案表第 3 题为 √（索引 0），候选 answer=0。独立判断：gcd1 是欧几里得算法的递归版，gcd2 是同一算法的迭代版，每轮都做 (a,b)←(b,a%b)，终止与返回一致，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对递归与迭代版本等价性的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 4 题「在归并排序的合并操作中，如下代码片段可以正确地将两个已排序的子数组 L 和 R 合并回原数组 arr 中。」及 merge 代码与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为「正确」「错误」，候选 options 一致；原卷以判断符号 √/× 作答，站点按 √=0、×=1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断答案表第 4 题为 √（索引 0），候选 answer=0。独立判断：n1/n2 计算、L/R 复制、双指针取较小者写回、末尾追加剩余均正确，`<=` 还保证稳定，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对合并边界与稳定性的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 5 题「分治法通常将一个规模较大的问题拆分为若干个规模较小、结构相似的子问题，分别求解后再合并子问题的结果。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为「正确」「错误」，候选 options 一致；原卷以判断符号 √/× 作答，站点按 √=0、×=1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断答案表第 5 题为 √（索引 0），候选 answer=0。独立判断：这正是分治「分—治—合」的定义，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对分治三步（分、治、合）及典型应用的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 6 题「贪心算法只要每一步选择当前最优解，就一定能得到全局最优解。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为「正确」「错误」，候选 options 一致；原卷以判断符号 √/× 作答，站点按 √=0、×=1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断答案表第 6 题为 ×（索引 1），候选 answer=1。独立判断：贪心需要贪心选择性质与最优子结构，0-1 背包按单位价值贪心即可得到次优解，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析用 0-1 背包反例说明局部最优不保证全局最优，正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 7 题「二分查找不仅可以应用于有序数组，也可以在不增加时间复杂度的情况下应用于有序的单链表，因为链表也支持 O(1)时间内的随机访问。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为「正确」「错误」，候选 options 一致；原卷以判断符号 √/× 作答，站点按 √=0、×=1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断答案表第 7 题为 ×（索引 1），候选 answer=1。独立判断：单链表定位第 k 个结点需 O(k) 遍历，不支持 O(1) 随机访问；链表上二分每取中点 O(n)，总时间 O(n log n)，命题两处均错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确指出单链表不支持 O(1) 随机访问，二分退化为 O(n log n)。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 8 题「以下函数 f1 的时间复杂度比函数 f2 的更高。」及 f1/f2 代码与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为「正确」「错误」，候选 options 一致；原卷以判断符号 √/× 作答，站点按 √=0、×=1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断答案表第 8 题为 ×（索引 1），候选 answer=1。独立判断：f1 的 i 每次翻倍，O(log n)；f2 双分支递归 T(n)=2T(n-1)+O(1)，O(2^n)；f1 更低，命题说反。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对 f1 的 O(log n) 与 f2 的 O(2^n) 推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 9 题「唯一分解定理表明，任何一个大于 1 的自然数都可以唯一地分解为若干个质数的乘积，如果不考虑质因数的顺序，这种分解方式是唯一的。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为「正确」「错误」，候选 options 一致；原卷以判断符号 √/× 作答，站点按 √=0、×=1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断答案表第 9 题为 √（索引 0），候选 answer=0。独立判断：这正是算术基本定理，不计质因数次序时分解唯一，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对算术基本定理的表述与示例正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 10 题「归并排序和快速排序在平均情况下的时间复杂度均为 O(nlogn)。但在稳定性方面，归并排序通常是不稳定的，而快速排序是稳定的。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为「正确」「错误」，候选 options 一致；原卷以判断符号 √/× 作答，站点按 √=0、×=1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断答案表第 10 题为 ×（索引 1），候选 answer=1。独立判断：前半句正确；后半句说反，归并排序稳定（合并时 `<=` 优先左半），快速排序不稳定（远距离交换），命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对归并稳定、快排不稳定的判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "判断题 16–25 的题干、选项、答案与解析逐题对照原卷通过；站点原布尔答案已按判断答案表规整为 0/1（√=0、×=1），候选可原样应用。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "startedAt": "2026-11-25T08:30:00.000Z",
+      "completedAt": "2026-11-25T08:44:28.000Z"
+    }
+  ]
+}

@@ -803,6 +803,11 @@ tree = {1, 2, 3, 4, -1, 6, 7}，按层序还原：节点 1 的孩子是 2、3；
 **考点：** 树与二叉树、完全二叉树
             `,
             tags: ['树与二叉树'],
+      "code": "#include <vector>\nstd::vector<int> tree = {1, 2, 3, 4, -1, 6, 7};",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["code","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 24,

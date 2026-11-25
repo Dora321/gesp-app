@@ -1,0 +1,111 @@
+{
+  "executedAt": "2026-11-25T06:46:53.080Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "18",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "最小平方数",
+          "input": "1\n",
+          "output": "1",
+          "reason": "1=1^2，只需 1 个。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "必须 4 个",
+          "input": "7\n",
+          "output": "4",
+          "reason": "7 不是平方数、不能写成两个平方数之和，且 7≡7 (mod 8)，由四平方和定理需 4 个。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "必须 3 个",
+          "input": "12\n",
+          "output": "3",
+          "reason": "12 不是平方数、不能写成两个平方数之和；12=4+4+4，需 3 个。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "大数两平方",
+          "input": "100000\n",
+          "output": "2",
+          "reason": "100000=316^2+12^2（99856+144），不是平方数，故为 2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d174e9f01a519dcb29511dc8fbf191b84fc26d39e5baea768a819eb11824857c"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3 5 10\n1 1 2 3 3\n9 1 10 10 1",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "2 4 10\n1 1 1 2\n1 2 7 10",
+          "output": "-1",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "-1\n",
+          "passed": true
+        },
+        {
+          "name": "单算法只需一题",
+          "input": "1 1 5\n1\n5\n",
+          "output": "1",
+          "reason": "只有一种算法，选 1 题即达 5，且不存在相邻重复。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "单算法需两题",
+          "input": "1 2 5\n1 1\n3 3\n",
+          "output": "-1",
+          "reason": "需 2 题才能达到 5，但两题知识点相同，必相邻重复，无解。",
+          "kind": "boundary",
+          "actual": "-1\n",
+          "passed": true
+        },
+        {
+          "name": "需要补题隔开",
+          "input": "2 4 10\n1 1 2 2\n6 4 10 1\n",
+          "output": "3",
+          "reason": "算法 1 需 2 题（6+4），算法 2 需 1 题（10），mx=2≤others+1=2，总题数 3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "54a58694bd483fda0c83c64922b1f59961e56c5365541a3ec77f72683ffed381"
+    }
+  ]
+}

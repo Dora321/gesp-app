@@ -1,0 +1,454 @@
+{
+  "paperId": "2026-06-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T14:40:00.000Z",
+  "completedAt": "2026-11-25T15:30:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "13566db5381d12fb54ca9ad2e48697d70c9efb7280051b6c0b01310c588f69d9",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295364292640.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++6级.pdf",
+    "mirrorSha": "a238fdd9c8f763863bdd56dfc598d98bd420b682",
+    "mirrorBytes": 988448,
+    "shaVerified": true,
+    "sha256": "ff93a4ef403172e05049be0a60d8c2b4724cff81e29a43aef52010120fe8bc33"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2026-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「CCF 编程能力等级认证 C++ 六级 2026年06月」，与 2026-06-l6 一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第1题「C++ 中构造函数可以声明为虚函数，从而实现运行时多态。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第6页判断题答案表第1题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析「vptr 在构造过程中才初始化、构造函数不能为虚」与命题判定一致，clone()/工厂函数替代说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6-7页判断题第2题题干与候选一致；第7页 22 行 Base/Derived 代码（非虚 ~Base、delete p）与候选 code 逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第6页判断题答案表第2题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确指出缺少 virtual 前提时通过基类指针 delete 属未定义行为、实践通常只调 Base 析构，故命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断题第3题「在 C++ STL 中，stack 的 pop() 函数会返回栈顶元素并将其删除。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第6页判断题答案表第3题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析「stack::pop() 返回 void，只删不取，取值须先 top()」与 STL 语义一致，queue 同风格的补充正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断题第4题「程序运行后会输出 2。」及 9 行 queue 代码（push 1/2/3、pop、front）与候选 question 内嵌代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第6页判断题答案表第4题为 √，对应整型 0；候选 paper.json 仍为布尔 true，需改为 0 以过门禁。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐步执行 push 1/2/3、pop 队头 1 后 front()=2，结论「输出 2」成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 0
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断题第5题题干及 20 行 insertNode 代码（x<val 却递归右子树、否则递归左子树）与候选 question 内嵌代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第6页判断题答案表第5题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出分支条件写反，并以插入 10、5 得到右孩子 5<10 违反 BST 性质为例，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8页判断题第6题「哈夫曼编码一定唯一，只要字符频率相同，得到的编码也一定完全相同。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第6页判断题答案表第6题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明哈夫曼树最优但形态不唯一（同权合并顺序、左右子树互换），同频字符编码不必完全相同，结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8页判断题第7题「若用数组按层序存储完全二叉树，且根节点下标为 0，则下标为 i 的节点左孩子下标为 2*i+1，右孩子下标为 2*i+2。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第6页判断题答案表第7题为 √，对应整型 0；候选 paper.json 仍为布尔 true，需改为 0 以过门禁。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出 0 起始下标左孩子 2i+1、右孩子 2i+2，并以根 0 的孩子 1、2 与结点 1、2 的孩子验证，正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 0
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8页判断题第8题「以下代码可以正确地按层换行输出二叉树的节点值。」及 18 行 printByLevel 代码（for 条件为 i<q.size()）与候选 question 内嵌代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第6页判断题答案表第8题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出 for 条件每轮重读 q.size()，pop/push 使本层大小未被固定，并给出单左孩子反例与先存 sz 的正确写法，成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8页判断题第9题「使用栈非递归实现二叉树前序遍历时，若希望先访问左子树，通常应先将右孩子入栈，再将左孩子入栈。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第6页判断题答案表第9题为 √，对应整型 0；候选 paper.json 仍为布尔 true，需改为 0 以过门禁。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明栈后进先出，先压右孩子再压左孩子才能先访问左子树，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 0
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8页判断题第10题「动态规划问题通常要求具有最优子结构，并且常常存在重叠子问题。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第6页判断题答案表第10题为 √，对应整型 0；候选 paper.json 仍为布尔 true，需改为 0 以过门禁。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析列出最优子结构与重叠子问题两大特征，并说明存表避免重复求解，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "answer": 0
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第10-12页题面、输入/输出、样例1「4/2 3/4 0/0 0/0 0→2」、样例2「3/2 3/0 0/0 0→3」、数据范围（40%:1≤n≤500；全部:1≤n≤10⁵）与候选主体一致；但「三棵满二叉树」示例的第三棵（7 结点）底层只画了 3 个 ()，原卷第10页该层为 4 个 ()，候选示例图本身不满足满二叉树，已在 changes.description 补足第 4 个叶子。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选 h/chk 树形 DP（h=max+1、chk=左右满且等高）与 referenceCode 一致；样例1（结点3、4 计入→2）、样例2（整树加两个叶子→3）走查正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选与第12页官方参考程序逐行一致（chk[0]=1、后序 DFS、ans 累加）。编译运行样例 2/3、n=1→1、完全 7 结点→7、含不等高子树的 7 结点→5 均一致。"
+          }
+        },
+        "changes": {
+          "description": "给定一棵包含 n 个结点的有根二叉树，结点依次以 1, 2, …, n 编号，根结点编号为 1。\n\n对于结点 i，其左儿子的编号记为 l_i，右儿子编号记为 r_i。特别地，如果左儿子不存在则 l_i = 0，如果右儿子不存在则 r_i = 0。\n\n树中每个结点都对应一棵以其为根的子树。请你求出给定有根树的所有 n 棵子树中，有多少棵子树是满二叉树。\n\n满二叉树是指所有叶子深度均相同，且除叶子外均有两个儿子的二叉树，例如以下三棵二叉树均是满二叉树：\n\n```text\n()      ()        ()\n       / \\       / \\\n      () ()     () ()\n               / \\ / \\\n              () () () ()\n```\n\n例如，\n\n```text\n   ()\n  /  \\\n ()    ()\n```\n\n在上面这棵有 3 个节点的二叉树中，有 3 个子树是满二叉树（包括整个树本身，及所有的单个叶子节点）；\n\n又例如，\n\n```text\n    (1)\n   /  \\\n (2)   (3)\n      /  \\\n    (4)   (5)\n```\n\n在上面这棵有 5 个节点的二叉树中，有 4 个子树是满二叉树（包括节点 3 的子树，以及所有单个叶子节点）。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\leq n \\leq 500$。\n\n对于所有测试点，保证 $1 \\leq n \\leq 10^5$。"
+        },
+        "tests": [
+          {
+            "name": "n=1 单结点",
+            "input": "1\n0 0\n",
+            "output": "1",
+            "reason": "单结点是满二叉树，答案 1，覆盖最小 n。"
+          },
+          {
+            "name": "三结点满树",
+            "input": "3\n2 3\n0 0\n0 0\n",
+            "output": "3",
+            "reason": "整树与两个叶子均为满二叉树，计数 3；与样例2 相同结构。"
+          },
+          {
+            "name": "不等高子树不计入",
+            "input": "7\n2 3\n4 5\n0 0\n0 0\n6 7\n0 0\n0 0\n",
+            "output": "5",
+            "reason": "叶子 3、4、6、7 与结点 5 的子树为满二叉树；结点 2 左右高度 1、2 不等，根因此也不满，计数 5。"
+          },
+          {
+            "name": "完全满树",
+            "input": "7\n2 3\n4 5\n6 7\n0 0\n0 0\n0 0\n0 0\n",
+            "output": "7",
+            "reason": "每个结点为根的子树都是满二叉树，计数 7，覆盖 3 层满树。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "11 题对照第 6-12 页：Q16-Q25 题干、解析与答案表判定一致，answer 仍为布尔值，已按第 6 页答案表改为整型（√=0、×=1）待下轮应用；Q27 题面第三棵示例树底层缺 1 个叶子（3 个而非 4 个 ()），已提修订，解析与参考程序通过。另注：编程题站点 memoryLimit 统一记为 128 MB，原卷均为 512.0 MB；该字段不属于五维可编辑字段，未纳入本轮修订范围。"
+  }
+}

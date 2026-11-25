@@ -1,0 +1,293 @@
+{
+  "paperId": "2024-12-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    5,
+    6,
+    7,
+    8,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T07:07:28.827Z",
+  "completedAt": "2026-11-25T07:07:28.827Z",
+  "finishReason": "stop",
+  "inputSha256": "fe1b5d752b63a052b396f5c2f025e29b44e1f735f79867e81845a0888a51e1ca",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1733580036243488.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++6级.pdf",
+    "mirrorSha": "36b4c8dbecd7e59147f38a35056dddb9b6f71f8c",
+    "mirrorBytes": 1286399,
+    "shaVerified": true,
+    "sha256": "b25d40a90e0c098ce76acd5424710fbf3d7d9a85b134fcf817f0f8faa1fa1bd7"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示 CCF 编程能力等级认证、C++ 六级、2024 年 12 月，答案表 1—15 完整；与 paperId 2024-12-l6 一致。第 2—10 页覆盖 Q5、6、7、8、26、27。"
+    },
+    "questions": [
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 5 题原文“N 个节点的双向循环链表，在其中查找某个节点的平均时间复杂度是（ ）”，候选题干一致（n/N 大小写为排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页四项逐字核对：A.O(1)、B.O(N)、C.O(log N)、D.O(N³)，与候选完全一致；此前站点误记的 O(n²)/O(log n) 已修复。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 B（索引 1）。链表按值查找需线性扫描，平均 O(N)；双向只优化“给定节点删除”为 O(1)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确区分“按值查找”与“给定节点删除”，并说明链表无法 O(1) 定位中点故不能二分；四项判断与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 6 题原文“以下关于树的说法，（ ）是正确的。”候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页四项为：A 叶子结点的度一定是2；B 满二叉树中每一层的结点数等于 O(2^(层数-1))；C 所有结点的度之和等于所有叶子结点的度之和；D 先序与中序一定相同。候选按语义恢复四项，B 去掉了原卷排版用的 O(...) 包裹，其余文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题为 B（索引 1）。满二叉树第 k 层恰有 2^(k−1) 个结点；A 叶子度为 0、C 度之和为边数、D 一般不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐项判断正确：叶子度为 0 而非 2；所有结点度之和=n−1，叶子度之和为 0；先序与中序仅在无左子等特殊情形可能相同，不能断言“一定”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页给出频率表 A:8、B:3、C:1、D:6，并要求选出正确的哈夫曼树；原卷以四幅树图呈现，候选改写为等价的文字树形描述，频率与设问一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页四幅树图逐棵对照：A 根(A,BCD)，BCD(D,BC)，BC(B,C)；B 根(A,BCD)，BCD(B,CD)，CD(C,D)；C 根(D,ABC)，ABC(A,BC)，BC(B,C)；D 根(C,ABD)，ABD(B,AD)，AD(A,D)。候选四项文字描述与图一一对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题为 A（索引 0）。哈夫曼合并 C1+B3=4、4+D6=10、10+A8=18，对应 A 的树形；WPL=8×1+6×2+3×3+1×3=32，等于中间权值 4+10+18。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选合并顺序与树形推导正确，并以 WPL=32 自检；B 把 B 放到 D 上一层、C 把 D 放到根的直接孩子、D 把最低频 C 放到根的直接孩子，逐项排除理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页第 8 题原文“上一题中各字符的哈夫曼编码是（ ）”，候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3—4 页四项为 A.A:0,B:10,C:110,D:111；B.A:0,B:10,C:11,D:10；C.A:0,B:101,C:100,D:11；D.A:11,B:10,C:01,D:00，与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 8 题为 C（索引 2）。对应树形为根(A,10)，10(D,4)，4(C,B)：A=0、D=11、B=101、C=100。B 项 10 重复违反前缀码；A/D 非最优或非该树。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按“根(A,10)，10(D,4)，4(B,C)”给出 A=0、D=11、B=101、C=100，并指出左右子树互换只改变等长编码；A 项长度分配与树不符、B 项编码重复、D 项为定长编码，判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7—8 页题面、输入输出、样例与数据范围对照：无限满二叉树编号 2i/2i+1，根节点 U 不移动，n 次移动后输出节点编号，保证最终≤10^12；样例 3 2/URR→7；20% n≤10、s≤2，20% n≤50、s≤10，60% n≤10^6、s≤10^12；候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选“延迟栈”思路正确：U 优先抵消最近的未展开下行；当 s>10^12/2 时把 L/R 压栈，避免中间值溢出；最终节点≤10^12 保证结束时栈为空。样例 2→1→3→7 走查正确，O(n) 复杂度成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译运行：官方样例 3 2/URR→7；边界 1 1/U→1、4 1/LLUU→1、3 1/LUR→3、70 次 L+70 次 U→1、10^12 根上移→5×10^11 全部通过；另以 400 组随机合法序列与 BigInt 精确模拟对拍，零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "根节点 U 不移动",
+            "input": "1 1\nU\n",
+            "output": "1",
+            "reason": "根节点无父节点，U 应原地不动，防止 1/2=0 的错误。"
+          },
+          {
+            "name": "下行后原路返回",
+            "input": "4 1\nLLUU\n",
+            "output": "1",
+            "reason": "1→2→4→2→1，覆盖 U 与栈/除法回退。"
+          },
+          {
+            "name": "连续 70 层下行",
+            "input": "140 1\nLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU\n",
+            "output": "1",
+            "reason": "中间值 2^70 远超 long long，验证延迟栈避免溢出。"
+          },
+          {
+            "name": "大编号上移",
+            "input": "1 1000000000000\nU\n",
+            "output": "500000000000",
+            "reason": "覆盖 s=10^12 上界与父节点取整。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 9—10 页题面、输入输出、样例与数据范围对照：n 个站点位置 p_i 与容量 c_i、m 辆车的 a_i/b_i 次数、单程往返代价 2p 与 2(x−p)；样例 3 4 10 等→40186；20% n=m=2、c_i=1；20% n,m≤10^5、c_i=1；60% c_i≤10^5；全部 Σc_i≥m；候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选把成本拆为 Σ2x·b_i + Σ2p_i(a_i−b_i)，固定项与分配无关；按 d=a−b 正负分两端贪心（正 d 用最小 p，负 d 用最大 p），等价于“d 降序配 p 升序”的交换论证。样例固定项 200100、变动项 −159914，合计 40186，推导正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译运行：官方样例 40186；边界“负 d 配最远站点”→290、“d=0 不敏感”→40、“容量共享”→72 全部通过；另以 400 组随机小数据（n≤4,m≤5）与穷举分配对拍，零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "负 d 配最远站点",
+            "input": "2 1 10\n1 1\n9 1\n5 100\n",
+            "output": "290",
+            "reason": "d=5−100=−95，应配 p=9：2×10×100+2×9×(−95)=290；配 p=1 会得 1810。"
+          },
+          {
+            "name": "d=0 对位置不敏感",
+            "input": "1 1 5\n3 1\n4 4\n",
+            "output": "40",
+            "reason": "a=b 时成本恒为 2xb=40，与站点位置无关。"
+          },
+          {
+            "name": "容量共享",
+            "input": "2 2 10\n2 1\n8 1\n1 1\n9 1\n",
+            "output": "72",
+            "reason": "d=0 的车占 p=8（成本 20），d=8 的车占 p=2（20+32=52），总 72。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "6 题均通过原卷页图、答案表、解析与参考程序核验，全部适用维度 verified，候选可原样应用；重点复核 Q5 选项、Q26/Q27 修复后的参考程序均与原卷一致。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        5,
+        6,
+        7,
+        8,
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T07:07:28.827Z",
+      "completedAt": "2026-11-25T07:07:28.827Z"
+    }
+  ]
+}

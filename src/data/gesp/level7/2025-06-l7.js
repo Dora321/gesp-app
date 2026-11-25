@@ -22,39 +22,19 @@ const programmingQuestions = [
 3 5
 4 5`, output: `30` }
       ],
-      question: `
-# [GESP202506 七级] 线图
-
-## 题目描述
-
-给定由 $n$ 个结点与 $m$ 条边构成的简单无向图 $G$，结点依次以 $1,2,\\dots,n$ 编号。简单无向图意味着 $G$ 中不包含重边与自环。$G$ 的**线图** $L(G)$ 通过以下方式构建：
-
-- 初始时线图 $L(G)$ 为空。
-
-- 对于无向图 $G$ 中的一条边，在线图 $L(G)$ 中加入与之对应的一个结点。
-
-- 对于无向图 $G$ 中两条不同的边 $(u_1,v_1),(u_2,v_2)$，若存在 $G$ 中的结点同时连接这两条边（即 $u_1,v_1$ 之一与 $u_2,v_2$ 之一相同），则在线图 $L(G)$ 中加入一条无向边，连接 $(u_1,v_1),(u_2,v_2)$ 在线图中对应的结点。
-
-请你求出线图 $L(G)$ 中所包含的无向边的数量。
-
-## 输入格式
-
-第一行，两个正整数 $n,m$，分别表示无向图 $G$ 中的结点数和边数。
-
-接下来 $m$ 行，每行两个正整数 $u_i,v_i$，表示 $G$ 中连接 $u_i,v_i$ 的一条无向边。
-
-## 输出格式
-
-输出共一行，一个整数，表示线图 $L(G)$ 中所包含的无向边的数量。
-`,
+      question: "\n# [GESP202506 七级] 线图\n\n## 题目描述\n\n给定由 $n$ 个结点与 $m$ 条边构成的简单无向图 $G$，结点依次以 $1,2,\\dots,n$ 编号。简单无向图意味着 $G$ 中不包含重边与自环。$G$ 的**线图** $L(G)$ 通过以下方式构建：\n\n- 初始时线图 $L(G)$ 为空。\n\n- 对于无向图 $G$ 中的一条边，在线图 $L(G)$ 中加入与之对应的一个结点。\n\n- 对于无向图 $G$ 中两条不同的边 $(u_1,v_1),(u_2,v_2)$，若存在 $G$ 中的结点同时连接这两条边（即 $u_1,v_1$ 之一与 $u_2,v_2$ 之一相同），则在线图 $L(G)$ 中加入一条无向边，连接 $(u_1,v_1),(u_2,v_2)$ 在线图中对应的结点。\n\n请你求出线图 $L(G)$ 中所包含的无向边的数量。\n\n## 输入格式\n\n第一行，两个正整数 $n,m$，分别表示无向图 $G$ 中的结点数和边数。\n\n接下来 $m$ 行，每行两个正整数 $u_i,v_i$，表示 $G$ 中连接 $u_i,v_i$ 的一条无向边。\n\n## 输出格式\n\n输出共一行，一个整数，表示线图 $L(G)$ 中所包含的无向边的数量。\n\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1\\le n\\le 500$，$1\\le m\\le 500$。\n\n对于所有测试点，保证 $1\\le n\\le 10^5$，$1\\le m\\le 10^5$。",
       explanation: "原图中一个顶点 v 若度数为 deg(v)，则所有与 v 相连的边两两之间都会在线图中形成相邻关系，一共贡献 C(deg(v),2) 条边。因为原图是简单图，两条不同边至多只有一个公共端点，所以不会重复计数。答案就是所有顶点贡献之和 Σ C(deg(v),2)。",
       tags: ["编程题", "图论", "计数", "度数统计"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<long long> deg(n+1, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        deg[u]++;\n        deg[v]++;\n    }\n\n    long long ans = 0;\n    for (int i = 1; i <= n; ++i) {\n        ans += deg[i] * (deg[i]-1) / 2;\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
     {
       id: 27,
@@ -71,33 +51,19 @@ const programmingQuestions = [
 8 2
 5 7`, output: `2` }
       ],
-      question: `
-# [GESP202506 七级] 调味平衡
-
-## 题目描述
-
-小 A 准备了 $n$ 种食材用来制作料理，这些食材依次以 $1,2,\\dots,n$ 编号，第 $i$ 种食材的酸度为 $a_i$，甜度为 $b_i$。对于每种食材，小 A 可以选择将其放入料理，或者不放入料理。料理的酸度 $A$ 为放入食材的酸度之和，甜度 $B$ 为放入食材的甜度之和。如果料理的酸度和甜度相等，那么料理的调味是**平衡的**。
-
-过于清淡的料理并不好吃，因此小 A 想在满足料理调味平衡的前提下，合理选择食材，最大化料理的酸度与甜度之和。你能帮他求出在调味平衡的前提下，料理酸度与甜度之和的最大值吗？
-
-## 输入格式
-
-第一行，一个正整数 $n$，表示食材种类数量。
-
-接下来 $n$ 行，每行两个正整数 $a_i,b_i$，表示食材的酸度和甜度。
-
-## 输出格式
-
-输出共一行，一个整数，表示在调味平衡的前提下，料理酸度与甜度之和的最大值。
-`,
+      question: "\n# [GESP202506 七级] 调味平衡\n\n## 题目描述\n\n小 A 准备了 $n$ 种食材用来制作料理，这些食材依次以 $1,2,\\dots,n$ 编号，第 $i$ 种食材的酸度为 $a_i$，甜度为 $b_i$。对于每种食材，小 A 可以选择将其放入料理，或者不放入料理。料理的酸度 $A$ 为放入食材的酸度之和，甜度 $B$ 为放入食材的甜度之和。如果料理的酸度和甜度相等，那么料理的调味是**平衡的**。\n\n过于清淡的料理并不好吃，因此小 A 想在满足料理调味平衡的前提下，合理选择食材，最大化料理的酸度与甜度之和。你能帮他求出在调味平衡的前提下，料理酸度与甜度之和的最大值吗？\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示食材种类数量。\n\n接下来 $n$ 行，每行两个正整数 $a_i,b_i$，表示食材的酸度和甜度。\n\n## 输出格式\n\n输出共一行，一个整数，表示在调味平衡的前提下，料理酸度与甜度之和的最大值。\n\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1\\le n\\le 10$，$1\\le a_i,b_i\\le 10$。\n\n对于另外 20% 的测试点，保证 $1\\le n\\le 50$，$1\\le a_i,b_i\\le 10$。\n\n对于所有测试点，保证 $1\\le n\\le 100$，$1\\le a_i,b_i\\le 500$。",
       explanation: "把每种食材看成“差值”为 d_i=a_i-b_i、“价值”为 w_i=a_i+b_i 的物品。选择若干食材后若总差值为 0，就恰好满足总酸度等于总甜度；同时我们要最大化总价值。因此可做一个以“差值”为维度的 0/1 背包：dp[delta] 表示达到该差值时最大的 S+T。差值可能为负，所以用偏移量把下标平移到非负区间。最后读取差值 0 对应的状态即可。",
       tags: ["编程题", "动态规划", "0/1背包"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<pair<int, int>> items(n);\n    int sumDiff = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, b;\n        cin >> a >> b;\n        items[i] = {a, b};\n        sumDiff += abs(a-b);\n    }\n\n    const int NEG = -1000000000;\n    int offset = sumDiff;\n    vector<int> dp(offset * 2+1, NEG);\n    dp[offset] = 0;\n\n    for (auto [a, b] : items) {\n        int diff = a-b;\n        int val = a+b;\n        vector<int> ndp = dp;\n        for (int i = 0; i <= offset * 2; ++i) {\n            if (dp[i] <= NEG / 2) continue;\n            int ni = i+diff;\n            if (0 <= ni && ni <= offset * 2) {\n                ndp[ni] = max(ndp[ni], dp[i]+val);\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    cout << max(0, dp[offset]) << '\\n';\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     }
 ];
 
@@ -347,12 +313,7 @@ arr 有 5 个元素，下标范围是 0 到 4。p = arr + 2 指向 arr[2]。p[3]
             id: 7,
             type: "single",
             question: `图的存储和遍历算法，下面说法错误的是（ ）。`,
-            options: [
-                "图的深度优先遍历须要借助队列来完成。",
-                "图的深度优先遍历和广度优先遍历对有向图和无向图都适用。",
-                "使用邻接矩阵存储一个包含 个顶点的有向图，统计其边数的时间复杂度为 。",
-                "同一个图分别使用出边邻接表和入边邻接表存储，其边结点个数相同。",
-            ],
+            options: ["图的深度优先遍历须要借助队列来完成。","图的深度优先遍历和广度优先遍历对有向图和无向图都适用。","使用邻接矩阵存储一个包含 v 个顶点的有向图，统计其边数的时间复杂度为 O(v²)。","同一个图分别使用出边邻接表和入边邻接表存储，其边结点个数相同。"],
             answer: 0,
             score: 2,
             explanation: `**答案：不正确的是 A（图的深度优先遍历应借助栈而非队列）**
@@ -372,7 +333,11 @@ arr 有 5 个元素，下标范围是 0 到 4。p = arr + 2 指向 arr[2]。p[3]
 
 **知识延伸：**
 邻接矩阵判断任意两点间是否有边只需 \`O(1)\`，但遍历所有边的开销为 \`O(v^2)\`；邻接表遍历整张图的时间复杂度为 \`O(v + e)\`。因此在边数 \`e\` 远小于 \`v^2\` 的稀疏图中，邻接表的空间和遍历效率明显更优。`,
-            tags: ['图论', '深度优先搜索']
+            tags: ['图论', '深度优先搜索'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 8,
@@ -687,18 +652,11 @@ int main() {
             sourcePage: 4,
             sourcePages: [4, 5],
             sourceUrl: "https://gesp.ccf.org.cn/101/attach/1687196062973984.pdf",
-            reviewedBy: "本站校订",
-            reviewedAt: "2026-07-27",
-            explanation: `**答案：B（1, 2, 5, 4, 3, 7, 8, 6, 9）**
-
-从 1 出发，第一层可到达的节点是 2、4、5，它们的先后顺序可以随邻接表顺序变化，但必须先于第二层节点出队。
-
-- 若序列以 \`1, 2, ...\` 开始，处理节点 2 时会发现节点 3，并将其排在后来处理 5、4 所发现的新节点之前。
-- 选项 B 却把由 5 或 4 发现的节点 7、8 排在 3 前面，因此不可能由 BFS 得到。
-- A、C、D 均能通过调整同层邻接点的访问顺序产生。
-
-**考点**：广度优先遍历的层序约束。`,
-            tags: ['广度优先搜索', '图的遍历']
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核 / Codex 集成复查",
+            reviewedAt: "2026-11-25",
+            explanation: "**答案：B（1, 2, 5, 4, 3, 7, 8, 6, 9）**\n\n图中的有向边为：1→2、2→3、1→4、1→5、3→5、3→6、4→7、5→7、8→5、6→8、6→9、7→8、8→9。从 1 出发，第一层可到达的节点是 2、4、5，它们的先后顺序可以随邻接表顺序变化，但必须先于第二层节点出队；并且队列严格先进先出，先入队的节点必须先出队。\n\n- A 1, 2, 4, 5, 3, 7, 6, 8, 9：出队 2、4、5 时依次发现 3、7（5 出队时 7 已在队中，无新发现），队列 [3, 7]；出队 3 发现 6，出队 7 发现 8，出队 6 发现 9，随后 8、9 出队，全程与队列次序一致，可行。\n- C 1, 4, 5, 2, 7, 3, 8, 6, 9：出队 4、5、2 时依次发现 7、3，队列 [7, 3]；出队 7 发现 8，出队 3 发现 6，出队 8 发现 9，可行。\n- D 1, 5, 4, 2, 7, 3, 8, 6, 9：出队 5、4、2 时依次发现 7、3，队列 [7, 3]；随后 7、3、8、6、9 按队列次序依次出队，可行。\n- B 1, 2, 5, 4, 3, 7, 8, 6, 9：不可行。出队 3 时发现 6 并入队，此时 8 尚未入队（8 要等到之后出队 7 时才被发现），队列中 6 排在 8 之前；按先进先出，6 必须先于 8 出队，而 B 却让 8 先于 6 出队，违反 BFS 规则，因此不可能由 BFS 得到。\n\n**考点**：广度优先遍历的层序约束。",
+            tags: ['广度优先搜索', '图的遍历'],
+            reviewedFields: ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 16,
@@ -736,29 +694,24 @@ int main() {
         },
         {
             id: 18,
-            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            verificationNote: "核对原卷第 5 页答案表和第 5 页题面。首元素作枢轴时，升序输入每次只减少一个元素，比较次数为 n(n−1)/2，最坏量级为 Θ(n²)。",
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
             sourcePage: 5,
             sourcePages: [5],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-25",
+            reviewedBy: "AI-Codex",
             sourceVerified: true,
-            integrityNote: `ANSWER-DOUBT：原卷判断第3题为O(n log n)，原卷答案表标×，题库answer原值0。按TASK红线保留answer，记录题库与原卷不一致，暂停计分。`,
-            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
             question: `对 n 个元素的数组进行快速排序，最差情况的时间复杂度为 O(n log n)。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**原卷答案表为错误，当前题库答案存在ANSWER-DOUBT。**
-
-原卷写的是最差O(n log n)，并非原解析补写的O(n²)。快速排序每次划分极端失衡时，工作量为n+(n-1)+…+1，最坏紧确量级为Θ(n²)，所以原卷表中的×符合这一分析。
-
-题库原answer为0，依照本轮红线保留该字段并标记争议，等待单独裁定。不能把缺失的公式补成O(n²)来配合既有答案。`,
-            tags: ['排序算法', '复杂度分析']
+            explanation: "**答案：错误**\n\n若每次划分都选到最小或最大的元素，下一次还要处理其余 $n-1$ 个元素。比较次数为 $(n-1)+(n-2)+\\cdots+1=n(n-1)/2$，最坏时间复杂度为 $\\Theta(n^2)$。",
+            tags: ['排序算法', '复杂度分析'],
+      "reviewedFields": ["answer","explanation","reviewedBy","reviewedAt","verificationNote"]
         },
         {
             id: 19,

@@ -1,0 +1,257 @@
+{
+  "paperId": "2024-12-l5",
+  "integratedAt": "2026-11-25T12:32:51.384Z",
+  "accepted": [
+    {
+      "id": 4,
+      "fields": [
+        "options",
+        "explanation",
+        "code"
+      ]
+    },
+    {
+      "id": 5,
+      "fields": [
+        "question",
+        "options",
+        "explanation",
+        "tags"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "options",
+        "question"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "question",
+        "options",
+        "explanation",
+        "tags"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "question",
+        "options",
+        "explanation",
+        "tags"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 15,
+      "reasons": [
+        "原卷答案表为 B。题给函数以值传递接收两个 vector，普通左值调用还会复制两个参数，O(a.size() + b.size()) 作为时间上界成立。因此 C 也可以成立，保留原卷 B 并登记答案维度争议。"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "128",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "最小输入 n=2（单个质因子一次）",
+          "input": "2\n",
+          "output": "1",
+          "reason": "2=2^1，指数 1 只能取一项 {2}，输出 1。实测通过。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "n=64（指数 6 恰好分解为 1+2+3）",
+          "input": "64\n",
+          "output": "3",
+          "reason": "64=2^6，1+2+3=6，取 {2,4,8} 乘积 64 整除 64；再加 2^4 则指数和超 6。实测通过。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "上界 n=10^12（两个指数 12）",
+          "input": "1000000000000\n",
+          "output": "8",
+          "reason": "10^12=2^12×5^12，每指数 T(4)=10≤12 得 4 项，合计 4+4=8。实测通过。",
+          "kind": "boundary",
+          "actual": "8\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d2dcf488f68dad0cade243fef906f3ebb6224014c6fa507b1c066f21c729e135"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4 4\n1 1\n2 1\n3 1\n3 2",
+          "output": "1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "只有 1 号武器（无需修改）",
+          "input": "1 1\n1 7\n",
+          "output": "0",
+          "reason": "只有武器 1 有材料，已严格多于其他武器，花费 0。实测通过。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "两家竞争，移走最便宜材料",
+          "input": "2 2\n1 5\n2 1\n",
+          "output": "1",
+          "reason": "初始 1:1、2:1；把武器 2 的材料（花费 1）移给武器 1 得 2:0，严格大于，花费 1。实测通过。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "多武器需要补足到 cap+1",
+          "input": "3 3\n2 10\n2 20\n3 5\n",
+          "output": "15",
+          "reason": "cap=1 时武器 2 超额 1 移走花费 10，武器 1 仍 1 个，再取最便宜剩余材料 5 补到 2 个，10+5=15；cap=0 需 35、cap=2 需 35，最小 15。实测通过。",
+          "kind": "boundary",
+          "actual": "15\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "4ec0954e1e165c2baad994bdfeb18cca42b36c518b95500d3dbc1ab232066021"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 8
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 10
+    },
+    {
+      "id": 5,
+      "field": "tags",
+      "value": [
+        "客观题",
+        "单选题",
+        "GESP5级",
+        "数论",
+        "最大公约数"
+      ],
+      "sourcePage": 2
+    },
+    {
+      "id": 10,
+      "field": "tags",
+      "value": [
+        "客观题",
+        "单选题",
+        "GESP5级",
+        "排序算法",
+        "归并排序"
+      ],
+      "sourcePage": 5
+    },
+    {
+      "id": 15,
+      "field": "tags",
+      "value": [
+        "客观题",
+        "单选题",
+        "GESP5级",
+        "高精度",
+        "模拟"
+      ],
+      "sourcePage": 7
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 4,
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "code": "int fibA(int n) {\n    if (n <= 1) return n;\n\n    int f1 = 0, f2 = 1;\n    for (int i = 2; i <= n; ++i) {\n        int temp = f2;\n        f2 = f1 + f2;\n        f1 = temp;\n    }\n    return f2;\n}\n\nint fibB(int n) {\n    if (n <= 1) return n;\n    return fibB(n - 1) + fibB(n - 2);\n}"
+      }
+    },
+    {
+      "id": 8,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数。下面说法正确的是（　）。\n\n```cpp\nvector<int> sieve_linear(int n) {\n    vector<bool> is_prime(n +1, true);\n    vector<int> primes;\n    for (int i = 2; i <= n/2; i++) {\n        if (is_prime[i])\n            primes.push_back(i);\n        for (int j = 0; j < primes.size() && i * primes[j] <= n; j++) {\n            is_prime[ i * primes[j] ] = 0;\n            if (i % primes[j] == 0)\n                break;\n        }\n    }\n    for (int i = n/2 +1; i <= n; i++) {\n        if (is_prime[i])\n            primes.push_back(i);\n    }\n    return primes;\n}\n```"
+      }
+    },
+    {
+      "id": 11,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：不正确的是 C（递归的终止条件不仅包含找到目标元素，若数组中不含该元素，搜索区间为空时递归也会正常终止）**\n\n**核心解析：**\n题干描述为在元素互不相同的有序数组 `nums` 中查找目标值 `target` 的索引。结合各选项可知，本题重点考查**递归二分查找**的核心机制（题干已给出完整的 `binarySearch` 与 `Find` 函数，本题围绕有序数组中的递归二分查找展开）。\n\n二分查找借助数组的单调性，采用“分而治之”的思想，每次取搜索区间的中点元素 `nums[mid]` 与目标值 `target` 进行比较：\n1. **规模减半**：若 `target < nums[mid]`，说明目标只可能在左半区间，转为在 `[left, mid - 1]` 中查找；若 `target > nums[mid]`，则转为在 `[mid + 1, right]` 中查找。每次递归都排除了包含中点在内的一半区间，问题规模严格缩减一半。\n2. **递归终止条件（出口）**：任何递归算法都必须具备完备的终止条件。递归二分查找包含两个出口：\n   - **查找成功**：当 `nums[mid] == target` 时，命中目标，直接返回当前索引 `mid`，递归正常终止；\n   - **查找失败**：当目标元素不存在于数组中时，搜索区间不断缩小，直至出现 `left > right`（即搜索区间为空），此时触发递归基，函数返回 `-1`（表示未找到），**递归同样正常终止**。\n\n因此，若数组中不包含 `target`，递归也会在区间收缩为空时结束，绝不会出现“递归不会终止”的死循环。C 选项的说法错误。\n\n**选项逐项分析：**\n- **A 函数采用二分查找，每次计算搜索当前搜索区间的中点，然后根据中点的元素值排除一半搜索区间。**：✅ 说法正确。这正是二分查找的基本原理。利用数组的单调有序性，比较目标值与中点 `nums[mid]` 的大小后，可直接排除不可能包含目标的一半区间（左半或右半），只在剩下的一半区间内继续搜索。\n- **B 函数采用递归求解，每次问题的规模减小一半。**：✅ 说法正确。在递归实现的二分查找中，每一次递归调用仅进入左子区间或右子区间中的一个，待搜索区间的元素个数从 `n` 缩减为约 `n / 2`，问题规模严格减半。\n- **C 递归的终止条件是中间元素的值等于target，若数组中不包含该元素，递归不会终止。**：❌ 说法错误，符合题意。递归的终止条件除命中目标元素外，还必须包含“区间为空”的退出边界（如 `left > right`）。当数组中不存在 `target` 时，递归会在区间耗尽时终止并返回 `-1`，因此“若数组中不包含该元素，递归不会终止”是不符合算法事实的。\n- **D 算法的复杂度为 $O(\\log n)$。**：✅ 说法正确。由于问题规模每次折半（`n -> n/2 -> n/4 -> ... -> 1`），递归的最大深度为 `log2(n)` 层，每一层递归仅执行一次中点计算与常数级比较，因此该算法的时间复杂度为 `O(log n)`。\n\n**易错提醒：**\n- **审清反向设问**：题目设问为“描述不正确的是”，要求找出叙述有误的选项，切忌误选正确叙述。"
+      }
+    }
+  ]
+}

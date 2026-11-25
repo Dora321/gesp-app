@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { clearAnalysisProgress, loadAnalysisProgress, questionSignature, saveAnalysisProgress } from '../utils/analysisProgress';
 import { recordQuestionResult } from '../utils/examHistory';
-import { isProgrammingQuestion } from '../utils/questionHelpers';
+import { getDisplayedQuestionIndex, getSavedQuestionIndex, isProgrammingQuestion } from '../utils/questionHelpers';
 import { isScoringExcluded } from '../utils/sourceIntegrity';
 
 const EMPTY = { answers: {}, revealed: {}, currentQuestionIndex: 0 };
 
-const restore = (storageKey, signature) => {
+const restore = (storageKey, signature, questions) => {
     const saved = loadAnalysisProgress(storageKey, signature);
     if (!saved) return EMPTY;
     return {
         answers: saved.answers || {},
         revealed: saved.revealed || {},
-        currentQuestionIndex: saved.currentQuestionIndex || 0,
+        currentQuestionIndex: getDisplayedQuestionIndex(questions, saved.currentQuestionIndex || 0),
     };
 };
 
@@ -28,9 +28,10 @@ export default function useAnalysisSession({ storageKey = null, questions = [], 
         () => (trackSignature ? questionSignature(questions) : undefined),
         [trackSignature, questions],
     );
-    const [state, setState] = useState(() => (storageKey ? restore(storageKey, signature) : EMPTY));
+    const [state, setState] = useState(() => (storageKey ? restore(storageKey, signature, questions) : EMPTY));
     const { answers, revealed } = state;
     const currentQuestionIndex = Math.min(state.currentQuestionIndex, Math.max(0, questions.length - 1));
+    const savedQuestionIndex = getSavedQuestionIndex(questions, state.currentQuestionIndex);
 
     const mistakeSourceRef = useRef(mistakeSource);
     useEffect(() => { mistakeSourceRef.current = mistakeSource; }, [mistakeSource]);
@@ -38,8 +39,8 @@ export default function useAnalysisSession({ storageKey = null, questions = [], 
     useEffect(() => {
         if (!storageKey) return;
         const touched = Object.keys(state.answers).length > 0 || state.currentQuestionIndex > 0;
-        if (touched) saveAnalysisProgress(storageKey, { ...state, signature });
-    }, [storageKey, state, signature]);
+        if (touched) saveAnalysisProgress(storageKey, { ...state, currentQuestionIndex: savedQuestionIndex, signature });
+    }, [storageKey, state, signature, savedQuestionIndex]);
 
     const setCurrentQuestionIndex = useCallback((next) => {
         setState((prev) => ({

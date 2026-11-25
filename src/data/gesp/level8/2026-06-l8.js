@@ -440,7 +440,7 @@ D 要先出 \`3\`，就要先把 \`1, 2, 3\` 入栈，栈自底向上是 \`[1, 2
       type: 'judge',
       question: `若一项任务可从两种互斥的方案中选择一种完成，其中，方案 A 有 m 种做法，方案 B 有 n 种做法，则总做法数为 m + n。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：正确**
 
@@ -463,26 +463,34 @@ D 要先出 \`3\`，就要先把 \`1, 2, 3\` 入栈，栈自底向上是 \`[1, 2
 **知识延伸：**
 加法原理可推广至 \`k\` 类互斥方案：若各类分别有 \`n1, n2, ..., nk\` 种做法，则总做法数为 \`n1 + n2 + ... + nk\`。在动态规划的状态转移和搜索剪枝中，互斥状态的转移求和正是加法原理的应用。`,
       tags: ['组合计数'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 17,
       type: 'judge',
       question: `将 n 个不同元素围成一圈，若只把旋转视为同一种排法、翻转仍视为不同排法，则方案数为 (n − 1)!。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 圆排列计数：n 个元素排成一圈的每个方案在"拉直"后对应 n 个线排列（旋转不改变相对次序），所以圆排列数 = n! / n = **(n − 1)!**。注意翻转（镜像）算不同排法——若翻转也视为相同（如手镯问题），方案数要再除以 2。`,
       tags: ['组合计数', '圆排列'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 18,
       type: 'judge',
       question: `从 n 个不同元素中可重复地选取 k 个且不考虑顺序，方案数为 C(n + k, k)。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -491,13 +499,17 @@ D 要先出 \`3\`，就要先把 \`1, 2, 3\` 入栈，栈自底向上是 \`[1, 2
 
 验证小例子：n = 2, k = 1，从 2 个元素中可重复选 1 个显然只有 2 种；C(2+1, 1) = 3 ≠ 2，而正确公式 C(2+1−1, 1) = C(2,1) = 2 ✓。`,
       tags: ['组合计数'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 19,
       type: 'judge',
       question: `杨辉三角中的组合数满足 C(n, k) = C(n − 1, k) + C(n − 2, k)。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -510,19 +522,27 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
 
 验证：C(4,2) = 6，而 C(3,2) + C(2,2) = 3 + 1 = 4 ≠ 6；C(3,2) + C(3,1) = 3 + 3 = 6 ✓。`,
       tags: ['组合计数', '杨辉三角'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 20,
       type: 'judge',
       question: `快速幂通过二进制拆分指数，可以在 O(log b) 时间内计算 a^b mod m。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 把指数 b 写成二进制：a^b = a^(b₀·2⁰) · a^(b₁·2¹) · …，底数每轮平方一次（a → a² → a⁴ → …），按 b 的二进制位决定是否乘入答案。循环次数等于 b 的二进制位数，即 **O(log b)** 次乘法（每次附带取模）。`,
       tags: ['快速幂', '数论'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 21,
@@ -530,13 +550,13 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
       sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
       sourcePage: 4,
       sourcePages: [4],
-      reviewedAt: `2026-11-06`,
-      reviewedBy: `AI-Codex`,
+      reviewedAt: "2026-11-07",
+      reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
       sourceVerified: true,
       type: 'judge',
       question: `只要图中不存在负权环，Dijkstra 算法就一定能正确处理带负权边的图。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `答案为错误。
 
@@ -544,13 +564,14 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
 
 因此只有“无负权环”仍不足以使用标准Dijkstra，需采用适合负边的最短路算法。原解析的例子会先处理较近的中转点，无法构成反例，现已纠正。`,
       tags: ['图论', 'Dijkstra', '最短路'],
+      "reviewedFields": ["answer","reviewedBy","reviewedAt"],
     },
     {
       id: 22,
       type: 'judge',
       question: `若一张连通无向图所有边权两两不同，则它的最小生成树一定唯一。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
@@ -559,26 +580,34 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
 
 （边权可重复时 MST 才可能不唯一；Kruskal/Prim 在边权互异时结果确定。）`,
       tags: ['图论', '最小生成树'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 23,
       type: 'judge',
       question: `判断点 (x, y) 是否在以原点为圆心、半径为 r 的圆内或圆上时，可以比较 x² + y² 与 r²，不必先开平方。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 "圆内或圆上"即 √(x² + y²) ≤ r。由于两边都非负，平方是单调等价变换：x² + y² ≤ r² ⟺ 距离 ≤ r。比较整数平方还能完全避免开方带来的**浮点精度误差**和额外计算开销，是几何判定的标准做法。`,
       tags: ['几何', '数学'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 24,
       type: 'judge',
       question: `若能写出判定函数 check(x)，表示"答案为 x 时是否可行"，即使 check(x) 不满足单调性，也一定可以使用二分答案求最优解。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -587,13 +616,17 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
 
 非单调问题需要枚举、动态规划或其他方法。`,
       tags: ['二分查找'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 25,
       type: 'judge',
       question: `归并排序是一种稳定排序算法，常见实现的时间复杂度为 O(n log n)。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
@@ -602,6 +635,10 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
 
 复杂度：T(n) = 2T(n/2) + O(n) = O(n log n)，且最好、最坏、平均都稳定在这一水平（这是它相对快排的优点）。`,
       tags: ['排序算法', '归并排序'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 26,
@@ -609,7 +646,7 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
       title: '线网建设',
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       description: `A 市有 n 座基站需要通过线网互相连接。第 i 座基站位于二维平面上坐标 (x_i, y_i) 处。
 
 第 i 座基站与第 j 座基站之间的距离定义为 $\\sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}$。
@@ -756,6 +793,7 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
       template: '#include <iostream>\n#include <cstdio>\n#include <algorithm>\n#include <cmath>\nusing namespace std;\n\nconst int N = 510;\nconst int E = N * N;\nint n, l;\nint x[N], y[N];\nint p[E], u[E], v[E], cnt;\nint f[N], t = 0;\ndouble d[E], ans = 0;\n\nint getf(int u) {\n    // 在此编写代码（并查集查找）\n    return u;\n}\n\nint main() {\n    cin >> n >> l;\n    for (int i = 1; i <= n; i++)\n        cin >> x[i] >> y[i];\n    // 在此编写代码\n    return 0;\n}',
       referenceCode: '#include <iostream>\n#include <cstdio>\n#include <algorithm>\n#include <cmath>\nusing namespace std;\nconst int N = 510;\nconst int E = N * N;\nint n, l;\nint x[N], y[N];\nint p[E], u[E], v[E], cnt;\nint f[N], t = 0;\ndouble d[E], ans = 0;\nint getf(int u) {\n    return f[u] ? f[u] = getf(f[u]) : u;\n}\nbool cmp(int a, int b) {\n    return d[a] < d[b];\n}\nint main() {\n    cin >> n >> l;\n    for (int i = 1; i <= n; i++)\n        cin >> x[i] >> y[i];\n    for (int i = 1; i <= n; i++)\n        for (int j = i + 1; j <= n; j++) {\n            int dx = x[i] - x[j], dy = y[i] - y[j];\n            if (dx * dx + dy * dy > l * l)\n                continue;\n            cnt++;\n            p[cnt] = cnt;\n            u[cnt] = i;\n            v[cnt] = j;\n            d[cnt] = sqrt(dx * dx + dy * dy);\n        }\n    sort(p + 1, p + cnt + 1, cmp);\n    for (int i = 1; i <= cnt; i++) {\n        int pu = u[p[i]], pv = v[p[i]];\n        if (getf(pu) == getf(pv))\n            continue;\n        t++;\n        ans += d[p[i]];\n        f[getf(pu)] = pv;\n    }\n    if (t == n - 1)\n        printf("%.2lf\\n", ans);\n    else\n        printf("Impossible\\n");\n    return 0;\n}',
       tags: ['图论', '最小生成树', '并查集'],
+      "reviewedFields": ["memoryLimit"],
     },
     {
       id: 27,
@@ -763,24 +801,8 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
       title: '堆石子',
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
-      description: `有 m 堆石子，编号为 1, 2, …, m，其石子数量分别记为 a₁, a₂, …, aₘ。
-
-现在要求第 1 堆石子恰有 n 个（即 a₁ = n），并且此后每堆石子的数量严格小于前一堆，即 a_i < a_{i-1}（2 ≤ i ≤ m）。此外，每堆至少需要有一个石子，即 a_i ≥ 1（1 ≤ i ≤ m）。
-
-在总石子数量不设限制的情况下，给定 m ≥ 2, n ≥ 1，有多少个满足要求的石子堆放方案？
-
-两个方案不同，当且仅当，两个方案中至少有一堆石子数量不同。
-
-如果不存在满足要求的方案，输出 0。由于方案数可能很大，请输出方案数对 10⁹ + 7 取模后的结果。
-
-## 数据范围
-
-| 数据点编号 | 数据范围 | 特殊性质 |
-|---|---|---|
-| 1, 2 | $2 \\leq m \\leq 100$，$1 \\leq n \\leq 100$ | $0 \\leq n - m \\leq 5$ |
-| 3, 4, 5 | $2 \\leq m \\leq 100$，$1 \\leq n \\leq 10^9$ | 无 |
-| 6, 7, 8, 9, 10 | $2 \\leq m \\leq 10^5$，$1 \\leq n \\leq 10^9$ | 无 |`,
+      memoryLimit: "512 MB",
+      description: "有 m 堆石子，编号为 1, 2, …, m，其石子数量分别记为 a₁, a₂, …, aₘ。\n\n现在要求第 1 堆石子恰有 n 个（即 a₁ = n），并且此后每堆石子的数量严格小于前一堆，即 aᵢ < aᵢ₋₁（2 ≤ i ≤ m）。此外，每堆至少需要有一个石子，即 aᵢ ≥ 1（1 ≤ i ≤ m）。\n\n在总石子数量不设限制的情况下，给定 m ≥ 2, n ≥ 1，有多少个满足要求的石子堆放方案？\n\n两个方案不同，当且仅当，两个方案中至少有一堆石子数量不同。\n\n如果不存在满足要求的方案，输出 0。由于方案数可能很大，请输出方案数对 10⁹ + 7 取模后的结果。\n\n## 数据范围\n\n| 数据点编号 | 数据范围 | 特殊性质 |\n|---|---|---|\n| 1, 2 | 2 ≤ m ≤ 100，1 ≤ n ≤ 100 | 0 ≤ n − m ≤ 5 |\n| 3, 4, 5 | 2 ≤ m ≤ 100，1 ≤ n ≤ 10^8 | 无 |\n| 6, 7, 8, 9, 10 | 2 ≤ m ≤ 10^5，1 ≤ n ≤ 10^8 | 无 |",
       inputDescription: `输入一行两个正整数 m 和 n。`,
       outputDescription: `输出一个整数，表示总方案数对 10⁹ + 7 取模后的结果。`,
       samples: [
@@ -789,25 +811,14 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
           output: `6`,
         },
       ],
-      explanation: `**解析：**
-
-要求 a₁ = n > a₂ > a₃ > … > aₘ ≥ 1，即从 {1, 2, …, n − 1} 中选出 m − 1 个互不相同的数作为 a₂ … aₘ——**选定集合后排列方式唯一**（严格递减）。
-
-所以方案数就是组合数：
-
-$$\\binom{n-1}{m-1}$$
-
-当 n − 1 < m − 1（即 n < m）时无解，输出 0（此时组合数按 0 处理）。
-
-**样例验证：** m = 3, n = 5 → C(4, 2) = **6** ✓，对应 (5,4,3)、(5,4,2)、(5,4,1)、(5,3,2)、(5,3,1)、(5,2,1)。
-
-实现：n 高达 10⁹ 不能预处理阶乘，用**逐项计算组合数** ans = ∏(n−1−i)/(i+1)，除法用费马小定理求逆元（模 10⁹ + 7 为素数），配合快速幂。复杂度 O(m log MOD)（m ≤ 10⁵）。
-
-**考点：** 组合计数、逆元、快速幂、数论
-`,
+      explanation: "**解析：**\n\n要求 a₁ = n > a₂ > a₃ > … > aₘ ≥ 1，即从 {1, 2, …, n − 1} 中选出 m − 1 个互不相同的数作为 a₂ … aₘ——**选定集合后排列方式唯一**（只能严格递减）。\n\n所以方案数就是组合数：\n\n$$\\binom{n-1}{m-1}$$\n\n当 n − 1 < m − 1（即 n < m）时无解，输出 0（此时组合数按 0 处理）。\n\n**样例验证：** m = 3, n = 5 → C(4, 2) = **6** ✓，对应 (5,4,3)、(5,4,2)、(5,4,1)、(5,3,2)、(5,3,1)、(5,2,1)。\n\n实现：n 高达 10⁸ 不能预处理阶乘，用**逐项计算组合数** ans = ∏(n−1−i)/(i+1)，除法用费马小定理求逆元（模 10⁹ + 7 为素数，且 n−1 < 10⁸ < MOD，费马小定理条件满足），配合快速幂。复杂度 O(m log MOD)（m ≤ 10⁵）。\n\n**考点：** 组合计数、逆元、快速幂、数论",
       template: '#include <iostream>\nusing namespace std;\n\nconst int MOD = (int)1e9 + 7;\n\nint qpow(int base, int exp) {\n    // 在此编写代码（快速幂）\n    return 1;\n}\n\nint comb(int n, int m) {\n    // 在此编写代码（组合数取模）\n    return 0;\n}\n\nint main() {\n    int m, n;\n    cin >> m >> n;\n    cout << comb(n - 1, m - 1) << endl;\n    return 0;\n}',
       referenceCode: '#include <iostream>\nusing namespace std;\nconst int MOD = (int)1e9 + 7;\nint qpow(int base, int exp) {\n    if (!exp) return 1;\n    if (exp & 1) return (long long)base * qpow((long long)base * base % MOD, exp >> 1) % MOD;\n    return qpow((long long)base * base % MOD, exp >> 1);\n}\nint comb(int n, int m) {\n    if (m > n) return 0;\n    int ans = 1;\n    for (int i = 0; i < m; ++i) {\n        ans = (long long)ans * (n - i) % MOD;\n        ans = (long long)ans * qpow(i + 1, MOD - 2) % MOD;\n    }\n    return ans;\n}\nint main() {\n    int m, n;\n    cin >> m >> n;\n    cout << comb(n - 1, m - 1) << endl;\n    return 0;\n}',
       tags: ['组合计数', '数论', '快速幂'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["description","explanation","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
   ],
 };

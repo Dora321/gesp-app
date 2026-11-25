@@ -1,0 +1,195 @@
+{
+  "paperId": "2026-06-l8",
+  "integratedAt": "2026-11-25T12:12:33.174Z",
+  "accepted": [
+    {
+      "id": 16,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 17,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 18,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 19,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 20,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 21,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 22,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 23,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 25,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "description",
+        "explanation",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 9,
+      "tests": [
+        {
+          "input": "3 5",
+          "output": "6",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例（m=3,n=5）",
+          "input": "3 5\n",
+          "output": "6",
+          "reason": "C(4,2)=6，对应 (5,4,3)、(5,4,2)、(5,4,1)、(5,3,2)、(5,3,1)、(5,2,1)，与第 7 页样例解释一致。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "m=n（恰取满）",
+          "input": "3 3\n",
+          "output": "1",
+          "reason": "C(2,2)=1，唯一方案 (3,2,1)；验证 n−1 = m−1 的取满边界。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "m=2,n=3（最小无解边界之上）",
+          "input": "2 3\n",
+          "output": "2",
+          "reason": "C(2,1)=2：(3,2)、(3,1)；验证第二堆只能从 1..n−1 任取。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "m=4,n=7（一般小例）",
+          "input": "4 7\n",
+          "output": "20",
+          "reason": "C(6,3)=20，与直接枚举严格递减序列个数一致。",
+          "kind": "boundary",
+          "actual": "20\n",
+          "passed": true
+        },
+        {
+          "name": "m=2,n=1 无解",
+          "input": "2 1\n",
+          "output": "0",
+          "reason": "a₁=1，要求 a₂<a₁ 且 a₂≥1，不存在；comb 首行 m>n 返回 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "n<m 无解（5 3）",
+          "input": "5 3\n",
+          "output": "0",
+          "reason": "C(2,4) 中 m−1>n−1，组合意义下无法从 2 个数中选 4 个，输出 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "满档 m=1e5、n=1e8",
+          "input": "100000 100000000\n",
+          "output": "835940359",
+          "reason": "C(99999999,99999) mod 1e9+7，与 Python math.comb 精确计算后取模的独立结果一致，覆盖 m=1e5 的最大循环与 n=1e8。",
+          "kind": "boundary",
+          "actual": "835940359\n",
+          "passed": true
+        },
+        {
+          "name": "满档 n<m（m=1e5、n=99999）",
+          "input": "100000 99999\n",
+          "output": "0",
+          "reason": "m−1=99999 > n−1=99998，comb 返回 0，验证满档下无解分支。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "大 n 小 m（逆元路径）",
+          "input": "2 100000000\n",
+          "output": "99999999",
+          "reason": "C(99999999,1)=99999999，验证 n 接近 1e8 时逐项乘与费马逆元仍正确。",
+          "kind": "boundary",
+          "actual": "99999999\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "1280a922eec00943f4caa53d88b51407a873d4677e46abc3e582c2f3ff70e2eb"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 4
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 6
+    }
+  ]
+}

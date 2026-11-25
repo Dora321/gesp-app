@@ -583,7 +583,7 @@ export function applyVerifiedQuestionCorrections(paper) {
     return {
       ...question,
       ...verified,
-      requiresCode: typeof (verified.code ?? question.code) === 'string',
+      requiresCode: typeof (verified.code ?? question.code) === 'string' && (verified.code ?? question.code).trim().length > 0,
       sourceVerified: true,
       reviewedBy: verified.reviewedBy || question.reviewedBy || REVIEWED_BY,
       reviewedAt: verified.reviewedAt || question.reviewedAt || reviewedAt,

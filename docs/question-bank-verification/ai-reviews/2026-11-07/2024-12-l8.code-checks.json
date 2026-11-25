@@ -1,0 +1,119 @@
+{
+  "executedAt": "2026-11-25T07:44:31.631Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5 1\n0 0 1 1 1\n1 2\n2 3\n2 5\n1 4",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "单白点",
+          "input": "1 0\n0\n",
+          "output": "1",
+          "reason": "单结点白色，黑点数 0≤0，路径长度 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "三结点链限 1 个黑点",
+          "input": "3 1\n1 0 1\n1 2\n2 3\n",
+          "output": "2",
+          "reason": "整条链有 2 个黑点超过 1，最长合法路径为相邻两点，含 1 个黑点。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "全白链",
+          "input": "3 0\n0 0 0\n1 2\n2 3\n",
+          "output": "3",
+          "reason": "没有黑点，整条 3 结点链合法。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "fe655b471e4c60f93c52287d41a98352720279ac647b33d61ff94d1443f1b83e"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "4 2\n1 3\n2 4",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "3 0",
+          "output": "6",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "input": "3 2\n1 2\n2 1",
+          "output": "0",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "无约束",
+          "input": "3 0\n",
+          "output": "6",
+          "reason": "3 人无约束，全排列 3!=6。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "两条独立相邻约束",
+          "input": "4 2\n1 3\n2 4\n",
+          "output": "2",
+          "reason": "形成 {1,3}、{2,4} 两个块，块间排列 2!=2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "三结点一条约束",
+          "input": "3 1\n1 2\n",
+          "output": "2",
+          "reason": "形成 {1,2} 与 {3} 两个单元，排列 2!=2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "互相矛盾的约束",
+          "input": "3 2\n1 2\n2 1\n",
+          "output": "0",
+          "reason": "两条约束成环，无法同时满足。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "923853d0578af8a055604f190e76e74750aa36a19de420baa478f55f2a05650d"
+    }
+  ]
+}

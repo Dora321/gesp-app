@@ -1,0 +1,234 @@
+{
+  "paperId": "2024-06-l7",
+  "integratedAt": "2026-11-25T12:13:33.634Z",
+  "accepted": [
+    {
+      "id": 1,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 2,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 4,
+      "fields": []
+    },
+    {
+      "id": 6,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "options"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 18,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 20,
+      "fields": []
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "referenceCode",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "5\n0 1 0 1 0\n1 2\n1 3\n3 4\n3 5",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "单个黑点",
+          "input": "1\n1\n",
+          "output": "0",
+          "reason": "只有一个黑点，删除所有白点后仅剩该点，已经是树，无需操作。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "三节点路径两端黑",
+          "input": "3\n1 0 1\n1 2\n2 3\n",
+          "output": "1",
+          "reason": "黑点 1、3 的最小连通子树为 1-2-3，白点 2 必须染黑，操作 1 次。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "五节点路径两端黑",
+          "input": "5\n1 0 0 0 1\n1 2\n2 3\n3 4\n4 5\n",
+          "output": "3",
+          "reason": "黑点 1、5 的最小连通子树覆盖全链，白点 2、3、4 共 3 个。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "星形两黑叶",
+          "input": "4\n0 1 1 0\n1 2\n1 3\n1 4\n",
+          "output": "1",
+          "reason": "黑点 2、3 经白心 1 连通，最小子树 2-1-3 只需把中心 1 染黑。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ab78fe95654cff6ed6f396a380e72c76bf81483a501d262fa49b19fab59ef401"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "5\n3 2 4 3 2",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "单元素平方",
+          "input": "1\n4\n",
+          "output": "1",
+          "reason": "唯一区间 [1,1] 乘积为 4=2²，是完全平方数。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两个 1",
+          "input": "2\n1 1\n",
+          "output": "3",
+          "reason": "[1,1]、[2,2]、[1,2] 的乘积都是 1，共 3 对。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "三个 2",
+          "input": "3\n2 2 2\n",
+          "output": "2",
+          "reason": "相邻两数乘积 4 为平方，得 [1,2]、[2,3] 两对；单元素 2 与整段 8 均非平方。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "交替 2 与 8",
+          "input": "4\n2 8 2 8\n",
+          "output": "4",
+          "reason": "相邻乘积 16 的三对 [1,2]、[2,3]、[3,4]，加整段 2·8·2·8=256，共 4 对。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "5e46fa2a898c58a3d72452cb0fc47d61041224231160a0ab66f266d5d60ece7b"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 7
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 9
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 11,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：C**\n\n邻接表 5 行（下标 0~4 对应 V1~V5），链中数字为邻接顶点下标：V1 连 4、2；V2 连 5、3、1；V3 连 5、4、2；V4 连 3、1；V5 连 3、2。无向边去重后边集为 V1-V2、V1-V4、V2-V3、V2-V5、V3-V4、V3-V5，共 6 条。\n\n- 图 A：还含底边 V4-V5，共 7 条边，不符。\n- 图 B：无 V2-V5、含 V4-V5，不符。\n- 图 C：边集恰为上述 6 条，相符 ✅。\n- 图 D：仅 4 条边，不符。\n\n故邻接表对应图 C，与官方答案表一致。"
+      }
+    },
+    {
+      "id": 12,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：A（与该邻接矩阵对应的图）**\n\n**核心解析：**\n原卷矩阵是 5 行 5 列，顶点下标 `0~4`。`inf` 表示没有这条边，其它数字是权值：\n- `0→2` 权 12，`0→3` 权 30\n- `2→4` 权 32\n- `3→1` 权 5\n- `4→0` 权 50\n- 顶点 1 没有出边\n\n`M[0][2]=12` 而 `M[2][0]=inf`，矩阵不对称，所以是有向图；边上是具体权值，所以带权。这是 5 个顶点的带权有向图。\n\n**选项逐项分析：**\n- **A**：✅ 有向边 0→2(12)、0→3(30)、2→4(32)、4→0(50)、3→1(5)，与矩阵逐项一致。\n- **B**：❌ 把 3→1(5) 换成了 4→1(5)；矩阵中 `M[3][1]=5`、`M[4][1]=inf`，不符。\n- **C**：❌ 标为无向图，但矩阵不对称（如 `M[0][2]=12` 而 `M[2][0]=inf`）；且无向边 0-4(50) 会要求 `M[0][4]=M[4][0]=50`，与矩阵不符。\n- **D**：❌ 同样是无向图，且用 4-1(5) 代替了矩阵中的 3→1(5)，不符。\n\n**易错提醒：**\n- 行数就是顶点数，这里是 5 不是 4。\n- 先看矩阵是否对称判断有向/无向，再逐条核对起点、终点和权值，不要只看权值集合。"
+      }
+    }
+  ]
+}

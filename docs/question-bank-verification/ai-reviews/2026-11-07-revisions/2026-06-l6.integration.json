@@ -1,0 +1,322 @@
+{
+  "paperId": "2026-06-l6",
+  "integratedAt": "2026-11-25T12:12:04.457Z",
+  "accepted": [
+    {
+      "id": 16,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 17,
+      "fields": [
+        "code",
+        "answer"
+      ]
+    },
+    {
+      "id": 18,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 19,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 20,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 21,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 22,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 23,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 25,
+      "fields": [
+        "answer"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "description",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "4\n2 3\n4 0\n0 0\n0 0",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "3\n2 3\n0 0\n0 0",
+          "output": "3",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "n=1 单结点",
+          "input": "1\n0 0\n",
+          "output": "1",
+          "reason": "单结点是满二叉树，答案 1，覆盖最小 n。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "不等高子树不计入",
+          "input": "7\n2 3\n4 5\n0 0\n0 0\n6 7\n0 0\n0 0\n",
+          "output": "5",
+          "reason": "叶子 3、4、6、7 与结点 5 的子树为满二叉树；结点 2 左右高度 1、2 不等，根因此也不满，计数 5。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "完全满树",
+          "input": "7\n2 3\n4 5\n6 7\n0 0\n0 0\n0 0\n0 0\n",
+          "output": "7",
+          "reason": "每个结点为根的子树都是满二叉树，计数 7，覆盖 3 层满树。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "单叶与单侧孩子混合",
+          "input": "5\n2 3\n4 0\n0 0\n5 0\n0 0\n",
+          "output": "2",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f5241337d8fe9a2b8de933bafddbf191f5c27f3e1ac555404df8d352f80417c7",
+      "stressTests": [
+        {
+          "name": "32767 结点完整满树",
+          "inputBytes": 251036,
+          "inputSha256": "6797fd008260c1f09bc103277548cd04580ec35bf6ebb74b19d1abe9ca0c8fd3",
+          "output": "32767",
+          "outputSha256": "81e48f4bdcd948620bebcd41fdeef2eb4b3ac5faa4ceb63b6968cfb0863b81bb",
+          "elapsedMs": 74,
+          "passed": true
+        },
+        {
+          "name": "10 万结点左链",
+          "inputBytes": 788902,
+          "inputSha256": "b5ec592c4cfa1d216a2a0ecb104b7e09faec393d56e95b8bcb06764d8d6aa71d",
+          "output": "1",
+          "outputSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "elapsedMs": 168,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 8
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 10
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 16,
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "answer": 1
+      }
+    },
+    {
+      "id": 17,
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "answer": 1
+      }
+    },
+    {
+      "id": 18,
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "answer": 1
+      }
+    },
+    {
+      "id": 19,
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "answer": 0
+      }
+    },
+    {
+      "id": 20,
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "answer": 1
+      }
+    },
+    {
+      "id": 21,
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "answer": 1
+      }
+    },
+    {
+      "id": 22,
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "answer": 0
+      }
+    },
+    {
+      "id": 23,
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "answer": 1
+      }
+    },
+    {
+      "id": 24,
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "answer": 0
+      }
+    },
+    {
+      "id": 25,
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "answer": 0
+      }
+    },
+    {
+      "id": 27,
+      "reasons": [
+        "修改 description 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "description": "给定一棵包含 n 个结点的有根二叉树，结点依次以 1, 2, …, n 编号，根结点编号为 1。\n\n对于结点 i，其左儿子的编号记为 l_i，右儿子编号记为 r_i。特别地，如果左儿子不存在则 l_i = 0，如果右儿子不存在则 r_i = 0。\n\n树中每个结点都对应一棵以其为根的子树。请你求出给定有根树的所有 n 棵子树中，有多少棵子树是满二叉树。\n\n满二叉树是指所有叶子深度均相同，且除叶子外均有两个儿子的二叉树，例如以下三棵二叉树均是满二叉树：\n\n```text\n()      ()        ()\n       / \\       / \\\n      () ()     () ()\n               / \\ / \\\n              () () () ()\n```\n\n例如，\n\n```text\n   ()\n  /  \\\n ()    ()\n```\n\n在上面这棵有 3 个节点的二叉树中，有 3 个子树是满二叉树（包括整个树本身，及所有的单个叶子节点）；\n\n又例如，\n\n```text\n    (1)\n   /  \\\n (2)   (3)\n      /  \\\n    (4)   (5)\n```\n\n在上面这棵有 5 个节点的二叉树中，有 4 个子树是满二叉树（包括节点 3 的子树，以及所有单个叶子节点）。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\leq n \\leq 500$。\n\n对于所有测试点，保证 $1 \\leq n \\leq 10^5$。"
+      }
+    }
+  ]
+}

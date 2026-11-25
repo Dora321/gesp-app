@@ -1,0 +1,120 @@
+{
+  "paperId": "2023-09-l5",
+  "integratedAt": "2026-11-25T12:09:38.187Z",
+  "accepted": [
+    {
+      "id": 3,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "6",
+          "output": "2 * 3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2 * 3\n",
+          "passed": true
+        },
+        {
+          "input": "20",
+          "output": "2^2 * 5",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2^2 * 5\n",
+          "passed": true
+        },
+        {
+          "input": "23",
+          "output": "23",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "23\n",
+          "passed": true
+        },
+        {
+          "name": "最小输入 N=2",
+          "input": "2\n",
+          "output": "2\n",
+          "reason": "独立推演：2*2>2 循环不执行，N>1 分支直接输出 2，验证最小边界与素数单因子路径。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "完全平方 N=4",
+          "input": "4\n",
+          "output": "2^2\n",
+          "reason": "独立推演：p=2 连除两次 cnt=2，输出 2^2 后 N=1，验证指数合并路径。",
+          "kind": "boundary",
+          "actual": "2^2\n",
+          "passed": true
+        },
+        {
+          "name": "指数两位的纯幂 N=65536",
+          "input": "65536\n",
+          "output": "2^16\n",
+          "reason": "独立推演：65536=2^16，验证同一质因子高次幂的指数输出。",
+          "kind": "boundary",
+          "actual": "2^16\n",
+          "passed": true
+        },
+        {
+          "name": "上界 N=10^12",
+          "input": "1000000000000\n",
+          "output": "2^12 * 5^12\n",
+          "reason": "独立推演：10^12=2^12×5^12，验证 long long 读入、p*p<=N 上界不溢出与多因子「 * 」拼接。",
+          "kind": "boundary",
+          "actual": "2^12 * 5^12\n",
+          "passed": true
+        },
+        {
+          "name": "10^12-1 多因子",
+          "input": "999999999999\n",
+          "output": "3^3 * 7 * 11 * 13 * 37 * 101 * 9901\n",
+          "reason": "独立推演：10^12-1=(10^6-1)(10^6+1)=999999×1000001，999999=3^3·7·11·13·37、1000001=101·9901，按质因数升序验证混合指数/单因子格式。",
+          "kind": "boundary",
+          "actual": "3^3 * 7 * 11 * 13 * 37 * 101 * 9901\n",
+          "passed": true
+        },
+        {
+          "name": "区间大素数 N=999999999989",
+          "input": "999999999989\n",
+          "output": "999999999989\n",
+          "reason": "独立判素（试除至 sqrt(999999999989)≈10^6 无因子）确认其为 10^12 内素数，走末尾 N>1 分支输出自身，验证最坏试除规模与时限余量（实测约 4 ms）。",
+          "kind": "boundary",
+          "actual": "999999999989\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "4980d8211eb9e285e0d42e06d89fa69631380ef417b4506913cbe064771e9ae5"
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "paperId": "2026-03-l6",
+  "integratedAt": "2026-11-25T12:12:03.533Z",
+  "accepted": [
+    {
+      "id": 3,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "explanation",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n1 2 3 4\n3 3 1 1",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "input": "6\n1 1 4 5 1 4\n1 2 3 2 1 0",
+          "output": "11",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "11\n",
+          "passed": true
+        },
+        {
+          "name": "最小合法规模全为零",
+          "input": "2\n0 0\n0 0\n",
+          "output": "0",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "按下标 2、3、4、5 接力",
+          "input": "5\n1 9 1 9 1\n2 0 1 0 0\n",
+          "output": "20",
+          "kind": "boundary",
+          "actual": "20\n",
+          "passed": true
+        },
+        {
+          "name": "首元素的距离限制阻断后续",
+          "input": "3\n9 9 9\n3 1 1\n",
+          "output": "18",
+          "kind": "boundary",
+          "actual": "18\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "220f3890b74918ad6bce596d5ec50aadf047a9fb12effaf1374cb6aeb1e457b8",
+      "stressTests": [
+        {
+          "name": "10 万个 10^9，距离全部为零",
+          "inputBytes": 1300007,
+          "inputSha256": "0108d45314ba051db89fe995ad14488f3fdbcf34eabd091f3358b7b5eee49610",
+          "output": "100000000000000",
+          "outputSha256": "ab51863d68f5677f45c8af4efccbde9328cb6a5d1993cb964b52ef558b55bcbd",
+          "elapsedMs": 26,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n2 3\n4 0\n0 0\n0 0",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "4\n2 3\n0 0\n4 0\n0 0",
+          "output": "3",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "单一结点",
+          "input": "1\n0 0\n",
+          "output": "1",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "五结点左链",
+          "input": "5\n2 0\n3 0\n4 0\n5 0\n0 0\n",
+          "output": "2",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "七结点满二叉树",
+          "input": "7\n2 3\n4 5\n6 7\n0 0\n0 0\n0 0\n0 0\n",
+          "output": "7",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "e9e74e1f72354b7e31d2a95b49a0513d1f9ea17ed8fbd0d0d6241aef9dc913cd",
+      "stressTests": [
+        {
+          "name": "10 万结点左链",
+          "inputBytes": 788902,
+          "inputSha256": "b5ec592c4cfa1d216a2a0ecb104b7e09faec393d56e95b8bcb06764d8d6aa71d",
+          "output": "2",
+          "outputSha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+          "elapsedMs": 22,
+          "passed": true
+        },
+        {
+          "name": "10 万结点右链",
+          "inputBytes": 788902,
+          "inputSha256": "7100b7b846a90be5f727526e7a56eafb4b35ea1938d24e9811ef3edb19b9c609",
+          "output": "1",
+          "outputSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "elapsedMs": 17,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 8
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 10
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 3,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：C（第③行会导致编译错误）**\n\n**核心解析：**\n在 C++ 面向对象编程中，类（class）通过访问修饰符实现对成员的封装与保护：\n- `public`（公有）：修饰的成员（变量或函数）既可以在类内部使用，也可以在类外部被直接访问。\n- `private`（私有）：修饰的成员只能在类自身的成员函数内部使用，类外部（例如 `main()` 函数等全局作用域）无法直接通过对象名点号 `cat.xxx` 访问。\n\n在本题的 `Pet` 类中：\n1. 构造函数 `Pet(...)`、成员函数 `getName()` 与 `birthday()` 位于 `public:` 区域，属于公有成员。\n2. 成员变量 `name` 与 `age` 位于 `private:` 区域，属于私有成员。\n\n第③行代码 `cat.name = \"大橘\";` 试图在类外部的 `main()` 函数中直接对私有成员变量 `name` 进行赋值，这破坏了类的封装性，编译器会提示类似 `'string Pet::name' is private within this context` 的错误。因此第③行会导致编译错误。\n\n**选项逐项分析：**\n- **A 第①行**：❌ 不会报错。`getName()` 是声明在 `public:` 下的公有成员函数，类外的对象 `cat` 有权直接调用该函数读取名字。\n- **B 第②行**：❌ 不会报错。`birthday()` 是公有成员函数，类外可以合法调用。虽然其函数体内部修改了私有变量 `age`（执行 `age++`），但这属于类内部的成员函数操作自己的成员，完全符合访问权限规则。\n- **C 第③行**：✅ 会导致编译错误。变量 `name` 是声明在 `private:` 下的私有成员变量，类外代码不能直接通过 `cat.name` 读取或修改，直接赋值必然引发编译错误。\n- **D 第④行**：❌ 不会报错。`cat.getName()` 调用公有成员函数返回字符串，再通过 `cout` 打印输出，属于标准合法的流输出语句。\n\n**易错提醒：**\n- **分清“谁在访问私有成员”**：很多同学容易误选第②行，认为 `age` 是私有的，所以 `cat.birthday()` 不能改。实际上，外部调用的只是公有接口 `birthday()`，真正去改 `age` 的是类内部的代码，这是完全合法的。\n- **类与结构体的默认权限**：C++ 中 `class` 若未声明访问控制标签，内部成员默认全为 `private`；而 `struct` 默认全为 `public`。做题时要注意分段标签的位置。\n\n**知识延伸：**\n在面向对象编程中，如果类外确实需要修改私有变量 `name`，规范做法是在 `public` 区提供专用的设置接口（Setter 函数），例如：\n```cpp\nvoid setName(string n) {\n    name = n;\n}\n```\n通过调用 `cat.setName(\"大橘\");` 完成修改，这样可以在函数内部加入数据校验逻辑，保证对象状态的安全与可控。"
+      }
+    },
+    {
+      "id": 26,
+      "reasons": [
+        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      ],
+      "furtherChanges": {}
+    }
+  ]
+}

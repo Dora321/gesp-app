@@ -14,31 +14,19 @@ const programmingQuestions = [
 3 3 4
 1 3 3` }
       ],
-      question: `
-# [GESP202503 七级] 图上移动
-
-## 题目描述
-
-小 A 有一张包含 $n$ 个结点与 $m$ 条边的无向图，结点以 $1, 2, \\dots, n$ 标号。小 A 会从图上选择一个结点作为起点，每一步移动到某个与当前小 A 所在结点相邻的结点。对于每个结点 $i$ （$1 \\leq i \\leq n$），小 A 想知道从结点 $i$ 出发恰好移动 $1, 2, \\dots, k$ 步之后，小 A 可能会位于哪些结点。由于满足条件的结点可能有很多，你只需要求出这些结点的数量。
-
-## 输入格式
-
-第一行，三个正整数 $n, m, k$，分别表示无向图的结点数与边数，最多移动的步数。
-
-接下来 $m$ 行，每行两个正整数 $u_i, v_i$，表示图中的一条连接结点 $u_i$ 与 $v_i$ 的无向边。
-
-## 输出格式
-
-共 $n$ 行，第 $i$ 行 ($1 \\leq i \\leq n$) 包含 $k$ 个整数，第 $j$ 个整数 ($1 \\leq j \\leq k$) 表示从结点 $i$ 出发恰好移动 $j$ 步之后可能位置的结点数量。
-`,
+      question: "\n# [GESP202503 七级] 图上移动\n\n## 题目描述\n\n小 A 有一张包含 $n$ 个结点与 $m$ 条边的无向图，结点以 $1, 2, \\dots, n$ 标号。小 A 会从图上选择一个结点作为起点，每一步移动到某个与当前小 A 所在结点相邻的结点。对于每个结点 $i$ （$1 \\leq i \\leq n$），小 A 想知道从结点 $i$ 出发恰好移动 $1, 2, \\dots, k$ 步之后，小 A 可能会位于哪些结点。由于满足条件的结点可能有很多，你只需要求出这些结点的数量。\n\n## 输入格式\n\n第一行，三个正整数 $n, m, k$，分别表示无向图的结点数与边数，最多移动的步数。\n\n接下来 $m$ 行，每行两个正整数 $u_i, v_i$，表示图中的一条连接结点 $u_i$ 与 $v_i$ 的无向边。\n\n## 输出格式\n\n共 $n$ 行，第 $i$ 行 ($1 \\leq i \\leq n$) 包含 $k$ 个整数，第 $j$ 个整数 ($1 \\leq j \\leq k$) 表示从结点 $i$ 出发恰好移动 $j$ 步之后可能位置的结点数量。\n## 数据范围\n\n对于 20% 的测试点，保证 $k=1$；对于另外 20% 的测试点，保证 $1 \\le n \\le 50$、$1 \\le m \\le 50$；对于所有测试点，保证 $1 \\le n \\le 500$、$1 \\le m \\le 500$、$1 \\le k \\le 20$、$1 \\le u_i,v_i \\le n$。\n",
       explanation: "把“走若干步后可能到达的点集”直接做状态转移。设 reach[t][s] 为从起点 s 出发恰好走 t 步后可能到达的点集（用 bitset 维护），初始 reach[0][s]={s}。若已知 reach[t-1][s]，则对其中每个节点 y，把 y 的邻接点集合并起来，就得到 reach[t][s]。最后统计 bitset 中 1 的个数即可。由于 n 规模不大，bitset 按位并能明显加快转移。",
       tags: ["编程题", "图论", "动态规划", "bitset"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 505;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n\n    vector<bitset<MAXN>> adj(n+1);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        adj[u].set(v);\n        adj[v].set(u);\n    }\n\n    vector<vector<bitset<MAXN>>> reach(k+1, vector<bitset<MAXN>>(n+1));\n    for (int s = 1; s <= n; ++s) reach[0][s].set(s);\n\n    for (int step = 1; step <= k; ++step) {\n        for (int s = 1; s <= n; ++s) {\n            bitset<MAXN> cur;\n            for (int y = 1; y <= n; ++y) {\n                if (reach[step-1][s].test(y)) cur |= adj[y];\n            }\n            reach[step][s] = cur;\n        }\n    }\n\n    for (int s = 1; s <= n; ++s) {\n        for (int step = 1; step <= k; ++step) {\n            cout << reach[step][s].count() << (step == k ? '\\n' : ' ');\n        }\n    }\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -49,37 +37,19 @@ aaaaabb`, output: `9` },
         { input: `9
 babacabab`, output: `2` }
       ],
-      question: `
-# [GESP202503 七级] 等价消除
-
-## 题目描述
-
-小 A 有一个仅包含小写英文字母的字符串 $S$。
-
-对于一个字符串，如果能通过每次删去其中两个相同字符的方式，将这个字符串变为空串，那么称这个字符串是可以被等价消除的。
-
-小 A 想知道 $S$ 有多少子串是可以被等价消除的。
-
-一个字符串 $S'$ 是 $S$ 的子串，当且仅当删去 $S$ 的某个可以为空的前缀和某个可以为空的后缀之后，可以得到 $S'$。
-
-## 输入格式
-
-第一行，一个正整数 $|S|$，表示字符串 $S$ 的长度。
-
-第二行，一个仅包含小写英文字母的字符串 $S$。
-
-## 输出格式
-
-一行，一个整数，表示答案。
-`,
+      question: "\n# [GESP202503 七级] 等价消除\n\n## 题目描述\n\n小 A 有一个仅包含小写英文字母的字符串 $S$。\n\n对于一个字符串，如果能通过每次删去其中两个相同字符的方式，将这个字符串变为空串，那么称这个字符串是可以被等价消除的。\n\n小 A 想知道 $S$ 有多少子串是可以被等价消除的。\n\n一个字符串 $S'$ 是 $S$ 的子串，当且仅当删去 $S$ 的某个可以为空的前缀和某个可以为空的后缀之后，可以得到 $S'$。\n\n## 输入格式\n\n第一行，一个正整数 $|S|$，表示字符串 $S$ 的长度。\n\n第二行，一个仅包含小写英文字母的字符串 $S$。\n\n## 输出格式\n\n一行，一个整数，表示答案。\n## 数据范围\n\n对于 20% 的测试点，保证 $S$ 中仅包含 a 和 b 两种字符；对于另外 20% 的测试点，保证 $1 \\le |S| \\le 2000$；对于所有测试点，保证 $1 \\le |S| \\le 2 \\times 10^5$。\n",
       explanation: "一个字符串能被成对删除为空，当且仅当其中每种字符出现次数都是偶数。于是只要比较前缀奇偶状态：设 mask[i] 表示前 i 个字符中每个字母出现次数的奇偶性，那么子串 s[l..r] 可消除等价于 mask[r]=mask[l-1]。遍历前缀时用哈希表统计每种 mask 已出现的次数，当前前缀就能与之前所有相同 mask 的前缀配对产生答案。",
       tags: ["编程题", "前缀异或", "哈希表", "字符串"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    string s;\n    cin >> n >> s;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    string s;\n    cin >> n >> s;\n\n    unordered_map<int, long long> cnt;\n    cnt.reserve(n * 2+10);\n    cnt.max_load_factor(0.7f);\n\n    long long ans = 0;\n    int mask = 0;\n    cnt[0] = 1;\n    for (char ch : s) {\n        mask ^= 1 << (ch-'a');\n        ans += cnt[mask];\n        cnt[mask]++;\n    }\n\n    cout << ans << '\\n';\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 12,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     }
 ];
 
@@ -210,12 +180,7 @@ C++ 关键字是语言本身保留、具有特殊语法含义的标识符，不�
             id: 5,
             type: "single",
             question: `下列关于排序的说法，正确的是 ( ) 。`,
-            options: [
-                "选择排序是最快的排序算法之一。",
-                "归并排序通常是稳定的。",
-                "最差情况， 个元素做快速排序的时间复杂度为 。",
-                "最好情况， 个元素做插入排序的时间复杂度为 。",
-            ],
+            options: ["选择排序是最快的排序算法之一。","归并排序通常是稳定的。","最差情况，$N$ 个元素做快速排序的时间复杂度为 $O(N)$。","最好情况，$N$ 个元素做插入排序的时间复杂度为 $O(N^2)$。"],
             answer: 1,
             score: 2,
             explanation: `**答案：B（归并排序通常是稳定的）**
@@ -239,7 +204,11 @@ C++ 关键字是语言本身保留、具有特殊语法含义的标识符，不�
 1. **稳定排序**：冒泡排序、插入排序、归并排序。
 2. **不稳定排序**：选择排序、快速排序、堆排序、希尔排序。
 3. 归并排序在最好、最坏与平均情况下的时间复杂度均为 \`O(N log N)\`，空间复杂度为 \`O(N)\`。`,
-            tags: ['排序算法', '稳定性']
+            tags: ['排序算法', '稳定性'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 6,
@@ -272,55 +241,29 @@ C++ 关键字是语言本身保留、具有特殊语法含义的标识符，不�
             id: 7,
             type: "single",
             question: `下列关于树和图的说法，错误的是（ ）。`,
-            options: [
-                "树是一种有向无环图，但有向无环图不都是一棵树。",
-                "如果把树看做有向图，每个节点指向其子节点，则该图是强连通图。",
-                "个顶点且连通的无向图，其最小生成树一定包含 个条边。",
-                "个顶点、 条边的有向图，一定不是强连通的。",
-            ],
+            options: ["树是一种有向无环图，但有向无环图不都是一棵树。","如果把树看做有向图，每个节点指向其子节点，则该图是强连通图。","$N$ 个顶点且连通的无向图，其最小生成树一定包含 $N-1$ 个条边。","$N+1$ 个顶点、$N$ 条边的有向图，一定不是强连通的。"],
             answer: 1,
             score: 2,
-            explanation: `**答案：不正确的是 B（如果把树看做有向图，每个节点指向其子节点，则该图是强连通图）**
-
-**核心解析：**
-强连通要求有向图中任意两点都能互相到达。把树的边定向为父节点指向子节点后，根的入度为 0，叶子的出度为 0，子节点回不到父节点，所以不是强连通图。B 的说法错误，是本题所求。
-
-**选项逐项分析：**
-- **A 树是一种有向无环图，但有向无环图不都是一棵树**：说法正确。父指向子时树没有有向环，是 DAG；但 DAG 可以有多个入度为 0 的点，或某个点入度大于 1，这样的图不是树。
-- **B 如果把树看做有向图，每个节点指向其子节点，则该图是强连通图**：❌ 说法错误。只能从祖先走向子孙，不能双向互达。
-- **C N 个顶点且连通的无向图，其最小生成树一定包含 N-1 条边**：说法正确。题面排版缺了字母，原意是 \`N\` 个顶点的连通无向图。生成树含全部顶点且恰好 \`N - 1\` 条边，最小生成树也是如此。
-- **D N+1 个顶点、N 条边的有向图，一定不是强连通的**：说法正确。题面排版缺了数字，原意是 \`N + 1\` 个顶点、\`N\` 条边。\`V\` 个顶点要强连通，至少要 \`V\` 条边（每个点入度、出度至少为 1）。这里顶点数是 \`N + 1\`，边却只有 \`N\` 条，一定不是强连通。
-
-**易错提醒：**
-父指向子的树只是弱连通，不是强连通。无向连通图最少 \`N - 1\` 条边；有向强连通图至少要和顶点数一样多的边。`,
-            tags: ['图论', '树与二叉树', '最小生成树']
+            explanation: "**答案：B**\n\n按题意把树边统一定向为父节点指向子节点。对子节点及其父节点，父节点可以到达子节点，子节点无法沿有向边回到父节点，所以这棵含至少两个顶点的树不是强连通图。\n\n- **A**：按上述方向，树的边不会构成有向环。有向无环图可以有多个入度为零的顶点，因而不一定是一棵树。\n- **B**：沿边只能从祖先走向后代，任意两点互相可达的条件不成立。\n- **C**：最小生成树是原图的一棵生成树，包含全部 $N$ 个顶点，恰有 $N-1$ 条边。\n- **D**：当 $N\\geq 1$ 时，强连通图中的每个顶点都至少有一条出边。$N+1$ 个顶点至少需要 $N+1$ 条边，而题目只给了 $N$ 条。",
+            tags: ['图论', '树与二叉树', '最小生成树'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 8,
             type: "single",
-            question: `是个神奇的数字，因为它是由两个数和拼接而成，而且满足特定条件。小杨决定写个程序找找小于 N 的正整数中共有多少这样神奇的数字。下面程序横线处应填入的是（ ）。`,
-            options: [
-                "if (s[i] != '0') {",
-                "if (s[i] == '0') {",
-                "if (s[i] != '0')",
-                "if (s[i] >= '0') {",
-],
+            question: "2025 是个神奇的数字，因为它是由两个数 20 和 25 拼接而成，而且 $2025=(20+25)^2$。小杨决定写个程序找找小于 $N$ 的正整数中共有多少这样神奇的数字。下面程序横线处应填入的是（ ）。\n\n```cpp\n#include <string>\nint count_miracle(int N) {\n    int cnt = 0;\n    for (int n = 1; n * n < N; n++) {\n        int n2 = n * n;\n        std::string s = std::to_string(n2);\n        for (int i = 1; i < s.length(); i++)\n            if (s[i] != '0') {\n                std::string sl = s.substr(0, i);\n                std::string sr = s.substr(i);\n                int nl = std::stoi(sl);\n                int nr = std::stoi(sr);\n                if (_________) // 在此处填入选项\n                    cnt++;\n            }\n    }\n    return cnt;\n}\n```",
+            options: ["nl + nr == n","nl + nr == n2","(nl + nr) * (nl + nr) == n","(nl + nr) ^ 2 == n2"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（n1 + nr == n）**
-
-**核心解析：**
-2025 由 20 和 25 拼成，而且 \`2025 = (20 + 25) * (20 + 25)\`。程序枚举正整数 \`n\`，令 \`n2 = n * n\`，把 \`n2\` 转成字符串后按位置切开：左段数值 \`n1\`、右段数值 \`nr\`。神奇数字就是切开后 \`n1 + nr == n\`。代码里 \`if (s[i] != '0')\` 已经写好，用来丢掉右段以 \`'0'\` 开头的切法；横线在它里面，判断的是两段之和是否等于 \`n\`。例如 \`n = 45\` 时，\`45 * 45 = 2025\`，切成 20 和 25，\`20 + 25 = 45\`。
-
-**选项逐项分析：**
-- **A \`n1 + nr == n\`**：✅ 正数下 \`n * n = (n1 + nr) * (n1 + nr)\` 就是 \`n1 + nr == n\`。
-- **B \`n1 + nr == n2\`**：❌ \`n2\` 是平方，45 的例子里 45 并不等于 2025。
-- **C \`(n1 + nr) * (n1 + nr) == n\`**：❌ 左边是和的平方，右边是 \`n\` 本身。45 的例子里 \`45 * 45 == 45\` 不成立。
-- **D \`(n1 + nr) ^ 2 == n2\`**：❌ C++ 里 \`^\` 是按位异或，不是乘方。它并不是在算 \`(n1 + nr)\` 的平方。
-
-**易错提醒：**
-不要把 \`^\` 当成乘方。右段前导零已经由外层 \`s[i] != '0'\` 过滤，横线只比较 \`n1 + nr\` 与 \`n\`。`,
-            tags: ['字符串', '枚举']
+            explanation: "**答案：A（nl + nr == n）**\n\n**核心解析：**\n2025 由 20 和 25 拼成，而且 `2025 = (20 + 25) * (20 + 25)`。程序枚举正整数 `n`，令 `n2 = n * n`，把 `n2` 转成字符串后按位置切开：左段数值 `nl`、右段数值 `nr`。神奇数字就是切开后 `nl + nr == n`。代码里 `if (s[i] != '0')` 已经写好，用来丢掉右段以 `'0'` 开头的切法；横线在它里面，判断的是两段之和是否等于 `n`。例如 `n = 45` 时，`45 * 45 = 2025`，切成 20 和 25，`20 + 25 = 45`。\n\n**选项逐项分析：**\n- **A `nl + nr == n`**：✅ 正数下 `n * n = (nl + nr) * (nl + nr)` 就是 `nl + nr == n`。\n- **B `nl + nr == n2`**：❌ `n2` 是平方，45 的例子里 45 并不等于 2025。\n- **C `(nl + nr) * (nl + nr) == n`**：❌ 左边是和的平方，右边是 `n` 本身。45 的例子里 `45 * 45 == 45` 不成立。\n- **D `(nl + nr) ^ 2 == n2`**：❌ C++ 里 `^` 是按位异或，不是乘方。它并不是在算 `(nl + nr)` 的平方。\n\n**易错提醒：**\n不要把 `^` 当成乘方。右段前导零已经由外层 `s[i] != '0'` 过滤，横线只比较 `nl + nr` 与 `n`。",
+            tags: ['字符串', '枚举'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 9,
@@ -401,29 +344,7 @@ int main() {
         {
             id: 10,
             type: "single",
-            question: `给定一个整数数组 nums，找到其中最长的严格上升子序列的长度。子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。下面的程序横线处应该填入的是（ ）。
-
-\`\`\`cpp
-#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
-
-int lengthOfLIS(vector<int>& nums) {
-    int n = nums.size();
-    if (n == 0) return 0;
-    vector<int> dp(n, 1);
-
-    for (int i = 1; i < n; i++) {
-        for (int j = 0; j < i; j++) {
-            if (nums[i] > nums[j]) {
-                ____
-            }
-        }
-    }
-    return *max_element(dp.begin(), dp.end());
-}
-\`\`\``,
+            question: "给定一个整数数组 nums，找到其中最长的严格上升子序列的长度。子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。下面的程序横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint lengthOfLIS(vector<int>& nums) {\n    int n = nums.size();\n    if (n == 0) return 0;\n    vector<int> dp(n, 1);\n\n    for (int i = 1; i < n; i++) {\n        for (int j = 0; j < i; j++) {\n            if (nums[i] > nums[j]) {\n                ____\n            }\n        }\n    }\n    return *max_element(dp.begin(), dp.end());\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> nums(n);\n    for (int i = 0; i < n; i++) {\n        cin >> nums[i];\n    }\n\n    int result = lengthOfLIS(nums);\n    cout << result << endl;\n\n    return 0;\n}\n```",
             options: [
                 "$dp[i]$ = max($dp[i]$, $dp[j]$);",
                 "$dp[i]$ = max(dp[i+1], $dp[j]$+1);",
@@ -459,37 +380,25 @@ int lengthOfLIS(vector<int>& nums) {
 
 **易错提醒：**
 新长度是 \`dp[j] + 1\`，不要漏掉加 1。最终答案是整个 \`dp\` 的最大值，不一定是 \`dp[n - 1]\`。`,
-            tags: ['动态规划', '数组']
+            tags: ['动态规划', '数组'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 11,
             type: "single",
-            question: `给定一个整数数组 nums，找到其中最长的严格上升子序列的长度。子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。该程序的时间复杂度为（ ）。`,
-            options: [
-                "O(n²)",
-                "O(n)",
-                "O(n log n)",
-                "O(2ⁿ)",
-],
+            question: "给定一个整数数组 nums，找到其中最长的严格上升子序列的长度。子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。该程序的时间复杂度为（ ）。\n\n```cpp\n#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint lengthOfLIS(vector<int>& nums) {\n    int n = nums.size();\n    if (n == 0) return 0;\n    vector<int> dp(n, 1);\n\n    for (int i = 1; i < n; i++) {\n        for (int j = 0; j < i; j++) {\n            if (nums[i] > nums[j]) {\n                ________________\n            }\n        }\n    }\n    return *max_element(dp.begin(), dp.end());\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> nums(n);\n    for (int i = 0; i < n; i++) {\n        cin >> nums[i];\n    }\n\n    int result = lengthOfLIS(nums);\n    cout << result << endl;\n\n    return 0;\n}\n```",
+            options: ["O(n²)","O(n)","O(log(n))","O(nlog(n))"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（O(n^2)）**
-
-**核心解析：**
-最长严格上升子序列（LIS）是动态规划的经典问题。在 GESP 七级涉及的标准动态规划解法中：
-1. **状态定义**：设 \`dp[i]\` 表示以元素 \`nums[i]\` 结尾的最长上升子序列的长度。
-2. **状态转移**：计算 \`dp[i]\` 时，需要向前遍历前面所有元素 \`nums[j]\`（\`0 <= j < i\`）。若 \`nums[i] > nums[j]\`，则可以将 \`nums[i]\` 接在以 \`nums[j]\` 结尾的子序列后面，状态转移方程为：\`dp[i] = max(dp[i], dp[j] + 1)\`。
-3. **复杂度计算**：参考实现里外层 \`i\` 从 \`1\` 到 \`n - 1\`，内层 \`j\` 从 \`0\` 到 \`i - 1\`。比较次数是 \`1 + 2 + ... + (n - 1) = n * (n - 1) / 2\`，时间复杂度为 \`O(n*n)\`。
-
-**选项逐项分析：**
-- **A \`O(n²)\`**：✅ 正确。双重循环的朴素动态规划每一步都要向前比对所有历史状态，总操作次数约为 \`n * (n - 1) / 2\`，时间复杂度为 \`O(n²)\`。
-- **B \`O(n)\`**：❌ 错误。单层线性扫描无法在遍历到当前元素时知晓前面所有小于它的元素的最长状态，目前求 LIS 并不存在 \`O(n)\` 的通用算法。
-- **C \`O(n log n)\`**：❌ 错误。该复杂度是采用「贪心 + 二分查找（如 \`std::lower_bound\`）」优化算法达到的复杂度；而题目考查的是经典的双层循环动态规划基础实现，并未采用二分优化。
-- **D \`O(2ⁿ)\`**：❌ 错误。\`O(2ⁿ)\` 是不带记忆化的纯暴力穷举复杂度（枚举每个元素选或不选生成的 \`2ⁿ\` 个子序列）；动态规划通过表格记录子问题答案，消除了重复计算，不会退化为指数级。
-
-**易错提醒：**
-贪心加二分可以把 LIS 做到 \`O(n log n)\`，但本题代码是双层循环，复杂度是 \`O(n*n)\`。内层次数随 \`i\` 增加，总和 \`n * (n - 1) / 2\` 仍是平方阶。`,
-            tags: ['复杂度分析', '动态规划']
+            explanation: "**答案：A（$O(n^2)$）**\n\n程序用 `dp[i]` 保存以 `nums[i]` 结尾的最长严格上升子序列长度，初值为 1。外层的 `i` 从 1 到 `n-1`。对每个 `i`，内层检查所有 `0 <= j < i`，共进行 `i` 次比较。若 `nums[i] > nums[j]`，就可以用 `dp[j] + 1` 更新 `dp[i]`。\n\n比较总次数为 $1+2+\\cdots+(n-1)=n(n-1)/2$。每次比较和更新耗费常数时间，初始化及最后找最大值各耗费 $O(n)$，所以这段程序的时间复杂度是 $O(n^2)$。",
+            tags: ['复杂度分析', '动态规划'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 12,
@@ -582,7 +491,7 @@ int main() {
         {
             id: 13,
             type: "single",
-            question: `给定一个 m×n 的二维网格 grid，每个格子中有一个非负整数。请找出一条从左上角 (0, 0) 到右下角 ($m-1$, $n-1$) 的路径，使得路径上的数字总和最小。每次只能向右或向下移动。横线处应该填入的是（ ）。`,
+            question: "给定一个 m×n 的二维网格 grid，每个格子中有一个非负整数。请找出一条从左上角 (0, 0) 到右下角 ($m-1$, $n-1$) 的路径，使得路径上的数字总和最小。每次只能向右或向下移动。横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint minPathSum(vector<vector<int>>& grid) {\n    int m = grid.size();\n    int n = grid[0].size();\n\n    vector<vector<int>> dp(m, vector<int>(n, 0));\n\n    dp[0][0] = grid[0][0];\n    for (int j = 1; j < n; j++) {\n        dp[0][j] = dp[0][j - 1] + grid[0][j];\n    }\n    for (int i = 1; i < m; i++) {\n        dp[i][0] = dp[i - 1][0] + grid[i][0];\n    }\n    for (int i = 1; i < m; i++) {\n        for (int j = 1; j < n; j++) {\n            _______________________\n        }\n    }\n    return dp[m - 1][n - 1];\n}\n\nint main() {\n    int m, n;\n    cin >> m >> n;\n    vector<vector<int>> grid(m, vector<int>(n));\n    for (int i = 0; i < m; i++) {\n        for (int j = 0; j < n; j++) {\n            cin >> grid[i][j];\n        }\n    }\n    int result = minPathSum(grid);\n    cout << result << endl;\n\n    return 0;\n}\n```",
             options: [
                 "$dp[i]$[j] = min(dp[i-1][j], $dp[i]$[j-1])+grid[i][1];",
                 "$dp[i]$[j] = min(dp[i-1][j], $dp[i]$[j-1])+grid[i][j];",
@@ -598,12 +507,16 @@ int main() {
 - C. 用 dp[i][j] 自引用（尚未计算），错误。
 - D. 用 dp[i][j] 自引用，错误。
 **考点**：动态规划——最小路径和（只能向下/向右）。`,
-            tags: ['动态规划', '二维数组']
+            tags: ['动态规划', '二维数组'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 14,
             type: "single",
-            question: `给定一个整数数组 nums，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。下面横线处应该填入的是（ ）。`,
+            question: "给定一个整数数组 nums，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。下面横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint maxSubArray(vector<int>& nums) {\n    int n = nums.size();\n    if (n == 0) return 0;\n\n    vector<int> dp(n, 0);\n    dp[0] = nums[0];\n    int maxSum = dp[0];\n\n    for (int i = 1; i < n; i++) {\n        ___________________\n        maxSum = max(maxSum, dp[i]);\n    }\n\n    return maxSum;\n}\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> nums(n);\n    for (int i = 0; i < n; i++) {\n        cin >> nums[i];\n    }\n\n    int result = maxSubArray(nums);\n    cout << result << endl;\n\n    return 0;\n}\n```",
             options: [
                 "$dp[i]$ = max(nums[i+1], dp[i-1]+nums[i]);",
                 "$dp[i]$ = max(nums[i], dp[i-1]+nums[i]);",
@@ -619,7 +532,11 @@ int main() {
 - C. 用 dp[i+1]（尚未计算），错误。
 - D. 用 nums[i+1]，错误。
 **考点**：最大子段和（DP / Kadane 算法）。`,
-            tags: ['动态规划']
+            tags: ['动态规划'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 15,
@@ -784,7 +701,7 @@ int main() {
         {
             id: 22,
             type: "judge",
-            question: `邻接表和邻接矩阵都是图的存储形式。为了操作时间复杂度考虑，同一个图可以同时维护两种存储形式。 maxSum = max(maxSum, $dp[i]$); } return maxSum; } int main() { int n; cin >> n; vector<int> nums(n); for (int i = 0; i < n; i++) { cin >> nums[i]; } int result = maxSubArray(nums); cout << result << endl; return 0; } 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35`,
+            question: "邻接表和邻接矩阵都是图的存储形式。为了操作时间复杂度考虑，同一个图可以同时维护两种存储形式。",
             options: [
                 "正确",
                 "错误",
@@ -794,12 +711,16 @@ int main() {
             explanation: `**答案：正确**
 **解析：** 邻接表（遍历某点邻居的时间为 O(度数)）和邻接矩阵（判断两点是否相邻为 O(1)）都是图的存储形式。为兼顾不同操作的时间复杂度，同一个图完全可以同时维护两种存储结构以取长补短。
 **考点**：图的存储结构（邻接表与邻接矩阵）。`,
-            tags: ['图论']
+            tags: ['图论'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 9,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 23,
             type: "judge",
-            question: `子类对象包含父类的所有成员（包括私有成员）。从父类继承的私有成员也是子类的成员，因此子类可以直 接访问。`,
+            question: "子类对象包含父类的所有成员（包括私有成员）。从父类继承的私有成员也是子类的成员，因此子类可以直接访问。",
             options: [
                 "正确",
                 "错误",
@@ -809,7 +730,11 @@ int main() {
             explanation: `**答案：错误**
 **解析：** 子类对象在内存中确实包含父类的所有成员（包括 private 成员），但父类的私有成员对子类不可见，子类不能直接访问，只能通过父类的公有/保护成员函数间接访问。因此该说法错误。
 **考点**：继承与访问控制（private 成员的可见性）。`,
-            tags: ['面向对象']
+            tags: ['面向对象'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 24,

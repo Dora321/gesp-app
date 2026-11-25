@@ -13,27 +13,7 @@ const programmingQuestions = [
 3 2
 4 3`, output: `3 3 1 3` }
       ],
-      question: `
-# [GESP202503 六级] 树上漫步
-
-## 题目描述
-
-小 A 有一棵 $n$ 个结点的树，这些结点依次以 $1,2,\\cdots,n$ 标号。
-
-小 A 想在这棵树上漫步。具体来说，小 A 会从树上的某个结点出发，每一步可以移动到与当前结点相邻的结点，并且小 A 只会在偶数步（可以是零步）后结束漫步。
-
-现在小 A 想知道，对于树上的每个结点，从这个结点出发开始漫步，经过偶数步能结束漫步的结点有多少个（可以经过重复的节点）。
-
-## 输入格式
-
-第一行，一个正整数 $n$。
-
-接下来 $n-1$ 行，每行两个整数 $u_i,v_i$，表示树上有一条连接结点 $u_i$ 和结点 $v_i$ 的边。
-
-## 输出格式
-
-一行，$n$ 个整数。第 $i$ 个整数表示从结点 $i$ 出发开始漫步，能结束漫步的结点数量。
-`,
+      question: "# [GESP202503 六级] 树上漫步\n\n## 题目描述\n\n小 A 有一棵 $n$ 个结点的树，这些结点依次以 $1,2,\\cdots,n$ 标号。\n\n小 A 想在这棵树上漫步。具体来说，小 A 会从树上的某个结点出发，每一步可以移动到与当前结点相邻的结点，并且小 A 只会在偶数步（可以是零步）后结束漫步。\n\n现在小 A 想知道，对于树上的每个结点，从这个结点出发开始漫步，经过偶数步能结束漫步的结点有多少个（可以经过重复的节点）。\n\n## 输入格式\n\n第一行，一个正整数 $n$。\n\n接下来 $n-1$ 行，每行两个整数 $u_i,v_i$，表示树上有一条连接结点 $u_i$ 和结点 $v_i$ 的边。\n\n## 输出格式\n\n一行，$n$ 个整数。第 $i$ 个整数表示从结点 $i$ 出发开始漫步，能结束漫步的结点数量。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1\\le n\\le 10^3$。\n\n对于所有测试点，保证 $1\\le n\\le 2\\times 10^5$。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -117,10 +97,14 @@ const programmingQuestions = [
 - **数组下标越界**：结点标号为 \`1\` 到 \`n\`，邻接表和 \`color\` 数组大小务必开到 \`n + 1\`，避免发生数组越界。`,
       tags: ["编程题", "树", "二分图"],
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n+1);\n    for (int i = 0; i < n-1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> color(n+1, -1);\n    queue<int> q;\n    q.push(1);\n    color[1] = 0;\n    long long cnt[2] = {1, 0};\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        for (int v : g[u]) {\n            if (color[v] == -1) {\n                color[v] = color[u] ^ 1;\n                ++cnt[color[v]];\n                q.push(v);\n            }\n        }\n    }\n\n    for (int i = 1; i <= n; ++i) {\n        if (i > 1) cout << ' ';\n        cout << cnt[color[i]];\n    }\n    cout << '\\n';\n    return 0;\n}",
       answer: '',
+      sourcePage: 8,
+      reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核 / Codex 集成复查",
+      reviewedAt: "2026-11-25",
+      reviewedFields: ["question","memoryLimit","sourcePage","reviewedBy","reviewedAt"],
     },
     {
       id: 27,
@@ -131,23 +115,7 @@ const programmingQuestions = [
         { input: `5
 -3 4 -5 1 3`, output: `5` }
       ],
-      question: `
-# [GESP202503 六级] 环线
-
-## 题目描述
-
-小 A 喜欢坐地铁。地铁环线有 $n$ 个车站，依次以 $1,2,\\cdots,n$ 标号。车站 $i\\ (1\\leq i \\le n)$
-
-## 输入格式
-
-第一行，一个正整数 $n$，表示车站的数量。
-
-第二行，$n$ 个整数 $a_i$，分别表示经过每个车站时获得的快乐值。
-
-## 输出格式
-
-一行，一个整数，表示小 A 能获得的最大快乐值。
-`,
+      question: "# [GESP202503 六级] 环线\n\n## 题目描述\n\n小 A 喜欢坐地铁。地铁环线有 $n$ 个车站，依次以 $1,2,\\cdots,n$ 标号。车站 $i$（$1\\le i<n$）的下一个车站是车站 $i+1$。特别地，车站 $n$ 的下一个车站是车站 $1$。\n\n小 A 会从某个车站出发，乘坐地铁环线到某个车站结束行程，这意味着小 A 至少会经过一个车站。小 A 不会经过一个车站多次。当小 A 乘坐地铁环线经过车站 $i$ 时，小 A 会获得 $a_i$ 点快乐值。请你安排小 A 的行程，选择出发车站与结束车站，使得获得的快乐值总和最大。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示车站的数量。\n\n第二行，$n$ 个整数 $a_i$，分别表示经过每个车站时获得的快乐值。\n\n## 输出格式\n\n一行，一个整数，表示小 A 能获得的最大快乐值。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $1\\le n\\le 200$。\n\n对于 40% 的测试点，保证 $1\\le n\\le 2000$。\n\n对于所有测试点，保证 $1\\le n\\le 2\\times 10^5$，$-10^9\\le a_i\\le 10^9$。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -241,10 +209,14 @@ const programmingQuestions = [
 - **窗口合法性判断**：子段最多选 \`n\` 个车站，对应前缀和左端点满足 \`i - j <= n\`，即 \`j >= i - n\`；当 \`dq.front() < i - n\` 时才超出长度限制，注意是严格小于号 \`<\`。`,
       tags: ["编程题", "前缀和", "单调队列"],
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(2 * n+1), pre(2 * n+1, 0);\n    for (int i = 1; i <= n; ++i) {\n        cin >> a[i];\n        a[i+n] = a[i];\n    }\n    for (int i = 1; i <= 2 * n; ++i) pre[i] = pre[i-1]+a[i];\n\n    deque<int> dq;\n    dq.push_back(0);\n    long long ans = LLONG_MIN;\n    for (int i = 1; i <= 2 * n; ++i) {\n        while (!dq.empty() && dq.front() < i-n) dq.pop_front();\n        ans = max(ans, pre[i]-pre[dq.front()]);\n        while (!dq.empty() && pre[dq.back()] >= pre[i]) dq.pop_back();\n        dq.push_back(i);\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
       answer: '',
+      sourcePage: 10,
+      reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核 / Codex 集成复查",
+      reviewedAt: "2026-11-25",
+      reviewedFields: ["question","memoryLimit","sourcePage","reviewedBy","reviewedAt"],
     }
 ];
 

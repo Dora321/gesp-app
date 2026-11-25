@@ -1,0 +1,89 @@
+{
+  "paperId": "2025-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    11
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:05:00.000Z",
+  "completedAt": "2026-11-25T05:36:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "2fac305c75913c13c64e45147f046bf22587dcc4039ad0875344b7d6f424d451",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1723012925620256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++5级.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "mirrorBytes": 1059808,
+    "shaVerified": true,
+    "sha256": "aeb55c9797044f51a1d63cb3601d081d6a3e150a94c2a5e2c0afd28aedd3544e"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为『CCF 编程能力等级认证 GESP』『C++ 四级』『2025 年 12 月』，第 1 页单选题答案表『C C B D B A C A B B B A B D B』第 11 格为 B，与 2025-12-l4 第 11 题对应；第 4–5 页页图为该题题干、代码与选项。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页页图第 11 题题干为『下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学金（不需要对所有学生完全排序，只需要找出前 k 名），则横线上应填写（ ）。』，候选遗漏括注『（不需要对所有学生完全排序，只需要找出前 k 名）』（经放大核对，括注内分隔符为全角逗号）；changes.question 补回括注后与原图逐字一致。代码对照第 4 页第 1–21 行：struct Student 三行成员、空行、selectTopK 签名、外层 for、int maxIdx = i;、内层填空行含『在此处填入代码』注释、if (students[j].score > students[maxIdx].score)、maxIdx != i 时三行交换（第 14 行空行、第 15–19 行）、两层右花括号，均与修复后候选一致，仅换行与缩进被规范化。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页页图选项依次为 A. int j = 0; j < n; j++、B. int j = i + 1; j < n; j++、C. int j = i; j < n; j++、D. int j = 1; j <= n; j++，与候选四项文字、顺序一一对应（B 的 i+1 与 i + 1 仅空格差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 格为 B（0 起始索引 1），候选 answer=1 一致。独立推导：B 从 i+1 起扫描未排序区剩余元素、maxIdx 初值为 i，k 轮后下标 0..k-1 即前 k 名，能正确完成任务。注意 C（int j = i）在 j=i 时自比较恒假且无副作用，其后扫描与 B 完全相同，功能等价（详见 unresolved 记录），本站按官方答案表取 B 计分。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对选项 C 的判断与事实不符（称『交换后 temp 被覆盖会丢失数据』，实际 j=i 时自比较恒假、maxIdx 不更新、不触发交换，temp 是交换块内局部变量与 j 无关），初核重写后的解析纠正该错误：明确 C 与 B 功能等价、属原卷单选唯一性缺陷，并如实记录。重写后的 A 反例 {100,10,90,80}、k=2 经本复核独立重演成立（第 2 轮 j=0 时 100>10 使 maxIdx=0，此后 90、80 均无法更新，交换后 [10,100,90,80]，前两名漏掉 90）；D 的 j<=n 越界与固定起点错误成立；『起点写 i 不会出错（自比较恒假）、写 i+1 更规范』的易错提醒正确。修复后的完整解析核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，该维度不适用；题面代码已在 statement 维度按第 4 页页图逐行核对。"
+          }
+        },
+        "changes": {
+          "question": "下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学金（不需要对所有学生完全排序，只需要找出前 k 名），则横线上应填写（ ）。\n```cpp\nstruct Student {\n    string name;\n    int score;\n};\n\nvoid selectTopK(Student students[], int n, int k) {\n    for (int i = 0; i < k; i++) {\n        int maxIdx = i;\n        for (____________________) {    // 在此处填入代码\n            if (students[j].score > students[maxIdx].score) {\n                maxIdx = j;\n            }\n        }\n\n        if (maxIdx != i) {\n            Student temp = students[i];\n            students[i] = students[maxIdx];\n            students[maxIdx] = temp;\n        }\n    }\n}\n```",
+          "explanation": "**答案：B（官方答案表；`int j = i + 1; j < n; j++`）**\n\n**核心解析：**\n`selectTopK()` 是选择排序的局部应用：第 i 轮在未排序区间 `[i, n-1]` 中找出最大值的下标 `maxIdx`（初值为 i），再把 `students[maxIdx]` 交换到位置 i。外层只循环 k 轮，因此前 k 名就位后即停止，不要求把 n 个学生全部排好。\n\n内层循环从 `i + 1` 开始、到 `n - 1` 结束，恰好扫描未排序区间中除 `students[i]` 自身以外的全部元素；`students[i]` 已经作为 `maxIdx` 的初值参与比较，不需要重复扫描。\n\n**选项逐项分析：**\n- **A (`int j = 0; j < n; j++`)**：❌ 错误。j 从 0 开始会把已经就位的前 i 名也纳入比较。前 i 名是整个数组中最大的 i 个元素，`maxIdx` 一旦被改到前缀（例如 0），后续元素就更不可能超过它，最后会拿一个已经就位的大元素与位置 i 交换，把前缀打乱。反例：`{100, 10, 90, 80}`、k=2 —— 第 1 轮不交换；第 2 轮 j=0 时 `100 > 10` 使 `maxIdx = 0`，此后 90、80 都小于 100 而无法再更新，交换后数组为 `{10, 100, 90, 80}`，前两名成了 {10, 100}，漏掉真正的第二名 90。\n- **B (`int j = i + 1; j < n; j++`)**：✅ 正确，也是官方答案。\n- **C (`int j = i; j < n; j++`)**：⚠️ 不是错误实现。j=i 时只是多比较一次 `students[i].score > students[i].score`，该比较恒为假，`maxIdx` 不会更新，也不会触发交换；之后 j = i+1 … n-1 的过程与 B 完全相同（`temp` 是交换块内的局部变量，与 j 无关，不存在“被覆盖”的问题）。因此 C 与 B 功能等价，同样能正确选出前 k 名。本题因此存在两个功能正确选项的唯一性缺陷，见下方“原卷瑕疵说明”；官方答案表取 B，站内仍按 B 计分。\n- **D (`int j = 1; j <= n; j++`)**：❌ 错误。上界 `j <= n` 使 j 取到 n 时访问 `students[n]`，越界（未定义行为）；起点固定为 1 也无法适配轮次，i ≥ 2 时会把已就位的前缀重新纳入比较，与 A 属同类错误。\n\n**原卷瑕疵说明：**\n按官方答案表本题为单选 B，但独立推演表明 C（`j = i`）与 B 完全等价（自比较恒假、无任何副作用），同为正确实现；独立模拟 4000 组随机数组（n ≤ 7、k 取 0 到 n）下 B、C 的输出逐一相同。这是原卷单选题的唯一性缺陷，本站保留官方答案 B 与计分不变，在此如实记录。\n\n**易错提醒：**\n- 内层起点写成 `i` 不会出错（自比较恒假），写成 `i + 1` 更规范；真正会出错的是从 0 或固定 1 开始。\n- 上界必须是 `j < n`，写成 `j <= n` 会越界访问 `students[n]`。\n- `maxIdx` 必须初始化为 `i`，否则 `students[i]` 无法参与本轮比较。\n\n**知识延伸：**\n完整执行 k = n 轮时，选择排序的时间复杂度为 O(n²)；本函数只执行 k 轮，每轮扫描 O(n)，总计 O(kn)，k 较小时比完整排序更高效。\n\n**考点：** 选择排序（Selection Sort）的内层循环边界控制。"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方答案表第 11 题为 B，候选 answer=1 忠实对应，不据此擅改；但选项 C（int j = i; j < n; j++）在 j=i 时自比较恒假、无任何副作用，其后过程与 B 完全相同，两选项功能等价，本题单选存在唯一性缺陷，属原卷固有争议，保留待官方确认。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "初核两项修复均经独立复核确认属实并采纳：(1) statement——第 4 页原图题干含括注『（不需要对所有学生完全排序，只需要找出前 k 名）』（放大核对分隔符为全角逗号），候选遗漏，修复后逐字一致；(2) explanation——候选对选项 C 的『temp 被覆盖丢数据』判断属事实错误，j=i 时自比较恒假、无副作用，C 与 B 功能等价；本复核以数学论证加 4000 组随机数组独立模拟（n≤7、k 取 0..n）复核，B、C 输出逐一相同（0 处不一致），A 反例 {100,10,90,80}、k=2 重演得 {10,100,90,80} 属实，D 越界属实；重写后的解析如实记录该唯一性缺陷且不擅改官方答案，采纳并保留完整字段值写入 changes。answer=1（B）与第 1 页答案表一致，B/C 等价争议记入 unresolved。应用 changes 后题面与解析均为最终版，故 verdict=revise。"
+      }
+    ],
+    "summary": "仅 1 道候选（Q11）。题干漏括注、解析对选项 C 的判断错误（实为与 B 功能等价，经数学论证与 4000 组随机模拟独立复核）均由初核修复并经本复核采纳，changes.question/explanation 为最终值；官方答案 B（索引1）保留，B/C 等价的原卷唯一性缺陷记入 unresolved。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        11
+      ],
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "startedAt": "2026-11-25T05:05:00.000Z",
+      "completedAt": "2026-11-25T05:36:00.000Z"
+    }
+  ]
+}

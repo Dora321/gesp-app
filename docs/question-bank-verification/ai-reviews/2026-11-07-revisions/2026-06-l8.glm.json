@@ -1,0 +1,477 @@
+{
+  "paperId": "2026-06-l8",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T13:25:00.000Z",
+  "completedAt": "2026-11-25T14:55:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "e8bcf63670efd931381a3bd78e3bca3571bbb6a7493d09519b17a06a068d5777",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295410429984.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++8级.pdf",
+    "mirrorSha": "482ae7e0ade568f5c71076b7c719a291c72cb05c",
+    "mirrorBytes": 811835,
+    "shaVerified": true,
+    "sha256": "d642332b541c33127398749e4e1256e2c3061767e911543f7c142a5be5ee92d7"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2026-06-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为「CCF 编程能力等级认证 / C++ 八级 / 2026 年 06 月」，与 paperId 2026-06-l8 一致；第 1 页单选题答案表 1—15 依次为 B B C A C D A A D A C B B C D，第 4 页判断题答案表 1—10 依次为 √ √ × × √ × √ √ × √，均清晰可读；第 6—8 页为编程题 1「线网建设」、2「堆石子」的题头、题面、样例、数据范围与参考程序。本轮复核以页图为准。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "判断题第 1 题：第一轮将 answer 由站点旧值改为 0，本轮独立复核第 4 页题干与答案表 √（映射 0）一致；两类互斥方案合计 m+n 的加法原理论证独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 1 题「若一项任务可从两种互斥的方案中选择一种完成，其中，方案 A 有 m 种做法，方案 B 有 n 种做法，则总做法数为 m + n。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 1 题为 √，映射 0，候选 answer=0。独立判断：两类方案互斥且各自独立完成任务，符合加法原理，总数 m+n。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明加法原理的“分类互斥”前提并区分乘法原理，结论与 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "判断题第 2 题：第一轮将 answer 改为 0，本轮独立复核第 4 页题干与答案表 √（映射 0）一致；圆排列 n!/n=(n−1)! 且翻转另算的论证独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 2 题「将 n 个不同元素围成一圈，若只把旋转视为同一种排法、翻转仍视为不同排法，则方案数为 (n − 1)!。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 2 题为 √，映射 0，候选 answer=0。独立判断：每个圆排列对应 n 个线排列，圆排列数 n!/n=(n−1)!；翻转视为不同时不除 2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出 n!/n=(n−1)! 与手镯问题的对照说明，结论与 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 3 题：第一轮将 answer 改为 1，本轮独立复核第 4 页题干与答案表 ×（映射 1）一致；可重复组合应为 C(n+k−1,k)、反例 n=2,k=1 成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 3 题「从 n 个不同元素中可重复地选取 k 个且不考虑顺序，方案数为 C(n + k, k)。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 3 题为 ×，映射 1，候选 answer=1。独立验证：正确公式为 C(n+k−1,k)；n=2、k=1 时实际 2 种而 C(3,1)=3，题面公式错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出隔板法与同一反例，结论与 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 4 题：第一轮将 answer 改为 1，本轮独立复核第 4 页题干与答案表 ×（映射 1）一致；帕斯卡恒等式 C(n,k)=C(n−1,k−1)+C(n−1,k) 与反例 C(4,2)=6≠4 成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 4 题「杨辉三角中的组合数满足 C(n, k) = C(n − 1, k) + C(n − 2, k)。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 4 题为 ×，映射 1，候选 answer=1。独立验证：C(4,2)=6，而 C(3,2)+C(2,2)=3+1=4，题面公式错误；正确形式为 C(n,k)=C(n−1,k−1)+C(n−1,k)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析写出正确恒等式并给出两组数值验证，结论与 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "判断题第 5 题：第一轮将 answer 改为 0，本轮独立复核第 4 页题干与答案表 √（映射 0）一致；快速幂按指数二进制位 O(log b) 次乘的论证独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 5 题「快速幂通过二进制拆分指数，可以在 O(log b) 时间内计算 a^b mod m。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 5 题为 √，映射 0，候选 answer=0。独立判断：底数逐轮平方、按 b 的二进制位决定是否乘入，循环次数为 b 的位数 O(log b)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明平方与按位乘入的机制，结论与 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 6 题：第一轮将 answer 改为 1，本轮独立复核第 4 页题干与答案表 ×（映射 1）一致；候选反例（s→u 权 2、s→v 权 3、v→u 权 −2，无环更无负环）经独立推演成立：Dijkstra 先确定 dis[u]=2，而真值 s→v→u=1，已确定结点不再改进，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 6 题「只要图中不存在负权环，Dijkstra 算法就一定能正确处理带负权边的图。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 6 题为 ×，映射 1，候选 answer=1。独立验证候选反例：图中 s→u(2)、s→v(3)、v→u(−2) 无任何有向环，Dijkstra 按序确定 dis[u]=2 后不再改进，而最短路为 1，标准 Dijkstra 失效。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出该反例并说明“无负权环”不足以支撑带负边场景，结论与 × 一致；末尾对旧例子的更正说明属修订记录性文字，不影响论证正确性。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "判断题第 7 题：第一轮将 answer 改为 0，本轮独立复核第 4 页题干与答案表 √（映射 0）一致；边权互异时 MST 唯一的交换论证独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 7 题「若一张连通无向图所有边权两两不同，则它的最小生成树一定唯一。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 7 题为 √，映射 0，候选 answer=0。独立判断：若存在两棵不同 MST，取对称差中权最小的边交换可得更小生成树，矛盾；边权互异时 MST 唯一。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析用反证/交换论证说明唯一性并注明边权可重复时才可能不唯一，结论与 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "判断题第 8 题：第一轮将 answer 改为 0，本轮独立复核第 4 页题干与答案表 √（映射 0）一致；两边非负时平方等价且避免浮点误差的论证独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 8 题「判断点 (x, y) 是否在以原点为圆心、半径为 r 的圆内或圆上时，可以比较 x² + y² 与 r²，不必先开平方。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 8 题为 √，映射 0，候选 answer=0。独立判断：√(x²+y²)≤r 与 x²+y²≤r² 在两边非负时等价，比较平方还可避免开方浮点误差。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明单调等价变换与精度优点，结论与 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 9 题：第一轮将 answer 改为 1，本轮独立复核第 4 页题干与答案表 ×（映射 1）一致；二分答案要求 check 单调的论证独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 9 题「若能写出判定函数 check(x)，表示“答案为 x 时是否可行”，即使 check(x) 不满足单调性，也一定可以使用二分答案求最优解。」与候选 question（以双引号复现）一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 9 题为 ×，映射 1，候选 answer=1。独立判断：二分收缩的前提是可行性关于 x 单调，非单调时收缩会丢弃最优解所在区间。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出单调性前提与非单调时的替代方法，结论与 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "判断题第 10 题：第一轮将 answer 改为 0，本轮独立复核第 4 页题干与答案表 √（映射 0）一致；归并稳定性（<= 优先取左）与 O(n log n) 递推论证独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 10 题「归并排序是一种稳定排序算法，常见实现的时间复杂度为 O(n log n)。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 10 题为 √，映射 0，候选 answer=0。独立判断：合并时相等取左半保稳定，T(n)=2T(n/2)+O(n)=O(n log n) 且各情况同阶。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明稳定性实现与递推复杂度，结论与 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "接受初核并独立复核通过：候选 description 已补入第 7 页 3.2.8 数据范围表且逐字一致；参考程序与第 8 页官方程序逐字相同（qpow/comb/main 同构），答案 C(n−1, m−1) mod 1e9+7 与题意一致。原卷样例、8 组自拟边界用例全部通过，并与 math.comb 及“严格递减序列直接枚举”双对拍零差异；满档压力 0.016 s（仅记于证据，不入 tests）。内存差异按约定记录于 unresolved。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页 3.2.1 原文：m 堆石子、a₁=n、此后每堆严格小于前一堆、每堆至少 1 个、方案数对 1e9+7 取模、不存在输出 0；候选 description 逐句一致，且已补入第 7 页 3.2.8 数据范围表（数据点 1,2：2≤m≤100、1≤n≤100、0≤n−m≤5；3,4,5：2≤m≤100、1≤n≤1e8；6,7,8,9,10：2≤m≤1e5、1≤n≤1e8），与页图逐字一致。第 6 页题头 1.0 s、内存 512.0 MB（内存差异另记）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷答案表项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析把方案对应为从 {1,…,n−1} 中选 m−1 个互不相同的数（选定后严格递减顺序唯一），得 C(n−1, m−1)，n<m 时为 0；样例 m=3,n=5 → C(4,2)=6 复算一致；n≤1e8 不能预处理阶乘、逐项乘配合费马小定理逆元（1e9+7 为素数且 n−1<MOD），复杂度 O(m log MOD)，与数据范围匹配。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序与第 8 页官方程序逐字相同：本机 clang++ -std=c++17 -O2 编译运行，官方样例 3 5→6；自拟边界 m=n=3→1、m=2,n=3→2、m=4,n=7→20、m=2,n=1→0、m=5,n=3→0、m=2,n=1e8→99999999、m=1e5,n=99999→0、m=1e5,n=1e8→835940359（与 math.comb 独立一致）全部通过；另对 m=2..8 × n=1..25 全量与 math.comb 及直接枚举双对拍零差异；m=1e5,n=1e8 压力运行 0.016 s（压力与耗时仅记于此）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原卷样例（m=3,n=5）",
+            "input": "3 5\n",
+            "output": "6",
+            "reason": "C(4,2)=6，对应 (5,4,3)、(5,4,2)、(5,4,1)、(5,3,2)、(5,3,1)、(5,2,1)，与第 7 页样例解释一致。"
+          },
+          {
+            "name": "m=n（恰取满）",
+            "input": "3 3\n",
+            "output": "1",
+            "reason": "C(2,2)=1，唯一方案 (3,2,1)；验证 n−1 = m−1 的取满边界。"
+          },
+          {
+            "name": "m=2,n=3（最小无解边界之上）",
+            "input": "2 3\n",
+            "output": "2",
+            "reason": "C(2,1)=2：(3,2)、(3,1)；验证第二堆只能从 1..n−1 任取。"
+          },
+          {
+            "name": "m=4,n=7（一般小例）",
+            "input": "4 7\n",
+            "output": "20",
+            "reason": "C(6,3)=20，与直接枚举严格递减序列个数一致。"
+          },
+          {
+            "name": "m=2,n=1 无解",
+            "input": "2 1\n",
+            "output": "0",
+            "reason": "a₁=1，要求 a₂<a₁ 且 a₂≥1，不存在；comb 首行 m>n 返回 0。"
+          },
+          {
+            "name": "n<m 无解（5 3）",
+            "input": "5 3\n",
+            "output": "0",
+            "reason": "C(2,4) 中 m−1>n−1，组合意义下无法从 2 个数中选 4 个，输出 0。"
+          },
+          {
+            "name": "满档 m=1e5、n=1e8",
+            "input": "100000 100000000\n",
+            "output": "835940359",
+            "reason": "C(99999999,99999) mod 1e9+7，与 Python math.comb 精确计算后取模的独立结果一致，覆盖 m=1e5 的最大循环与 n=1e8。"
+          },
+          {
+            "name": "满档 n<m（m=1e5、n=99999）",
+            "input": "100000 99999\n",
+            "output": "0",
+            "reason": "m−1=99999 > n−1=99998，comb 返回 0，验证满档下无解分支。"
+          },
+          {
+            "name": "大 n 小 m（逆元路径）",
+            "input": "2 100000000\n",
+            "output": "99999999",
+            "reason": "C(99999999,1)=99999999，验证 n 接近 1e8 时逐项乘与费马逆元仍正确。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 6 页标注本题内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，留待发布流程处理。"
+        ]
+      }
+    ],
+    "summary": "11 题独立复核完成：先逐页对照原卷再核 DeepSeek 结论。10 道判断题（Q16—Q25）的题干与第 4 页逐字一致，answer 修订（√→0、×→1）与第 4 页答案表 √ √ × × √ × √ √ × √ 逐一对应，解析论证均独立成立，全部 approve 且 changes 为空；Q27 的 description 已补入第 7 页数据范围表且逐字一致，参考程序与第 8 页官方程序逐字相同：原卷样例与 8 组自拟边界用例全部通过，m=2..8 × n=1..25 全量与 math.comb 及严格递减序列直接枚举双对拍零差异，m=1e5、n=1e8 满档与 math.comb 一致且 0.016 s 完成（压力仅记于证据不入 tests），approve。原卷 512 MB 与题库 128 MB 的内存差异按约定记录于 unresolved，留待本机集成校正。"
+  }
+}

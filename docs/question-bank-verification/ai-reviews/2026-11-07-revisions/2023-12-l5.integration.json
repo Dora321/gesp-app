@@ -1,0 +1,352 @@
+{
+  "paperId": "2023-12-l5",
+  "integratedAt": "2026-11-25T12:14:19.571Z",
+  "accepted": [
+    {
+      "id": 1,
+      "fields": [
+        "options"
+      ]
+    },
+    {
+      "id": 2,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 3,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "code",
+        "explanation"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "code",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 17,
+      "fields": []
+    },
+    {
+      "id": 18,
+      "fields": [
+        "question",
+        "code",
+        "explanation"
+      ]
+    },
+    {
+      "id": 22,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "explanation",
+        "referenceCode"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 7,
+      "reasons": [
+        "官方答案表为 C；原题按字面询问错误选项，而实际存在不止一个不成立的选项。原卷收集循环重复，且四种组合都无法使给出的代码成为正确排序实现。"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "2 4 \n1 \n4 \n5 \n9",
+          "output": "4 \nlucky \n8 \nlucky",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\nlucky\n8\nlucky\n",
+          "passed": true
+        },
+        {
+          "input": "16 11 \n1 \n2 \n4 \n8 \n16 \n32 \n64 \n128 \n256 \n512\n1024",
+          "output": "16 \n16 \n16 \n16 \nlucky \nlucky \nlucky \nlucky \nlucky \nlucky \nlucky",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "16\n16\n16\n16\nlucky\nlucky\nlucky\nlucky\nlucky\nlucky\nlucky\n",
+          "passed": true
+        },
+        {
+          "name": "原样例 1",
+          "input": "2 4\n1\n4\n5\n9\n",
+          "output": "4\nlucky\n8\nlucky",
+          "reason": "独立推演：a=2 时 1 幸运化 2 次到 4（2²≥2）；4 幸运；5 幸运化 1 次到 8（4 的倍数）；9=3² 幸运。官方与候选参考程序实测输出一致。",
+          "kind": "boundary",
+          "actual": "4\nlucky\n8\nlucky\n",
+          "passed": true
+        },
+        {
+          "name": "原样例 2",
+          "input": "16 11\n1\n2\n4\n8\n16\n32\n64\n128\n256\n512\n1024\n",
+          "output": "16\n16\n16\n16\nlucky\nlucky\nlucky\nlucky\nlucky\nlucky\nlucky",
+          "reason": "独立推演：a=16 时最小超级幸运数 16，幸运数含 16 的倍数；1/2/4/8 幸运化到 16，16 及其倍数输出 lucky。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "16\n16\n16\n16\nlucky\nlucky\nlucky\nlucky\nlucky\nlucky\nlucky\n",
+          "passed": true
+        },
+        {
+          "name": "a 下界 a=1",
+          "input": "1 4\n1\n7\n36\n1000001\n",
+          "output": "lucky\nlucky\nlucky\nlucky",
+          "reason": "独立推演：a=1 时 1=1² 为超级幸运数，任何正整数都是其倍数，全部 lucky。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "lucky\nlucky\nlucky\nlucky\n",
+          "passed": true
+        },
+        {
+          "name": "幸运化最近边界与倍数 a=4",
+          "input": "4 5\n3\n12\n9\n2\n16\n",
+          "output": "4\nlucky\nlucky\n4\nlucky",
+          "reason": "独立推演：3→4（2²）；12=4×3 幸运；9=3²≥4 幸运；2→4；16 幸运。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "4\nlucky\nlucky\n4\nlucky\n",
+          "passed": true
+        },
+        {
+          "name": "a 上界 a=1000001",
+          "input": "1000001 3\n1000000\n1000001\n1002001\n",
+          "output": "1002001\n1002001\nlucky",
+          "reason": "独立推演：a=1,000,001 时最小超级幸运数 1001²=1,002,001；x≤1,000,001 的幸运化结果均为 1,002,001；1,002,001 本身输出 lucky。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "1002001\n1002001\nlucky\n",
+          "passed": true
+        },
+        {
+          "name": "a=999999 平方边界",
+          "input": "999999 3\n999998\n1000000\n1000001\n",
+          "output": "1000000\nlucky\n1002001",
+          "reason": "独立推演：1000²=1,000,000≥999,999 为超级幸运数；1,000,001 非任何超级幸运数的倍数，幸运化到 1,002,001（初版期望 lucky 系推演笔误，已按逐数验算更正）。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "1000000\nlucky\n1002001\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "07980365b3af48fe07881fff7886c3213993ed22980d092db76b1abe52d78fe4"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "3\n1 2 3",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "5\n5 6 2 10 13",
+          "output": "8",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "8\n",
+          "passed": true
+        },
+        {
+          "name": "全 0 下界",
+          "input": "3\n0 0 0\n",
+          "output": "0",
+          "reason": "独立推演：0 与任何数按位与为 0，验证 a_i 下界 0。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "上界相同值",
+          "input": "2\n2147483647 2147483647\n",
+          "output": "2147483647",
+          "reason": "独立推演：两数同为 2^31−1 且取不同下标，按位与仍为 2^31−1，验证 a_i 上界。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "2147483647\n",
+          "passed": true
+        },
+        {
+          "name": "高位取舍辨析",
+          "input": "4\n8 9 12 15\n",
+          "output": "12",
+          "reason": "独立推演：六对中最大为 15&12=12；验证贪心逐位筛选（第 3 位后候选 {12,15}，第 2 位保留 12&15 的位）正确。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "12\n",
+          "passed": true
+        },
+        {
+          "name": "含 0 与 1 位上界",
+          "input": "3\n0 2147483647 1073741824\n",
+          "output": "1073741824",
+          "reason": "独立推演：0 项恒 0；2^31−1 与 2^30 按位与为 2^30，验证第 30 位为可固定最高位。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "1073741824\n",
+          "passed": true
+        },
+        {
+          "name": "互斥二进制位",
+          "input": "4\n1 2 4 8\n",
+          "output": "0",
+          "reason": "独立推演：两两按位与全为 0，验证候选集合收缩到不足 2 个时该位不保留。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "三数相同",
+          "input": "3\n7 7 7\n",
+          "output": "7",
+          "reason": "独立推演：不同食材可取相同值，7&7=7；验证同值多下标配对合法。官方与候选实测一致。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f97c8902e7acb07d124ca1eaa8addddd003301e068da757abac055ed19c8376f",
+      "stressTests": [
+        {
+          "name": "百万个确定性随机数，与独立按位计数结果对照",
+          "inputBytes": 10483557,
+          "inputSha256": "677a01eeb62efa2e825b894d657bdffa212145885532fac47996ec86cb7729ce",
+          "output": "2147481876",
+          "outputSha256": "37571b1f8ce87e8a5e447fc4dc7744ffc861ce495833bfe952dbc48b8a4be3c8",
+          "elapsedMs": 131,
+          "passed": true
+        }
+      ],
+      "performanceComparison": {
+        "beforeCodeSha256": "8afe5a734b70fd899658f06cd52097b228993102ba0ab24032c641472f349cd3",
+        "oldElapsedMs": 1479,
+        "newElapsedMs": 131,
+        "inputSha256": "677a01eeb62efa2e825b894d657bdffa212145885532fac47996ec86cb7729ce",
+        "output": "2147481876"
+      }
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 7,
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "code": "vector<int> operator +(vector<int> lA, vector<int> lB)\n{\n    vector<int> lst;\n    for (int i = 1; i < lA.size(); i++)\n        lst.push_back(lA[i]);\n    for (int i = 1; i < lB.size(); i++)\n        lst.push_back(lB[i]);\n    return lst;\n}\n\nvector<int> qSort(vector<int> lst)\n{\n    if (lst.size() < 2) return lst;\n    int pivot = lst[0];\n    vector<int> less, greater;\n    for (int i = 1; i < lst.size(); i++)\n        if (lst[i] <= pivot) less.push_back(lst[i]);\n        else greater.push_back(lst[i]);\n    for (int i = 1; i < lst.size(); i++)\n        if (lst[i] <= pivot) less.push_back(lst[i]);\n        else greater.push_back(lst[i]);\n\n    return __________________________________________;\n}",
+        "explanation": "**答案：C（官方口径；四个选项作为代码均不能真正完成排序）**\n\n**核心解析：**\n`qSort` 取 `lst[0]` 为基准 `pivot`，把其余元素分入 `less`（≤ pivot）与 `greater`（> pivot），递归排好两段后拼回。按快速排序语义，正确拼装顺序是「排好的 less + 基准 pivot + 排好的 greater」，基准必须夹在中间。\n\n**选项逐项分析（结合实测）：**\n- **A `qSort(less)+qSort(greater)+(vector<int>)pivot`**：❌ 基准放到末尾，破坏「左小右大」的合并顺序。\n- **B `(vector<int>)pivot+(qSort(less)+qSort(greater))`**：❌ 基准放到最前，同样破坏合并顺序。\n- **C `(qSort(less)+(vector<int>)pivot+qSort(greater))`**：❌ 本题官方选定的错误说法。骨架虽是左—中—右，但 `(vector<int>)pivot` 是 C 风格强转，按 `vector<int>(pivot)` 的尺寸构造语义生成 pivot 个 0（实测 pivot=3 得 {0,0,0}，pivot=0 得空向量），并不会把基准值本身插入中间；叠加 `operator+` 从下标 1 开始复制（丢弃每个实参首元素）后，实测输入 3,1,2 输出 `0` 而非有序的 `1 2 3`。\n- **D `qSort(less)+pivot+qSort(greater)`**：顺序虽然正确，但实测（Apple clang 21，-std=c++98/11/17 结果一致）无法编译：`vector<int> + int` 不能匹配本题只接受两个 `vector<int>` 的 `operator+`，且 `vector` 的尺寸构造函数是 explicit，`int` 无法隐式转换为 `vector<int>`。官方在四个选项中取 C 为「错误说法」，站点按官方保留答案 C。\n\n**原卷缺陷（保留记录）：** ① `operator+` 两个循环都从下标 1 开始复制，丢弃每个实参的首元素；② 原卷第 19–24 行是两段完全相同的收集循环，元素被重复放入 less/greater（本次已按原卷补回第二段）；③ 实测原卷形态在「剩余元素与基准同值」时无限递归（对向量 [1,1] 递归深度超 60 仍不收敛，进程 SIGSEGV 崩溃）；④ 叠加后四个选项没有一个能真正完成排序。官方答案 C 是选项层面的判定，站点按官方保留、不擅改答案。\n\n**考点：** 快速排序的划分与递归拼接、类型转换与运算符重载。"
+      }
+    },
+    {
+      "id": 14,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：C**\n\n**解析：** 题目要求判断「任意输入的单个整数 N」是否为素数，逐项考察各方法能否完成这一判定：\n\n- **A 埃氏筛法**：可行。对 [2, N] 建埃氏筛表后查看 N 是否被标记即可判定；对单个 N 需先筛出整个范围、效率不高，但方法成立。\n- **B 线性筛法**：可行。欧拉筛每个合数只被最小质因子筛一次，同样可对 [2, N] 建表后判定 N，方法成立。\n- **C 二分答案**：不可行，为本题「不合适」的方法。二分答案要求判定条件随候选值单调（如「边长 x 能否切出 K 块」随 x 单调变化）；「N 是否为素数」随 N 增大忽真忽假（2、3、5、7 为素数，4、6、8、9 不是），不存在可二分的单调区间，无法使用。\n- **D 枚举法**：可行。用 2..√N 逐个试除即可直接判定单个 N。\n\n**考点：** 素数判定的常见方法（筛法、试除）与二分答案的单调性前提。"
+      }
+    },
+    {
+      "id": 18,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "修改 code 未获得两模型一致批准，待回流",
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "以下 C++ 代码能以递归方式实现斐波那契数列，该数列第 1、2 项为 1，以后各项均是前两项之和。（ ）",
+        "code": "int Fibo(int N)\n{\n    if (N == 1 || N == 2)\n        return 1;\n    else\n    {\n        int m = fiboA(N - 1);\n        int n = fiboB(N - 2);\n        return m + n;\n    }\n}",
+        "explanation": "**答案：错误**\n\n**判定依据：** 图示代码中 `Fibo` 在 N=1 或 N=2 时返回 1，基例本身存在；但递归分支调用的是 `fiboA(N - 1)` 和 `fiboB(N - 2)`——这两个函数在题给代码中并未定义，全代码也没有一处调用 `Fibo` 自身。实测编译报 `fiboA`、`fiboB` 两处 undeclared identifier 错误，整体无法通过编译，不能构成「以递归方式实现斐波那契数列」的程序，命题为假。\n\n**纠错：** 若把两处调用改为 `Fibo(N - 1)` 与 `Fibo(N - 2)`，才构成标准递归实现（第 1、2 项为 1，以后各项均是前两项之和）。\n\n**易混概念：** 递归三要素：终止条件、递归调用、状态传递；递归调用必须指向函数自身，调用未定义函数会直接编译失败；深层递归可能栈溢出。\n\n**考点：** 递归"
+      }
+    },
+    {
+      "id": 22,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：错误**\n\n**判定依据：** 逐轮模拟：每轮先执行 `s[0] = N % 8 + '0'` 得到当前最低位的数字字符，再用 `rst += string(s)` 把它追加到 rst 末尾，最后 `N /= 8`。取模与除法的先后顺序本身没有问题（全局数组 s 未用到的位置零初始化，`string(s)` 恰为单个字符）；真正的缺陷是各位按从低位到高位的顺序被依次追加到末尾、程序没有反转，输出的是倒序八进制串。\n\n**逐例实测（g++ 编译运行）：** N=8 输出 01（应为 10）；N=10 输出 21（应为 12）；N=64 输出 001（应为 100）；N=100 输出 441（应为 144）；N=9 输出 11 与正确答案相同属回文巧合；N=1 输出 1 正确。任一多位非回文输入即可暴露倒序缺陷。\n\n**修正思路：** 每轮把新数字插到结果串前面，或先按低位在前保存、最后整体逆序输出。另注：题干限定正整数，但 N=0 时该代码不进循环、输出空行，属边界外的附带观察。\n\n**考点：** 进制转换"
+      }
+    },
+    {
+      "id": 27,
+      "reasons": [
+        "修改 referenceCode 未获得两模型一致批准，待回流",
+        "referenceCode 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "referenceCode": "#include<cstdio>\n#include<iostream>\n#include<algorithm>\n#include<cstdlib>\n#include<cstring>\nusing namespace std;\n\nconst int MAX_N = int(1e6) + 100;\n\nint a[MAX_N];\n\nint sort(int l,int r,int k) {\n    while(l <= r) {\n        while ((l <= r) && (a[l] >> k & 1)) l++;\n        while ((l <= r) && (!(a[r] >> k & 1))) r--;\n        if (l <= r) swap(a[l++], a[r--]);\n    }\n    return r;\n}\n\nint main() {\n    int n, j, ans=0;\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++) scanf(\"%d\", &a[i]);\n    for (int i = 31; i >= 0; i--)\n        if ((j = sort(1, n, i)) >= 2) {\n            ans = ans | 1 << i;\n            n = j;\n        }\n    printf(\"%d\\n\", ans);\n    return 0;\n}"
+      }
+    }
+  ]
+}

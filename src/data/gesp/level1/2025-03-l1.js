@@ -821,7 +821,7 @@ for (int i = 0; i < 5; i++) {
       id: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       samples: [
         { input: `10\n2\n3`, output: `8` },
         { input: `5\n2\n4`, output: `3` }
@@ -842,7 +842,7 @@ for (int i = 0; i < 5; i++) {
       id: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       samples: [
         { input: `5\n43\n58\n25\n67\n90`, output: `40\n60\n30\n70\n90` }
       ],

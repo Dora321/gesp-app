@@ -1,0 +1,150 @@
+{
+  "paperId": "2024-03-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T07:07:28.827Z",
+  "completedAt": "2026-11-25T07:07:28.827Z",
+  "finishReason": "stop",
+  "inputSha256": "2825ba4952b604c238e24cf329317e4c148e25430778cb7781266f837b4e1899",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047203868704.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++6级.pdf",
+    "mirrorSha": "5e0d648726a396dbde60a40d4ad987dccbb07494",
+    "mirrorBytes": 1348645,
+    "shaVerified": true,
+    "sha256": "23d9a6343b26277407e0ed2e9fa0d36eebfeb07aea047b443b6c6039f3702ed3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示 CCF 编程能力等级认证、C++ 六级、2024 年 03 月，与 paperId 2024-03-l6 一致；第 6—9 页为编程题 26、27 的完整题面、样例、数据范围与参考程序。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页题面逐段对照：四个正整数 n,a,b,c；每轮减 a 或减 b；n≤c 时结束；a=b 时减 a 与减 b 仍视为不同操作；答案对 10^9+7 取模；输入格式注明“一行四个正整数 n,a,b,c。保证 1≤a,b,c≤n”；三档数据范围与候选一致。PDF 中“20%/40%”的百分号在排版中丢失，候选补回，属排版修复。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：f(x)=f(x-a)+f(x-b)，x≤c 时 f(x)=1；减到负值仍属“已结束”，每个终态只计一次；这与候选解析及官方参考程序“f[N+n] 起推、对 0..N+c 求和”的语义一致。样例 1（1）与样例 2（114 51 4 1→176）复算吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译并运行候选参考程序：官方样例 1/2/3 输出 1、176、384178446，与原卷一致；边界 5 2 3 5→1（初始即结束）、3 1 1 2→2（a=b 两分支）、4 2 1 1→5（递推）全部通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "初始即结束",
+            "input": "5 2 3 5\n",
+            "output": "1",
+            "reason": "n=5≤c=5，空操作序列计 1 种。"
+          },
+          {
+            "name": "a=b 两分支",
+            "input": "3 1 1 2\n",
+            "output": "2",
+            "reason": "f(3)=f(2)+f(2)=1+1=2，减 a 与减 b 视为不同序列。"
+          },
+          {
+            "name": "一般递推",
+            "input": "4 2 1 1\n",
+            "output": "5",
+            "reason": "f(2)=2、f(3)=3、f(4)=f(2)+f(3)=5，覆盖非平凡转移。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7—8 页题面、输入输出与数据范围逐项对照：相邻两牛间隔由左牛 b 与右牛 a 决定；20% N=2、另外 20% N=3、80% N≤8、全部 N≤9 且 a_i,b_i≤1000；候选均已补入。输出格式以“输出一行一个整数表示答案”概括原文“表示你最少需要留下多少牛棚”，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：固定排列后总牛棚数 = n + Σmax(b_左,a_右)，非相邻牛自动满足；对排列取最小。样例 1（4）与样例 2（7）复算一致，候选解析中方向性（b_左 与 a_右）说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译运行候选状压 DP：官方样例 4、7 通过；边界“单头牛 1/5/7→1”“两头对称 2 1 1/1 1→3”“方向性 2 1 10/1 1→3”均通过；另以 200 组 n≤7 随机数据与全排列穷举对拍，结果零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单头牛",
+            "input": "1\n5\n7\n",
+            "output": "1",
+            "reason": "只有一头牛，无需间隔，答案 1。"
+          },
+          {
+            "name": "两头对称",
+            "input": "2\n1 1\n1 1\n",
+            "output": "3",
+            "reason": "2 头牛 + max(1,1)=1 个间隔。"
+          },
+          {
+            "name": "方向性间隔",
+            "input": "2\n1 10\n1 1\n",
+            "output": "3",
+            "reason": "顺序 1→0 时间隔 max(b1=1,a0=1)=1，总数 3；反向需 12。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "Q26、Q27 均通过原卷页图、解析与参考程序核验，全部适用维度 verified，候选可原样应用。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T07:07:28.827Z",
+      "completedAt": "2026-11-25T07:07:28.827Z"
+    }
+  ]
+}

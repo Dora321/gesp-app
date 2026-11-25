@@ -1,0 +1,159 @@
+{
+  "paperId": "2024-12-l6",
+  "integratedAt": "2026-11-25T08:25:50.753Z",
+  "accepted": [
+    {
+      "id": 5,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "options"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "explanation",
+        "referenceCode"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "explanation",
+        "referenceCode"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3 2\nURR",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "5e11 边界左移直达上界",
+          "input": "1 500000000000\nL\n",
+          "output": "1000000000000",
+          "reason": "s=LIMIT/2 恰不触发压栈，2s=10^12 为合法终值上界；实测通过，覆盖压栈阈值的临界点。",
+          "kind": "boundary",
+          "actual": "1000000000000\n",
+          "passed": true
+        },
+        {
+          "name": "5e11 边界右移再回退",
+          "input": "2 500000000000\nRU\n",
+          "output": "500000000000",
+          "reason": "真实路径 5×10^11→10^12+1→父结点 5×10^11，为合法输入；候选先直接算出 10^12+1 再由 U 除回，官方则压栈后弹栈，终值一致；实测通过，覆盖两实现阈值口径差异点。",
+          "kind": "boundary",
+          "actual": "500000000000\n",
+          "passed": true
+        },
+        {
+          "name": "混合序列含上行抵消",
+          "input": "6 3\nRRLURU\n",
+          "output": "15",
+          "reason": "3→7→15→30→15→31→15，手算核对，覆盖 U/L/R 交错与栈空/非空两种 U 分支；实测通过。",
+          "kind": "boundary",
+          "actual": "15\n",
+          "passed": true
+        },
+        {
+          "name": "根起连续两次左移",
+          "input": "2 1\nLL\n",
+          "output": "4",
+          "reason": "1→2→4，验证无压栈的纯下行模拟；实测通过。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "9a0305f376847c0868d30e716418c95b42dbbd1d899c16be16ad95b352c7da54"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3 4 10\n1 1\n2 1\n8 3\n5 3\n7 2\n9 0\n1 10000",
+          "output": "40186",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "40186\n",
+          "passed": true
+        },
+        {
+          "name": "容量受限 pos 溢出到右站",
+          "input": "2 3 10\n1 1\n4 2\n5 0\n3 1\n2 2\n",
+          "output": "86",
+          "reason": "d=5 配 p=1（10）、d=2 与 d=0 依次用 p=4 剩余容量；穷举最优同为 86；实测通过，覆盖左侧容量不足时 pos 组向右溢出的分配正确性。",
+          "kind": "boundary",
+          "actual": "86\n",
+          "passed": true
+        },
+        {
+          "name": "负 d 共享右侧大容量站",
+          "input": "2 3 6\n2 1\n5 2\n1 4\n2 3\n3 2\n",
+          "output": "72",
+          "reason": "d=−3、−1 依次占 p=5 两格（−30、−10），d=1 配 p=2（4）；穷举最优同为 72；实测通过，覆盖 neg 组多车共享同一站容量的场景。",
+          "kind": "boundary",
+          "actual": "72\n",
+          "passed": true
+        },
+        {
+          "name": "x 下界 2 的强制共站",
+          "input": "1 2 2\n1 2\n1 0\n0 1\n",
+          "output": "4",
+          "reason": "唯一站点 p=1 容量 2，d=1 与 d=−1 均 forced 共站：2×1×1+2×1×(2−1)=4；穷举一致；实测通过，覆盖 x 取下界 2 与正负 d 同站互不干预的退化情形。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "零成本货车",
+          "input": "1 1 2\n1 1\n0 0\n",
+          "output": "0",
+          "reason": "a=b=0 时 d=0、成本 0；实测通过，覆盖 a_i、b_i 下界 0 的极端输入。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "7dfa236780767845286b9e3160af1ee95e6333f8d02d96999e014535064e1cd3"
+    }
+  ]
+}

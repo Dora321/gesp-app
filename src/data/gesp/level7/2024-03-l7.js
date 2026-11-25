@@ -16,26 +16,7 @@ const programmingQuestions = [
 5 6
 6 7`, output: `2 5` }
       ],
-      question: `
-# [GESP202403 七级] 交流问题
-
-## 题目描述
-
-来自两所学校 $A$、$B$ 的 $n$ 名同学聚在一起相互交流。为了方便起见，我们把这些同学从 $1$ 至 $n$ 编号。他们共进行了 $m$ 次交流，第 $i$ 次交流中，编号为 $u_i, v_i$ 的同学相互探讨了他们感兴趣的话题，并结交成为了新的朋友。
-
-由于这次交流会的目的是促进两校友谊，因此只有不同学校的同学之间会交流。同校同学并不会互相交流。
-
-作为 $A$ 校顾问，你对 $B$ 校的规模非常感兴趣，你希望求出 $B$ 校至少有几名同学、至多有几名同学。
-
-## 输入格式
-
-第一行两个正整数，表示同学的人数 $n$、交流的次数 $m$。 
-接下来 $m$ 行，每行两个整数 $u_i, v_i$，表示一次交流。
-
-## 输出格式
-
-输出一行两个整数，用单个空格隔开，分别表示 $B$ 校至少有几名同学、至多有几名同学。
-`,
+      question: "\n# [GESP202403 七级] 交流问题\n\n## 题目描述\n\n来自两所学校 $A$、$B$ 的 $n$ 名同学聚在一起相互交流。为了方便起见，我们把这些同学从 $1$ 至 $n$ 编号。他们共进行了 $m$ 次交流，第 $i$ 次交流中，编号为 $u_i, v_i$ 的同学相互探讨了他们感兴趣的话题，并结交成为了新的朋友。\n\n由于这次交流会的目的是促进两校友谊，因此只有不同学校的同学之间会交流。同校同学并不会互相交流。\n\n作为 $A$ 校顾问，你对 $B$ 校的规模非常感兴趣，你希望求出 $B$ 校至少有几名同学、至多有几名同学。\n\n## 输入格式\n\n第一行两个正整数，表示同学的人数 $n$、交流的次数 $m$。 \n接下来 $m$ 行，每行两个整数 $u_i, v_i$，表示一次交流。\n\n题目保证输入合法，即交流一定是跨校开展的。\n\n## 输出格式\n\n输出一行两个整数，用单个空格隔开，分别表示 $B$ 校至少有几名同学、至多有几名同学。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $N \\le 17$、$M \\le 50$；对于 60% 的测试点，保证 $N \\le 500$、$M \\le 2000$；对于 100% 的测试点，保证 $N \\le 10^5$、$M \\le 2 \\times 10^5$。\n",
       score: 25,
       timeLimit: '1.0 s',
       memoryLimit: '128 MB',
@@ -45,6 +26,10 @@ const programmingQuestions = [
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> color(n + 1, -1);\n    int mn = 0, mx = 0;\n    for (int i = 1; i <= n; ++i) if (color[i] == -1) {\n        queue<int> q;\n        q.push(i);\n        color[i] = 0;\n        int cnt[2] = {1, 0};\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            for (int v : g[u]) if (color[v] == -1) {\n                color[v] = color[u] ^ 1;\n                cnt[color[v]]++;\n                q.push(v);\n            }\n        }\n        mn += min(cnt[0], cnt[1]);\n        mx += max(cnt[0], cnt[1]);\n    }\n    cout << mn << ' ' << mx << '\\n';\n    return 0;\n}",
       score: 25,
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -57,29 +42,7 @@ const programmingQuestions = [
 1 6 6 7 7 8
 6 6 7 7 8 8`, output: `7` }
       ],
-      question: `
-# [GESP202403 七级] 俄罗斯方块
-
-## 题目描述
-
-小杨同学用不同种类的俄罗斯方块填满了一个大小为 $n \\times m$ 的网格图。
-
-网格图由 $n \\times m$ 个带颜色方块构成。小杨同学现在将这个网格图交给了你，请你计算出网格图中俄罗斯方块的种类数。 
-如果两个同色方块是四连通（即上下左右四个相邻的位置）的，则称两个同色方块直接连通；若两个同色方块同时与另一个同色方块直接或间接连通，则称两个同色方块间接连通。一个俄罗斯方块由一个方块和所有与其直接或间接连接的同色方块组成。定义两个俄罗斯方块的种类相同当且仅当通过**平移**其中一个俄罗斯方块可以和另一个俄罗斯方块重合；如果两个俄罗斯方块颜色不同，仍然视为同一种俄罗斯方块。
-
-例如，在如下情况中，方块 $1$ 和方块 $2$ 是同一种俄罗斯方块，而方块 $1$ 和方块 $3$ **不是**同一种俄罗斯方块。
-
-![](https://cdn.luogu.com.cn/upload/image_hosting/ttv3nmgs.png)
-
-## 输入格式
-
-第一行包含两个正整数 $n$ 和 $m$，表示网格图的大小。 
-对于之后的 $n$ 行，第 $i$ 行包含 $m$ 个正整数 $a_{i1}, a_{i2}, \\dots a_{im}$，表示该行 $m$ 个方块的颜色。
-
-## 输出格式
-
-输出一行一个整数表示答案。
-`,
+      question: "\n# [GESP202403 七级] 俄罗斯方块\n\n## 题目描述\n\n小杨同学用不同种类的俄罗斯方块填满了一个大小为 $n \\times m$ 的网格图。\n\n网格图由 $n \\times m$ 个带颜色方块构成。小杨同学现在将这个网格图交给了你，请你计算出网格图中俄罗斯方块的种类数。 \n如果两个同色方块是四连通（即上下左右四个相邻的位置）的，则称两个同色方块直接连通；若两个同色方块同时与另一个同色方块直接或间接连通，则称两个同色方块间接连通。一个俄罗斯方块由一个方块和所有与其直接或间接连接的同色方块组成。定义两个俄罗斯方块的种类相同当且仅当通过**平移**其中一个俄罗斯方块可以和另一个俄罗斯方块重合；如果两个俄罗斯方块颜色不同，仍然视为同一种俄罗斯方块。\n\n例如，在如下情况中，方块 $1$ 和方块 $2$ 是同一种俄罗斯方块，而方块 $1$ 和方块 $3$ **不是**同一种俄罗斯方块。\n\n![](https://cdn.luogu.com.cn/upload/image_hosting/ttv3nmgs.png)\n\n## 输入格式\n\n第一行包含两个正整数 $n$ 和 $m$，表示网格图的大小。 \n对于之后的 $n$ 行，第 $i$ 行包含 $m$ 个正整数 $a_{i1}, a_{i2}, \\dots a_{im}$，表示该行 $m$ 个方块的颜色。\n\n## 输出格式\n\n输出一个非负整数，表示俄罗斯方块的种类数。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $n,m \\le 20$、$\\max a_{ij} \\le 400$，且所有俄罗斯方块的大小不超过 $5 \\times 5$，即均可以放置于 $5 \\times 5$ 的网格图中；对于另外 30% 的测试点，保证 $n,m \\le 500$，且所有俄罗斯方块的形状均为 $1 \\times x$ 或 $x \\times 1$，其中 $x$ 为任意正整数；对于 100% 的测试点，保证 $1 \\le n,m \\le 500$、$0 \\le a_{ij} \\le 500^2$。\n",
       score: 25,
       timeLimit: '1.0 s',
       memoryLimit: '128 MB',
@@ -89,6 +52,10 @@ const programmingQuestions = [
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> a(n, vector<int>(m));\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) cin >> a[i][j];\n    vector<vector<int>> vis(n, vector<int>(m, 0));\n    set<vector<pair<int,int>>> shapes;\n    int dx[4] = {-1,1,0,0};\n    int dy[4] = {0,0,-1,1};\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) if (!vis[i][j]) {\n        int color = a[i][j];\n        queue<pair<int,int>> q;\n        vector<pair<int,int>> cells;\n        q.push({i,j}); vis[i][j]=1;\n        while(!q.empty()){\n            auto [x,y]=q.front(); q.pop();\n            cells.push_back({x,y});\n            for(int d=0;d<4;++d){\n                int nx=x+dx[d], ny=y+dy[d];\n                if(nx<0||nx>=n||ny<0||ny>=m||vis[nx][ny]||a[nx][ny]!=color) continue;\n                vis[nx][ny]=1; q.push({nx,ny});\n            }\n        }\n        int minx = n, miny = m;\n        for (auto [x,y]: cells) minx=min(minx,x), miny=min(miny,y);\n        vector<pair<int,int>> norm;\n        for (auto [x,y]: cells) norm.push_back({x-minx,y-miny});\n        sort(norm.begin(), norm.end());\n        shapes.insert(norm);\n    }\n    cout << shapes.size() << '\\n';\n    return 0;\n}",
       score: 25,
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     }
 ];
 
@@ -157,12 +124,7 @@ void queen(int n) {
     }
 }
 \`\`\``,
-            options: [
-                "贪心算法",
-                "动态规划",
-                "深度优先搜索",
-                "广度优先搜索 int pos[8]; void queen(int n) { for (int i = 0; i < 8; i++) { pos[n] = i; bool attacked = false; for (int j = 0; j < n; j++) if (pos[n] == pos[j] || pos[n]+n == pos[j]+j || pos[n]-n == pos[j]-j) { attacked = true; break; } if (attacked) continue; if (n == 7) { return; } else { queen($n+1$); } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19",
-            ],
+            options: ["贪心算法","动态规划","深度优先搜索","广度优先搜索"],
             answer: 2,
             score: 2,
             explanation: `**答案：C（深度优先搜索）**
@@ -183,7 +145,10 @@ void queen(int n) {
 **易错提醒：**
 - 同对角线即两格行列差的绝对值相等。代码拆成“差相等”和“和相等”，少写一条会漏判。
 - 有递归不等于动态规划：DFS 在找可行摆法，DP 要用子问题的最优值推出当前最优值。`,
-            tags: ['深度优先搜索', '递归']
+            tags: ['深度优先搜索', '递归'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","reviewedBy","reviewedAt"]
         },
         {
             id: 3,

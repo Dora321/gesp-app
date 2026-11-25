@@ -1,0 +1,94 @@
+{
+  "executedAt": "2026-11-25T06:29:43.561Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n5\n8\n100",
+          "output": "6\n18\n755407364",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "6\n18\n755407364\n",
+          "passed": true
+        },
+        {
+          "name": "n=1",
+          "input": "1\n1\n",
+          "output": "1",
+          "reason": "拆分只能为1，乘积1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "n=4",
+          "input": "1\n4\n",
+          "output": "4",
+          "reason": "4 或 2+2 的乘积均为4。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "样例 n=100",
+          "input": "1\n100\n",
+          "output": "755407364",
+          "reason": "3^32×4 mod 10^9=755407364，与样例一致。",
+          "kind": "boundary",
+          "actual": "755407364\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f40cdc1da7fb59f881c98d8e59c530352131f3cfeb771089f30faab044762b1f"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3 3\n1 2 10 5\n2 3 20 6\n1 3 100 1",
+          "output": "0",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "两城市单边全免",
+          "input": "2 1\n1 2 7 9\n",
+          "output": "0",
+          "reason": "路径唯一，最高景观边即该边，免除7，总费用0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "不可达",
+          "input": "3 1\n1 2 5 4\n",
+          "output": "-1",
+          "reason": "城市3与1不连通，按题意输出-1。",
+          "kind": "boundary",
+          "actual": "-1\n",
+          "passed": true
+        },
+        {
+          "name": "同景观评分并列",
+          "input": "3 2\n1 2 7 1\n2 3 9 1\n",
+          "output": "7",
+          "reason": "两条边b相同且同为最大，可选择免除较贵的9，费用7。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "884cf77fea1cc1bf8ce767f837b3dcd3b4e7e2f2de21a174ed7e30935d43c102"
+    }
+  ]
+}

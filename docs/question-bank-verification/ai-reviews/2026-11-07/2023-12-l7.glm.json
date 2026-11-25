@@ -1,0 +1,1035 @@
+{
+  "paperId": "2023-12-l7",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T06:39:58Z",
+  "completedAt": "2026-11-25T06:45:58Z",
+  "finishReason": "stop",
+  "inputSha256": "a1232aee09d38305072949096072c0083f3ac14f5cf5a8b5d7fe0df3aa1316ea",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++7级.pdf",
+    "mirrorSha": "e1902f47973b200a76de0078d308c6eec55e7c05",
+    "mirrorBytes": 2065093,
+    "shaVerified": true,
+    "sha256": "ac104b6d5ab07248c642584706ca6f243e1c133cc9d44eb8d9011d3658b6097c"
+  },
+  "pageCount": 13,
+  "report": {
+    "paperId": "2023-12-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "独立对照逐页原图：第 1 页卷头为「CCF 编程能力等级认证 GESP / C++ 七级 / 2023 年 12 月」，与 paperId 2023-12-l7 的年月、等级一致；全卷 13 页与 manifest.images 一致。第 1 页单选题答案表（1–15：B D B C D D B C B C D C B D B）与第 7 页判断题答案表（√√×√√×××√×）清晰可读，与站点 answer 数据逐项吻合，本次核验以页图为准。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 1 页原图：题干、选项、代码与站点数据一致；答案表第 1 题 B，与站点 answer=1 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干「定义变量 double x，如果下面代码输入为 100，输出最接近 ( )。」及 16 行代码（cin>>x 后输出 log10(x)−log2(x)）与站点 question 逐行一致；A 0 / B -5 / C -8 / D 8 四项与站点 options 相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页四个选项 0、-5、-8、8 与站点 options 顺序、取值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题为 B；按 0 起始索引映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：log10(100)=2，log2(100)=2+log2(25)≈6.644，差值约 −4.644，最接近 −5（B）；解析的关键数值与结论正确，选项分析无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 1、2 页原图：题干、选项、代码与站点数据一致；答案表第 2 题 D，与站点 answer=3 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1–2 页题干与 stone_merge 完整代码（s 前缀和、区间 DP、f[i][j]=min(f[i][j], f[i][k]+f[k+1][j]+s[j]−s[i−1])）与站点 question 逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A–D 四个状态转移方程（含 min 下标 i≤k<j / i≤k≤j 及 Σ 写法）与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 D；映射为 3，与站点 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：s[j]−s[i−1] 与分割点 k 无关，应提到 min 外得选项 D；且 A/B 把待求的 f(i,j) 写进 min、C 的 k 上界取到 j 并求和到 j+1 均不成立，解析论证正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 2、3 页原图：题干、选项、代码与站点数据一致；答案表第 3 题 B，与站点 answer=1 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2–3 页题干「输入是：5 1 7 3 5 9」与 LIS 递推代码（含最后循环同时输出 f[i] 与 ans）与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页四个选项 9 7 5 1 1 9 / 1 2 2 3 4 4 / 1 3 5 7 9 9 / 1 1 1 1 1 1 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 B；映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导 a=[1,7,3,5,9] 得 f=[1,2,2,3,4]，ans=4，输出「1 2 2 3 4 4」（B）；解析逐项递推过程正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 3 页原图：题干、选项、代码与站点数据一致；答案表第 4 题 C，与站点 answer=2 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页题干「下列关于关键字 static 的描述不正确的是」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页 A–D 四项（修饰成员函数 / 常量静态成员类外初始化 / 常量静态成员地址 / 静态全局对象初始化与析构）与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 C；映射为 2，与站点 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "C 项「地址都可以访问且唯一」对仅类内初始化而无类外定义的常量静态成员不成立（odr-use 链接失败），是应选的不正确项；解析对 A/B/D 的肯定与 C 的否定论证无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 3 页原图：题干、选项、代码与站点数据一致；答案表第 5 题 D，与站点 answer=3 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页题干「G 是一个非连通无向图，共有 28 条边，则该图至少有 ( ) 个顶点」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页选项 6/7/8/9 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 D；映射为 3，与站点 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：8 顶点完全图恰有 28 条边但必连通，加孤立点构造非连通图需 9 个顶点，n(n−1)/2≥28 且非连通的最小 n 为 9；解析（含 K8+孤立点构造与延伸定理）正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 3 页原图：题干、选项、代码与站点数据一致；答案表第 6 题 D，与站点 answer=3 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页题干「哈希表长 31，按照下面的程序依次输入 4 17 28 30 4，则最后的 4 存入哪个位置」及 27 行代码（k=x%13 线性探测）与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页选项 3/4/5/6 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题为 D；映射为 3，与站点 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：17→4，28→2，30→5（4 被 17 占），最后 4→6（4、5 均被占）；解析模数用 13、首个 4 作 n 的提醒均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 4 页原图：题干、选项、代码与站点数据一致；答案表第 7 题 B，与站点 answer=1 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页题干先序 {A B D F C E G H}、中序 {B F D A G E H C} 与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A–D（度为 1 / 高为 4 / 4 个叶节点 / 都不对）与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题为 B；映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重建：A 的左子树 B(右 D(左 F))、右子树 C(左 E(左 G,右 H))，高为 4、叶为 F/G/H 共 3 个、最大度为 2；解析结论（B 高为 4）正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "verdict": "unresolved",
+        "reviewNote": "接受初核对答案、选项、解析的核验（答案表第 8 题 C，站点 answer=2 一致）；但原卷题干「最长公共子串（LCS）」与代码实现的「最长公共子序列」术语不符，属原卷自身表述问题，站点照录原文并无误，是否改成「子序列」需人工裁决，维持 unresolved。",
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "第 4 页原卷题干即写「最长公共子串（LCS）」，但其 else 分支 dp[i][j]=max(dp[i−1][j], dp[i][j−1]) 实际求的是最长公共子序列，属原卷术语与代码不一致；站点 question 按原卷照录，是否改词需人工裁决，双模型均无法代原卷定夺。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A–D（时间 O(n²) / 空间 O(n²) / 空间已最优 / 采用动态规划）与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 8 题为 C；映射为 2，与站点 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "「空间复杂度已经最优」不正确（可用滚动数组优化到 O(n)），选 C 成立；解析对时间/空间复杂度及 DP 方法的判断无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷把最长公共子序列写成「最长公共子串（LCS）」，选项 C 仍为错误项；站点按原卷照录，建议人工确认是否在保留原卷口径的前提下加注说明。"
+        ]
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 4 页原图：题干、选项、代码与站点数据一致；答案表第 9 题 B，与站点 answer=1 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页题干「图的广度优先搜索中既要维护一个标志数组……还需哪种结构存放结点以实现遍历」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页选项 双向栈/队列/哈希表/堆 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 9 题为 B；映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "BFS 按发现先后逐层扩展需先进先出的队列，解析论证正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 5 页原图：题干、选项、代码与站点数据一致；答案表第 10 题 C，与站点 answer=2 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页题干（关键字序列 {44,36,23,35,52,73,90,58}、h(k)=k%7、链地址头插 Insert 代码）与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页选项 7/8、1、1.5、2 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题为 C；映射为 2，与站点 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：槽 2 链 58→23→44 比较 1+2+3 次，槽 3 链 73→52 比较 1+2 次，槽 0/1/6 各 1 次，共 12 次，12/8=1.5；解析分母取 8、头插不改变链长比较总和的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 5 页原图：题干、选项、代码与站点数据一致；答案表第 11 题 D，与站点 answer=3 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页题干（先修关系构成有向图 G，<U,V> 表示 U 是 V 的先修课，找课程 C 全部先修课哪种方法不可行）与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页选项 BFS 搜索/DFS 搜索/DFS+BFS/动态规划 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 D；映射为 3，与站点 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "求全部先修课等价于收集能到达 C 的顶点，BFS/DFS 及其结合皆可行，动态规划不用于此类可达性收集；解析论证正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 5 页原图：题干、选项、代码与站点数据一致；答案表第 12 题 C，与站点 answer=2 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页题干「一棵完全二叉树有 2023 个结点，则叶结点有多少个」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页选项 1024/1013/1012/1011 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 C；映射为 2，与站点 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：叶结点数 = ⌈2023/2⌉ = 1012（非叶 1011 个）；解析两种方法与选项分析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 6 页原图：题干、选项、代码与站点数据一致；答案表第 13 题 B，与站点 answer=1 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页题干与邻接表三段结构体代码（ArcNode/VNode/ALGraph）与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页选项 O(n)/O(e)/O(n+e)/O(n+2·e) 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 B；映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按官方答案口径选 B（O(e)）：解析区分出度（扫 vertices[k] 单链表）与入度（全表扫弧）的推导与原卷答案一致；站点忠实保留官方结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 6 页原图：题干、选项、代码与站点数据一致；答案表第 14 题 D，与站点 answer=3 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页题干「给定一个简单有向图 G，判断其中是否存在环路的下列说法哪个最准确」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页选项 BFS 更快/DFS 更快/BFS 和 DFS 一样快/不确定 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 D；映射为 3，与站点 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "两种遍历最坏均为 O(V+E)，实际快慢取决于图稠密度与实现，官方以「不确定」为最准确；解析对 DFS 三色标记与 Kahn 拓扑的介绍无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 6 页原图：题干、选项、代码与站点数据一致；答案表第 15 题 B，与站点 answer=1 映射一致；解析独立推导成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页题干四个候选序列 {v1 v2 v3 v4 v5}、{v1 v2 v4 v3 v5}、{v1 v4 v2 v3 v5}、{v1 v2 v4 v5 v3} 与站点 question 一致；站点以文字「(G 的边为：v1-v2、v1-v4、v2-v3、v2-v5、v3-v4、v3-v5)」描述图，经与原图逐边核对（v1 连 v2/v4，v2 连 v3/v5，v3 连 v4/v5）完全一致，属把图示转成可达文字的合理做法。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页选项 4/3/2/1 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 B；映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：第 1 层 {v2,v4}、第 2 层 {v3,v5}，合法序列为第 2/3/4 个共 3 个（第 1 个让第 2 层的 v3 抢在 v4 前，不合队列序）；解析逐序列判定正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7 页原图：判断题第 1 题题干与站点一致，答案表 √，与站点 answer=0（√）一致；解析判断成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 1 题题干与 do-while 代码（x=x/180*3.14，while(int(sin²x+cos²x)==1)）与站点 question 语义一致；站点把原卷「cout << \"//\" << sin(x) << \"  \" << cos(x); 与末行 cout << endl;」合并为「cout << sin(x) << \" \" << cos(x) << endl;」，仅省去与判定无关的字面量 \"//\"，不影响循环条件与本题判断，属可接受的转录清理。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 1 题为 √；映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "sin²+cos² 在 double 下约但未必精确等于 1，int(...) 未必恒为 1，存在使循环退出的角度值；解析与 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7 页原图：判断题第 2 题题干与站点一致，答案表 √，与站点 answer=0（√）一致；解析判断成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 2 题原卷以左右两图描述「双击后白色封闭区域被染黄」；站点将图示转写为「在图像的某个封闭白色区域内双击后，该连通区域被整体染成黄色」，与图中操作语义一致，属图示文字化的合理转写。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 2 题为 √；映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "双击填色即泛洪（flood fill）的典型应用，判断为 √ 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7 页原图：判断题第 3 题题干与站点一致，答案表 ×，与站点 answer=1（×）一致；解析判断成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 3 题「假设一棵完全二叉树共有 N 个节点，则树的深度为 log(N)+1」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 3 题为 ×；映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "完全二叉树深度应为 ⌊log₂N⌋+1，缺少取整故为 ×；解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7 页原图：判断题第 4 题题干与站点一致，答案表 √，与站点 answer=0（√）一致；解析判断成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 4 题（最大子段和可用动态规划求解）与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 4 题为 √；映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "Kadex/前缀和 DP 皆可 O(n) 求最大子段和，判断 √ 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7 页原图：判断题第 5 题题干与站点一致，答案表 √，与站点 answer=0（√）一致；解析判断成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 5 题「若变量 x 为 double 类型正数，则 log(exp(x)) > log10(x)」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 5 题为 √；映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "log(exp(x))=x（自然对数），而 log10(x)=ln x/ln 10 < x（0<x<e⁴ 范围外也成立，x>0 时 ln x < x 恒成立需 x 不大，但 x 任意时 ln x ≤ x−1 < x 恒真），故 x > log10(x) 恒成立，√ 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7 页原图：判断题第 6 题题干与站点一致，答案表 ×，与站点 answer=1（×）一致；解析判断成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 6 题（邻接矩阵与邻接表求节点 u 的度的时间复杂度一样）与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 6 题为 ×；映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "矩阵求度要扫整行 O(n)（有向图还需补扫列），邻接表求出度只扫链表、求入度才需 O(e)，两者不同，× 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7 页原图：判断题第 7 题题干与站点一致，答案表 ×，与站点 answer=1（×）一致；解析判断成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 7 题「H(x)=x%p，p 选择素数时不会产生冲突」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 7 题为 ×；映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "除余法仍有同余冲突，素数只是减少聚集并非避免冲突，× 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7 页原图：判断题第 8 题题干与站点一致，答案表 ×，与站点 answer=1（×）一致；解析判断成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 8 题「动态规划只要推导出状态转移方程，就可以写出递归程序来求出最优解」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 8 题为 ×；映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "仅有转移方程还需边界/初值与无后效性等条件才能写递归求解，「只要……就」过强，× 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7 页原图：判断题第 9 题题干与站点一致，答案表 √，与站点 answer=0（√）一致；解析判断成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 9 题「广度优先搜索（BFS）能够判断图是否连通」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 9 题为 √；映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "从任一点 BFS 统计访问点数即可判连通性，√ 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7、8 页原图：判断题第 10 题题干与站点一致，答案表 ×，与站点 answer=1（×）一致；解析判断成立；采信初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7–8 页判断题第 10 题「在 C++ 中，如果定义了构造函数，则创建对象时先执行完缺省的构造函数，再执行这个定义的构造函数」与站点 question 一致（跨页于第 8 页页首）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 10 题为 ×；映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "定义了含参/自定义构造函数后不再先执行缺省构造，二者互斥，× 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 8–10 页：题面（含原卷「在第 j 个商人这」的笔误照录）、三组样例与站点一致；原卷问题陈述中「v_{x_j}>v_{y_j} 时付给你 v_{y_j}−v_{x_j}」两处下标与样例解释（赚取 100−4=96）自相矛盾，站点及初核修改稿按样例口径改为 v_{x_j}−v_{y_j}/v_{y_j}−v_{x_j}，属对原卷笔误的合理校正；初核补充的「数据范围」三档（30% N≤10、M≤20；70% N≤10³、M≤10⁴；100% N≤10⁵、M≤2×10⁵）与第 9 页 3.1.13 数据规模逐项一致，逐字采信。站点 SPFA 参考程序（边权 1+v_y−v_x，输出 dist[b]）与官方「最少交易次数 + v_b−v_a」等价，g++ -std=c++17 -O2 实测 3 组原样例与我加的 4 条边界全部通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8–9 页题面各段（商品/商人定义、交易规则、输入 0≤a,b<N、a≠b、1≤v_i≤10⁹、0≤x_j,y_j<N、x_j≠y_j、输出 No solution）与站点 question 一致；站点唯一缺「数据规模」一节，初核修改补入且与第 9 页 3.1.13 逐字一致（标题按站点惯例作「数据范围」），采信该修改。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析「总花费=交易次数+v_b−v_a，等价于最少边数最短路（SPFA/带势 Dijkstra）」与样例 1/2/3 的 5、−95、No solution 独立验算一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点参考程序 SPFA 求边权 1+v_y−v_x 最短路，与官方 BFS 最少边数思路等价；实测样例 1→5、样例 2→−95、样例 3→No solution，另验证单边差价 2、负花费 −3、不可达、多路径取 10 四条边界全部一致。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202312 七级] 商品交易\n\n## 题目描述\n\n市场上共有 $N$ 种商品，编号从 $0$ 至 $N-1$ ，其中，第 $i$ 种商品价值 $v_i$ 元。\n\n现在共有 $M$ 个商人，编号从 $0$ 至 $M-1$ 。在第 $j$ 个商人这，你可以使用你手上的第 $x_j$ 种商品交换商人手上的第 $y_j$ 种商品。每个商人都会按照商品价值进行交易，具体来说，如果 $v_{x_j}>v_{y_j}$，他将会付给你 $v_{x_j}-v_{y_j}$元钱；否则，那么你需要付给商人 $v_{y_j}-v_{x_j}$ 元钱。除此之外，每次交易商人还会收取 $1$ 元作为手续费，不论交易商品的价值孰高孰低。\n\n你现在拥有商品 $a$ ，并希望通过一些交换来获得商品 $b$ 。请问你至少要花费多少钱？（当然，这个最小花费也可能是负数，这表示你可以在完成目标的同时赚取一些钱。）\n\n## 输入格式\n\n第一行四个整数 $N , M , a , b$，分别表示商品的数量、商人的数量、你持有的商品以及你希望获得的商品。保证 $0 \\le a,b < N$ ，保证 $a \\ne b$。\n\n第二行 $N$ 个用单个空格隔开的正整数 $v_0,v_1,…,v_{N-1}$ ，依次表示每种商品的价值。保证 $1≤v_i≤10^9$。\n\n接下来 $M$ 行，每行两个整数 $x_j,y_j$ ，表示在第 $j$ 个商人这，你可以使用第 $x_j$ 种商品交换第 $y_j$ 种商品。保证 $0 \\le x_j,y_j < N$ ，保证 $x_j \\ne y_j$。\n\n## 输出格式\n\n输出一行一个整数，表示最少的花费。特别地，如果无法通过交换换取商品 $b$ ，请输出 `No solution`。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $N \\le 10$、$M \\le 20$。\n\n对于 70% 的测试点，保证 $N \\le 10^3$、$M \\le 10^4$。\n\n对于 100% 的测试点，保证 $N \\le 10^5$、$M \\le 2 \\times 10^5$。\n"
+        },
+        "tests": [
+          {
+            "name": "单边最小差价",
+            "input": "2 1 0 1\n1 2\n0 1\n",
+            "output": "2",
+            "reason": "边权 1+v_1−v_0=1+2−1=2，直达即最优，核对手续费加差价的构成。"
+          },
+          {
+            "name": "负花费（赚钱）",
+            "input": "2 1 0 1\n5 1\n0 1\n",
+            "output": "-3",
+            "reason": "边权 1+1−5=−3，验证输出允许为负数（净赚差价减手续费）。"
+          },
+          {
+            "name": "不可达",
+            "input": "3 1 0 2\n1 1 1\n0 1\n",
+            "output": "No solution",
+            "reason": "仅有 0→1 的边，商品 2 不可达，验证 No solution 分支。"
+          },
+          {
+            "name": "等价路径取最少交易次数",
+            "input": "3 3 0 2\n1 1 10\n0 2\n0 1\n1 2\n",
+            "output": "10",
+            "reason": "直达边权 1+(10−1)=10，两条边路径合计 2+(10−1)=11，验证最优由最少交易次数决定。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12,
+          13
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "独立对照第 10–13 页：题面（含原卷「全部 n 轮」小写 n 的原样照录）、两组样例（219、56）与站点一致；初核补充的「数据范围」（30% N≤15；60% N≤100；所有 N≤1000、0≤a_i,b_i≤10⁶）与第 12 页 3.2.10 数据规模逐项一致，逐字采信。站点参考程序（dp[轮][换牌次数][当前牌] 记未扣罚分得分，最后减前缀和）与官方 dp[3][max_n] 逐轮转移语义一致，g++ 实测 2 组原样例与 3 条边界（N=1 自由选牌、高罚分不换牌、轮转换牌两次）全部通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 11–12 页题面（3 张牌 0/1/2、1 胜 0、2 胜 1、0 胜 2、胜者 2a_i、平局各 a_i、换牌扣 b_1+…+b_t、输入 N / a_1..a_N / b_1..b_{N−1} / c_1..c_N）与站点 question 一致；缺「数据规模」一节由初核修改补入且与第 12 页逐项一致，采信。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的 dp[k][j] 状态定义与换牌罚分扣除方式成立，样例 219（2×10+2×100−1）、56 验算一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点参考程序按「当前牌×换牌次数」DP 正确处理首轮自由选牌与换牌累计罚分；实测样例 1→219、样例 2→56，另验证 N=1→10、高罚分不换牌→3、轮转换牌两次→58 三条边界全部一致。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202312 七级] 纸牌游戏\n\n## 题目描述\n\n你和小杨在玩一个纸牌游戏。\n\n你和小杨各有 $3$ 张牌，分别是 $0、1、2$。你们要进行 $N$ 轮游戏，每轮游戏双方都要出一张牌，并按 $1$ 战胜 $0$，$2$ 战胜 $1$，$0$ 战胜 $2$ 的规则决出胜负。第 $i$ 轮的胜者可以获得 $2 \\times a_i$ 分，败者不得分，如果双方出牌相同，则算平局，二人都可获得 $a_i$ 分 $(i=1,2,\\cdots,N)$。\n\n玩了一会后，你们觉得这样太过于单调，于是双方给自己制定了不同的新规则。小杨会在整局游戏开始前确定自己全部 $n$ 轮的出牌，并将他的全部计划告诉你；而你从第 $2$ 轮开始，要么继续出上一轮出的牌，要么记一次“换牌”。游戏结束时，你换了 $t$ 次牌，就要额外扣 $b_1+\\cdots+b_t$ 分。\n\n请计算出你最多能获得多少分。\n\n## 输入格式\n\n第一行一个整数 $N$，表示游戏轮数。\n\n第二行 $N$ 个用单个空格隔开的非负整数 $a_1,\\cdots,a_N$，意义见题目描述。\n\n第三行 $N-1$ 个用单个空格隔开的非负整数 $b_1,\\cdots,b_{N-1}$，表示换牌的罚分，具体含义见题目描述。由于游戏进行 $N$ 轮，所以你至多可以换 $N-1$ 次牌。\n\n第四行 $N$ 个用单个空格隔开的整数 $c_1,\\cdots,c_N$，依次表示小杨从第 $1$ 轮至第 $N$ 轮出的牌。保证 $c\n_i\\in{0,1,2}$。\n\n## 输出格式\n\n一行一个整数，表示你最多获得的分数。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $N \\le 15$。\n\n对于 60% 的测试点，保证 $N \\le 100$。\n\n对于所有测试点，保证 $N \\le 1000$，$0 \\le a_i,b_i \\le 10^6$。\n"
+        },
+        "tests": [
+          {
+            "name": "单轮自由选牌",
+            "input": "1\n5\n0\n",
+            "output": "10",
+            "reason": "N=1 首轮可任选牌：出 1 战胜 0，得 2×5=10。"
+          },
+          {
+            "name": "罚分高不换牌",
+            "input": "2\n1 1\n1000\n1 2\n",
+            "output": "3",
+            "reason": "出 2 胜第 1 轮 +2，保持 2 平第 2 轮 +1；换牌扣 b_1=1000 不划算。"
+          },
+          {
+            "name": "轮转换牌两次",
+            "input": "3\n10 10 10\n1 1\n1 2 0\n",
+            "output": "58",
+            "reason": "依次出 2、0、1 各胜一轮共 60 分，换牌 2 次扣 b_1+b_2=2，净得 58。"
+          }
+        ],
+        "unresolved": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "executedAt": "2026-11-25T07:44:30.002Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2\n5 6 2\n5 1 5",
+          "output": "120\n0",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "120\n0\n",
+          "passed": true
+        },
+        {
+          "name": "只取一只，无完整配对",
+          "input": "1\n1 1 0\n",
+          "output": "2",
+          "reason": "1 双手套取 1 只，可取左手或右手，共 2 种。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "恰好取一整双",
+          "input": "1\n1 2 1\n",
+          "output": "1",
+          "reason": "唯一的一双必须左右手都取，方案 1 种。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "2 双中取 3 只恰有 1 双",
+          "input": "1\n2 3 1\n",
+          "output": "4",
+          "reason": "C(2,1)=2 选完整那双，再从另 1 双取 1 只并有 2 种左右手，共 4。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d83f62aaf798ded916b4ebc123eeb1a7425dc2b033c409f19efe2313d9001c9f"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5\n1 0 0 1 0\n1 2\n3 5\n4 3\n1 3",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "5\n0 0 0 0 0\n1 2\n2 3\n3 4\n4 5",
+          "output": "1",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "单结点",
+          "input": "1\n0\n",
+          "output": "1",
+          "reason": "单个结点本身是一条美丽路径，长度为 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两结点异色",
+          "input": "2\n0 1\n1 2\n",
+          "output": "2",
+          "reason": "相邻异色，整条边构成美丽路径，包含 2 个结点。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "三结点交替色",
+          "input": "3\n0 1 0\n1 2\n2 3\n",
+          "output": "3",
+          "reason": "颜色 0-1-0 交替，整条链美丽，包含 3 个结点。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6aab84f809b58775e6ff10827c144c4dcdf1f3a3ea2f0fda70a5ce20df819c36"
+    }
+  ]
+}

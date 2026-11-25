@@ -1,0 +1,310 @@
+{
+  "paperId": "2024-09-l6",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    8,
+    11,
+    13,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T10:03:00.000Z",
+  "completedAt": "2026-11-25T10:24:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "5fb1f929a94a82aee3a6017a9ab42926dd8a4a87a2b9c97946718a1ee269dac3",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1633836295258144.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++6级.pdf",
+    "mirrorSha": "d05c63cea3f3b907deacb509406c8024d5a02e90",
+    "mirrorBytes": 1289661,
+    "shaVerified": true,
+    "sha256": "17e8b3a5f5c1216bde99f0d874e9b523b4cc94f211aa375b825ef106c47fcaaf"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为「CCF 编程能力等级认证 C++ 六级 2024 年 09 月」，单选 15 题、判断 10 题、编程 2 题，答案表 1—15 完整，与 paperId 2024-09-l6 一致；第 3—7 页覆盖 Q6、8、11、13，第 9—12 页覆盖编程题 Q26（小杨和整数拆分）、Q27（算法学习）。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页原图第 6 题题干「假设字母表 {a,b,c,d,e} 在字符串出现的频率分别为 10%, 15%, 30%, 16%, 29%。若使用哈夫曼编码方式对字母进行二进制编码，则字符 abcdef 分别对应的一组哈夫曼编码的长度分别为（ ）。」与候选逐字一致（原卷「abcdef」系原卷自身笔误——字母表仅五个字母，候选如实保留，不属转录错误）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页原图四项为 A. 4,4,1,3,2、B. 3,3,2,2,2、C. 3,3,1,2,1、D. 4,4,1,2,2，与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题为 B（索引 1），候选 answer=1 一致；独立重建：合并 a10+b15=25、d16+25=41、e29+c30=59、41+59=100，深度 a=b=3、c=d=e=2，长度 3,3,2,2,2，WPL=225=25+41+59+100，B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选合并四步、编码长度与 WPL=225 计算均与独立重建一致；以 Kraft 不等式排除 C（和为 1.5>1）、D（和为 1.125>1）、以 WPL=236>225 排除 A，论证过程独立复算成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选题面/选项与第 3 页原卷逐字一致（含原卷自身「abcdef」笔误的如实保留），答案 B 经独立重建哈夫曼树核实，Kraft/WPL 论证无误。候选已正确，无需追加修改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页原图第 8 题题干「给定一棵二叉树，其前序遍历结果为: ABDECFG,中序遍历结果为: DEBACFG，则这棵树的正确后序遍历结果是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页原图四项为 A. EDBGFCA、B. EDGBFCA、C. DEBGFCA、D. DBEGFCA，与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 8 题为 A（索引 0），候选 answer=0 一致；独立重建：根 A、左子树中序 DEB（结构 B，其左子 D 带右孩子 E）、右子树中序 CFG（结构 C，右子 F 带右孩子 G），后序 EDB GFCA，即 EDBGFCA，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的划分与递归重建步骤与独立重建一致；对 B（右子树 G/F 次序颠倒）、C（左子树后序误写）、D（两处均误）的排除理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选题面/选项与第 4 页原卷一致，答案 A（EDBGFCA）经独立重建树形核实，解析无误。候选已正确，无需追加修改。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页原图第 11 题题干「上一题的二叉树深度计算还可以采用二叉树的广度优先搜索来实现。以下基于二叉树的广度优先搜索实现的深度计算函数中横线上应填写（ ）。」及 29 行 BFS 代码（while(!q.empty())、横线、for(i<level_size) 出队并入队左右孩子、return depth）与候选内嵌代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页原图四项为 A. int level_size = q.size(); depth++;、B. int level_size = 2; depth++;、C. int level_size = q.size(); depth += level_size;、D. int level_size = 2; depth += level_size;，与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 A（索引 0），候选 answer=0 一致；独立判断：BFS 按层计数须先记录当前层节点数 q.size() 再 depth++，横线后紧跟使用 level_size 的 for 循环，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的按层计数原理与「q.size() 须在 for 之前存入 level_size（循环内 push 会改变 q.size()）」的易错点提示均属实；对 B/C/D 的排除理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选题面/代码/选项与第 5 页原卷一致，答案 A 经独立判断核实，解析无误。候选已正确，无需追加修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页原图第 13 题题干「对上题中的二叉搜索树，当输入数组为[5,3,7,2,4,6,8]时，构建二叉搜索树，并采用如下代码实现的遍历方式，得到的输出是（ ）。」及 13 行中序遍历代码（先递归左、cout、再递归右）与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 7 页原图四项为 A. 5 3 7 2 4 6 8、B. 2 3 4 5 6 7 8、C. 2 4 3 6 8 7 5、D. 2 4 3 5 6 7 8，与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 B（索引 1），候选 answer=1 一致；独立构建 BST（5 为根，3/7 为孩子，2/4/6/8 为叶）后中序遍历得 2 3 4 5 6 7 8，B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析「BST 中序=升序」结论与遍历类型判别方法（cout 与递归调用的相对位置）属实；对 A（输入序/前序）、C（后序）、D 的排除理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选题面/代码/选项与第 7 页原卷一致，答案 B 经独立构建 BST 并中序遍历核实，解析无误。候选已正确，无需追加修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 9—10 页原图 3.1.1—3.1.4 与候选题面逐项对照一致：拆分成完全平方数之和、数量最少；样例 1「18」输出「2」（原卷注 18=9+9=16+1+1）；数据范围子任务表（20% n≤20；40% n≤1000；40% n≤10⁵；全部 1≤n≤10⁵）与候选一致。候选输入/输出格式措辞（「输入只有一行一个正整数 n」「输出一行一个整数表示答案」）为站点惯用等价改写，题意无损失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的数论判定链经独立推导成立：n 为平方数→1；存在 i²+j²=n→2；除尽因子 4 后 x≡7 (mod 8)→4（勒让德三平方定理）；否则→3（拉格朗日四平方和定理）。样例走查 n=18→2、n=7→4、n=12→3 均独立复算成立；浮点开方校准与「除 4 后再判 %8」（28 反例：28%8=4 但 28=4×7 需 4 个）提醒属实；O(√n) 复杂度正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译并实测候选参考程序：官方样例 18→2。独立边界实测：2→2、28→4（勒让德边界：需先除 4）、50→2（49+1）、99999→4，均与独立数论判定一致。另以 O(n√n) 完全平方数最小划分 DP 对 1..3000 全量对拍（3000 组）零差异，再以数论判定对 3001..100000 的 120 组随机值对拍零差异，含上界 100000→2。与第 10 页原卷参考程序（O(n√n) DP dp[i]=min(dp[i−j²]+1)）输出恒等（DP 即该问题的标准解，数论法与之等价）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小非平方数",
+            "input": "2\n",
+            "output": "2",
+            "reason": "2=1+1，为非平方数的最小输入；实测通过，与 DP 全量对拍一致。"
+          },
+          {
+            "name": "勒让德边界 28（需先除尽因子 4）",
+            "input": "28\n",
+            "output": "4",
+            "reason": "28%8=4 但 28=4×7、7≡7 (mod 8)，答案 4；实测通过，覆盖「除 4 时机」易错点的正例。"
+          },
+          {
+            "name": "两种平方和拆分并存",
+            "input": "50\n",
+            "output": "2",
+            "reason": "50=49+1=25+25；实测通过，与 DP 全量对拍一致。"
+          },
+          {
+            "name": "接近上界的 4 平方数",
+            "input": "99999\n",
+            "output": "4",
+            "reason": "99999 非平方数、无平方和拆分、除 4 后 99999≡7 (mod 8)；实测通过，覆盖大数值与答案 4 分支。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受候选题面并独立验证：题面、样例、数据范围与第 9—10 页原卷一致；参考程序实测官方样例及 4 条独立边界（最小非平方数、勒让德边界 28、双拆分 50、大数 99999）全部正确，另与 O(n√n) 标准 DP 在 1..3000 全量及 120 组大数随机对拍零差异，与原卷参考程序输出恒等。候选已正确，无需追加修改。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 10—12 页原图 3.2.1—3.2.5 与候选题面逐项对照一致：n 道题对应 m 种算法、学第 i 题使算法 aᵢ 掌握度提高 bᵢ、目标全部 ≥k、最少学习题数且避免连续同知识点；样例 1「3 5 10 / 1 1 2 3 3 / 9 1 10 10 1」→4、样例 2「2 4 10 / 1 1 1 2 / 1 2 7 10」→−1；样例解释「第一、三、四、二道题」与候选走查的排列一致；数据范围子任务表（30% m=2,n≤9,bᵢ,k≤10；30% m≤9,n≤9,bᵢ,k≤10；40% 全≤10⁵；全部 1≤m,n≤10⁵、1≤bᵢ,k≤10⁵、1≤aᵢ≤m）与候选一致。原卷输入格式中第二个「第二行」系原文重复笔误，候选写「第三行」为合理校订。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析三步（分组贪心求 need[i]、按 max≤others+1 判可排列、不足时从其他组补 needMore=(mx−1)−others）经独立推导成立：组内取分值降序前缀是达到 k 的最少题数（可选性单调）；隔板插空原理（出现最多者占奇数位）给出可排列充要条件；补题必须来自其他算法（补主导算法只会更差）；样例 1（total=4、mx=2、others=2 → 4）与样例 2（needMore=1、available=0 → −1）走查与官方样例输出及解释一致；m=1 且需 ≥2 题时 others=0 无从借调 → −1 的提醒属实。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译并实测候选参考程序：官方样例 1→4、样例 2→−1。独立边界实测：「1 1 5 / 1 / 5」→1（m=1 单题达标）、「1 3 7 / 1 1 1 / 4 4 4」→−1（m=1 需两题无法隔开）、「2 5 3 / 1 1 1 2 2 / 1 1 1 3 3」→5（主导组 3 题以其他组剩余题隔开）、「3 6 4 / 1 2 3 1 2 3 / 2 2 2 2 2 2」→6（三组均衡无补题），四组均与「子集规模从小到大枚举 + 可排列判定」的穷举最优一致。另以 500 组随机数据（m≤3、n≤9）与穷举最优对拍，零差异。与第 11—12 页原卷参考程序（分组降序前缀求 need、mx−1≤others 直接 ans、否则以其他组剩余 last 判可行性并输出 2·mx−1）完全同一算法：total+needMore = ans+(mx−1−others) = 2mx−1，两个表达式恒等；主冲组并列时需补量必为 0，选谁作 who 均不影响输出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "m=1 单题达标",
+            "input": "1 1 5\n1\n5\n",
+            "output": "1",
+            "reason": "仅 1 题、单次学习即达标且无相邻冲突；实测通过，与穷举一致，覆盖 m 下界。"
+          },
+          {
+            "name": "m=1 需两题无法隔开",
+            "input": "1 3 7\n1 1 1\n4 4 4\n",
+            "output": "-1",
+            "reason": "单一算法至少需 2 题（4+4=8≥7），同知识点必相邻且无其他算法可隔，穷举最优 −1；实测通过。"
+          },
+          {
+            "name": "主导组以其他组剩余题隔开",
+            "input": "2 5 3\n1 1 1 2 2\n1 1 1 3 3\n",
+            "output": "5",
+            "reason": "算法 1 需 3 题（1+1+1）、算法 2 需 1 题（3），4 题时 3>1+1 不可排列，补 1 道算法 2 题后为 1-2-1-2-1；穷举最优同为 5；实测通过，覆盖 needMore>0 且 available 足够的补题分支。"
+          },
+          {
+            "name": "三算法均衡无补题",
+            "input": "3 6 4\n1 2 3 1 2 3\n2 2 2 2 2 2\n",
+            "output": "6",
+            "reason": "每组各需 2 题（2+2≥4），total=6、mx=2≤4+1 直接可排列；穷举一致；实测通过，覆盖多组均衡且 needMore=0 的分支。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受候选题面并独立验证：题面、两组样例、数据范围与第 10—12 页原卷一致；参考程序实测两组官方样例及 4 条独立边界（m=1 达标/不可达、补题可行、多组均衡）全部与穷举最优一致，另在 500 组随机数据上与穷举对拍零差异；候选的 total+needMore 与原卷参考程序的 2·mx−1 输出经代数恒等，主冲组并列场景两者行为一致。候选已正确，无需追加修改。"
+      }
+    ],
+    "summary": "6 题全部通过独立复核：Q6/8/11/13 题面、选项与第 3—7 页原卷逐字一致，答案 B/A/A/B 与第 1 页答案表相符且均经独立推导；Q26/Q27 参考程序经本机 g++ 实测（官方样例+8 条独立边界），Q26 与标准 DP 全量/随机对拍零差异，Q27 与穷举最优 500 组对拍零差异，均与原卷参考程序语义等价。候选可原样应用。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        6,
+        8,
+        11,
+        13,
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T10:03:00.000Z",
+      "completedAt": "2026-11-25T10:24:00.000Z"
+    }
+  ]
+}

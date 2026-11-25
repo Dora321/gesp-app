@@ -460,43 +460,8 @@ public:
         Release(root);
     }
 };`),
-      6: q(3, `void Order(BiNode* bt) {
-    if (bt == nullptr)
-        return;
-    else {
-        cout << bt->data;
-        Order(bt->lchid);
-        Order(bt->rchid);
-    }
-}`),
-      7: q(3, `typedef struct LinkList {
-    int data;
-    LinkList* next;
-    LinkList* prev;
-} LinkList, LinkNode;
-
-bool ListInit(LinkList* &L) {
-    L = new LinkNode;
-    if (!L) return false;
-    L->next = NULL;
-    L->prev = NULL;
-    L->data = -1;
-    return true;
-}`),
-      10: q(4, `int Depth(BiTree T)
-{
-    if (T == NULL) {
-        return 0;
-    } else {
-        int m = Depth(T->lchild);
-        int n = Depth(T->rchild);
-        if (m > n) {
-            return m + 1;
-        } else {
-            return n + 1;
-        }
-    }
-}`),
+      6: { sourcePage: 3 },
+      10: { sourcePage: 5 },
     },
   },
 '2025-06-l7': {

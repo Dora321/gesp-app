@@ -27,10 +27,10 @@ const cache = process.env.GESP_AUDIT_CACHE || path.join(root, 'tmp/five-dimensio
 const out = path.join(root, 'docs/question-bank-verification/ai-reviews', run);
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 
-function patchQuestionObjects(source, updates) {
-    const ast = parse(source, { sourceType: 'module' });
-    const edits = [], found = new Set();
-    const key = property => property.key?.name ?? property.key?.value;
+const key = property => property.key?.name ?? property.key?.value;
+
+function patchQuestionObjects(source, rootNode, updates, found) {
+    const edits = [];
     function visit(node) {
         if (!node || typeof node !== 'object') return;
         if (node.type === 'ObjectExpression') {
@@ -60,11 +60,25 @@ function patchQuestionObjects(source, updates) {
             else if (value && typeof value === 'object') visit(value);
         }
     }
-    visit(ast);
-    if (found.size !== updates.size) throw new Error('部分题号未在原始数据对象中定位到，停止修改');
+    visit(rootNode);
     for (const edit of edits.sort((a, b) => b.start - a.start)) source = source.slice(0, edit.start) + edit.text + source.slice(edit.end);
     parse(source, { sourceType: 'module' });
     return source;
+}
+
+export function patchPaperQuestionSources(paperId, paper, programming, updates) {
+    const found = new Set();
+    const patchedPaper = patchQuestionObjects(paper, parse(paper, { sourceType: 'module' }), updates, found);
+    let patchedProgramming = programming;
+    if (programming !== undefined) {
+        const ast = parse(programming, { sourceType: 'module' });
+        const registry = ast.program.body.flatMap(node => node.declaration?.declarations ?? [])
+            .find(node => node.id.name === 'l8ProgrammingByPaper')?.init;
+        const questions = registry?.properties?.find(property => key(property) === paperId)?.value;
+        if (questions) patchedProgramming = patchQuestionObjects(programming, questions, updates, found);
+    }
+    if (found.size !== updates.size) throw new Error('部分题号未在原始数据对象中定位到，停止修改');
+    return { paper: patchedPaper, programming: patchedProgramming };
 }
 
 async function main() {
@@ -105,17 +119,26 @@ async function main() {
             accepted.push({ id: question.id, resolved: true, dimensions: gate.dimensions, blockedDimensions: [], official: gate.official, sourcePages: gate.sourcePages, method: ['依据上一轮 GLM 复核意见形成候选修订', 'DeepSeek V4.1 Flash max 重新核验候选', 'GLM 5.3 Flash max 独立复核修订稿', ...(codeCheck ? ['g++ 编译、原样例及复核边界用例执行'] : [])], evidence: gate.evidence, unresolved: [], appliedFields: Object.keys(proposal.changes), revisionReviewFiles: [`ai-reviews/${run}/${id}.deepseek.json`, `ai-reviews/${run}/${id}.glm.json`] });
         }
         if (updates.size) {
-            const filename = path.join(root, `src/data/gesp/level${id.at(-1)}/${id}.js`);
-            const before = fs.readFileSync(filename, 'utf8');
-            const patched = patchQuestionObjects(before, updates);
-            fs.writeFileSync(path.join(dir, 'before.js'), before);
-            fs.writeFileSync(filename, patched);
+            const folder = path.join(root, `src/data/gesp/level${id.at(-1)}`);
+            const filename = path.join(folder, `${id}.js`);
+            const programmingFile = path.join(folder, 'programming.js');
+            const paper = fs.readFileSync(filename, 'utf8');
+            const programming = id.endsWith('-l8') ? fs.readFileSync(programmingFile, 'utf8') : undefined;
+            const patched = patchPaperQuestionSources(id, paper, programming, updates);
+            const changed = [[filename, 'before.js', paper, patched.paper], [programmingFile, 'before-programming.js', programming, patched.programming]]
+                .filter(([, , original, revised]) => original !== revised);
             const expectedFile = path.join(dir, 'applied-fields.json');
             fs.writeFileSync(expectedFile, JSON.stringify([...updates]));
             try {
-                execFileSync(process.execPath, ['--check', filename]);
+                for (const [file, backup, original, revised] of changed) {
+                    fs.writeFileSync(path.join(dir, backup), original);
+                    fs.writeFileSync(file, revised);
+                }
                 execFileSync(process.execPath, ['--input-type=module', '-e', `import fs from 'node:fs';import assert from 'node:assert/strict';import {getPaper} from './src/data/gesp/index.js';const p=await getPaper(process.argv[1]);const qs=[...(p.questions||[]),...(p.programmingQuestions||[]),...(p.codingQuestions||[])];for(const [id,fields]of JSON.parse(fs.readFileSync(process.argv[2]))){const q=qs.find(q=>q.id===id);for(const [key,value]of Object.entries(fields))assert.deepEqual(q[key],value,'Q'+id+' '+key)}`, id, expectedFile], { cwd: root, stdio: 'pipe' });
-            } catch (error) { fs.writeFileSync(filename, before); throw error; }
+            } catch (error) {
+                for (const [file, , original] of changed) fs.writeFileSync(file, original);
+                throw error;
+            }
             const evidenceFile = path.join(root, 'docs/question-bank-verification', `${id}.json`);
             const evidence = JSON.parse(fs.readFileSync(evidenceFile));
             const entries = new Map(evidence.questions.map(question => [question.id, question]));

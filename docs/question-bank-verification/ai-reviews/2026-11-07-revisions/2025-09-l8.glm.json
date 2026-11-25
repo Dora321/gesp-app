@@ -1,0 +1,434 @@
+{
+  "paperId": "2025-09-l8",
+  "phase": "glm",
+  "questionIds": [
+    27,
+    6,
+    7,
+    11,
+    12,
+    13,
+    14,
+    17,
+    18,
+    24
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T11:45:00.000Z",
+  "completedAt": "2026-11-25T13:20:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "c48ed4648db21d6045b2b8bf24d00208bd07c05da07374cd65d267f8987a2fe8",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703973115396128.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++8级.pdf",
+    "mirrorSha": "c6da91b93a1a0fae405678e5bc23726f4691edee",
+    "mirrorBytes": 1178865,
+    "shaVerified": true,
+    "sha256": "55fa06bfea6ca0db4fe07c7bdfd2c37ceef82da8def5aaba455946d7cc2fdc89"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-09-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为「CCF 编程能力等级认证 / C++ 八级 / 2025 年 09 月」，与 paperId 2025-09-l8 一致；第 1 页单选题答案表 1—15 依次为 C A C B C D B A B C A D A D D，第 6 页判断题答案表 1—10 依次为 × × × √ × √ √ √ × ×，均放大核读清晰；第 7—11 页为编程题 1「最短距离」、2「最小生成树」的题头、题面、样例、数据范围与参考程序。本轮复核以页图为准。"
+    },
+    "questions": [
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "接受初核并独立复核通过：候选“Kruskal 建 MST + 非树边按权升序做跳跃并查集路径覆盖”与第 10—11 页官方程序同构（官方对每条非树边沿树路径逐边赋 ans=sum−w_tree+w_new，候选把覆盖次序交给按权升序、每个树边只收第一次，二者等价）。两组官方样例与 5 组自拟边界用例全部通过，并与“逐条删边重跑 Kruskal”的暴力对拍 150 组随机图（含自环、重边）零差异；满档压力运行 0.37 s（仅记于证据，不入 tests）。内存差异按约定记录于 unresolved。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 9 页 3.2.1 原文：给定含 n 个结点 m 条边的带权连通无向图，对每条边求删除它之后最小生成树的边权和，不存在则输出 −1；候选 description/inputDescription/outputDescription 与页图一致，samples 逐字一致（样例 2 含自环 (3,3,6)）。第 9 页题头 1.0 s、内存 512.0 MB（内存差异另记）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷答案表项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析：删非树边 MST 不变输出 sum；删树边须用跨该割的最小非树边替换，无则 −1；按权升序用跳跃并查集覆盖、首次覆盖即最小替换边。样例 1 逐条复算 14/15/−1/−1/10 一致；复杂度 O(m log m + (n+m)α) 正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 clang++ -std=c++17 -O2 编译运行候选程序：官方样例 1 输出 14/15/−1/−1/10、样例 2 输出 15/16/17/−1/15/17/18/15/15/15 全对；自拟边界 n=1 三自环→0/0/0、n=2 单边→−1、n=2 双平行边→5/3、原图不连通→−1/−1、自环+链→−1/−1/3 全部通过；150 组 n≤7 随机图与逐条删边重跑 Kruskal 的暴力对拍零差异；n=m=1e5 随机图 0.37 s、n=1e5 链+单条跨树非树边 0.37 s（压力与耗时仅记于此）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原卷样例 1（树边替换与否）",
+            "input": "5 5\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8\n",
+            "output": "14\n15\n-1\n-1\n10",
+            "reason": "MST 取 3-4(1)、2-5(2)、2-3(3)、1-2(4)，sum=10；删 1-2 用 3-1(8) 替换得 14，删 2-3 得 15，删 3-4 或 2-5 后 4/5 号点孤立输出 −1，删非树边 3-1 输出 10。"
+          },
+          {
+            "name": "原卷样例 2（含自环）",
+            "input": "6 10\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6\n",
+            "output": "15\n16\n17\n-1\n15\n17\n18\n15\n15\n15",
+            "reason": "自环 (3,3,6) 永不进 MST 也不可能是替换边，删它输出原 sum=15；其余树边按最小跨割非树边替换，逐条复算一致。"
+          },
+          {
+            "name": "n=1 全为自环",
+            "input": "1 3\n1 1 5\n1 1 2\n1 1 9\n",
+            "output": "0\n0\n0",
+            "reason": "单结点图的 MST 是空树、权值和 0；删任一自环后空树仍是 MST，三条边都输出 0。"
+          },
+          {
+            "name": "n=2 单边（删后不连通）",
+            "input": "2 1\n1 2 7\n",
+            "output": "-1",
+            "reason": "删去唯一一条边后不连通，不存在生成树，按题意输出 −1。"
+          },
+          {
+            "name": "n=2 两条平行边（重边替换）",
+            "input": "2 2\n1 2 3\n1 2 5\n",
+            "output": "5\n3",
+            "reason": "MST 取权 3 的边，sum=3；删树边（权 3）用另一条权 5 的平行边替换得 3−3+5=5；删非树边（权 5）MST 不变得 3。"
+          },
+          {
+            "name": "原图不连通",
+            "input": "4 2\n1 2 1\n3 4 1\n",
+            "output": "-1\n-1",
+            "reason": "原图只有 2 条边、4 个结点，Kruskal 得不到 n−1 条树边；删任何边都不存在生成树，全部输出 −1。"
+          },
+          {
+            "name": "自环 + 链（自环既非树边也非替换边）",
+            "input": "3 3\n1 2 1\n2 3 2\n3 3 9\n",
+            "output": "-1\n-1\n3",
+            "reason": "MST 取边 1-2(1)、2-3(2)，sum=3；删任一树边后剩余图不连通输出 −1；删自环 (3,3,9) 不影响 MST，输出 3。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 9 页标注本题内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，留待发布流程处理。"
+        ]
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "候选第一轮已补回题干与选项，本轮独立复核：第 2 页题干、四选项与第 1 页答案表 D（索引 3）一致；C(6,4)=15 的推导成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 6 题题干「二项式 (x+y)^6 的展开式中 x²y⁴ 项的系数是（ ）。」与候选（以 x^2y^4 记法复现）一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A 720、B 120、C 20、D 15，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题为 D，索引 3，候选 answer=3。独立推导：通项 C(6,k)x^(6−k)y^k，x²y⁴ 取 k=4，C(6,4)=15。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析取 k=4 得 15，并说明 720=6!、120=5!、20=C(6,3) 的来源，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "候选第一轮已补回题干，本轮独立复核：第 2 页题干、四选项与答案表 B（索引 1）一致；邻接表 BFS O(V)+O(E) 的推导成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 7 题题干「对一个包含 V 个顶点、E 条边的图，执行广度优先搜索，其最优时间复杂度是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A O(V)、B O(V+E)、C O(V²)、D O(E)，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题为 B，索引 1，候选 answer=1。独立推导：每顶点入队出队一次 O(V)，每条边被扫描常数次 O(E)，合计 O(V+E)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出 O(V²) 属邻接矩阵实现、O(E) 漏掉孤立点，结论 B 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "候选第一轮已补回代码与选项，本轮独立复核：第 3 页题干、Dijkstra 代码（含 dis[e->out] > e->len 松弛写法）与四选项逐行一致，答案表 A（索引 0）；v 轮线性扫描 O(v²)、出边合计 O(e) 取主项 O(v²)，解析成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页第 11 题题干「下列 Dijkstra 算法，假设图 graph 中顶点数 v、边数 e，则程序的时间复杂度为（ ）。」与候选一致；typedef struct Edge、出边邻接表 + visited 数组 + 线性扫描取最小点的代码逐行对照一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页 A O(v²)、B O(v log v + e)、C O((v+e) log v)、D O(v+e)，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 A，索引 0，候选 answer=0。独立推导：外层至多 v+1 轮、每轮线性扫描 O(v)，出边合计 O(e) ≤ v²，取主项 O(v²)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出取最小点用线性扫描而非堆，并逐项说明 B/C/D 对应其他实现方式，结论 A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "候选第一轮已补回代码与选项，本轮独立复核：第 4 页题干、count_triple 代码与四选项逐行一致，答案表 D（索引 3）；枚举总量 O(n) × gcd O(log n) = O(n log n)，解析成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页第 12 题题干「下面 count_triple 函数的时间复杂度为（ ）。」与候选一致；gcd(m,n)/count_triple 代码（4v²≤n、2u(u+v)≤n、u+=2、cnt += n/(a+b+c)）逐行对照一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A O(n²)、B O(n² log n)、C O(n)、D O(n log n)，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 D，索引 3，候选 answer=3。独立推导：v≤√n/2、u=O(√n)，枚举总量 O(n)，每次 gcd O(log n)，合计 O(n log n)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析与 2025 年 6 月八级卷同函数题（该卷官方答案 C=O(n log n)）互相印证，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "候选选项与原卷一致、答案 A 正确，但解析的两条错误归因不成立：B 项称“[left,mid+1) 与 [mid+1,right) 之和少了 arr[mid]”——两段的并集实为完整的 [left,right)，并不缺元素（本机模拟验证：B 在 right−left=2 时因 mid+1=right 首递归与原区间相同而无限递归，且固定合并代码 j=mid 与第二段起点 mid+1 错位，这才是 B 的真实缺陷）；D 项称“两段重叠于 mid”——[left,mid+1) 与 [mid+1,right+1) 实为不相交（D 的真实缺陷是把下标 right 卷入第二段、越出本次调用范围）。已给出整字段修正文本，结论 A 不变。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4—5 页第 13 题题干「下面 merge_sort 函数试图实现归并排序算法，横线处应该填入的是（ ）。」与候选一致；merge_sort 代码（right−left≤1 返回、mid=(left+right)/2、两处递归、i=left/j=mid 合并、temp(right-left)、回写 [left,right)）逐行对照一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4—5 页 A arr,left,mid / arr,mid,right；B arr,left,mid+1 / arr,mid+1,right；C arr,left,mid / arr,mid+1,right；D arr,left,mid+1 / arr,mid+1,right+1，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 A，索引 0，候选 answer=0。独立推导：right−left≤1 与 j=mid 表明区间为左闭右开 [left,right)，切分点为 mid，两次递归应为 [left,mid) 与 [mid,right)。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体与 A/C 两项论证正确，但 B 项“两段之和少了 arr[mid]”与 D 项“两段重叠于 mid”均为事实性错误（见 reviewNote）。已整字段重写：B 改为无限递归 + 合并错位两条真实缺陷，D 改为越界纳入下标 right，并保留正确结论 A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**解析：**\n本题的区间约定是**左闭右开** [left, right)：\n\n1. 递归出口 `if (right - left <= 1) return;`：区间长度为 0 或 1 时无需排序。\n2. `int mid = (left + right) / 2;` 切分后，固定合并代码以 `i = left, j = mid` 为两段起点，即默认第一段为 [left, mid)、第二段为 [mid, right)（mid 归第二段开头）。因此两处横线应分别填 `arr, left, mid` 与 `arr, mid, right`；两段长度之和恰为 right-left，且都严格短于原区间，不会死递归。\n\n**选项逐项分析：**\n- **A `arr, left, mid` 与 `arr, mid, right`**：✅ 正确。恰为 [left,mid) 与 [mid,right)，与 `j = mid`、`i < mid` 的合并逻辑自洽。\n- **B `arr, left, mid + 1` 与 `arr, mid + 1, right`**：❌ 错误。当 right−left = 2 时 mid+1 = right，第一次递归的区间 [left, mid+1) 与原区间完全相同，无限递归直至栈溢出；即使不考虑这一点，固定合并代码把 `j = mid` 当作第二段开头，而 B 的第二段从 mid+1 开始，arr[mid]（第一段的末元素）会被错当第二段参与比较，合并结果错误。注意 [left,mid+1) 与 [mid+1,right) 的并集实为完整的 [left, right)，并不缺元素——缺陷在递归不终止与合并错位，而非漏掉 arr[mid]。\n- **C `arr, left, mid` 与 `arr, mid + 1, right`**：❌ 错误。两段为 [left,mid) 与 [mid+1,right)，下标 mid 不属于任何一段：arr[mid] 既不会被排序，也不会被正确合并，两段拼不成完整的 [left, right)。\n- **D `arr, left, mid + 1` 与 `arr, mid + 1, right + 1`**：❌ 错误。第二段 [mid+1, right+1) 把下标 right 卷进来，而 right 已越出本次调用的管辖范围 [left, right)，会读改不属于自己的元素；两段本身并不重叠，缺陷在越界与合并边界（`j = mid`）不符，而非重叠。\n\n**易错提醒：**\n- 区间端点约定决定 mid 归哪一段：本题 `right - left <= 1` 与 `j = mid` 都表明是左闭右开、mid 归第二段，因此第一空以 mid 结尾、第二空从 mid 开始，写成 mid±1 都会破坏递归或合并。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "候选第一轮已补回代码与选项，本轮独立复核：第 5—6 页题干、Prim 代码与四选项逐行一致，答案表 D（索引 3）；邻接矩阵以 0 表无边、边权为正时先排除 graph[u][v]==0 再取更小权，即 !=0 && key[v]>graph[u][v]，解析成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5—6 页第 14 题题干「下面 Prim 算法程序中，横线处应该填入的是（ ）。」与候选一致；prim 代码（key/parent 初始化、key[0]=0、min_element 取点、key[u]==INT_MAX break、更新 key[v]=graph[u][v] 与 parent[v]=u、末尾累加输出）逐行对照一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5—6 页 A graph[u][v] >= 0 && key[v] > graph[u][v]、B graph[u][v] <= 0 && ...、C graph[u][v] == 0 && ...、D graph[u][v] != 0 && key[v] > graph[u][v]，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 D，索引 3，候选 answer=3。独立推导：0 表示无边且边权为正，必须先排除 0（否则把 key 刷成 0），再用更小边权更新，即 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐项说明 A/B/C 的 0 值处理错误，结论 D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 2 题：第 6 页题干、代码与答案表 ×（索引 1）核对一致；arr[5] 越界且 int arr[n] 为 VLA 的两点论证独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断题第 2 题「下列 C++ 语言代码，能够安全地输出 arr[5] 的值。」及代码 int n = 5; int arr[n] = {1, 2, 3}; std::cout << arr[5]; 与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 2 题为 ×，映射 1，候选 answer=1。独立判断：数组长度 5、合法下标 0—4，arr[5] 越界属 UB，不能保证安全输出；int arr[n] 为变长数组，非 C++ 标准特性。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出越界 UB 与 VLA 两点，结论与 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 3 题：第 6 页题干与答案表 ×（索引 1）核对一致；归并/堆排序最坏 O(n log n) 的反例论证独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断题第 3 题「对 n 个元素的数组进行排序，最差情况的时间复杂度为 O(n²)。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 3 题为 ×，映射 1，候选 answer=1。独立判断：题面未限定算法，归并/堆排序最坏为 O(n log n)，O(n²) 非普遍结论。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析列出 O(n²) 类与 O(n log n) 类并给出比较排序下界，结论与 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 9 题：第 7 页题干与答案表 ×（索引 1）核对一致；Dijkstra 复杂度取决于取最小点的数据结构的论证独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 9 题「Dijkstra 算法的时间复杂度为 O(V²)，其中 V 为图中顶点的数量。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 9 题为 ×，映射 1，候选 answer=1。独立判断：数组/线性扫描 O(V²)、二叉堆 O((V+E)log V)、斐波那契堆 O(E+V log V)，不能一概写作 O(V²)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析列出三种实现复杂度并指出题面把特定实现当作固有复杂度，结论与 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "10 题独立复核完成：先逐页对照原卷再核 DeepSeek 结论。9 题（Q6/7/11/12/14/17/18/24/27）与原卷页图、答案表逐字一致，approve 且 changes 为空；Q13 为本轮新发现问题——候选解析的 B 项“两段之和少了 arr[mid]”与 D 项“两段重叠于 mid”经推演与模拟均为事实性错误（B 真实缺陷是 right−left=2 时 mid+1=right 的无限递归与合并起点错位，D 真实缺陷是第二段越界纳入下标 right），DeepSeek 初核未察觉，已给出整字段修正文本，verdict=revise。Q27 参考程序经本机编译：两组官方样例与 5 组自拟边界用例（n=1 全自环、n=2 单边/双平行边、原图不连通、自环+链）全部通过，150 组随机图与逐条删边重跑 Kruskal 的暴力对拍零差异，n=m=1e5 满档压力 0.37 s（压力仅记于证据不入 tests）。原卷 512 MB 与题库 128 MB 的内存差异按约定记录于 unresolved，留待本机集成校正。"
+  }
+}

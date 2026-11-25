@@ -1,0 +1,74 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "glm",
+  "questionIds": [
+    7
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T07:50:00.000Z",
+  "completedAt": "2026-11-25T08:20:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "1d03c7efab0635c78b940a6b98bd1931b51f639b9aad82d11a53deaa452a0387",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为『CCF 编程能力等级认证 / C++ 六级 / 2023 年 12 月』，单选题答案表 15 格经本复核放大裁切核对为 D C C D B B B D B D A A B C B（第 7 格为 B），与初核转录一致。第3页自上而下为第6题 LinkList/ListInit 代码块（1–20 行）、第7题『对 hello world 使用霍夫曼编码（Huffman Coding），最少bit（比特）为（ ）。』及四个选项、第8题题干，题号连续、题型（15 道单选）与 2023-12-l6 完全对应。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页第7题为纯文字题：『对 hello world 使用霍夫曼编码（Huffman Coding），最少bit（比特）为（ ）。』，原卷本题无任何代码；候选 question 与页图一致（仅空格/全角括号的排版规范化），题干文字本身无误。但候选 statement 的独立 code 字段仍是第6题的 LinkList/ListInit 代码——经脚本比对，该字段与平台叠加层 src/data/gesp/verified-corrections/part2.js 中 2023-12-l6 条目 7 的代码逐字节相同，且与第3页第6题代码块逐字一致（typedef struct LinkList {…} LinkList, LinkNode; bool ListInit(LinkList* &L) {…}），requiresCode=true 时站内 getQuestionContent 会把该代码追加到第7题题面下，而原卷第7题无代码、该代码属第6题（其选项 A–D 单向/双向/循环/指针链表正对应该结构体），属上题代码串入的真实硬伤；第 4 轮候选该字段为空字符串（previousReview 记录两模型一致批准 code:\"\"），本轮重建把叠加层中的错误代码带回，属修复回退。本报告采纳与初核一致、且与前轮一致批准值相同的修复 changes.code=\"\"：应用后第7题题面即与第3页原卷一致（纯文字、无代码），statement 状态据此判 verified。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页第7题四个选项依次为 A. 4、B. 32、C. 64、D. 88；候选 options 为 4/32/64/88，文字与顺序一致（站点省略选项字母前缀）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选题答案表（放大核对）15 格为 D C C D B B B D B D A A B C B，第 7 格为 B（索引 1），候选 answer=1 一致。独立重算：hello world 共 11 字符、8 种字符，频率 l=3、o=2，h/e/空格/w/r/d 各 1。严格按『每次取最小两权』合并：1+1=2、1+1=2、1+1=2（六个单频字符两两合并成三个 2），此时森林为四个 2（含 o=2）与 3(l)；再 2+2=4、2+2=4，得 {3,4,4}；3+4=7、4+7=11。内部节点权和 2+2+2+4+4+7+11=32，即 WPL=32 bit，故最少 32 bit，选 B；A 项 4 连 8 种字符定长下界 ceil(log2 8)=3 位/字符 × 11 = 33 bit 都不到，不可能；D 项 88 为定长 8 bit×11 的对照值。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析与第 4 轮批准的修复文本逐字节一致（与 manifest 批准值脚本比较确认落入）：规范合并序 1+1=2、1+1=2、1+1=2、2+2=4、2+2=4、3+4=7、4+7=11 符合『每次取最小两权』（含并列取法，3+4 的 4 取不含 o 的、4+7 的 4 取含 o 的为合法并列取法，另一取法 WPL 同为 32），内部权和 32 即 WPL；所列码长分配 l(3)、o(2) 各 2 位，两个频率 1 的字符 3 位，其余四个频率 1 的字符 4 位，逐字符累计 3×2+2×2+1×3×2+1×4×4=6+4+6+16=32 与合并法互证（经我独立重算成立）；A 项按 8 种字符定长下界 3 位/字符、11 字符至少 33 bit 说明 4 bit 不可能，B/C/D 逐项分析与答案 B 一致；未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考程序；题面为纯文字，独立 code 字段的问题已在 statement 维度处理。"
+          }
+        },
+        "changes": {
+          "code": ""
+        },
+        "tests": [],
+        "unresolved": [
+          "候选 statement 的独立 code 字段仍是第6题 LinkList/ListInit 代码（与叠加层 part2.js 2023-12-l6 条目 7 逐字节相同、与第3页第6题代码块逐字一致），而第3页第7题为纯文字题、原卷无代码；第 4 轮候选该字段为空字符串，本轮重建回退。修订门禁的形状校验不接受空字符串 code（typeof value === 'string' && value.trim().length > 0），清空需经平台叠加层（将 part2.js 中 2023-12-l6 条目 7 的 code 清空或删除该条目）或下一轮 manifest 以 code:\"\" 应用。",
+          "叠加层溯源（本轮范围外的相邻发现，仅记录不建议在本轮处理）：part2.js 中 2023-12-l6 的条目 6 挂 Order() 遍历代码、条目 7 挂 LinkList/ListInit 代码，而原卷第2页第5题为 Order() 代码题、第3页第6题为 LinkList 代码题，即条目 6/7 相对原卷题号整体后移一位，条目 7 正是本轮回退的来源；第6题（不在本轮 questionIds 内）是否同样被串入 Order 代码，建议下一轮单独核对修正。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "初核对 statement 判 needs_fix 经独立复核属实：候选独立 code 字段确为第6题 LinkList/ListInit 代码（与叠加层条目 7 及第3页第6题代码块逐字节一致），而原卷第7题为纯文字题、无代码；第 4 轮候选该字段为空字符串，本轮重建回退，属真实硬伤。修复值沿用原一致批准值 code:\"\"（与初核 changes 逐字相同，构成双模型一致批准），应用后 statement 即与第3页原卷一致。其余维度独立核验：题干文字与第3页一致、选项 4/32/64/88 一致、答案表第 7 格 B 对应 answer=1，解析（规范合并序与码长分配）经我按严格贪心独立重算成立且与第 4 轮批准文本逐字节一致。verdict=approve 指对「候选＋code:\"\" 修复值」的批准；修复尚未落入候选，待经叠加层或下一轮 manifest 回流应用，候选现状不可直接单独采用。"
+      }
+    ],
+    "summary": "仅 1 道候选（Q7）。第 4 轮批准的解析修复（规范合并序 1+1×3、2+2×2、3+4、4+7，WPL=32）已真实落入 paper.json 且与批准值逐字节一致；题干文字、选项（4/32/64/88）、答案（B，索引 1）均与原卷及独立重算一致。但候选 statement 的独立 code 字段仍是第6题 LinkList/ListInit 代码（与叠加层 part2.js 条目 7 逐字节相同、requiresCode=true），而第3页第7题为纯文字题、无代码；第 4 轮候选该字段为空字符串，本轮重建回退。采纳修复 changes={\"code\":\"\"}（与前轮一致批准值及初核逐字相同），应用后五维全部 verified/not_applicable；清空路径受门禁形状校验限制，需经叠加层或下一轮 manifest 落地，集成阶段应照此暂缓应用（deferred）。"
+  }
+}

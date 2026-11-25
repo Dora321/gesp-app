@@ -1,0 +1,154 @@
+{
+  "paperId": "2025-09-l5",
+  "integratedAt": "2026-11-25T12:33:27.845Z",
+  "accepted": [
+    {
+      "id": 17,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 18,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "6",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "9",
+          "output": "5",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "最小输入 n=1",
+          "input": "1\n",
+          "output": "1",
+          "reason": "只有 {1}，两两互质集合最大为 1；1+π(1)=1。实测通过。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "n=10（四个质数）",
+          "input": "10\n",
+          "output": "5",
+          "reason": "取 1 与 2,3,5,7 共 5 个；1+π(10)=5。实测通过。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "上界 n=10^5",
+          "input": "100000\n",
+          "output": "9593",
+          "reason": "π(10^5)=9592，答案 1+9592=9593。实测通过。",
+          "kind": "boundary",
+          "actual": "9593\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "3c3b16c4e953b0430d53e01b28724e50839c0a5ca989a42ed7caa8d81602e562"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3 8",
+          "output": "19",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "19\n",
+          "passed": true
+        },
+        {
+          "input": "65 36248",
+          "output": "328505490",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "328505490\n",
+          "passed": true
+        },
+        {
+          "name": "单点 l=r=1",
+          "input": "1 1\n",
+          "output": "1",
+          "reason": "1 的二进制 (1)₂ 含 1 个 1，是有趣的，和为 1。实测通过。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "单点非有趣 l=r=3",
+          "input": "3 3\n",
+          "output": "0",
+          "reason": "3=(11)₂ 含 2 个 1，不有趣，和为 0。实测通过。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "手算区间 1..10",
+          "input": "1 10\n",
+          "output": "22",
+          "reason": "有趣的为 1,2,4,7,8，和 1+2+4+7+8=22。实测通过。",
+          "kind": "boundary",
+          "actual": "22\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6174d6640df262304fc07259d1f3b4e461bc2d714a82cfbdb2270a58abe06ccd"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 9
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 10
+    }
+  ]
+}

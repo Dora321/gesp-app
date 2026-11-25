@@ -1,0 +1,110 @@
+{
+  "executedAt": "2026-11-25T07:44:25.373Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n3 2 1 2\n3 2 1 3\n5 3 1 3 1",
+          "output": "3\n4\n20",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n4\n20\n",
+          "passed": true
+        },
+        {
+          "input": "5\n100 1 100\n100 1 101\n20 2 12 8\n123 4 80 20 21 3\n999 5 101 234 499 66 99",
+          "output": "1\n1\n125970\n895031741\n307187590",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "1\n1\n125970\n895031741\n307187590\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 N=1,M=1",
+          "input": "1\n1 1 1\n",
+          "output": "1",
+          "reason": "1 名同学只有 0 号奖品 1 个，唯一方案。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "剩余 1 个奖品的两类选择",
+          "input": "1\n2 2 2 1\n",
+          "output": "3",
+          "reason": "2 名同学分 2 个 0 号、1 个 1 号奖品：两人都拿 0 号 1 种，或一人拿 1 号 2 种，共 3 种。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "多重集分布",
+          "input": "1\n5 3 3 1 1\n",
+          "output": "20",
+          "reason": "5!/(3!1!1!)=20，按多重集排列计数。",
+          "kind": "boundary",
+          "actual": "20\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "a4894cf2f1af3b585aa3491ed9f4b0f1078f126821b9e9c5d4a68d33931dcd1b"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5\n0 0 2 2\n3\n2 3 4\n3 2 3 4\n2 1 4",
+          "output": "2\n2\n0",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n2\n0\n",
+          "passed": true
+        },
+        {
+          "input": "7\n0 1 0 2 1 2\n5\n2 4 6\n2 4 5\n3 4 5 6\n4 2 4 5 6\n2 3 4",
+          "output": "2\n1\n1\n1\n0",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2\n1\n1\n1\n0\n",
+          "passed": true
+        },
+        {
+          "name": "星形树只有老板可主持",
+          "input": "3\n0 0\n1\n3 0 1 2\n",
+          "output": "0",
+          "reason": "0、1、2 的共同管理者只有 0 号，最大编号为 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "链式结构分别查询",
+          "input": "4\n0 1 2\n2\n2 1 2\n2 2 3\n",
+          "output": "1\n2",
+          "reason": "1、2 的共同管理者为 1；2、3 的共同管理者为 2。",
+          "kind": "boundary",
+          "actual": "1\n2\n",
+          "passed": true
+        },
+        {
+          "name": "最小 N=2",
+          "input": "2\n0\n1\n2 0 1\n",
+          "output": "0",
+          "reason": "0 与 1 的共同管理者只能是 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6586cd64fa3e6e468f05d88592b176c35969b67ed7b42dcba5cfe8db353899c2"
+    }
+  ]
+}

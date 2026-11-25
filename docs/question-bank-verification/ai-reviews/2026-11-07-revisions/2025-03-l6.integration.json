@@ -1,0 +1,179 @@
+{
+  "paperId": "2025-03-l6",
+  "integratedAt": "2026-11-25T08:37:26.446Z",
+  "accepted": [
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "3\n1 3\n2 3",
+          "output": "2 2 1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2 2 1\n",
+          "passed": true
+        },
+        {
+          "input": "4\n1 3\n3 2\n4 3",
+          "output": "3 3 1 3",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "3 3 1 3\n",
+          "passed": true
+        },
+        {
+          "name": "5 结点链二分计数",
+          "input": "5\n1 2\n2 3\n3 4\n4 5\n",
+          "output": "3 2 3 2 3",
+          "reason": "链二染色 cnt[0]=3（1,3,5）、cnt[1]=2（2,4）；独立复算一致，实测通过，覆盖奇数长度链的两侧不等分。",
+          "kind": "boundary",
+          "actual": "3 2 3 2 3\n",
+          "passed": true
+        },
+        {
+          "name": "7 结点双叉树混合计数",
+          "input": "7\n1 2\n1 3\n3 4\n3 5\n5 6\n5 7\n",
+          "output": "3 4 4 3 3 4 4",
+          "reason": "染色 cnt[0]={1,4,5}=3、cnt[1]={2,3,6,7}=4；独立复算一致，实测通过，覆盖非链非星的混合形态。",
+          "kind": "boundary",
+          "actual": "3 4 4 3 3 4 4\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0d8db3520cf8729b2b6529c7f7587ec23f1dcd65d1bccd3d24307739aad0bdea",
+      "stressTests": [
+        {
+          "name": "星形树",
+          "size": 200000,
+          "inputSha256": "aede340eaced53cce7b3e2ba1ab40d051393621e18914376d4912253de338f68",
+          "normalizedOutputSha256": "244e13e9c67d4a3dad5e711e97b7d95a897ee211e8028ce79137d3f309c610f5",
+          "passed": true
+        },
+        {
+          "name": "链形树",
+          "size": 200000,
+          "inputSha256": "f8bce43d3a72f58102304a7d7ed8afaba726dab99f8315052fdecec1e66d6d73",
+          "normalizedOutputSha256": "1b2db9e2918eb43d044960f91b5c8ea48249423d4057ead32248bc2df9382260",
+          "passed": true
+        }
+      ],
+      "nonExecutableReviewTests": [
+        {
+          "name": "2×10⁵ 星形压力",
+          "reason": "模型报告用文字描述压力测试。后续已重新生成完整输入和期望输出，并逐项实测。"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n-1 2 3 0",
+          "output": "5",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "input": "5\n-3 4 -5 1 3",
+          "output": "5",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "跨端点的两站组合",
+          "input": "3\n2 -1 2\n",
+          "output": "4",
+          "reason": "车站 3、1 相邻，2+2=4 优于任意长段；与 O(n³) 暴力一致，实测通过，覆盖跨 n→1 端点的环形衔接。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "长段优于整环",
+          "input": "4\n3 -2 3 -2\n",
+          "output": "4",
+          "reason": "最优为 3−2+3=4（长 3），整环总和仅 2；与暴力一致，实测通过，覆盖「长度上限 n 内取最优」而非必取整环。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "全负取单站",
+          "input": "2\n-1 -3\n",
+          "output": "-1",
+          "reason": "至少经过一站且不可空选，答案为最大单站 −1；与暴力一致，实测通过，覆盖 ans 初值 LLONG_MIN 的必要性。",
+          "kind": "boundary",
+          "actual": "-1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f5d4ba918cfe9c4a50fb66fa62af9311e4403290e92bddd364ed3719fadee1ef",
+      "stressTests": [
+        {
+          "name": "全为 10⁹",
+          "size": 200000,
+          "inputSha256": "a8491d47173fdd826ba66b780ad8dd070a62b92069056fdde7a5e8749ef8692f",
+          "normalizedOutputSha256": "feea8c4e1bae064feb1446e0e117e8a0eac43db777a06463c427a06693860167",
+          "passed": true
+        },
+        {
+          "name": "全为 −10⁹",
+          "size": 200000,
+          "inputSha256": "b53c706b9f96e844c0df627cb3149bf0692d8276228992e5cbc063323347aac3",
+          "normalizedOutputSha256": "4e2cc7e216ca6c001a03c32e5b25064ce9fe86f386ce1eada056423c9b585b3b",
+          "passed": true
+        }
+      ],
+      "nonExecutableReviewTests": [
+        {
+          "name": "上界溢出压力",
+          "reason": "模型报告用文字描述压力测试。后续已重新生成完整输入和期望输出，并逐项实测。"
+        }
+      ]
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 26,
+      "reasons": [
+        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 27,
+      "reasons": [
+        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "followUp": "把两条不可执行的压力描述改为独立生成的实际测试，并记录完整输入和规范化输出摘要。"
+}

@@ -1,0 +1,340 @@
+{
+  "paperId": "2025-12-l5",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    3,
+    10,
+    13,
+    14,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T12:50:00.000Z",
+  "completedAt": "2026-11-25T13:10:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "606da0529092d00b37b5068fc1ace20b0b066f23989390483f7b1600cc4b151d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1727912539586592.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++5级.pdf",
+    "mirrorSha": "adc9fff88ccd4556d7196e292cf5e9e92c99522a",
+    "mirrorBytes": 1202399,
+    "shaVerified": true,
+    "sha256": "2b5c9e88010a7c4179b6c1d13768fd1614a142ebc077a3c3be040bae74135224"
+  },
+  "pageCount": 13,
+  "report": {
+    "paperId": "2025-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为“CCF 编程能力等级认证 GESP / C++ 五级 / 2025 年 12 月”（第 1 页/共 13 页页脚），与 paperId 2025-12-l5 一致；第 1 页单选答案表 1–15 为 C B C D D B A B C C A A A A B（Q1=C、Q3=C、Q10=C、Q13=A、Q14=A），第 10/12 页两道编程题时间限制均 1.0 s、内存限制均 512.0 MB；缓存 source.pdf sha256 复算与清单一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 1 页题干「对如下定义的循环单链表，横线处填写（ ）。」及 1–34 行代码（Node 结点、createList、insertTail、printList 中 p=head 后横线 //在此处填入代码、cout << endl;）与候选 question + changes.code 一致；站点 question 原缺代码块，候选已按原卷补入。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1–2 页页图 A「while (p != nullptr){ cout << p->data << \" \"; p = p->next; }」B「while (p->next != nullptr){ … }」C「do { cout << p->data << \" \"; p = p->next; } while (p != head);」D「for(; p; p=p->next){ … }」与站点 options 一致（候选未改，无需修改）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题为 C，0 起始索引 2，候选 answer=2。独立推导：循环单链表无 nullptr 终点，A/B/D 的循环条件永不为假（p 与 p->next 恒非空），均死循环；C 先输出再前进，回到 head 即停，恰好输出全部结点一次，C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析对四种遍历的死循环/正确性分析与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选补入的 changes.code 与第 1 页页图 34 行代码逐行核对一致（仅空白行归一），答案 C 与答案表及独立推导（do-while 回到 head 停）一致，approve。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          3,
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页题干「下面关于单链表和双链表的描述中，正确的是（ ）。」与候选 question 一致；DNode/deleteNode（prev/next 重接后 delete）与 SNode/deleteSNode（从头 while(prev->next != node) 找前驱再重接）代码（1–31 行）与候选 code 一致，站点原缺代码块问题已由候选补齐。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "第 3 页页图四个选项为复杂度四组合：A「双链表删除指定节点是O(1)，单链表是O(1)」B「双链表删除指定节点是O(n)，单链表是O(1)」C「双链表删除指定节点是O(1)，单链表是O(n)」D「双链表删除指定节点是O(n)，单链表是O(n)」。站点 options 把四项改写为「通常是 O(N)」等表述并将组合换位（站点 A=双O(N)/单O(N)、B=双O(1)/单O(1)、D=双O(N)/单链表若已知前驱则是O(1)），与原卷 A/B/D 三项均不一致；2026-11-07 初轮报告所称「等价表述」不成立（如站点 A 的双链表 O(N) 与原卷 A 的 O(1) 相反）。changes.options 按原卷逐字恢复。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 C，0 起始索引 2，候选 answer=2。独立推导：双链表结点自带 prev，删除指定结点两步重接 O(1)；单链表只有 next，须从头遍历找前驱 O(n)。恢复原选项后 C 仍唯一正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "站点解析按站点改写版选项逐项作答（如「D 错误：把两者的复杂度恰好说反了」），与恢复后的原卷选项不对应；changes.explanation 按原卷四组合重写逐项判断，并保留「按值删除整体 O(n)」的易错点。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "双链表删除指定节点是 $O(1)$，单链表是 $O(1)$",
+            "双链表删除指定节点是 $O(n)$，单链表是 $O(1)$",
+            "双链表删除指定节点是 $O(1)$，单链表是 $O(n)$",
+            "双链表删除指定节点是 $O(n)$，单链表是 $O(n)$"
+          ],
+          "explanation": "**答案：C**\n\n**解析：**\n本题比较「已知待删除结点指针」时单链表与双链表的删除效率：\n\n- **双链表**：结点同时保存 `prev` 和 `next`，删除指定结点时可直接修改前驱、后继的指针，时间复杂度 $O(1)$；\n- **单链表**：结点只有 `next`，要删除指定结点必须先从头遍历找到它的前驱，时间复杂度 $O(n)$。\n\n逐项判断：\n- A 说双链表、单链表都是 $O(1)$：单链表应为 $O(n)$，错误；\n- B 说双链表 $O(n)$、单链表 $O(1)$：两者都说反，错误；\n- C 说双链表 $O(1)$、单链表 $O(n)$：正确；\n- D 说双链表、单链表都是 $O(n)$：双链表应为 $O(1)$，错误。\n\n**易错点：** 若题目是「按值删除」，两种链表都需要先查找，整体均为 $O(n)$；本题限定已持有待删结点指针，才有上述区别。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "本题为本轮重点：站点 options 并非原卷四组合的等价改写——A/B/D 三项与第 3 页页图逐字对照均不一致（组合换位+「通常」+末项改写成真命题），初轮「等价表述」的核验结论经复照不成立。逐字核对后采纳 DeepSeek 修复稿：changes.options 恢复原卷四组合、changes.explanation 按原卷选项重写逐项分析（双链表 O(1)、单链表找前驱 O(n)，C 唯一正确），revise 定稿。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5,
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 5 页题干「下述C++代码实现了快速排序算法，最坏情况的时间复杂度是（ ）。」及 partition（首元素基准、i/j 双向扫描注释「从右往左查找/从左往右查找」）与 quickSort 代码（共 18 行）与候选 question + changes.code 一致；站点 question 原缺代码块，候选已按原卷补入。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页页图 A「O(n)」B「O(log n)」C「O(n²)」D「O(nlogn)」与站点 options 一致（候选未改，无需修改）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题为 C，0 起始索引 2，候选 answer=2。独立推导并实测：pivot 取 arr[low]，对升序有序输入（如 {1,2,3}）第一趟内层 j 一直左扫到越界、partition 返回 low，每趟只分出 0 与 n−1 两段，递归深度 n，最坏 O(n²)，C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析对最坏情况（有序输入+首元素基准退化）与各选项的说明与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选补入的代码与第 5 页页图逐行核对一致，答案 C 与答案表及独立推导（有序输入退化为 O(n²)）一致，approve。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7,
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 7 页题干「下面给出了阶乘计算的两种方式。以下说法正确的是（ ）。」及 factorial1（单分支递归）与 factorial2（while 累乘迭代）代码（共 13 行）与候选 question + changes.code 一致；站点 question 原缺代码块，候选已按原卷补入。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 7 页页图 A「上面两种实现方式的时间复杂度相同，都为O(n)」B「空间复杂度相同，都为O(n)」C「空间复杂度相同，都为O(1)」D「函数 factorial1() 的时间复杂度为 O(2^n)，函数 factorial2() 的时间复杂度为 O(n)」与站点 options 一致（候选未改，无需修改）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 A，0 起始索引 0，候选 answer=0。独立推导：两者乘法次数均为 n−1 次，时间都是 O(n)，A 正确；factorial1 递归栈 O(n)、factorial2 常数空间 O(1)，B/C 错；factorial1 是单分支递归 O(n) 而非 O(2^n)，D 错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析对时间/空间复杂度与 D 的对比说明与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选补入的代码与第 7 页页图逐行核对一致，答案 A 与答案表及独立推导（时间均 O(n)、空间 O(n)/O(1)）一致，approve。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          7,
+          8,
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 7 页末题干「给定有n个任务，每个任务有截止时间和利润……即按利润从高到低排序，尽量安排，则横线处应填写（ ）。」及第 8 页 Task（deadline/profit 注释）、sortByProfit（lambda a.profit > b.profit）、maxProfit（slot 数组、从 task.deadline 倒序找空槽、横线后 break）代码（共 35 行）与候选 question + changes.code 一致；站点 question 原缺代码块，候选已按原卷补入。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 8 页页图 A「slot[t] = true; totalProfit += task.profit;」B「slot[t] = false; totalProfit += task.profit;」C「slot[t] = true; totalProfit = task.profit;」D「slot[t] = false; totalProfit = task.profit;」与站点 options 一致（候选未改，无需修改）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 A，0 起始索引 0，候选 answer=0。独立推导：进入空槽后必须占用该槽并累加当前任务利润，A 正确；B 不标记槽（可重复占用），C 不累加（覆盖丢失利润），D 既不标记也不累加。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析对 B/C/D 错误原因的说明与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选补入的代码与第 7–8 页页图逐行核对一致，答案 A 与答案表及独立推导（占用时间槽并累加利润）一致，approve。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 10 页「数字移动」题面（成对保证、移动第 i 个数字花费对应数字体力、最小 x）、输入输出格式、第 11 页样例 6 / 1 2 1 3 2 3 → 2 与数据范围（40% 1≤N,A_i≤100；所有测试点 1≤N,A_i≤10^5）与候选 question 一致；站点缺失的数据范围已由候选补入。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析核心转化（>x 的数不可动、过滤后须原序成对相邻，单调性二分最小 x）经独立推导正确，样例走查 x=1 剩 [2,3,2,3] 不成对、x=2 剩 [3,3] 成对得 2 亦正确；但解析两处称「right = 1000000（原序列数值上限）」「题目中数值最大可达 10^6」——第 11 页数据范围为 1≤A_i≤10^5，1e6 只是官方参考程序二分右界的保守取值，两处均与题面矛盾。changes.explanation 改为「大于题目上限 10^5 的稳妥上界」并同步易错提醒（仅此两处，其余主体核验无误后保留）。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "g++ -std=c++17 -O2（Apple clang 21.0.0）编译站点参考程序并与第 11 页官方参考程序（同一二分答案 + 过滤成对判定）对拍：原样例 6/1 2 1 3 2 3→2 一致；独立用例 4/1 2 2 1→1、6/3 1 2 3 1 2→2、8/2 4 2 3 4 3 5 5→3 均与官方及手推一致；与「最小可行 x 取自序列不同值」的独立暴力（可行性单调、题面保证至少一次操作排除已配对输入）在 289 组随机成对序列上零差异；压力说明：N=10^5（500 对倒序排列）实测 0.108 s，低于 1.0 s。"
+          }
+        },
+        "changes": {
+          "explanation": "**解析：**\n\n### 1. 题意理解与核心转化\n题目要求通过若干次移动，使得每对相同的数字在序列中相邻。每次移动数字 `v` 需要花费体力 `v`。目标是求出一个最小的体力上限 `x`，使得每次操作的花费均不超过 `x`。\n\n由此可以得到关键约束：\n- **可移动的数字**：数值不超过 `x`（即 `<= x`）的数字，可以花费对应体力自由移动到任意位置；\n- **不可移动的数字**：数值严格大于 `x`（即 `> x`）的数字，由于体力上限为 `x`，**绝对不能移动**。\n\n既然数值 `> x` 的数字一步都不能移动，它们在原序列中的**相对先后顺序是完全固定的**。要想最终每对相同的数字都能相邻，这部分不能动的数字必须满足：**将原序列中所有 `> x` 的数字按出现顺序提取出来后，相同的数字本身就必须两两连续成对出现**（即提取出的新序列满足第 0 个等于第 1 个、第 2 个等于第 3 个……）。\n\n反之，如果这些 `> x` 的数字已经两两配对，那么它们之间夹着的数字必然都 `<= x`。这些 `<= x` 的数字都可以自由移动挪开，给不能动的数字让出相邻空间；而 `<= x` 的数字自身也能自由移动到各自配对的数字身旁完成组合。因此，「提取所有 `> x` 的数字后两两相邻」是能在体力上限 `x` 内完成任务的**充要条件**。\n\n### 2. 单调性与二分答案\n- 当体力上限 `x` 越大时，允许移动的数字越多，不能移动的数字越少，条件越容易被满足；\n- 当体力上限 `x` 越小时，允许移动的数字越少，条件越苛刻。\n\n由于可行性具有单调性，我们可以采用**二分答案**求出最小的合法 `x`。\n- **二分区间**：左边界 `left = 1`，右边界 `right = 1000000`（大于题目上限 10^5 的稳妥上界）。\n\n### 3. 完整算法流程\n1. **初始化**：令 `left = 1, right = 1000000, ans = 1000000`。\n2. **二分循环**：当 `left <= right` 时循环执行：\n   - 取中点 `mid = (left + right) / 2`，作为当前检验的体力上限。\n   - **检验判定（Check）**：\n     - 顺序扫描原序列 `a`，将所有满足 `a[i] > mid` 的元素按原相对顺序存入临时数组 `b`。\n     - 由于题目中所有数字都是成对出现的，若一个数值大于 `mid`，其对应的双胞胎数值也必然大于 `mid`，因此数组 `b` 的长度 `pos` 一定为偶数。\n     - 以步长 2 遍历数组 `b`（即检查下标 `i = 0, 2, 4, ...`）：若存在 `b[i] != b[i + 1]`，说明有大于 `mid` 的元素无法配对相邻，当前 `mid` 不可行。\n   - **区间调整**：\n     - 若当前 `mid` 可行，说明体力上限还可以尝试更小，记录 `ans = mid`，并令 `right = mid - 1`；\n     - 若当前 `mid` 不可行，说明体力上限过小，必须增大，令 `left = mid + 1`。\n3. **输出答案**：二分结束后，输出 `ans` 即可。\n\n### 4. 样例走查\n以样例 `N = 6`，序列 `A = [1, 2, 1, 3, 2, 3]` 为例：\n\n1. **测试 `x = 1`**：\n   - 筛选大于 1 的元素，按原顺序得到数组 `b = [2, 3, 2, 3]`。\n   - 检查配对：`b[0] = 2`，`b[1] = 3`，两者不相等！\n   - 原因：数字 2 和 3 都不能移动，它们在原序列中交错分布 `2 ... 3 ... 2 ... 3`，无论怎么挪动 1，都不可能让两对数各自越过对方相邻。因此 `x = 1` 不合法。\n2. **测试 `x = 2`**：\n   - 筛选大于 2 的元素，按原顺序得到数组 `b = [3, 3]`。\n   - 检查配对：`b[0] = 3`，`b[1] = 3`，两者相等，遍历完毕无冲突。\n   - 实际验证：此时只有 3 不能移动。数值 `<= 2` 的数字（1 和 2）都可以移动。例如将第 2 个数字（即 `A_2 = 2`）向后移动到 `A_5 = 2` 的前面，花费体力 2，序列变为 `[1, 1, 3, 2, 2, 3]`；再将 `A_3 = 3` 前面的数移开即可让 3 相邻。所有单次操作花费均不超过 2。因此 `x = 2` 合法。\n3. **得出结论**：\n   - 经二分搜索，`x = 1` 不可行，而 `x = 2` 可行，因此满足条件的最小 `x` 为 `2`。\n\n### 5. 易错提醒与复杂度\n- **二分上下界设置**：题目中数值最大为 `10^5`，二分右边界不能只设为 `N`，必须覆盖序列中可能出现的最大元素值（参考程序保守取 `1e6` 作为上界）。\n- **成对步长检查**：遍历筛选数组 `b` 时，必须每次递增 2（比较 `b[i]` 与 `b[i + 1]`），且由于所有数都是成对的，数组 `b` 的元素个数一定为偶数。\n- **复杂度分析**：二分次数约为 `log2(10^6) ≈ 20` 次，每次检验仅需线性扫描数组，时间复杂度为 `O(N)`。总时间复杂度为 `O(N * log(max_A))`，对于 `N = 100000`，总计算量约 `2 * 10^6` 次操作，远低于 1 秒时限要求。"
+        },
+        "tests": [
+          {
+            "name": "两对交叉需移一对",
+            "input": "4\n1 2 2 1\n",
+            "output": "1",
+            "reason": "x=1 时 >1 的 [2,2] 原序相邻，移动 1 花费 1 即可；实测通过。"
+          },
+          {
+            "name": "三对交错",
+            "input": "6\n3 1 2 3 1 2\n",
+            "output": "2",
+            "reason": "x=1 时 >1 的 [3,2,3,2] 不成对；x=2 时 >2 的 [3,3] 成对，得 2；实测通过。"
+          },
+          {
+            "name": "四对含独立对",
+            "input": "8\n2 4 2 3 4 3 5 5\n",
+            "output": "3",
+            "reason": "x=3 时 >3 的 [4,4,5,5] 成对，得 3；x=2 时 [4,3,4,3,5,5] 不成对；实测通过。"
+          }
+        ],
+        "unresolved": [
+          "站点 memoryLimit=128 MB，原卷第 10 页编程题 1 标注内存限制 512.0 MB；memoryLimit 不在本次允许修改字段内，需人工同步。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "本题为本轮重点：候选解析把二分右界 1e6 说成「原序列数值上限」「题目中数值最大可达 10^6」，与第 11 页数据范围 1≤A_i≤10^5 不符（独立复核确认为解析数值错误，1e6 仅是官方程序保守上界）。采纳 DeepSeek 修复稿改正这两句（其余解析主体与样例走查核验保留）；参考程序经原样例与 3 条独立用例实测、并与官方程序及 289 组有效随机序列独立暴力对拍零差异，压力实测 0.108 s，revise 定稿。memoryLimit 差异保留待人工同步。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          12,
+          13
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 12 页「相等序列」题面（×P 或 /P 各花 1 金币、最少金币令全相同）、输入输出格式、样例 5 / 10 6 35 105 42 → 8 与数据范围（60% 1≤N,A_i≤100；所有测试点 1≤N,A_i≤10^5）与候选 question 一致；站点缺失的数据范围已由候选补入。原卷除法条件写作「要求 $A_i$ 能整除 $P$」（方向与操作 A_i/P 相反，为原卷笔误），候选按操作本义写作「要求 $A_i$ 是 $P$ 的倍数」（与官方参考程序按整除分支一致），该改动已记录见 unresolved。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：各操作只改变单个质因子的指数，质数之间独立；目标指数 E 对每个质因子独立取各数指数的中位数时 Σ|e_i−E| 最小。样例 10=2·5、6=2·3、35=5·7、105=3·5·7、42=2·3·7，2 的指数 {1,1,0,0,1} 中位数 1 贡献 2，3 的 {0,1,0,1,1} 贡献 2，5 的 {1,0,1,1,0} 贡献 2，7 的 {0,0,1,1,1} 贡献 2，合计 8，与样例及候选解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "g++ -std=c++17 -O2（Apple clang 21.0.0）编译站点参考程序并与第 13 页官方参考程序（质因子指数直方图 + 按中位数累加 |j−中位数|）对拍：原样例 5/10 6 35 105 42→8 一致；独立用例 1/7→0、2/2 3→2、3/2 4 8→2、2/8 2→2 与官方及手推一致；与有界 BFS 暴力（×P//P 状态图最短路，60 组 N≤3、A_i≤12）及按质因子枚举目标指数 E 的暴力（200 组 N≤5、A_i≤60）零差异；压力说明：N=10^5（全为 99991）实测 0.031 s，低于 1.0 s。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单元素序列",
+            "input": "1\n7\n",
+            "output": "0",
+            "reason": "只有一个数，已全部相同，花费 0。实测通过。"
+          },
+          {
+            "name": "两数化同",
+            "input": "2\n2 3\n",
+            "output": "2",
+            "reason": "2/2=1、3/3=1（或 2×3、3×2 得 6），最少 2 次操作；实测通过。"
+          },
+          {
+            "name": "三个 2 的幂",
+            "input": "3\n2 4 8\n",
+            "output": "2",
+            "reason": "指数 {1,2,3} 取中位数 2：|1−2|+|2−2|+|3−2|=2；实测通过。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 12 页除法条件写作「要求 $A_i$ 能整除 $P$」，按中文字义为 A_i 整除 P，与操作 A_i/P 所需的 P 整除 A_i 方向相反（原卷笔误）；站点按操作本义作「$A_i$ 是 $P$ 的倍数」，与官方参考程序行为一致。该处为对原卷笔误的语义修正而非逐字转写，保留记录待人工确认。",
+          "站点 memoryLimit=128 MB，原卷第 12 页编程题 2 标注内存限制 512.0 MB；memoryLimit 不在本次允许修改字段内，需人工同步。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "候选补入的数据范围与第 12 页页图逐字核对无误；「A_i 是 P 的倍数」系对原卷「A_i 能整除 P」方向性笔误的语义修正，已记录待人工确认。参考程序经原样例与 4 条独立用例实测、并与官方程序、有界 BFS 状态图暴力及按质因子枚举目标的暴力三重对拍零差异，压力实测 0.031 s，approve。memoryLimit 差异保留待人工同步。"
+      }
+    ],
+    "summary": "对照原卷 13 页页图与 PDF 文本层，先独立复核第一轮修订候选 7 题（重点 Q3 选项与 Q26 上界），后对照 DeepSeek 报告并复算 7 条基线 previousQuestionSha256 全部匹配。五题通过：Q1/Q10/Q13/Q14 候选补入的代码与页图逐行一致，答案 C/C/A/A 与答案表及独立推导（循环链表 do-while、有序输入退化 O(n²)、阶乘时间均 O(n)、占用槽累加利润）一致；Q27 数据范围补齐，中位数贪心独立推导与样例 8 一致，参考程序与官方、BFS 状态图暴力及按质因子枚举暴力对拍零差异，压力 0.031 s。两题 revise：Q3 站点 options 并非原卷四组合的等价改写（A/B/D 与第 3 页页图逐字不一致，初轮「等价表述」结论复照不成立），恢复原卷选项并重写解析；Q26 解析把二分右界 1e6 误作「数值上限/最大可达 10^6」，按第 11 页数据范围 1≤A_i≤10^5 改正，参考程序 289 组有效随机序列独立暴力对拍零差异、压力 0.108 s。原卷争议与限额差异保留：Q27 原卷「A_i 能整除 P」方向笔误的语义修正待人工确认、两道编程题站点 memoryLimit 128 MB vs 原卷 512.0 MB。"
+  },
+  "requests": []
+}

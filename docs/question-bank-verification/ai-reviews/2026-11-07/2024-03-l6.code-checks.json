@@ -1,0 +1,118 @@
+{
+  "executedAt": "2026-11-25T06:46:50.710Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "1 1 1 1",
+          "output": "1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "input": "114 51 4 1",
+          "output": "176",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "176\n",
+          "passed": true
+        },
+        {
+          "input": "114514 191 9 810",
+          "output": "384178446",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "384178446\n",
+          "passed": true
+        },
+        {
+          "name": "n≤c 边界",
+          "input": "5 2 3 5\n",
+          "output": "1",
+          "reason": "初始已满足 n≤c，游戏不开始，空序列算 1 种。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "a=b 时两种操作仍不同",
+          "input": "3 1 1 2\n",
+          "output": "2",
+          "reason": "f(3)=f(2)+f(2)=1+1=2，两个分支分别代表减 a 与减 b。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "一般递推",
+          "input": "4 2 1 1\n",
+          "output": "5",
+          "reason": "f(2)=2，f(3)=3，f(4)=f(2)+f(3)=5。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0e5b7c89a3d9fd402e55ca2469444738028003a32daf56223f9b2c389ecf7039"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2\n1 2\n1 2",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "3\n1 2 3\n3 2 1",
+          "output": "7",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "单头牛",
+          "input": "1\n5\n7\n",
+          "output": "1",
+          "reason": "只有一头牛时无需间隔，牛棚数 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两头牛对称",
+          "input": "2\n1 1\n1 1\n",
+          "output": "3",
+          "reason": "两头牛相邻，间隔 max(1,1)=1，总数为 2+1=3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "方向性间隔",
+          "input": "2\n1 10\n1 1\n",
+          "output": "3",
+          "reason": "顺序 1→0 时间隔 max(b[1]=1,a[0]=1)=1，总数 3；反向则需 12。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "60e9ad91d26c7b9de4baa2104afeafec5c6b1c6de026793d4496cf653bb56a3f"
+    }
+  ]
+}

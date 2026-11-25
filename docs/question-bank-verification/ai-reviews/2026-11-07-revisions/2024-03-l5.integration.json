@@ -1,0 +1,282 @@
+{
+  "paperId": "2024-03-l5",
+  "integratedAt": "2026-11-25T12:29:22.387Z",
+  "accepted": [
+    {
+      "id": 1,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 2,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 13,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "tags"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "tags"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "6\n140 140 150\n140 149 140\n148 141 140\n141 148 140\n145 145 139\n0 0 0",
+          "output": "1\n3\n4\n4\n2\n6",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n3\n4\n4\n2\n6\n",
+          "passed": true
+        },
+        {
+          "name": "三人全部并列",
+          "input": "3\n5 5 5\n5 5 5\n5 5 5\n",
+          "output": "1\n1\n1\n",
+          "reason": "实际执行：三元组全等三人并列第 1，覆盖并列上界。",
+          "kind": "boundary",
+          "actual": "1\n1\n1\n",
+          "passed": true
+        },
+        {
+          "name": "并列后名次留空",
+          "input": "3\n5 5 5\n5 5 5\n1 1 1\n",
+          "output": "1\n1\n3\n",
+          "reason": "实际执行：两人并列第 1，第 3 人自动为第 3 名，验证「留空 x-1 个名次」。",
+          "kind": "boundary",
+          "actual": "1\n1\n3\n",
+          "passed": true
+        },
+        {
+          "name": "总分相同按语数总分",
+          "input": "2\n100 80 20\n90 110 0\n",
+          "output": "2\n1\n",
+          "reason": "实际执行：总分同为 200，语数总分 180<200，后者在前，验证第二关键字。",
+          "kind": "boundary",
+          "actual": "2\n1\n",
+          "passed": true
+        },
+        {
+          "name": "尾段并列",
+          "input": "4\n150 150 150\n150 150 149\n0 0 0\n0 0 0\n",
+          "output": "1\n2\n3\n3\n",
+          "reason": "实际执行：前两名按语数总分区分，后两名并列第 3，覆盖非首段并列与成绩上界 150。",
+          "kind": "boundary",
+          "actual": "1\n2\n3\n3\n",
+          "passed": true
+        },
+        {
+          "name": "每科上界与并列名次",
+          "input": "3\n150 150 150\n150 150 150\n150 150 149\n",
+          "output": "1\n1\n3",
+          "kind": "boundary",
+          "actual": "1\n1\n3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "992ddfa5a2bbdec7e06d553bf527f1a25348d077c022dd66c5d58f68453b52c4"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "10 3",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "最小输入",
+          "input": "1 1\n",
+          "output": "1\n",
+          "reason": "实际执行：仅 1 一个数，1 无质因子视为满足，答案 1，覆盖下界。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "B 小于全部大于 1 的质因子",
+          "input": "10 2\n",
+          "output": "4\n",
+          "reason": "实际执行：2-smooth 数 {1,2,4,8} 共 4 个，验证重复质因子不重复限制。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "B=1 仅 1 本身",
+          "input": "10 1\n",
+          "output": "1\n",
+          "reason": "实际执行：任何素数最大质因子 ≥2>1，只有 1 计入，验证 B 下界语义。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "值域与 B 双上界",
+          "input": "1000000 1000000\n",
+          "output": "1000000\n",
+          "reason": "实际执行：B 达上界时全部 ≤n 的正整数均为 B-smooth，答案等于 n；N=B=10^6 实测约 0.00 s，验证规模上界与 1.0 s 时限。",
+          "kind": "boundary",
+          "actual": "1000000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0cd4796010510ccf47b2507cafbba10eaa6e3180db9ba1f0a05cc63f14fbb380"
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 6,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：C**\n\n**解析：** 朴素递归的 fibonacci(n) 每次都分裂成 fibonacci(n-1) 与 fibonacci(n-2) 两个调用，递归树近似满二叉树，调用次数随 n 指数增长，时间复杂度记为 $O(2^n)$（更精确的渐进界为 $O(\\varphi^n)$，$\\varphi\\approx1.618$，教材统一写作 $O(2^n)$）。\n\n- **A $O(1)$**：错误，需要指数级的函数调用。\n- **B $O(n)$**：错误，$O(n)$ 是循环迭代（递推）写法的时间复杂度。\n- **C $O(2^n)$**：正确，重复子问题导致指数级调用。\n- **D $O(\\log n)$**：错误，递归深度为 $O(n)$，调用次数更是指数级。\n\n**考点：** 递归、时间复杂度分析"
+      }
+    },
+    {
+      "id": 11,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：A**\n\n**解析：** 线性筛（欧拉筛）保证每个合数只被它的最小质因子筛掉一次，标记总次数与 n 成正比，时间复杂度为 $O(N)$。\n\n- **A $O(N)$**：正确。\n- **B $O(N\\log\\log N)$**：错误，这是埃拉托斯特尼筛法的复杂度。\n- **C $O(N\\log N)$**：错误，线性筛不会对每个质数都遍历其全部倍数。\n- **D $O(N^2)$**：错误，线性筛的标记总次数是线性的。\n\n**考点：** 线性筛法"
+      }
+    },
+    {
+      "id": 12,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：B**\n\n**解析：** 归并排序把序列不断二分，分别递归排序，再把两个有序子序列合并，是“分解—解决—合并”的分治算法。\n\n- **A 动态规划**：错误，归并排序没有重叠子问题与状态转移。\n- **B 分治**：正确。\n- **C 贪心算法**：错误，归并排序不做逐步局部最优选择。\n- **D 回溯算法**：错误，归并排序不搜索解空间，也没有回退过程。\n\n**考点：** 归并排序、分治"
+      }
+    },
+    {
+      "id": 26,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "\n# [GESP202403 五级] 成绩排序\n\n## 题目描述\n\n有 $n$ 名同学，每名同学有语文、数学、英语三科成绩，你需要按照如下规则对所有同学的成绩从高到低排序：\n\n1. 比较总分，高者靠前；\n2. 如果总分相同，则比较语文和数学两科的总分，高者靠前；\n3. 如果仍相同，则比较语文和数学两科的最高分，高者靠前；\n4. 如果仍相同，则二人并列。\n\n你需要输出每位同学的排名，如遇 $x$ 人并列，则他们排名相同，并留空后面的 $x - 1$ 个名次。例如，有 $3$ 名同学并列第 $1$，则后一名同学自动成为第 $4$ 名。\n\n## 输入格式\n\n第一行一个整数 $N$，表示同学的人数。 \n接下来 $N$ 行，每行三个非负整数 $c_i, m_i, e_i$ 分别表示该名同学的语文、数学、英语成绩。\n\n保证 $0 \\le c_i, m_i, e_i \\le 150$。\n\n## 输出格式\n\n输出 $N$ 行，按输入同学的顺序，输出他们的排名。 \n**注意：请不要按排名输出同学的序号，而是按同学的顺序输出他们各自的排名。**\n\n\n## 数据规模\n\n对于 30% 的测试点，保证 $N \\le 100$，且所有同学的总分各不相同。\n\n对于所有测试点，保证 $2 \\le N \\le 10^4$。\n"
+      }
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "tags",
+      "value": [
+        "编程题",
+        "排序算法"
+      ],
+      "sourcePage": 6
+    },
+    {
+      "id": 27,
+      "field": "tags",
+      "value": [
+        "编程题",
+        "数论",
+        "筛法",
+        "质因数分解"
+      ],
+      "sourcePage": 8
+    }
+  ]
+}

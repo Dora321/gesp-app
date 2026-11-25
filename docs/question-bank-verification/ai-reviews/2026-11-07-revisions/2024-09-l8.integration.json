@@ -1,0 +1,363 @@
+{
+  "paperId": "2024-09-l8",
+  "integratedAt": "2026-11-25T12:39:26.854Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 5,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "question",
+        "code"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 13,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "description",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "description",
+        "outputDescription",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 15,
+      "reasons": [
+        "原卷第 8 页把 B 的指数底数写成 (√5−1)/2，小于 1，无法描述调用次数的增长。正确底数为 (1+√5)/2。保留官方答案 B，登记选项公式与答案的冲突。"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 7,
+      "tests": [
+        {
+          "input": "2\n5 6 2\n5 1 5",
+          "output": "120\n0",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "120\n0\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例",
+          "input": "2\n5 6 2\n5 1 5\n",
+          "output": "120\n0",
+          "reason": "5 双取 6 只恰含 2 整双：C(5,2)·C(3,2)·2²=10·3·4=120；5 双取 1 只要 1 整双不可能，输出 0。",
+          "kind": "boundary",
+          "actual": "120\n0\n",
+          "passed": true
+        },
+        {
+          "name": "m<2k 不可能",
+          "input": "1\n1 1 1\n",
+          "output": "0",
+          "reason": "1 只手套凑不成 1 整双，触发参考程序 m<2*k 判定。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "恰好取一整双",
+          "input": "1\n1 2 1\n",
+          "output": "1",
+          "reason": "唯一的一双必须左右手都取，方案数 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "全取且全成双",
+          "input": "1\n2 4 2\n",
+          "output": "1",
+          "reason": "2 双全取即 2 整双，唯一方案。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "恰 1 双其余单只",
+          "input": "1\n2 3 1\n",
+          "output": "4",
+          "reason": "C(2,1)·C(1,1)·2¹=2·1·2=4。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "上限规模",
+          "input": "1\n1000 2000 1000\n",
+          "output": "1",
+          "reason": "n=1000 全部 2n 只取尽、k=n，唯一方案，同时覆盖子任务 3 规模上限。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "取 1 只无成双",
+          "input": "1\n1000 1 1\n",
+          "output": "0",
+          "reason": "m<2k，不合法。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d83f62aaf798ded916b4ebc123eeb1a7425dc2b033c409f19efe2313d9001c9f"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 7,
+      "tests": [
+        {
+          "input": "5\n1 0 0 1 0\n1 2\n3 5\n4 3\n1 3",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "5\n0 0 0 0 0\n1 2\n2 3\n3 4\n4 5",
+          "output": "1",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例 1",
+          "input": "5\n1 0 0 1 0\n1 2\n3 5\n4 3\n1 3\n",
+          "output": "4",
+          "reason": "路径 2-1-3-4 颜色 0/1/0/1 相邻异色，长度 4。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例 2",
+          "input": "5\n0 0 0 0 0\n1 2\n2 3\n3 4\n4 5\n",
+          "output": "1",
+          "reason": "全同色，任何长度≥2 的路径都含同色相邻点，最长美丽路径为单结点。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "单结点",
+          "input": "1\n0\n",
+          "output": "1",
+          "reason": "n=1 下界。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两结点同色",
+          "input": "2\n0 0\n1 2\n",
+          "output": "1",
+          "reason": "唯一一条边同色不可走，答案为单结点。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "链 0-0-1",
+          "input": "3\n0 0 1\n1 2\n2 3\n",
+          "output": "2",
+          "reason": "1-2 同色不可同路径，最长为 2-3，长度 2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "星形中心黑三叶白",
+          "input": "4\n1 0 0 0\n1 2\n1 3\n1 4\n",
+          "output": "3",
+          "reason": "任两叶经中心构成 0-1-0 美丽路径，长度 3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "两结点异色",
+          "input": "2\n0 1\n1 2\n",
+          "output": "2",
+          "reason": "整条边构成美丽路径。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6aab84f809b58775e6ff10827c144c4dcdf1f3a3ea2f0fda70a5ce20df819c36"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 9
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 10
+    }
+  ],
+  "objectiveCodeChecks": [
+    {
+      "id": 13,
+      "input": "3 6\n1 2 3\n2 3 4\n1 3 20\n2 1 8\n3 1 2\n3 2 5\n",
+      "expected": [
+        0,
+        3,
+        7,
+        6,
+        0,
+        4,
+        2,
+        5,
+        0
+      ],
+      "passed": true
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 7,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "下面 pailie 函数是一个实现排列的程序，横线处可以填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\nint sum = 0;\nvoid swap(int & a, int & b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\nvoid pailie(int begin, int end, int a[]) {\n    if (begin == end) {\n        for (int i = 0; i < end; i++)\n            cout << a[i];\n        cout << endl;\n    }\n    for (int i = begin; i < end; i++) {\n        ________ // 在此处填入选项\n    }\n}\n```"
+      }
+    },
+    {
+      "id": 9,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "下列程序实现了输出杨辉三角形，代码中横线部分应该填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n#define N 35\nint a[N][N];\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 1; i <= n; i++)\n        for (int j = 1; j <= i; j++) {\n            if (j == 1 || j == i)\n                a[i][j] = 1;\n            else\n                ________ // 在此处填入选项\n        }\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= i; j++)\n            cout << a[i][j];\n        cout << endl;\n    }\n    return 0;\n}\n```"
+      }
+    },
+    {
+      "id": 11,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "下面 Prim 算法程序中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint prim(vector<vector<int>> & graph, int n) {\n    vector<int> key(n, INT_MAX);\n    vector<int> parent(n, -1);\n    key[0] = 0;\n    for (int i = 0; i < n; i++) {\n        int u = min_element(key.begin(), key.end()) - key.begin();\n        if (key[u] == INT_MAX)\n            break;\n        for (int v = 0; v < n; v++) {\n            if (__________) { // 在此处填入选项\n                key[v] = graph[u][v];\n                parent[v] = u;\n            }\n        }\n    }\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        if (parent[i] != -1) {\n            cout << \"Edge: \" << parent[i] << \" - \" << i << \" Weight: \" << key[i] << endl;\n            sum += key[i];\n        }\n    }\n    return sum;\n}\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> graph(n, vector<int>(n, 0));\n    for (int i = 0; i < m; i++) {\n        int u, v, w;\n        cin >> u >> v >> w;\n        graph[u][v] = w;\n        graph[v][u] = w;\n    }\n    int result = prim(graph, n);\n    cout << \"Total weight of the minimum spanning tree: \" << result << endl;\n    return 0;\n}\n```"
+      }
+    },
+    {
+      "id": 13,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "下面 Floyd 算法中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n\n#define N 21\n#define INF 99999999\nint map[N][N];\nint main() {\n    int n, m, t1, t2, t3;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (i == j)\n                map[i][j] = 0;\n            else\n                map[i][j] = INF;\n        }\n    }\n    for (int i = 1; i <= m; i++) {\n        cin >> t1 >> t2 >> t3;\n        map[t1][t2] = t3;\n    }\n    for (int k = 1; k <= n; k++)\n        for (int i = 1; i <= n; i++)\n            for (int j = 1; j <= n; j++)\n                if (__________) // 在此处填入选项\n                    map[i][j] = map[i][k] + map[k][j];\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            cout.width(4);\n            cout << map[i][j];\n        }\n        cout << endl;\n    }\n}\n```"
+      }
+    }
+  ]
+}

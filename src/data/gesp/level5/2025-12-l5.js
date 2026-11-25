@@ -5,124 +5,33 @@ const programmingQuestions = [
       id: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       samples: [
         { input: `6
 1 2 1 3 2 3`, output: `2` }
       ],
-      question: `
-# [GESP202512 五级] 数字移动
-
-## 题目描述
-
-小 A 有一个包含 $N$ 个正整数的序列 $A=\\{A_1,A_2,\\cdots,A_N\\}$，序列 $A$ 恰好包含 $\\frac{N}{2}$ 对不同的正整数。形式化地，对于任意 $1 \\le i \\le N$，存在唯一一个 $j$ 满足 $1\\le j \\le N, i\\neq j, A_i=A_j$。
-
-小 A 希望每对相同的数字在序列中相邻，为了实现这一目的，小 A 每次操作会选择任意 $i(1\\le i\\le N)$，将当前序列的第 $i$ 个数字移动到任意位置，并花费对应数字的体力。
-
-例如，假设序列 $A=\\{1,2,1,3,2,3\\}$，小 A 可以选择 $i=2$，将 $A_2=2$ 移动到 $A_3=1$ 的后面，此时序列变为 $\\{1,1,2,3,2,3\\}$，耗费 $2$ 点体力。小 A 也可以选择 $i=3$，将 $A_3=1$ 移动到 $A_2=2$ 的前面，此时序列变为 $\\{1,1,2,3,2,3\\}$，花费 $1$ 点体力。
-
-小 A 可以执行任意次操作，但他希望自己每次花费的体力尽可能小。小 A 希望你能帮他计算出一个最小的 $x$，使得他能够在每次花费的体力均不超过 $x$ 的情况下令每对相同的数字在序列中相邻。
-
-## 输入格式
-
-第一行一个正整数 $N$，代表序列长度，保证 $N$ 为偶数。
-
-第二行包含 $N$ 个正整数 $A_1,A_2,\\ldots,A_N$，代表序列 $A$。且对于任意 $1\\le i\\le N$，存在唯一一个 $j$ 满足 $1\\le j\\le N,i\\neq j,A_i=A_j$。
-
-数据保证小 A 至少需要执行一次操作。
-
-## 输出格式
-
-输出一行，代表满足要求的 $x$ 的最小值。
-`,
+      question: "# [GESP202512 五级] 数字移动\n\n## 题目描述\n\n小 A 有一个包含 $N$ 个正整数的序列 $A=\\{A_1,A_2,\\cdots,A_N\\}$，序列 $A$ 恰好包含 $\\frac{N}{2}$ 对不同的正整数。形式化地，对于任意 $1 \\le i \\le N$，存在唯一一个 $j$ 满足 $1\\le j \\le N, i\\neq j, A_i=A_j$。\n\n小 A 希望每对相同的数字在序列中相邻，为了实现这一目的，小 A 每次操作会选择任意 $i(1\\le i\\le N)$，将当前序列的第 $i$ 个数字移动到任意位置，并花费对应数字的体力。\n\n例如，假设序列 $A=\\{1,2,1,3,2,3\\}$，小 A 可以选择 $i=2$，将 $A_2=2$ 移动到 $A_3=1$ 的后面，此时序列变为 $\\{1,1,2,3,2,3\\}$，耗费 $2$ 点体力。小 A 也可以选择 $i=3$，将 $A_3=1$ 移动到 $A_2=2$ 的前面，此时序列变为 $\\{1,1,2,3,2,3\\}$，花费 $1$ 点体力。\n\n小 A 可以执行任意次操作，但他希望自己每次花费的体力尽可能小。小 A 希望你能帮他计算出一个最小的 $x$，使得他能够在每次花费的体力均不超过 $x$ 的情况下令每对相同的数字在序列中相邻。\n\n## 输入格式\n\n第一行一个正整数 $N$，代表序列长度，保证 $N$ 为偶数。\n\n第二行包含 $N$ 个正整数 $A_1,A_2,\\ldots,A_N$，代表序列 $A$。且对于任意 $1\\le i\\le N$，存在唯一一个 $j$ 满足 $1\\le j\\le N,i\\neq j,A_i=A_j$。\n\n数据保证小 A 至少需要执行一次操作。\n\n## 输出格式\n\n输出一行，代表满足要求的 $x$ 的最小值。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le N,A_i \\le 100$；对于所有测试点，保证 $1 \\le N,A_i \\le 10^5$。",
       score: 25,
-      explanation: `**解析：**
-
-### 1. 题意理解与核心转化
-题目要求通过若干次移动，使得每对相同的数字在序列中相邻。每次移动数字 \`v\` 需要花费体力 \`v\`。目标是求出一个最小的体力上限 \`x\`，使得每次操作的花费均不超过 \`x\`。
-
-由此可以得到关键约束：
-- **可移动的数字**：数值不超过 \`x\`（即 \`<= x\`）的数字，可以花费对应体力自由移动到任意位置；
-- **不可移动的数字**：数值严格大于 \`x\`（即 \`> x\`）的数字，由于体力上限为 \`x\`，**绝对不能移动**。
-
-既然数值 \`> x\` 的数字一步都不能移动，它们在原序列中的**相对先后顺序是完全固定的**。要想最终每对相同的数字都能相邻，这部分不能动的数字必须满足：**将原序列中所有 \`> x\` 的数字按出现顺序提取出来后，相同的数字本身就必须两两连续成对出现**（即提取出的新序列满足第 0 个等于第 1 个、第 2 个等于第 3 个……）。
-
-反之，如果这些 \`> x\` 的数字已经两两配对，那么它们之间夹着的数字必然都 \`<= x\`。这些 \`<= x\` 的数字都可以自由移动挪开，给不能动的数字让出相邻空间；而 \`<= x\` 的数字自身也能自由移动到各自配对的数字身旁完成组合。因此，「提取所有 \`> x\` 的数字后两两相邻」是能在体力上限 \`x\` 内完成任务的**充要条件**。
-
-### 2. 单调性与二分答案
-- 当体力上限 \`x\` 越大时，允许移动的数字越多，不能移动的数字越少，条件越容易被满足；
-- 当体力上限 \`x\` 越小时，允许移动的数字越少，条件越苛刻。
-
-由于可行性具有单调性，我们可以采用**二分答案**求出最小的合法 \`x\`。
-- **二分区间**：左边界 \`left = 1\`，右边界 \`right = 1000000\`（原序列数值上限）。
-
-### 3. 完整算法流程
-1. **初始化**：令 \`left = 1, right = 1000000, ans = 1000000\`。
-2. **二分循环**：当 \`left <= right\` 时循环执行：
-   - 取中点 \`mid = (left + right) / 2\`，作为当前检验的体力上限。
-   - **检验判定（Check）**：
-     - 顺序扫描原序列 \`a\`，将所有满足 \`a[i] > mid\` 的元素按原相对顺序存入临时数组 \`b\`。
-     - 由于题目中所有数字都是成对出现的，若一个数值大于 \`mid\`，其对应的双胞胎数值也必然大于 \`mid\`，因此数组 \`b\` 的长度 \`pos\` 一定为偶数。
-     - 以步长 2 遍历数组 \`b\`（即检查下标 \`i = 0, 2, 4, ...\`）：若存在 \`b[i] != b[i + 1]\`，说明有大于 \`mid\` 的元素无法配对相邻，当前 \`mid\` 不可行。
-   - **区间调整**：
-     - 若当前 \`mid\` 可行，说明体力上限还可以尝试更小，记录 \`ans = mid\`，并令 \`right = mid - 1\`；
-     - 若当前 \`mid\` 不可行，说明体力上限过小，必须增大，令 \`left = mid + 1\`。
-3. **输出答案**：二分结束后，输出 \`ans\` 即可。
-
-### 4. 样例走查
-以样例 \`N = 6\`，序列 \`A = [1, 2, 1, 3, 2, 3]\` 为例：
-
-1. **测试 \`x = 1\`**：
-   - 筛选大于 1 的元素，按原顺序得到数组 \`b = [2, 3, 2, 3]\`。
-   - 检查配对：\`b[0] = 2\`，\`b[1] = 3\`，两者不相等！
-   - 原因：数字 2 和 3 都不能移动，它们在原序列中交错分布 \`2 ... 3 ... 2 ... 3\`，无论怎么挪动 1，都不可能让两对数各自越过对方相邻。因此 \`x = 1\` 不合法。
-2. **测试 \`x = 2\`**：
-   - 筛选大于 2 的元素，按原顺序得到数组 \`b = [3, 3]\`。
-   - 检查配对：\`b[0] = 3\`，\`b[1] = 3\`，两者相等，遍历完毕无冲突。
-   - 实际验证：此时只有 3 不能移动。数值 \`<= 2\` 的数字（1 和 2）都可以移动。例如将第 2 个数字（即 \`A_2 = 2\`）向后移动到 \`A_5 = 2\` 的前面，花费体力 2，序列变为 \`[1, 1, 3, 2, 2, 3]\`；再将 \`A_3 = 3\` 前面的数移开即可让 3 相邻。所有单次操作花费均不超过 2。因此 \`x = 2\` 合法。
-3. **得出结论**：
-   - 经二分搜索，\`x = 1\` 不可行，而 \`x = 2\` 可行，因此满足条件的最小 \`x\` 为 \`2\`。
-
-### 5. 易错提醒与复杂度
-- **二分上下界设置**：题目中数值最大可达 \`10^6\`，二分右边界不能只设为 \`N\`，必须覆盖序列中可能出现的最大元素值（即 \`1e6\`）。
-- **成对步长检查**：遍历筛选数组 \`b\` 时，必须每次递增 2（比较 \`b[i]\` 与 \`b[i + 1]\`），且由于所有数都是成对的，数组 \`b\` 的元素个数一定为偶数。
-- **复杂度分析**：二分次数约为 \`log2(10^6) ≈ 20\` 次，每次检验仅需线性扫描数组，时间复杂度为 \`O(N)\`。总时间复杂度为 \`O(N * log(max_A))\`，对于 \`N = 100000\`，总计算量约 \`2 * 10^6\` 次操作，远低于 1 秒时限要求。`,
+      explanation: "**解析：**\n\n### 1. 题意理解与核心转化\n题目要求通过若干次移动，使得每对相同的数字在序列中相邻。每次移动数字 `v` 需要花费体力 `v`。目标是求出一个最小的体力上限 `x`，使得每次操作的花费均不超过 `x`。\n\n由此可以得到关键约束：\n- **可移动的数字**：数值不超过 `x`（即 `<= x`）的数字，可以花费对应体力自由移动到任意位置；\n- **不可移动的数字**：数值严格大于 `x`（即 `> x`）的数字，由于体力上限为 `x`，**绝对不能移动**。\n\n既然数值 `> x` 的数字一步都不能移动，它们在原序列中的**相对先后顺序是完全固定的**。要想最终每对相同的数字都能相邻，这部分不能动的数字必须满足：**将原序列中所有 `> x` 的数字按出现顺序提取出来后，相同的数字本身就必须两两连续成对出现**（即提取出的新序列满足第 0 个等于第 1 个、第 2 个等于第 3 个……）。\n\n反之，如果这些 `> x` 的数字已经两两配对，那么它们之间夹着的数字必然都 `<= x`。这些 `<= x` 的数字都可以自由移动挪开，给不能动的数字让出相邻空间；而 `<= x` 的数字自身也能自由移动到各自配对的数字身旁完成组合。因此，「提取所有 `> x` 的数字后两两相邻」是能在体力上限 `x` 内完成任务的**充要条件**。\n\n### 2. 单调性与二分答案\n- 当体力上限 `x` 越大时，允许移动的数字越多，不能移动的数字越少，条件越容易被满足；\n- 当体力上限 `x` 越小时，允许移动的数字越少，条件越苛刻。\n\n由于可行性具有单调性，我们可以采用**二分答案**求出最小的合法 `x`。\n- **二分区间**：左边界 `left = 1`，右边界 `right = 1000000`（大于题目上限 10^5 的稳妥上界）。\n\n### 3. 完整算法流程\n1. **初始化**：令 `left = 1, right = 1000000, ans = 1000000`。\n2. **二分循环**：当 `left <= right` 时循环执行：\n   - 取中点 `mid = (left + right) / 2`，作为当前检验的体力上限。\n   - **检验判定（Check）**：\n     - 顺序扫描原序列 `a`，将所有满足 `a[i] > mid` 的元素按原相对顺序存入临时数组 `b`。\n     - 由于题目中所有数字都是成对出现的，若一个数值大于 `mid`，其对应的双胞胎数值也必然大于 `mid`，因此数组 `b` 的长度 `pos` 一定为偶数。\n     - 以步长 2 遍历数组 `b`（即检查下标 `i = 0, 2, 4, ...`）：若存在 `b[i] != b[i + 1]`，说明有大于 `mid` 的元素无法配对相邻，当前 `mid` 不可行。\n   - **区间调整**：\n     - 若当前 `mid` 可行，说明体力上限还可以尝试更小，记录 `ans = mid`，并令 `right = mid - 1`；\n     - 若当前 `mid` 不可行，说明体力上限过小，必须增大，令 `left = mid + 1`。\n3. **输出答案**：二分结束后，输出 `ans` 即可。\n\n### 4. 样例走查\n以样例 `N = 6`，序列 `A = [1, 2, 1, 3, 2, 3]` 为例：\n\n1. **测试 `x = 1`**：\n   - 筛选大于 1 的元素，按原顺序得到数组 `b = [2, 3, 2, 3]`。\n   - 检查配对：`b[0] = 2`，`b[1] = 3`，两者不相等！\n   - 原因：数字 2 和 3 都不能移动，它们在原序列中交错分布 `2 ... 3 ... 2 ... 3`，无论怎么挪动 1，都不可能让两对数各自越过对方相邻。因此 `x = 1` 不合法。\n2. **测试 `x = 2`**：\n   - 筛选大于 2 的元素，按原顺序得到数组 `b = [3, 3]`。\n   - 检查配对：`b[0] = 3`，`b[1] = 3`，两者相等，遍历完毕无冲突。\n   - 实际验证：此时只有 3 不能移动。数值 `<= 2` 的数字（1 和 2）都可以移动。例如将第 2 个数字（即 `A_2 = 2`）向后移动到 `A_5 = 2` 的前面，花费体力 2，序列变为 `[1, 1, 3, 2, 2, 3]`；再将 `A_3 = 3` 前面的数移开即可让 3 相邻。所有单次操作花费均不超过 2。因此 `x = 2` 合法。\n3. **得出结论**：\n   - 经二分搜索，`x = 1` 不可行，而 `x = 2` 可行，因此满足条件的最小 `x` 为 `2`。\n\n### 5. 易错提醒与复杂度\n- **二分上下界设置**：题目中数值最大为 `10^5`，二分右边界不能只设为 `N`，必须覆盖序列中可能出现的最大元素值（参考程序保守取 `1e6` 作为上界）。\n- **成对步长检查**：遍历筛选数组 `b` 时，必须每次递增 2（比较 `b[i]` 与 `b[i + 1]`），且由于所有数都是成对的，数组 `b` 的元素个数一定为偶数。\n- **复杂度分析**：二分次数约为 `log2(10^6) ≈ 20` 次，每次检验仅需线性扫描数组，时间复杂度为 `O(N)`。总时间复杂度为 `O(N * log(max_A))`，对于 `N = 100000`，总计算量约 `2 * 10^6` 次操作，远低于 1 秒时限要求。",
       tags: ["编程题", "二分答案", "贪心"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\nusing namespace std;\nconst int N = 100010;\nint a[N];\nint b[N];\nint pos;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 0; i < n; i++) cin >> a[i];\n    int left = 1, right = 1e6, ans = 1e6;\n    while(left <= right){\n        int mid = (left+right) / 2;\n        bool possible = true;\n        pos = 0;\n        for(int i = 0; i < n; i++) {\n            if(a[i] > mid) b[pos++] = a[i];\n        }\n        for(int i = 0; i < pos; i += 2){\n            if(b[i] != b[i+1]) {\n                possible = false;\n                break;\n            }\n        }\n        if(possible){\n            ans = mid;\n            right = mid-1;\n        } else {\n            left = mid+1;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
     {
       id: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       samples: [
         { input: `5
 10 6 35 105 42`, output: `8` }
       ],
-      question: `
-# [GESP202512 五级] 相等序列
-
-## 题目描述
-
-小 A 有一个包含 $N$ 个正整数的序列 $A=\\{A_1,A_2,\\ldots,A_N\\}$。小 A 每次可以花费 $1$ 个金币执行以下任意一种操作：
-
-- 选择序列中一个正整数 $A_i$（$1\\le i\\le N$），将 $A_i$ 变为 $A_i\\times P$，$P$ 为任意质数；
-- 选择序列中一个正整数 $A_i$（$1\\le i\\le N$），将 $A_i$ 变为 $\\frac{A_i}{P}$，$P$ 为任意质数，要求 $A_i$ 是 $P$ 的倍数。
-
-小 A 想请你帮他计算出令序列中所有整数都相同，最少需要花费多少金币。
-
-## 输入格式
-
-第一行一个正整数 $N$，含义如题面所示。
-
-第二行包含 $N$ 个正整数 $A_1,A_2,\\ldots,A_N$，代表序列 $A$。
-
-## 输出格式
-
-输出一行，代表最少需要花费的金币数量。
-`,
+      question: "# [GESP202512 五级] 相等序列\n\n## 题目描述\n\n小 A 有一个包含 $N$ 个正整数的序列 $A=\\{A_1,A_2,\\ldots,A_N\\}$。小 A 每次可以花费 $1$ 个金币执行以下任意一种操作：\n\n- 选择序列中一个正整数 $A_i$（$1\\le i\\le N$），将 $A_i$ 变为 $A_i\\times P$，$P$ 为任意质数；\n- 选择序列中一个正整数 $A_i$（$1\\le i\\le N$），将 $A_i$ 变为 $\\frac{A_i}{P}$，$P$ 为任意质数，要求 $A_i$ 是 $P$ 的倍数。\n\n小 A 想请你帮他计算出令序列中所有整数都相同，最少需要花费多少金币。\n\n## 输入格式\n\n第一行一个正整数 $N$，含义如题面所示。\n\n第二行包含 $N$ 个正整数 $A_1,A_2,\\ldots,A_N$，代表序列 $A$。\n\n## 输出格式\n\n输出一行，代表最少需要花费的金币数量。\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1 \\le N,A_i \\le 100$；对于所有测试点，保证 $1 \\le N,A_i \\le 10^5$。",
       score: 25,
       explanation: `**解析：**
 
@@ -210,6 +119,10 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\nusing namespace std;\nconst int N = 100010;\nint num[N][20];\nint n, a[N];\nvoid calc_prime_factor(int x){\n    for(int i = 2; i * i <= x; i++){\n        if(x % i == 0){\n            int cnt = 0;\n            while(x % i == 0){\n                x /= i;\n                cnt++;\n            }\n            num[i][cnt]++;\n        }\n    }\n    if(x > 1) num[x][1]++;\n}\nint main(){\n    scanf(\"%d\", &n);\n    for(int i = 1; i <= n; i++){\n        scanf(\"%d\", &a[i]);\n        calc_prime_factor(a[i]);\n    }\n    long long ans = 0;\n    for(int i = 2; i < 100001; i++){\n        int pos = 0;\n        for(int j = 0; j < 20; j++) pos += num[i][j];\n        num[i][0] = n-pos;\n        int median_exponent = 0;\n        pos = 0;\n        for(int j = 0; j < 20; j++){\n            pos += num[i][j];\n            if(pos * 2 >= n){\n                median_exponent = j;\n                break;\n            }\n        }\n        for(int j = 0; j < 20; j++) ans += 1ll * num[i][j] * abs(j-median_exponent);\n    }\n    printf(\"%lld\\n\", ans);\n}\n",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 12,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     }
 ];
 
@@ -254,9 +167,11 @@ export const paperData = {
 **考点：** 循环单链表的遍历`,
             sourceVerified: true,
             sourcePage: 1,
-            reviewedBy: "AI对照官方PDF校订",
-            reviewedAt: "2026-10-25",
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             tags: ["客观题", "单选题", "GESP5级", "链表", "指针"],
+      "code": "// 循环单链表的结点\nstruct Node {\n    int data;       // 数据域\n    Node* next;     // 指针域\n\n    Node(int d) : data(d), next(nullptr) {}\n};\n\n// 创建一个只有一个结点的循环单链表\nNode* createList(int value) {\n    Node* head = new Node(value);\n    head->next = head;\n    return head;\n}\n\n// 在循环单链表尾部插入新结点\nvoid insertTail(Node* head, int value) {\n    Node* p = head;\n    while (p->next != head) {\n        p = p->next;\n    }\n    Node* node = new Node(value);\n    node->next = head;\n    p->next = node;\n}\n\n// 遍历并输出循环单链表\nvoid printList(Node* head) {\n    if (head == nullptr) return;\n\n    Node* p = head;\n    ______________________          //在此处填入代码\n    cout << endl;\n}",
+      "reviewedFields": ["code","reviewedBy","reviewedAt"],
         },
         {
             id: 2,
@@ -290,28 +205,16 @@ tail = newBlock->prev;`],
             id: 3,
             type: "single",
             question: `下面关于单链表和双链表的描述中，正确的是（ ）。`,
-            options: [
-                "双链表删除指定结点通常是 $O(N)$，单链表也是 $O(N)$。",
-                "双链表删除指定结点通常是 $O(1)$，单链表也是 $O(1)$。",
-                "双链表删除指定结点通常是 $O(1)$，单链表若需先找前驱通常是 $O(N)$。",
-                "双链表删除指定结点通常是 $O(N)$，单链表若已知前驱则是 $O(1)$。",
-            ],
+            options: ["双链表删除指定节点是 $O(1)$，单链表是 $O(1)$","双链表删除指定节点是 $O(n)$，单链表是 $O(1)$","双链表删除指定节点是 $O(1)$，单链表是 $O(n)$","双链表删除指定节点是 $O(n)$，单链表是 $O(n)$"],
             answer: 2,
             score: 2,
-            explanation: `
-**答案：C**
-
-**解析：**
-- **A 错误：** 双（单）链表「删除指定结点」在**已持有该结点指针**的前提下：双链表 O(1)（前后指针都在手边），单链表 O(N)（要回头找前驱）。说双链表删除也是 O(N) 不对。
-- **B 错误：** 单链表删除指定结点必须先遍历找前驱 O(N)，说「单链表也是 O(1)」不对。
-- **C 正确：** 双链表结点自带 prev 指针，删除时 \`p->prev->next = p->next; p->next->prev = p->prev; delete p;\` 是 O(1)；单链表只有 next，定位前驱要从头遍历，通常是 O(N)。
-- **D 错误：** 把两者的复杂度恰好说反了。
-
-**易错点：** 复杂度结论依赖于「是否已知前驱/是否持有结点指针」这个前提；若是「按值删除」（先查找再删），两者都是 O(N)。
-
-**考点：** 单链表与双链表、时间复杂度
-        `,
+            explanation: "**答案：C**\n\n**解析：**\n本题比较「已知待删除结点指针」时单链表与双链表的删除效率：\n\n- **双链表**：结点同时保存 `prev` 和 `next`，删除指定结点时可直接修改前驱、后继的指针，时间复杂度 $O(1)$；\n- **单链表**：结点只有 `next`，要删除指定结点必须先从头遍历找到它的前驱，时间复杂度 $O(n)$。\n\n逐项判断：\n- A 说双链表、单链表都是 $O(1)$：单链表应为 $O(n)$，错误；\n- B 说双链表 $O(n)$、单链表 $O(1)$：两者都说反，错误；\n- C 说双链表 $O(1)$、单链表 $O(n)$：正确；\n- D 说双链表、单链表都是 $O(n)$：双链表应为 $O(1)$，错误。\n\n**易错点：** 若题目是「按值删除」，两种链表都需要先查找，整体均为 $O(n)$；本题限定已持有待删结点指针，才有上述区别。\n\n题给单链表函数以待删节点有前驱为前提。删除头节点需由调用方另外更新头指针。",
             tags: ["客观题", "单选题", "GESP5级", "链表", "双向链表", "复杂度分析"],
+      "code": "struct DNode {\n    int data;\n    DNode* prev;\n    DNode* next;\n};\n\n// 在双链表中删除指定节点\nvoid deleteNode(DNode* node) {\n    if (node->prev) {\n        node->prev->next = node->next;\n    }\n    if (node->next) {\n        node->next->prev = node->prev;\n    }\n    delete node;\n}\n\nstruct SNode {\n    int data;\n    SNode* next;\n};\n\n// 在单链表中删除指定节点\nvoid deleteSNode(SNode* head, SNode* node) {\n    SNode* prev = head;\n    while (prev->next != node) {\n        prev = prev->next;\n    }\n    prev->next = node->next;\n    delete node;\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["code","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 4,
@@ -516,9 +419,11 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
 **考点：** 快速排序的最坏时间复杂度`,
             sourceVerified: true,
             sourcePage: 5,
-            reviewedBy: "AI对照官方PDF校订",
-            reviewedAt: "2026-10-25",
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             tags: ["客观题", "单选题", "GESP5级", "快速排序", "复杂度分析"],
+      "code": "int partition(vector<int>& arr, int low, int high) {\n    int i = low, j = high;\n    int pivot = arr[low];                 // 以首元素为基准\n    while (i < j) {\n        while (i < j && arr[j] >= pivot) j--;   //从右往左查找\n        while (i < j && arr[i] <= pivot) i++;   //从左往右查找\n        if (i < j) swap(arr[i], arr[j]);\n    }\n    swap(arr[i], arr[low]);\n    return i;\n}\n\nvoid quickSort(vector<int>& arr, int low, int high) {\n    if (low >= high) return;\n    int p = partition(arr, low, high);\n    quickSort(arr, low, p - 1);\n    quickSort(arr, p + 1, high);\n}",
+      "reviewedFields": ["code","reviewedBy","reviewedAt"],
         },
         {
             id: 11,
@@ -602,9 +507,11 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
 **考点：** 递归与迭代的复杂度对比`,
             sourceVerified: true,
             sourcePage: 7,
-            reviewedBy: "AI对照官方PDF校订",
-            reviewedAt: "2026-10-25",
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             tags: ["客观题", "单选题", "GESP5级", "递归", "循环", "复杂度分析"],
+      "code": "int factorial1(int n) {\n    if (n <= 1) return 1;\n    return n * factorial1(n - 1);\n}\n\nint factorial2(int n) {\n    int acc = 1;\n    while (n > 1) {\n        acc = n * acc;\n        n = n - 1;\n    }\n    return acc;\n}",
+      "reviewedFields": ["code","reviewedBy","reviewedAt"],
         },
         {
             id: 14,
@@ -630,9 +537,11 @@ totalProfit = task.profit;`],
 **考点：** 贪心算法（带截止时间的任务调度）`,
             sourceVerified: true,
             sourcePage: 7,
-            reviewedBy: "AI对照官方PDF校订",
-            reviewedAt: "2026-10-25",
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             tags: ["客观题", "单选题", "GESP5级", "贪心", "排序算法"],
+      "code": "struct Task {\n    int deadline;   //截止时间\n    int profit;     //利润\n};\n\nvoid sortByProfit(vector<Task>& tasks) {\n    sort(tasks.begin(), tasks.end(),\n        [](const Task& a, const Task& b) {\n            return a.profit > b.profit;\n        });\n}\n\nint maxProfit(vector<Task>& tasks) {\n    sortByProfit(tasks);\n\n    int maxTime = 0;\n    for (auto& t : tasks) {\n        maxTime = max(maxTime, t.deadline);\n    }\n\n    vector<bool> slot(maxTime + 1, false);\n    int totalProfit = 0;\n\n    for (auto& task : tasks) {\n        for (int t = task.deadline; t >= 1; t--) {\n            if (!slot[t]) {\n                ______________________  //在此处填入代码\n                break;\n            }\n        }\n    }\n\n    return totalProfit;\n}",
+      "reviewedFields": ["code","reviewedBy","reviewedAt"],
         },
         {
             id: 15,
